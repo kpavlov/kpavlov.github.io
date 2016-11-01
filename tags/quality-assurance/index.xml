@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Culture of Code</title>
+    <link>http://blog.konstantinpavlov.net/tags/quality-assurance/index.xml</link>
+    <description>Recent content on The Culture of Code</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://blog.konstantinpavlov.net/tags/quality-assurance/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Selenium Tests with Maven and Selenide</title>
+      <link>http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</link>
+      <pubDate>Thu, 12 May 2016 16:26:25 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://selenide.org&#34; target=&#34;_blank&#34;&gt;Selenide&lt;/a&gt; is nice wrapper around selenium web driver allowing to simplify writting UI tests with Selenium.&lt;/p&gt;
+
+&lt;p&gt;Some of the cook features are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jquery-like selector syntax, e.g. &lt;code&gt;$(&amp;quot;div.myclass&amp;quot;).is(Condition.visible)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Automatic screenshots on assertion failure&lt;/li&gt;
+&lt;li&gt;Easy starting Selenium WebDriver&lt;/li&gt;
+&lt;li&gt;And &lt;a href=&#34;http://selenide.org/quick-start.html&#34; target=&#34;_blank&#34;&gt;others&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s write some tests on selenide and make it run from maven in a normal browser or in headless mode.&lt;/p&gt;
+
+&lt;p&gt;First, let&amp;rsquo;s create &lt;a href=&#34;https://raw.githubusercontent.com/kpavlov/selenide-maven-sample/master/pom.xml&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;pom.xml&lt;/em&gt;&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;project xmlns=&amp;quot;http://maven.apache.org/POM/4.0.0&amp;quot;
+         xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+         xsi:schemaLocation=&amp;quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&amp;quot;&amp;gt;
+    &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt;
+
+    &amp;lt;groupId&amp;gt;com.github.kpavlov&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;selenide-sample&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt;
+
+    &amp;lt;properties&amp;gt;
+        &amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;
+        &amp;lt;maven.compiler.source&amp;gt;${java.version}&amp;lt;/maven.compiler.source&amp;gt;
+        &amp;lt;maven.compiler.target&amp;gt;${java.version}&amp;lt;/maven.compiler.target&amp;gt;
+        &amp;lt;selenium.hub.url&amp;gt;http://local.example.com:4444/wd/hub&amp;lt;/selenium.hub.url&amp;gt;
+        &amp;lt;holdBrowserOpen&amp;gt;false&amp;lt;/holdBrowserOpen&amp;gt;
+        &amp;lt;surefire.argLine&amp;gt;-Dbrowser=${browser} -Dselenide.holdBrowserOpen=${holdBrowserOpen}&amp;lt;/surefire.argLine&amp;gt;
+    &amp;lt;/properties&amp;gt;
+
+    &amp;lt;prerequisites&amp;gt;
+        &amp;lt;maven&amp;gt;3.3&amp;lt;/maven&amp;gt;
+    &amp;lt;/prerequisites&amp;gt;
+
+    &amp;lt;profiles&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;firefox&amp;lt;/id&amp;gt;
+            &amp;lt;activation&amp;gt;
+                &amp;lt;activeByDefault&amp;gt;true&amp;lt;/activeByDefault&amp;gt;
+            &amp;lt;/activation&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;firefox&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;chrome&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;chrome&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;phantomjs&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;phantomjs&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;ie&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;ie&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;htmlunit&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;htmlunit&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+            &amp;lt;dependencies&amp;gt;
+                &amp;lt;dependency&amp;gt;
+                    &amp;lt;groupId&amp;gt;org.seleniumhq.selenium&amp;lt;/groupId&amp;gt;
+                    &amp;lt;artifactId&amp;gt;selenium-htmlunit-driver&amp;lt;/artifactId&amp;gt;
+                    &amp;lt;version&amp;gt;LATEST&amp;lt;/version&amp;gt;
+                    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+                &amp;lt;/dependency&amp;gt;
+            &amp;lt;/dependencies&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;ci-server&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;surefire.argLine&amp;gt;-Dremote=${selenium.hub.url} -Dbrowser=${browser}&amp;lt;/surefire.argLine&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;local&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;holdBrowserOpen&amp;gt;true&amp;lt;/holdBrowserOpen&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+    &amp;lt;/profiles&amp;gt;
+
+    &amp;lt;build&amp;gt;
+        &amp;lt;defaultGoal&amp;gt;clean test&amp;lt;/defaultGoal&amp;gt;
+        &amp;lt;plugins&amp;gt;
+            &amp;lt;plugin&amp;gt;
+                &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;maven-surefire-plugin&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;2.19.1&amp;lt;/version&amp;gt;
+                &amp;lt;configuration&amp;gt;
+                    &amp;lt;argLine&amp;gt;${surefire.argLine}&amp;lt;/argLine&amp;gt;
+                &amp;lt;/configuration&amp;gt;
+            &amp;lt;/plugin&amp;gt;
+        &amp;lt;/plugins&amp;gt;
+        &amp;lt;pluginManagement&amp;gt;
+            &amp;lt;plugins&amp;gt;
+                &amp;lt;plugin&amp;gt;
+                    &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+                    &amp;lt;artifactId&amp;gt;maven-surefire-plugin&amp;lt;/artifactId&amp;gt;
+                &amp;lt;/plugin&amp;gt;
+            &amp;lt;/plugins&amp;gt;
+        &amp;lt;/pluginManagement&amp;gt;
+    &amp;lt;/build&amp;gt;
+
+    &amp;lt;dependencies&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.slf4j&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;slf4j-simple&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;1.7.13&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;com.codeborne&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;selenide&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;3.5.1&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;4.12&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+    &amp;lt;/dependencies&amp;gt;
+&amp;lt;/project&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice the properties:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;surefire.argLine&lt;/strong&gt; &amp;ndash; defines a command line parameters for running tests.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;browser&lt;/strong&gt; &amp;ndash; specifies a browser to use.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;selenium.hub.url&lt;/strong&gt; &amp;ndash; URL where selenium hub is running, for tests with remote web driver, e.g. on CI server.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;holdBrowserOpen&lt;/strong&gt; &amp;ndash; should the browser be closed after tests.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Also there are a fistful of profiles to use as a shortcuts, e.g.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mvn clean test -Pphantomjs&lt;/code&gt; &amp;ndash; run tests locally with phantomjs headless browser. Requires phantomjs to be installed&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mvn clean test -Pfirefox,local&lt;/code&gt; &amp;ndash; run tests locally with Firefox and leaves a browser open after tests&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mvn clean test -Pci-server,chrome&lt;/code&gt; &amp;ndash; run tests on selenium hub with Chrome&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You may find working example in my &lt;a href=&#34;https://github.com/kpavlov/selenide-maven-sample&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Recalling Testing Principles</title>
+      <link>http://blog.konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/</link>
+      <pubDate>Wed, 28 Jan 2015 23:04:54 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/</guid>
+      <description>&lt;p&gt;If you are involved in software development then recalling a basic testing principles once again is not a waste of time. So here are the principles:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;A necessary part of a test case is a definition of the expected output or result.&lt;/li&gt;
+&lt;li&gt;A programmer should avoid attempting to test his or her own program.&lt;/li&gt;
+&lt;li&gt;A programming organization should not test its own programs.&lt;/li&gt;
+&lt;li&gt;Any testing process should include a thorough inspection of the results of each test.&lt;/li&gt;
+&lt;li&gt;Test cases must be written for input conditions that are invalid and unexpected, as well as for those that are valid and expected.&lt;/li&gt;
+&lt;li&gt;Examining a program to see if it does not do what it is supposed to do is only half the battle; the other half is seeing whether the program does what it is not supposed to do.&lt;/li&gt;
+&lt;li&gt;Avoid throwaway test cases unless the program is truly a throwaway program.&lt;/li&gt;
+&lt;li&gt;Do not plan a testing effort under the tacit assumption that no errors will be found.&lt;/li&gt;
+&lt;li&gt;The probability of the existence of more errors in a section of a program is proportional to the number of errors already found in that section.&lt;/li&gt;
+&lt;li&gt;Testing is an extremely creative and intellectually challenging task.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I recommend reading a book &lt;a href=&#34;http://eu.wiley.com/WileyCDA/WileyTitle/productCd-1118031962.html&#34; title=&#34;The Art of Software Testing, 3rd Edition&#34; target=&#34;_blank&#34;&gt;&amp;laquo;The Art of Software Testing&amp;raquo;&lt;/a&gt; by Glenford j. Myers, Tom Badgett and Corey Sandler (ISBN: 978-1-118-03196-4).&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

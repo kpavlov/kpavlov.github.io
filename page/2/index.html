@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+    
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.17" />
+
+    
+    
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Culture of Code">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Culture of Code">
+    <meta property="og:description" content="">
+
+    
+<meta name="twitter:site" content="@yourblogtwitter">
+
+
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+<meta name="google-site-verification" content="">
+
+
+<meta property="fb:admins" content="">
+
+
+    <link href='http://blog.konstantinpavlov.net/index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="http://blog.konstantinpavlov.net/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="http://blog.konstantinpavlov.net/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/style.css?v=1477977074">
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/prism.min.css?v=1477977074"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+  <body class="">
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+
+            <aside role="banner" class="cover">
+  <div data-load-image="/img/cover.jpg" class="cover-image"></div>
+  <div class="cover-container">
+    
+      <a href="http://blog.konstantinpavlov.net/" class="cover-logo" data-pjax>
+        <img src="http://blog.konstantinpavlov.net/img/avatar-128.png" alt="Blog Logo">
+      </a>
+    
+    <h1 class="cover-title">The Culture of Code</h1>
+    <p class="cover-description">Thoughts on Software Development</p>
+  </div>
+</aside>
+
+            <section class="wrapper" tabindex="0">
+              <div class="wrapper-container">
+                
+
+
+                
+                <section class="post-list">
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/" itemprop="url" data-pjax title="Implementing Automatic Reconnection for Netty Client">
+        Implementing Automatic Reconnection for Netty Client
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>One of the first requirement of <a href="https://github.com/kpavlov/jreactive-8583" target="_blank">Netty ISO8588 client connector</a> was the support for automatic reconnect.</p>
+
+<p>One of the first receipts I came across was <a href="http://tterm.blogspot.com/2014/03/netty-tcp-client-with-reconnect-handling.html" target="_blank">Thomas Termin&rsquo;s one</a>. He suggests adding a ChannelHandler which will schedule the calling of client&rsquo;s <code>connect()</code> method once a Channel becomes inactive. Plus adding ChannelFutureListener which will re-create a bootstrap and re-connect if initial connection was failed.</p>
+
+<p>Although this is a working solution, I had a feeling that something is not optimal. Namely, the new Bootstrap is being created on every connection attempt.</p>
+
+<p>So, I created a FutureListener which should be registered once a Channel is closed.</p><a href="http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/" itemprop="url" data-pjax title="Implementing Automatic Reconnection for Netty Client">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-07-08' itemprop="datePublished">
+          2015-07-08
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/netty/" data-pjax rel="tag">#netty</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/jreactive-8583/" data-pjax rel="tag">#jreactive-8583</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/#disqus_thread" data-disqus-identifier='20150708074805'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T2M" />
+        ~2 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/" itemprop="url" data-pjax title="Java Application Development Tutorial">
+        Java Application Development Tutorial
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>I&rsquo;ve been meaning to write a small tutorial for building web applications. Now it&rsquo;s time!
+Let&rsquo;s define the steps and choose some solutions for developing back-end java web application.</p>
+
+<p>I will give my design recommendations and list a technologies I would use. You may have your own opinion and you may share it in comment. Over time, this post may change since my favourites are also changing over time.</p><a href="http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/" itemprop="url" data-pjax title="Java Application Development Tutorial">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-06-17' itemprop="datePublished">
+          2015-06-17
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/architecture/" data-pjax rel="tag">#architecture</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/web/" data-pjax rel="tag">#web</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/#disqus_thread" data-disqus-identifier='20150617095516'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T7M" />
+        ~7 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/" itemprop="url" data-pjax title="Self-Hosted Web Analytics Solution for AngularJS">
+        Self-Hosted Web Analytics Solution for AngularJS
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>There are situations when you need to analyze user&rsquo;s experience but can&rsquo;t use a third-party web analytics solutions like Google Analytics or Yandex Metrika. For example, if your production environment is PCI DSS compliant. In this case you have to deploy self-hosted analytics engine and inside your environment and configure user actions tracking in your application.
+One of the possible solutions is the piwik as analytics engine + Angulartics or angular-piwik for tracking events inside AngularJS application.<a href="http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/" itemprop="url" data-pjax title="Self-Hosted Web Analytics Solution for AngularJS">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-06-03' itemprop="datePublished">
+          2015-06-03
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/javascript/" data-pjax rel="tag">#javascript</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/angularjs/" data-pjax rel="tag">#angularjs</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/web/" data-pjax rel="tag">#web</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/#disqus_thread" data-disqus-identifier='20150603190512'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/" itemprop="url" data-pjax title="Loading Indicators for AngularJS">
+        Loading Indicators for AngularJS
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>Modern web application should be user friendly and notify the User when time consuming operation is on the way, e.g. uploading file or downloading data. There are a some solutions for AngularJS which are fairy easy to integrate.
+First one is Angular Loading Bar. It can be attached to your application with almost zero configuration and does not affect application design. It attaches the interceptor to $http service and displays a thin progressbar on the top edge of the page.<a href="http://blog.konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/" itemprop="url" data-pjax title="Loading Indicators for AngularJS">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-06-02' itemprop="datePublished">
+          2015-06-02
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/javascript/" data-pjax rel="tag">#javascript</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/angularjs/" data-pjax rel="tag">#angularjs</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/#disqus_thread" data-disqus-identifier='20150602184443'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/" itemprop="url" data-pjax title="Tags Input Control for AngularJS">
+        Tags Input Control for AngularJS
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>Stay DRY! Don&rsquo;t waste your time implementing tags input control for AngularJS yourself! There is an excellent AngularJS module for that called &laquo;ngTagsInput&raquo;. It&rsquo;s also supports autocomptetion, validations,custom styles and templates. See the demos.
+It took me just 10 minutes to add that type of control to my application.
+All you need to do is: 1. Add NPM or Bower dependency
+npm install ng-tags-input --save bower install ng-tags-input --save   Include script and CSS to your html page.<a href="http://blog.konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/" itemprop="url" data-pjax title="Tags Input Control for AngularJS">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-05-30' itemprop="datePublished">
+          2015-05-30
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/javascript/" data-pjax rel="tag">#javascript</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/angularjs/" data-pjax rel="tag">#angularjs</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/#disqus_thread" data-disqus-identifier='20150530095319'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/" itemprop="url" data-pjax title="API Authentication: Generating HMAC digest in PHP and Java">
+        API Authentication: Generating HMAC digest in PHP and Java
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>User authentication is an important part of the web service API design.
+One of the common approach is the Hash-based Message Authentication Code &ndash; <abbr title="Hash-based Message Authentication Code"><a href="http://en.wikipedia.org/wiki/Hash-based_message_authentication_code" title="Hash-based message authentication code" target="_blank">HMAC</a></abbr>.
+Used together with transport level security it provides reliable mechanizm of user authentication and message integrity validation.
+</p><a href="http://blog.konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/" itemprop="url" data-pjax title="API Authentication: Generating HMAC digest in PHP and Java">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-05-20' itemprop="datePublished">
+          2015-05-20
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/programming/" data-pjax rel="tag">#programming</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/php/" data-pjax rel="tag">#php</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/security/" data-pjax rel="tag">#security</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/#disqus_thread" data-disqus-identifier='20150520222447'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T2M" />
+        ~2 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/" itemprop="url" data-pjax title="One More Grid for AngularJS">
+        One More Grid for AngularJS
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>After playing with ui.grid I found one more library to impmenent grids in AngularJS - angularGrid.
+It&rsquo;s quite easy to integrate and faster than ui.grid. You may find other reasons of using this grid on the author&rsquo;s post.<a href="http://blog.konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/" itemprop="url" data-pjax title="One More Grid for AngularJS">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-05-10' itemprop="datePublished">
+          2015-05-10
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/web/" data-pjax rel="tag">#web</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/angularjs/" data-pjax rel="tag">#angularjs</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/#disqus_thread" data-disqus-identifier='20150510115233'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/05/03/web-security-resources/" itemprop="url" data-pjax title="Web Security Resources">
+        Web Security Resources
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>Here are some useful links to security resources:
+ OWASP to 10 v.2013&ndash; A list of the 10 Most Critical Web Application Security Risks. OWASP: list of website security attacks OWASP: list of website vulnerabilities OWASP Development Guide &ndash; The OWASP Developer Guide 2014 is a dramatic re-write of one of OWASP&rsquo;s first and most downloaded projects. The focus moves from countermeasures and weaknesses to secure software engineering. The Developer Guide 2014 is a &laquo;first principles&raquo; book - it&rsquo;s not specific to any one language or framework, as they all borrow ideas and syntax from each other.<a href="http://blog.konstantinpavlov.net/blog/2015/05/03/web-security-resources/" itemprop="url" data-pjax title="Web Security Resources">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-05-03' itemprop="datePublished">
+          2015-05-03
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/web/" data-pjax rel="tag">#web</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/security/" data-pjax rel="tag">#security</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/05/03/web-security-resources/#disqus_thread" data-disqus-identifier='20150503182306'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T2M" />
+        ~2 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/04/12/slate-static-api-documentation-generator/" itemprop="url" data-pjax title="Slate: Static API Documentation Generator">
+        Slate: Static API Documentation Generator
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>I came across <a href="https://github.com/tripit/slate" target="_blank">slate</a> tool when I was looking for API documentation generator for our webservice API.
+<img src="http://blog.konstantinpavlov.net/assets/2015/04/slate-site.png" alt="slate screenshot" /></p>
+
+<p>I am the big fan of <a href="https://daringfireball.net/projects/markdown/" target="_blank">Markdown</a> and I was looking for a tool like this for writing a documentation.
+</p><a href="http://blog.konstantinpavlov.net/blog/2015/04/12/slate-static-api-documentation-generator/" itemprop="url" data-pjax title="Slate: Static API Documentation Generator">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-04-12' itemprop="datePublished">
+          2015-04-12
+        </time>
+      </li>
+      
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/documentation/" data-pjax rel="tag">#documentation</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/04/12/slate-static-api-documentation-generator/#disqus_thread" data-disqus-identifier='20150412220026'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T3M" />
+        ~3 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/" itemprop="url" data-pjax title="Booting Spring Webapp">
+        Booting Spring Webapp
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>Spring Boot is an excellent tool to bootstrap java application.
+Most of the references mention how to create a standalone java application, optionally with embedded web server (tomcat or jetty). But <a href="http://projects.spring.io/spring-boot/" title="Spring Boot Project" target="_blank">Spring Boot</a> supports also creating web applications intended to run within servlet container.
+
+Here is example of maven <em>pom.xml</em> file for Spring-Boot-enabled web application:</p><a href="http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/" itemprop="url" data-pjax title="Booting Spring Webapp">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-02-19' itemprop="datePublished">
+          2015-02-19
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/web/" data-pjax rel="tag">#web</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/spring/" data-pjax rel="tag">#spring</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/tomcat/" data-pjax rel="tag">#tomcat</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/#disqus_thread" data-disqus-identifier='20150219233935'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T2M" />
+        ~2 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                </section>
+
+                <nav role="pagination" class="post-list-pagination">
+                
+                  <a href="http://blog.konstantinpavlov.net/" class="post-list-pagination-item post-list-pagination-item-prev" data-pjax rel="prev">
+                    <i class="fa fa-angle-double-left"></i>&nbsp;Newer
+                  </a>
+                
+                <span class="post-list-pagination-item post-list-pagination-item-current">Page 2 of 7</span>
+                
+                  <a href="http://blog.konstantinpavlov.net/page/3/" class="post-list-pagination-item post-list-pagination-item-next" data-pjax rel="next">
+                    Older&nbsp;<i class="fa fa-angle-double-right"></i>
+                  </a>
+                
+                </nav>
+
+
+                <footer role="contentinfo" class="footer">
+  <p><small>© 2016. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="http://blog.konstantinpavlov.net/legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="http://blog.konstantinpavlov.net/assets/js/prism.min.js?v=1477977074"></script>
+    <script src="http://blog.konstantinpavlov.net/assets/js/foot-scripts.min.js?v=1477977074"></script>
+
+    <script type="text/javascript">
+
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+  </body>
+</html>

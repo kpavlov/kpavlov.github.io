@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+    
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.17" />
+
+    
+    
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Culture of Code">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Culture of Code">
+    <meta property="og:description" content="">
+
+    
+<meta name="twitter:site" content="@yourblogtwitter">
+
+
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+<meta name="google-site-verification" content="">
+
+
+<meta property="fb:admins" content="">
+
+
+    <link href='http://blog.konstantinpavlov.net/index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="http://blog.konstantinpavlov.net/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="http://blog.konstantinpavlov.net/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/style.css?v=1477977074">
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/prism.min.css?v=1477977074"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+  <body class="">
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+
+            <aside role="banner" class="cover">
+  <div data-load-image="/img/cover.jpg" class="cover-image"></div>
+  <div class="cover-container">
+    
+      <a href="http://blog.konstantinpavlov.net/" class="cover-logo" data-pjax>
+        <img src="http://blog.konstantinpavlov.net/img/avatar-128.png" alt="Blog Logo">
+      </a>
+    
+    <h1 class="cover-title">The Culture of Code</h1>
+    <p class="cover-description">Thoughts on Software Development</p>
+  </div>
+</aside>
+
+            <section class="wrapper" tabindex="0">
+              <div class="wrapper-container">
+                
+
+
+                
+                <section class="post-list">
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/" itemprop="url" data-pjax title="Deploying Private Docker Registry Behind Cloudflaire">
+        Deploying Private Docker Registry Behind Cloudflaire
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>This is a short instruction how to deploy private docker registry on private cloud virtual servers behind <a href="https://www.cloudflare.com" target="_blank">Cloudflaire</a> proxy.
+
+Suppose, we have two virtual servers on private cloud:</p><a href="http://blog.konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/" itemprop="url" data-pjax title="Deploying Private Docker Registry Behind Cloudflaire">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2016-09-14' itemprop="datePublished">
+          2016-09-14
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/devops/" data-pjax rel="category" >devops</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/docker/" data-pjax rel="tag">#docker</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/nginx/" data-pjax rel="tag">#nginx</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/cloudflaire/" data-pjax rel="tag">#cloudflaire</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/#disqus_thread" data-disqus-identifier='20160914101551'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T2M" />
+        ~2 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/" itemprop="url" data-pjax title="Installing Ansible 2.1.1 on Debian 8 (Jessie)">
+        Installing Ansible 2.1.1 on Debian 8 (Jessie)
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>Recently I faced some dependency issues trying to install <a href="https://ansible.com" target="_blank">Ansible 2</a> on Debian 8 (Jessie).
+Googling a bit I found a solution which was a basically to upgrade or install missing dependencies.
+Following script automates the installation procedure:
+</p><a href="http://blog.konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/" itemprop="url" data-pjax title="Installing Ansible 2.1.1 on Debian 8 (Jessie)">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2016-09-09' itemprop="datePublished">
+          2016-09-09
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/devops/" data-pjax rel="category" >devops</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/ansible/" data-pjax rel="tag">#ansible</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/debian/" data-pjax rel="tag">#debian</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/#disqus_thread" data-disqus-identifier='20160909101248'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/" itemprop="url" data-pjax title="Links on REST API Design">
+        Links on REST API Design
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>Here you will find a small collection of links on REST API design.</p>
+
+<p></p><a href="http://blog.konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/" itemprop="url" data-pjax title="Links on REST API Design">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2016-08-18' itemprop="datePublished">
+          2016-08-18
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/web-services/" data-pjax rel="tag">#web-services</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/#disqus_thread" data-disqus-identifier='20160818224814'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/" itemprop="url" data-pjax title="CI Setup Tips">
+        CI Setup Tips
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>You may find following tips useful when setting up continuous integration infrastructure.
+Security Use VPN or reverse proxy provider like cloudflare.com to secure your CI infrastructure. Never make your real IPs publicly available, otherwise you increase a risk of being hacked.
+Jenkins Use master node and build agents. Master node acts only as web console. Nodes are for compiling and testing.
+Notifications If you&rsquo;re using google apps for domain, you may use Google&rsquo;s restricted SMTP server to send notifications.<a href="http://blog.konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/" itemprop="url" data-pjax title="CI Setup Tips">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2016-07-17' itemprop="datePublished">
+          2016-07-17
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/devops/" data-pjax rel="category" >devops</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/jenkins/" data-pjax rel="tag">#Jenkins</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/#disqus_thread" data-disqus-identifier='20160717170000'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/" itemprop="url" data-pjax title="Selenium Tests with Maven and Selenide">
+        Selenium Tests with Maven and Selenide
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p><a href="http://selenide.org" target="_blank">Selenide</a> is nice wrapper around selenium web driver allowing to simplify writting UI tests with Selenium.</p>
+
+<p>Some of the cook features are:</p>
+
+<ol>
+<li>jquery-like selector syntax, e.g. <code>$(&quot;div.myclass&quot;).is(Condition.visible)</code></li>
+<li>Automatic screenshots on assertion failure</li>
+<li>Easy starting Selenium WebDriver</li>
+<li>And <a href="http://selenide.org/quick-start.html" target="_blank">others</a></li>
+</ol>
+
+<p>So, let&rsquo;s write some tests on selenide and make it run from maven in a normal browser or in headless mode.</p><a href="http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/" itemprop="url" data-pjax title="Selenium Tests with Maven and Selenide">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2016-05-12' itemprop="datePublished">
+          2016-05-12
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/quality-assurance/" data-pjax rel="tag">#quality assurance</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/#disqus_thread" data-disqus-identifier='20160512162625'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T2M" />
+        ~2 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/" itemprop="url" data-pjax title="Developing in &#34;Dirty Trunk&#34;">
+        Developing in &#34;Dirty Trunk&#34;
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>I&rsquo;m going to start a series of posts covering different aspects of DevOps.</p>
+
+<p>Let&rsquo;s start today with branching strategy called <em>&laquo;dirty trunk&raquo;</em>. Actually, this is an attempt to avoid branching at all.
+
+The idea is that:</p><a href="http://blog.konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/" itemprop="url" data-pjax title="Developing in &#34;Dirty Trunk&#34;">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2016-03-04' itemprop="datePublished">
+          2016-03-04
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/devops/" data-pjax rel="category" >devops</a>
+    
+
+</li>
+
+
+      
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/#disqus_thread" data-disqus-identifier='20160304222624'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T3M" />
+        ~3 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/" itemprop="url" data-pjax title="Spring&#43;Freemarker Tips">
+        Spring&#43;Freemarker Tips
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>I hope you will find following tips useful when developing <a href="https://projects.spring.io/spring-boot" target="_blank">Spring Boot</a> application with <a href="http://freemarker.org" target="_blank">Freemarker</a>.
+</p><a href="http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/" itemprop="url" data-pjax title="Spring&#43;Freemarker Tips">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2016-02-21' itemprop="datePublished">
+          2016-02-21
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/spring/" data-pjax rel="tag">#spring</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/web/" data-pjax rel="tag">#web</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/freemarker/" data-pjax rel="tag">#freemarker</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/#disqus_thread" data-disqus-identifier='20160221181500'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/" itemprop="url" data-pjax title="DevMode Javascript Exception Handler">
+        DevMode Javascript Exception Handler
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>StackOverflow-driven JS development:
+try { something } catch (e) { window.open('https://stackoverflow.com/search?q=[js]+&quot;' + e.message + '&quot;'); }  <a href="http://blog.konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/" itemprop="url" data-pjax title="DevMode Javascript Exception Handler">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2016-02-11' itemprop="datePublished">
+          2016-02-11
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/javascript/" data-pjax rel="tag">#javascript</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/web/" data-pjax rel="tag">#web</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/fun/" data-pjax rel="tag">#fun</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/#disqus_thread" data-disqus-identifier='20160211230916'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/" itemprop="url" data-pjax title="Secure Java Coding Best Practices">
+        Secure Java Coding Best Practices
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>Making your web application flawless against security attacks is a challenge for every java developer.
+In this article I will briefly describe common practical development techniques that can help you to achieve it.</p>
+
+<p><a href="https://www.owasp.org/index.php/Top_10_2013-Table_of_Contents" title="OWASP Top 10" target="_blank">OWASP Top 10</a>, a list of the 10 Most Critical Web Application Security Risks, includes following risks:</p>
+
+<ul>
+<li>A1 - Injection</li>
+<li>A2 - Broken Authentication &amp; Session Management</li>
+<li>A3 - Cross-Site Scripting (XSS)</li>
+<li>A4 - Insecure Direct Object References</li>
+<li>A5 - Security Misconfiguration</li>
+<li>A6 - Sensitive Data Exposure</li>
+<li>A7 - Missing Function Level Access Control</li>
+<li>A8 - Cross-Site Request Forgery (CSRF)</li>
+<li>A9 - Using Components with Known Vulnerabilities</li>
+<li>A10 - Unvalidated Redirects and Forwards</li>
+</ul>
+
+<p>In this article I will highlight most important java coding techniques for building secure web applications.</p><a href="http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/" itemprop="url" data-pjax title="Secure Java Coding Best Practices">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-08-01' itemprop="datePublished">
+          2015-08-01
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/security/" data-pjax rel="tag">#security</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/web/" data-pjax rel="tag">#web</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/#disqus_thread" data-disqus-identifier='20150801222234'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T9M" />
+        ~9 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/" itemprop="url" data-pjax title="Secure Java Logging with Logback">
+        Secure Java Logging with Logback
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>Deploying application into secure environment adds some restrictions on logging and log management. OWASP community gives some useful recommendations.
+OWASP Security Testing Guide Recommendations OWASP Security Testing Guide defines a number of questions to be answered when reviewing applciaiton logging configuration (see OTG-CONFIG-002):
+1. Do the logs contain sensitive information? Log files should not contain any sensitive data. Anyway, log file access must be restricted:
+ Event log information should never be visible to end users.<a href="http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/" itemprop="url" data-pjax title="Secure Java Logging with Logback">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-07-26' itemprop="datePublished">
+          2015-07-26
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/security/" data-pjax rel="tag">#security</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/logging/" data-pjax rel="tag">#logging</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/logback/" data-pjax rel="tag">#logback</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/#disqus_thread" data-disqus-identifier='20150726140133'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T7M" />
+        ~7 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                </section>
+
+                <nav role="pagination" class="post-list-pagination">
+                
+                <span class="post-list-pagination-item post-list-pagination-item-current">Page 1 of 7</span>
+                
+                  <a href="http://blog.konstantinpavlov.net/page/2/" class="post-list-pagination-item post-list-pagination-item-next" data-pjax rel="next">
+                    Older&nbsp;<i class="fa fa-angle-double-right"></i>
+                  </a>
+                
+                </nav>
+
+
+                <footer role="contentinfo" class="footer">
+  <p><small>© 2016. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="http://blog.konstantinpavlov.net/legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="http://blog.konstantinpavlov.net/assets/js/prism.min.js?v=1477977074"></script>
+    <script src="http://blog.konstantinpavlov.net/assets/js/foot-scripts.min.js?v=1477977074"></script>
+
+    <script type="text/javascript">
+
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+    
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.17" />
+
+    
+    
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Culture of Code">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Culture of Code">
+    <meta property="og:description" content="">
+
+    
+<meta name="twitter:site" content="@yourblogtwitter">
+
+
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+<meta name="google-site-verification" content="">
+
+
+<meta property="fb:admins" content="">
+
+
+    <link href='http://blog.konstantinpavlov.net/index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="http://blog.konstantinpavlov.net/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="http://blog.konstantinpavlov.net/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/style.css?v=1477977074">
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/prism.min.css?v=1477977074"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+  <body class="">
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+
+            <aside role="banner" class="cover">
+  <div data-load-image="/img/cover.jpg" class="cover-image"></div>
+  <div class="cover-container">
+    
+      <a href="http://blog.konstantinpavlov.net/" class="cover-logo" data-pjax>
+        <img src="http://blog.konstantinpavlov.net/img/avatar-128.png" alt="Blog Logo">
+      </a>
+    
+    <h1 class="cover-title">The Culture of Code</h1>
+    <p class="cover-description">Thoughts on Software Development</p>
+  </div>
+</aside>
+
+            <section class="wrapper" tabindex="0">
+              <div class="wrapper-container">
+                
+
+
+                
+                <section class="post-list">
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2012/05/25/book-good-old-peopleware/" itemprop="url" data-pjax title="Book: Good Old &#34;Peopleware&#34;">
+        Book: Good Old &#34;Peopleware&#34;
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>One more book worth reading - &laquo;Peopleware: Productive Projects and Teams&raquo; by Tom DeMarco and Timothy Lister. It&rsquo;s essentially a Holy Bible for every manager!<a href="http://blog.konstantinpavlov.net/blog/2012/05/25/book-good-old-peopleware/" itemprop="url" data-pjax title="Book: Good Old &#34;Peopleware&#34;">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2012-05-25' itemprop="datePublished">
+          2012-05-25
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/project-management/" data-pjax rel="category" >project management</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/books/" data-pjax rel="tag">#books</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2012/05/25/book-good-old-peopleware/#disqus_thread" data-disqus-identifier='20120525094000'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2012/05/25/book-continuous-delivery...-by-jez-humble-and-david-farley/" itemprop="url" data-pjax title="Book: &#34;Continuous Delivery...&#34; by Jez Humble and David Farley">
+        Book: &#34;Continuous Delivery...&#34; by Jez Humble and David Farley
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>This book may help to make a product releasing and delivery to be more frequent and less painful.<a href="http://blog.konstantinpavlov.net/blog/2012/05/25/book-continuous-delivery...-by-jez-humble-and-david-farley/" itemprop="url" data-pjax title="Book: &#34;Continuous Delivery...&#34; by Jez Humble and David Farley">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2012-05-25' itemprop="datePublished">
+          2012-05-25
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/devops/" data-pjax rel="category" >devops</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/books/" data-pjax rel="tag">#books</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2012/05/25/book-continuous-delivery...-by-jez-humble-and-david-farley/#disqus_thread" data-disqus-identifier='20120525092900'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2012/05/20/configuring-protobuf-to-java-compiler-in-maven/" itemprop="url" data-pjax title="Configuring Protobuf to Java compiler in maven">
+        Configuring Protobuf to Java compiler in maven
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>Here are few steps to configure protobuf-to-java compilation in your maven project:</p>
+
+<p>Install google protobuf compiler on your computer.</p>
+
+<p>Configure maven protobuf compiler plugin and dependency in  <em>pom.xml</em> :</p><a href="http://blog.konstantinpavlov.net/blog/2012/05/20/configuring-protobuf-to-java-compiler-in-maven/" itemprop="url" data-pjax title="Configuring Protobuf to Java compiler in maven">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2012-05-20' itemprop="datePublished">
+          2012-05-20
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/google-protobuf/" data-pjax rel="tag">#google protobuf</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2012/05/20/configuring-protobuf-to-java-compiler-in-maven/#disqus_thread" data-disqus-identifier='20120520215100'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/" itemprop="url" data-pjax title="Java-protobuf-format: Easy Protobuf-to-JSON Serialization in Java">
+        Java-protobuf-format: Easy Protobuf-to-JSON Serialization in Java
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>If you need Google Protobuf-to-JSON serialization (and vice versa) there is quick solution.
+<a href="http://code.google.com/p/protobuf-java-format/" target="_blank">Protobuf-java-format</a> library provides serialization of protobuf-generated java classes to number of formats: JSON, XML, HTML, Java property file format, Smile, CoachDB.</p><a href="http://blog.konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/" itemprop="url" data-pjax title="Java-protobuf-format: Easy Protobuf-to-JSON Serialization in Java">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2012-04-22' itemprop="datePublished">
+          2012-04-22
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/json/" data-pjax rel="tag">#json</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/google-protobuf/" data-pjax rel="tag">#google protobuf</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/#disqus_thread" data-disqus-identifier='20120422130942'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T2M" />
+        ~2 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/" itemprop="url" data-pjax title="Builder Pattern Usage: Rule of Thumb">
+        Builder Pattern Usage: Rule of Thumb
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p><a href="http://en.wikipedia.org/wiki/Builder_pattern" title="Builder Design Pattern" target="_blank">Builder Pattern</a> is a creational design pattern. But, like any other pattern, it should be used judiciously.
+</p><a href="http://blog.konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/" itemprop="url" data-pjax title="Builder Pattern Usage: Rule of Thumb">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2011-10-05' itemprop="datePublished">
+          2011-10-05
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/design-patterns/" data-pjax rel="tag">#design patterns</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/#disqus_thread" data-disqus-identifier='20111005123737'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T2M" />
+        ~2 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/" itemprop="url" data-pjax title="GWT is about to add Native JSON function support in version 2.1">
+        GWT is about to add Native JSON function support in version 2.1
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>GWT 2.1 has reached Milestone 2.
+One of the new features in version 2.1 is support for browser&rsquo;s native JSON function in <code>JSONParser</code> class.
+
+Now there are three methods JSONParser which may be used to parse JSON string:</p><a href="http://blog.konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/" itemprop="url" data-pjax title="GWT is about to add Native JSON function support in version 2.1">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2010-07-22' itemprop="datePublished">
+          2010-07-22
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/gwt/" data-pjax rel="tag">#gwt</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/#disqus_thread" data-disqus-identifier='20100722172000'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/" itemprop="url" data-pjax title="How to Use Spring from EJB3">
+        How to Use Spring from EJB3
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>This is a short instruction how to inject a spring-managed bean into EJB3 component:</p><a href="http://blog.konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/" itemprop="url" data-pjax title="How to Use Spring from EJB3">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2009-01-09' itemprop="datePublished">
+          2009-01-09
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/spring/" data-pjax rel="tag">#spring</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/#disqus_thread" data-disqus-identifier='20090109172300'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/" itemprop="url" data-pjax title="How To Export Spring Managed Bean To JNDI">
+        How To Export Spring Managed Bean To JNDI
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>Sometimes it is necessary to export a spring managed bean to JNDI context. Here I want to show how do it.</p>
+
+<p>In spring, there is a bean that provides a similar functionality for exporting to MBean server: MBeanExporter. Unfortunately, there is no standard JNDI bean exporter implementation in Spring Framework (current version is 2.5.6) - (Why?).
+But it&rsquo;s easy to write it yourself:</p><a href="http://blog.konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/" itemprop="url" data-pjax title="How To Export Spring Managed Bean To JNDI">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2009-01-01' itemprop="datePublished">
+          2009-01-01
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/spring/" data-pjax rel="tag">#spring</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/#disqus_thread" data-disqus-identifier='20090101000100'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T2M" />
+        ~2 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+  role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="http://blog.konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/" itemprop="url" data-pjax title="Configuring WS-Security for Axis 1.4 client">
+        Configuring WS-Security for Axis 1.4 client
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p><p>I was looking how to enable WS-Security features in the Axis client to my web service application. I have tested it with Axis 1.4 client.
+
+The things you need to configure axis client are:</p><a href="http://blog.konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/" itemprop="url" data-pjax title="Configuring WS-Security for Axis 1.4 client">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2007-05-23' itemprop="datePublished">
+          2007-05-23
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/web-services/" data-pjax rel="tag">#web services</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="http://blog.konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/#disqus_thread" data-disqus-identifier='20070523141300'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
+
+                  
+                </section>
+
+                <nav role="pagination" class="post-list-pagination">
+                
+                  <a href="http://blog.konstantinpavlov.net/page/6/" class="post-list-pagination-item post-list-pagination-item-prev" data-pjax rel="prev">
+                    <i class="fa fa-angle-double-left"></i>&nbsp;Newer
+                  </a>
+                
+                <span class="post-list-pagination-item post-list-pagination-item-current">Page 7 of 7</span>
+                
+                </nav>
+
+
+                <footer role="contentinfo" class="footer">
+  <p><small>© 2016. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="http://blog.konstantinpavlov.net/legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="http://blog.konstantinpavlov.net/assets/js/prism.min.js?v=1477977074"></script>
+    <script src="http://blog.konstantinpavlov.net/assets/js/foot-scripts.min.js?v=1477977074"></script>
+
+    <script type="text/javascript">
+
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+  </body>
+</html>

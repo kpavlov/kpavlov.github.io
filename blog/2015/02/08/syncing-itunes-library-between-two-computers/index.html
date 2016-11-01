@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+      
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.17" />
+
+    
+    
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Culture of Code">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Culture of Code">
+    <meta property="og:description" content="">
+
+    
+<meta name="twitter:site" content="@yourblogtwitter">
+
+
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+<meta name="google-site-verification" content="">
+
+
+<meta property="fb:admins" content="">
+
+
+    <link href='http://blog.konstantinpavlov.net/index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="http://blog.konstantinpavlov.net/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="http://blog.konstantinpavlov.net/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/style.css?v=1477977074">
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/prism.min.css?v=1477977074"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+  <body class="">
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+    
+    
+    
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-item-meta-item">
+                <time datetime='2015-02-08' itemprop="datePublished">
+                  2015-02-08
+                </time>
+              </li>
+              
+
+              
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/itunes/" data-pjax rel="tag">#iTunes</a>
+    ,
+
+    
+    <a itemprop="keywords" href="http://blog.konstantinpavlov.net/tags/mac/" data-pjax rel="tag">#Mac</a>
+    
+
+</li>
+
+
+
+              
+              <li class="post-item-meta-item">
+                <a href="http://blog.konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/#disqus_thread" data-disqus-identifier='20150208080251'>Comments</a>
+              </li>
+              
+              <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+                  <meta itemprop="duration" content="T2M" />
+                  ~2 min
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="http://blog.konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/" itemprop="url" data-pjax title="Syncing iTunes Library Between two Computers">Syncing iTunes Library Between two Computers</a></h1>
+            
+            
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="http://blog.konstantinpavlov.net/" class="post-author-avatar">
+                  <img src="http://blog.konstantinpavlov.net/img/avatar-128.png" alt="Konstantin Pavlov">
+                </a>
+              <div class="post-author-info">
+                <a href="http://blog.konstantinpavlov.net/" class="post-author-name">
+                  Konstantin Pavlov
+                </a>
+                <p class="post-author-bio"></p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            
+
+<p>Given:</p>
+
+<ol>
+<li>Two family Macs with iTunes 12 installed</li>
+<li>More than 10GB of audio files</li>
+</ol>
+
+<p>I want to share my media library between these two computers and keep them synchronized. When I add new file on one computer, it should apear on another. When I delete a file on second computer - it should be deleted pn first. When I change iTunes playlists on one computer it should be changed on another.
+I don&rsquo;t want to keep my media on Network storage (NAS) or External drive (USB), because it will be impossible to listen to the music on the go, when NAS or external drive is disconnected (e.g. in cafe).</p>
+
+<p>To be able to use the same iTunes media library database on two computers I need to make my media files available by at the same path on disk.<!-- more--> Normally, media files are under the user account folder. But it is possible to <a href="http://support.apple.com/en-us/HT201562" title="iTunes for Mac: Moving your iTunes Media folder" target="_blank">move</a> them to the location <a href="http://support.apple.com/en-us/HT1203" title="iTunes: How to share music between different user accounts on a single computer" target="_blank">common for all user accounts</a>.</p>
+
+<p>Next, I need to keep iTunes media file in sync.</p>
+
+<p>After some research in the Internet I come to following solution.</p>
+
+<ol>
+<li>Backup tour iTunes media folder <code>/Users/user/Music/iTunes</code></li>
+<li>Move iTunes media files to the <code>/Users/Shared/iTunes Media</code> folder.
+Set new media files location: <img src="http://blog.konstantinpavlov.net/assets/2015/02/itunes-media-settings.png" alt="iTunes Media Settings" />
+Then run <strong>File &gt; Library &gt; Organize Library</strong> and select <strong>&laquo;Consolidate Files&raquo;</strong> to copy your files to new location. <img src="http://blog.konstantinpavlov.net/assets/2015/02/itunes-consoludate.png" alt="Consoludate Files" /></li>
+<li>Remove your old Original files were copied, not moved. You need to remove them (if you have made a backup on step 1):
+<code>bash  
+rm -rf /Users/user/Music/iTunes/iTunes\ Media
+</code></li>
+<li>Close iTunes and copy your <code>/Users/user1/Music/iTunes</code> to <code>/Users/user2/Music/iTunes</code> on second compuler</li>
+<li>Copy <code>/Users/Shared/iTunes Media</code> from first to second computer to the same location.</li>
+<li>Setup media folder synchronization between two computers using <a href="http://www.getsync.com" title="Sync" target="_blank">BitTorrent Sync</a>. If you have smaller media library that fits into DropBox &ndash; then go for it. It is possible to use any cloud solution, e.g. at the moment (February 2015) <a href="http://help.yandex.com/disk/uploading.xml" title="Yandex Disk Limits" target="_blank">Yandex Disk</a> offers 10GB for free.</li>
+<li>Wait for synchronization complete.</li>
+</ol>
+
+<p>You may start using iTunes on both computers. Keep in mind, that if you modify your media library from both computers simultaneously, you will have only recent changes. You may want to setup one-way synchronization: one computer will be <strong>the Master</strong> where you will manage your library and the second one is for listening only.</p>
+
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="http://support.apple.com/en-us/HT201979" title="iTunes: Understanding iTunes Media Organization" target="_blank">iTunes: Understanding iTunes Media Organization</a></li>
+<li><a href="http://oyvteig.blogspot.com/2009/01/003-shared-itunes-library-on-network.html" target="_blank">Shared iTunes Library on Network</a></li>
+<li><a href="http://support.apple.com/en-us/HT201979" title="iTunes: Understanding iTunes Media Organization" target="_blank">iTunes: Understanding iTunes Media Organization</a></li>
+<li><a href="http://support.apple.com/en-us/HT201562" title="iTunes for Mac: Moving your iTunes Media folder" target="_blank">iTunes for Mac: Moving your iTunes Media folder</a></li>
+<li><a href="http://support.apple.com/en-us/HT1203" title="iTunes: How to share music between different user accounts on a single computer" target="_blank">iTunes: How to share music between different user accounts on a single computer</a></li>
+</ul>
+
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="http://blog.konstantinpavlov.net/" class="post-author-avatar">
+                  <img itemprop="image" src="http://blog.konstantinpavlov.net/img/avatar-128.png" alt="Konstantin Pavlov">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="http://blog.konstantinpavlov.net/" itemprop="url" class="post-author-name">
+                  <span itemprop="name">Konstantin Pavlov</span>
+                </a>
+                <p itemprop="description" class="post-author-bio"></p>
+                
+                  <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                
+                
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">Feb 8, 2015</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+
+          <nav role="pagination" class="post-list-pagination">
+            
+            <a href="http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/" class="post-list-pagination-item post-list-pagination-item-prev"
+               title="Booting Spring Webapp" data-pjax rel="prev">
+              <i class="fa fa-angle-double-left"></i>&nbsp;Booting Spring Webapp
+            </a>
+            
+            
+            <a href="http://blog.konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/" class="post-list-pagination-item post-list-pagination-item-next"
+               title="Recalling Testing Principles" data-pjax rel="next">
+              Recalling Testing Principles&nbsp;<i class="fa fa-angle-double-right"></i>
+            </a>
+            
+          </nav>
+
+        </section>
+      
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+      
+    </article>
+
+                <footer role="contentinfo" class="footer">
+  <p><small>© 2016. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="http://blog.konstantinpavlov.net/legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="http://blog.konstantinpavlov.net/assets/js/prism.min.js?v=1477977074"></script>
+    <script src="http://blog.konstantinpavlov.net/assets/js/foot-scripts.min.js?v=1477977074"></script>
+
+    <script type="text/javascript">
+
+      
+        
+          if(GHOSTIUM.haveDisqus) {
+            var disqus_developer = 1;
+            var disqus_shortname = 'konstantinpavlov';
+
+
+            if(typeof DISQUS !== 'object') {
+              (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+              }());
+            }
+          } else {
+            document.querySelector('.post-comments').remove();
+          }
+        
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+  </body>
+</html>

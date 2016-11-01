@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+      
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.17" />
+
+    
+    
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Culture of Code">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Culture of Code">
+    <meta property="og:description" content="">
+
+    
+<meta name="twitter:site" content="@yourblogtwitter">
+
+
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+<meta name="google-site-verification" content="">
+
+
+<meta property="fb:admins" content="">
+
+
+    <link href='http://blog.konstantinpavlov.net/index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="http://blog.konstantinpavlov.net/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="http://blog.konstantinpavlov.net/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/style.css?v=1477977074">
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/prism.min.css?v=1477977074"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+  <body class="">
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+    
+    
+    
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-item-meta-item">
+                <time datetime='2015-04-12' itemprop="datePublished">
+                  2015-04-12
+                </time>
+              </li>
+              
+
+              
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="http://blog.konstantinpavlov.net/tags/documentation/" data-pjax rel="tag">#documentation</a>
+    
+
+</li>
+
+
+
+              
+              <li class="post-item-meta-item">
+                <a href="http://blog.konstantinpavlov.net/blog/2015/04/12/slate-static-api-documentation-generator/#disqus_thread" data-disqus-identifier='20150412220026'>Comments</a>
+              </li>
+              
+              <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+                  <meta itemprop="duration" content="T3M" />
+                  ~3 min
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="http://blog.konstantinpavlov.net/blog/2015/04/12/slate-static-api-documentation-generator/" itemprop="url" data-pjax title="Slate: Static API Documentation Generator">Slate: Static API Documentation Generator</a></h1>
+            
+            
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="http://blog.konstantinpavlov.net/" class="post-author-avatar">
+                  <img src="http://blog.konstantinpavlov.net/img/avatar-128.png" alt="Konstantin Pavlov">
+                </a>
+              <div class="post-author-info">
+                <a href="http://blog.konstantinpavlov.net/" class="post-author-name">
+                  Konstantin Pavlov
+                </a>
+                <p class="post-author-bio"></p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <p>I came across <a href="https://github.com/tripit/slate" target="_blank">slate</a> tool when I was looking for API documentation generator for our webservice API.
+<img src="http://blog.konstantinpavlov.net/assets/2015/04/slate-site.png" alt="slate screenshot" /></p>
+
+<p>I am the big fan of <a href="https://daringfireball.net/projects/markdown/" target="_blank">Markdown</a> and I was looking for a tool like this for writing a documentation.
+</p>
+
+<h2 id="getting-started-with-slate">Getting Started with Slate</h2>
+
+<p>Slate requires Ruby 1.9.3 and newer.</p>
+
+<p>It&rsquo;s really easy to get started:</p>
+
+<ol>
+<li>Install Ruby 1.9.3 or newer</li>
+
+<li><p>Install Bundler (you may need root permissions)</p>
+
+<pre><code>gem install bundler
+</code></pre></li>
+
+<li><p>Fork a <code>https://github.com/tripit/slate.git</code> repository in GitHub</p></li>
+
+<li><p>Clone your forked repository locally:</p>
+
+<pre><code>git clone https://github.com/YOURUSERNAME/slate.git
+cd slate
+</code></pre></li>
+
+<li><p>Install bundle dependencies</p>
+
+<pre><code>bundle install
+</code></pre></li>
+</ol>
+
+<p>If installing dependencies fails you may download <a href="https://github.com/tripit/slate/releases/tag/v1.0" target="_blank">stable version</a> of slate, extract from archive and try to install dependencies again.
+7. Start the test server</p>
+
+<pre><code>    bundle exec middleman server
+</code></pre>
+
+<ol>
+<li>Navigate to <a href="http://localhost:5739" target="_blank">http://localhost:5739</a> to see your documentation</li>
+<li>Run <code>rake build</code> to generate documentation locally or <code>rake publish</code> for deploying to remote server (you may need an <a href="https://github.com/tripit/slate/wiki/Deploying-Slate" target="_blank">extra setup</a>).</li>
+</ol>
+
+<p>See the <a href="https://github.com/tripit/slate/wiki" target="_blank">slate wiki</a> for more details.</p>
+
+<p>Predefined (sample) API documentation is defined in the <code>sources/index.md</code> document.
+You may want to create a new one in <code>source/v1/index.md</code>. It will be transferred to <a href="http://localhost:5739/v1/" target="_blank">http://localhost:5739/v1/</a></p>
+
+<h2 id="generating-pdf-version">Generating PDF version</h2>
+
+<p>Along with HTML documentation, having a PDF version is also desirable.
+There is no PDF documentation generator in Slate out of the box. But it is very easy to integrate a ruby PDF generator</p>
+
+<p>Add and activate pdfmaker ruby gem in <em>config.rb</em>:</p>
+
+<pre><code class="language-ruby">## Pdfmaker custom extension. Add if you want PDF generati
+require 'makepdf'
+
+activate :pdfmaker
+</code></pre>
+
+<p>Then create file <em>makepdf.rb</em> in the base folder:</p>
+
+<pre><code class="language-ruby">module PdfMaker
+  class &lt;&lt; self
+    def registered(app)
+      app.after_build do |builder|
+        begin
+          require 'pdfkit'
+
+          kit = PDFKit.new(File.new('build/pdf.html'),
+                           :page_size =&gt; 'A4',
+                           :margin_top =&gt; 10,
+                           :margin_bottom =&gt; 10,
+                           :margin_left =&gt; 10,
+                           :margin_right =&gt; 10,
+                           :disable_smart_shrinking =&gt; false,
+                           :print_media_type =&gt; true,
+                           :dpi =&gt; 96
+          )
+
+          file = kit.to_file('build/api.pdf')
+
+        rescue Exception =&gt;e
+          builder.say_status &quot;PDF Maker&quot;,  &quot;Error: #{e.message}&quot;, Thor::Shell::Color::RED
+          raise
+        end
+        builder.say_status &quot;PDF Maker&quot;,  &quot;PDF file available at build/api.pdf&quot;
+      end
+
+
+    end
+    alias :included :registered
+  end
+end
+
+::Middleman::Extensions.register(:pdfmaker, PdfMaker)
+</code></pre>
+
+<p>As you can see, <a href="https://github.com/pdfkit/pdfkit" target="_blank">PDFKit</a> and subsequently <a href="http://github.com/antialize/wkhtmltopdf" target="_blank">wkhtmltopdf</a> is used under the hood.</p>
+
+<p>Clone <em>source/layouts/layout.erb</em> and modify it to be pdf-friendly:</p>
+
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta content=&quot;IE=edge,chrome=1&quot; http-equiv=&quot;X-UA-Compatible&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;
+    &lt;meta name=&quot;date&quot; content=&quot;&lt;%= Time.now.strftime(&quot;%Y-%m-%dT%H:%M:%S%Z&quot;) %&gt;&quot;&gt;
+    &lt;title&gt;&lt;%= current_page.data.title %&gt; v.&lt;%= current_page.data.version %&gt;&lt;/title&gt;
+    &lt;meta name=&quot;pdfkit-footer_right&quot; content=&quot;Page [page] of [topage]&quot;&gt;
+    &lt;meta name=&quot;pdfkit-footer_left&quot; content=&quot;[title] | &lt;%= Time.new.strftime(&quot;%Y-%m-%d&quot;) %&gt;&quot;&gt;
+    &lt;meta name=&quot;pdfkit-footer_line&quot; content=&quot;&quot;&gt;
+    &lt;meta name=&quot;pdfkit-footer_font_size&quot; content=&quot;8&quot;&gt;
+    &lt;%= stylesheet_link_tag :print, media: :all %&gt;
+
+&lt;/head&gt;
+
+&lt;body class=&quot;&lt;%= page_classes %&gt;&quot;&gt;
+
+&lt;section class=&quot;titlePage&quot;&gt;
+    &lt;% if current_page.data.home_url %&gt;
+        &lt;a href=&quot;&lt;%= current_page.data.home_url %&gt;&quot;&gt;&lt;%= image_tag &quot;logo.png&quot; %&gt;&lt;/a&gt;
+    &lt;% else %&gt;
+        &lt;%= image_tag &quot;logo.png&quot; %&gt;
+    &lt;% end %&gt;
+
+    &lt;h1&gt;&lt;%= current_page.data.title %&gt;&lt;/h1&gt;
+
+    &lt;footer&gt;
+        &lt;div&gt;Version  &lt;%= current_page.data.version %&gt;&lt;/div&gt;
+        &lt;div&gt;Date: &lt;%= Time.new.strftime(&quot;%Y-%m-%d&quot;) %&gt;&lt;/div&gt;
+    &lt;/footer&gt;
+&lt;/section&gt;
+&lt;section class=&quot;content&quot;&gt;
+    &lt;%= yield %&gt;
+    &lt;% current_page.data.includes &amp;&amp; current_page.data.includes.each do |include| %&gt;
+        &lt;%= partial &quot;includes/#{include}&quot; %&gt;
+    &lt;% end %&gt;
+&lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Notice <code>pdfkit-footer_*</code> meta tags here.</p>
+
+<p>Create a separate index file with print layout <em>source/pdf.md</em>:</p>
+
+<pre><code class="language-markdown">---
+layout: &quot;pdf&quot;
+title: API Reference
+version: &quot;2.32&quot;
+---
+Blah-blah-blah...
+Rumors volare in berolinum!
+Squid combines greatly with salted ghee.
+Loren ipsum...
+</code></pre>
+
+<p>Important thing is to specify layout &laquo;pdf&raquo;</p>
+
+<p>Now you may run generation:</p>
+
+<pre><code>bundle exec middleman build --clean
+</code></pre>
+
+<p>I hope this little instruction will help you to generate a PDF version of your API.</p>
+
+<h2 id="other-api-docs-generators">Other API docs generators.</h2>
+
+<p>Other static API documentation generators:</p>
+
+<ul>
+<li><p><a href="https://github.com/danielgtaylor/aglio" target="_blank">Aglio</a>. It renders API documentation in <a href="http://apiblueprint.org/" target="_blank">API Bluepring</a> format to Beautiful sites.</p></li>
+
+<li><p><a href="https://github.com/swagger-api/swagger-ui" target="_blank">Swagger UI</a>. It allows to generate REST API documentation from Java sources. See the <a href="http://pilhuhn.blogspot.de/2012/10/restjax-rs-documentation-generation.html" target="_blank">article</a>, <a href="https://access.redhat.com/documentation/en-US/JBoss_Operations_Network/3.1/html-single/Rest_API/index.html" target="_blank">API documentation example</a>.</p></li>
+</ul>
+
+<p><a href="http://jsondoc.org/" target="_blank">http://jsondoc.org/</a> - Java java library useful to build the documentation of your RESTful services. Can be used to generate a static site.</p>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="http://blog.konstantinpavlov.net/" class="post-author-avatar">
+                  <img itemprop="image" src="http://blog.konstantinpavlov.net/img/avatar-128.png" alt="Konstantin Pavlov">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="http://blog.konstantinpavlov.net/" itemprop="url" class="post-author-name">
+                  <span itemprop="name">Konstantin Pavlov</span>
+                </a>
+                <p itemprop="description" class="post-author-bio"></p>
+                
+                  <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                
+                
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">Apr 12, 2015</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+
+          <nav role="pagination" class="post-list-pagination">
+            
+            <a href="http://blog.konstantinpavlov.net/blog/2015/05/03/web-security-resources/" class="post-list-pagination-item post-list-pagination-item-prev"
+               title="Web Security Resources" data-pjax rel="prev">
+              <i class="fa fa-angle-double-left"></i>&nbsp;Web Security Resources
+            </a>
+            
+            
+            <a href="http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/" class="post-list-pagination-item post-list-pagination-item-next"
+               title="Booting Spring Webapp" data-pjax rel="next">
+              Booting Spring Webapp&nbsp;<i class="fa fa-angle-double-right"></i>
+            </a>
+            
+          </nav>
+
+        </section>
+      
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+      
+    </article>
+
+                <footer role="contentinfo" class="footer">
+  <p><small>© 2016. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="http://blog.konstantinpavlov.net/legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="http://blog.konstantinpavlov.net/assets/js/prism.min.js?v=1477977074"></script>
+    <script src="http://blog.konstantinpavlov.net/assets/js/foot-scripts.min.js?v=1477977074"></script>
+
+    <script type="text/javascript">
+
+      
+        
+          if(GHOSTIUM.haveDisqus) {
+            var disqus_developer = 1;
+            var disqus_shortname = 'konstantinpavlov';
+
+
+            if(typeof DISQUS !== 'object') {
+              (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+              }());
+            }
+          } else {
+            document.querySelector('.post-comments').remove();
+          }
+        
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+  </body>
+</html>

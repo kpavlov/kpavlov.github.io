@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+      
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.17" />
+
+    
+    
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Culture of Code">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Culture of Code">
+    <meta property="og:description" content="">
+
+    
+<meta name="twitter:site" content="@yourblogtwitter">
+
+
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+<meta name="google-site-verification" content="">
+
+
+<meta property="fb:admins" content="">
+
+
+    <link href='http://blog.konstantinpavlov.net/index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="http://blog.konstantinpavlov.net/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="http://blog.konstantinpavlov.net/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/style.css?v=1477977074">
+    <link rel="stylesheet" href="http://blog.konstantinpavlov.net/assets/css/prism.min.css?v=1477977074"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="http://blog.konstantinpavlov.net/assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+  <body class="">
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="http://blog.konstantinpavlov.net/about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+    
+    
+    
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              
+
+              
+
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="http://blog.konstantinpavlov.net/legal/cookie-policy/" itemprop="url" data-pjax title="Cookie Policy">Cookie Policy</a></h1>
+            
+            
+          </header>
+          <div itemprop="articleBody" class="post-body">
+            
+
+<ol>
+<li><a href="#1-what-is-a-cookie">What is a cookie?</a></li>
+<li><a href="#2-how-we-use-cookies">How we use cookies</a></li>
+<li><a href="#3-we-use-the-following-types-of-cookies">We use the following types of cookies</a></li>
+<li><a href="#4-specific-cookies-we-use">Specific cookies we use</a></li>
+<li><a href="#5-granting-us-permission-to-use-cookies">Granting us permission to use cookies</a></li>
+</ol>
+
+<h1 id="1-what-is-a-cookie">1.  What is a cookie?</h1>
+
+<p>Cookies are text files containing small amounts of information which are downloaded to your device when you visit a website. Cookies are then sent back to the originating website on each subsequent visit, or to another website that recognises that cookie. Cookies are useful because they allow a website to recognise a user’s device. You can find more information about cookies at: <a href="http://www.allaboutcookies.org" target="_blank">www.allaboutcookies.org</a> and <a href="http://www.youronlinechoices.eu" target="_blank">www.youronlinechoices.eu</a>.</p>
+
+<p>Cookies do lots of different jobs, like letting you navigate between pages efficiently, remembering your preferences, and generally improve the user experience. They can also help to ensure that adverts you see online are more relevant to you and your interests.</p>
+
+<h1 id="2-how-we-use-cookies">2.  How we use cookies</h1>
+
+<p>All of our web pages use &laquo;cookies&raquo;. A cookie is a small file of letters and numbers that we place on your computer or mobile device if you agree. These cookies allow us to distinguish you from other users of our website, which helps us to provide you with a good experience when you browse our website and also allow us to improve our website.</p>
+
+<p>For information about what types of personal information will be gathered when you visit the website, and how this information will be used, please see the <a href="http://blog.konstantinpavlov.net/legal/privacy">Website Privacy Policy</a>.</p>
+
+<h1 id="3-we-use-the-following-types-of-cookies">3.  We use the following types of cookies:</h1>
+
+<ul>
+<li><strong>Strictly necessary cookies</strong> – these are essential in order to enable you to move around the website and use its features, such as accessing secure areas of the website. Without these cookies the services that you have asked for, like online application forms, cannot be provided;</li>
+<li><strong>Performance cookies</strong> – these cookies collect information about how visitors use a website, for instance which pages visitors go to most often, and if they get error messages from web pages. These cookies do not collect information that identifies a visitor. All information these cookies collect is aggregated and therefore anonymous. It is only used to improve how the website works; and</li>
+<li><strong>Functionality cookies</strong> – these cookies allow the website to remember choices you make and provide enhanced, more personal features. For instance, these cookies can be used to remember changes you have made to text size, fonts, and other parts of the web pages that you can customise. They may also be used to provide services that you have asked for, such as watching a video or commenting on a blog. The information that these cookies collect may be anonymised and they cannot track your browsing activity on other websites.</li>
+</ul>
+
+<h1 id="4-specific-cookies-we-use">4.  Specific cookies we use</h1>
+
+<p>Cookies may be set either by this website (&laquo;first party cookies&raquo;) or by a third party website (&laquo;third party cookies&raquo;). The tables below identify the cookies we use and explain the purposes for which they are used.</p>
+
+<p>However, we constantly review information about first and third-party cookies and we may update the information contained in this section from time to time.</p>
+
+<h2 id="first-party-cookies">First Party Cookies</h2>
+
+<table>
+<thead>
+<tr>
+<th>Cookie</th>
+<th>Name</th>
+<th>Purpose</th>
+<th>Further information</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>This site</td>
+<td><code>cookie</code></td>
+<td>This cookie indicates that user has accepted this Cookies Policy</td>
+<td><a href="http://blog.konstantinpavlov.net/legal/privacy">Overview of site privacy</a></td>
+</tr>
+
+<tr>
+<td>Google (Analytics, Adwords, Adwords remarketing)</td>
+<td><code>_utma</code>, <code>_utmb</code>, <code>_utmc</code>, <code>_utmz</code></td>
+<td>These cookies are used to collect information about how visitors use our site. We use the information to compile reports and to help us improve the website. The cookies collect information in an anonymous form, including the number of visitors to the website, where visitors have come to the site from and the pages they visited.</td>
+<td><a href="https://support.google.com/analytics/answer/6004245?hl=en" target="_blank">Overview of Google Analytics privacy</a></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="third-party-cookies">Third Party Cookies</h2>
+
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Name</th>
+<th>Purpose</th>
+<th>Further information</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Google Maps</td>
+<td><code>NID</code>,<code>PREF</code>,<code>khcookie</code>, <code>testcookie</code></td>
+<td>These cookies are used by Google to track how many people are using their maps.</td>
+<td><a href="http://www.google.com/intl/en_uk/policies/privacy/" target="_blank">Overview of Google privacy</a></td>
+</tr>
+
+<tr>
+<td>AddThis</td>
+<td><code>xtc</code>,<code>uid</code>,<code>__atuvc</code>, <code>uit</code></td>
+<td>These cookies are used by AddThis to provide sharing functionality.</td>
+<td>Please note: when sharing content with friends through social networks – such as Facebook and Twitter - you may be sent cookies from these websites. We don&rsquo;t control the setting of these cookies, so we suggest you check the third-party websites for more information about their cookies and how to manage them.</td>
+</tr>
+
+<tr>
+<td>Facebook</td>
+<td>Facebook pixel</td>
+<td>These cookies are used by Facebook to collect data on Facebook users&rsquo; actions.</td>
+<td><a href="https://en-gb.facebook.com/policy.php" target="_blank">Overview of Facebook privacy</a></td>
+</tr>
+
+<tr>
+<td>Yahoo</td>
+<td><code>YDM</code>, <code>YTM</code></td>
+<td>These cookies are used by Yahoo to collect data on Yahoo users&rsquo; actions.</td>
+<td><a href="https://policies.yahoo.com/us/en/yahoo/privacy/" target="_blank">Overview of Yahoo Privacy</a></td>
+</tr>
+</tbody>
+</table>
+
+<p>| Twitter | | These cookies are used by Twitter to collect data on Twitter users&rsquo; actions. | <a href="https://twitter.com/privacy?lang=en" target="_blank">Overview of Twitter Privacy</a> |</p>
+
+<h2 id="flash-cookies-or-local-shared-objects">Flash cookies (or Local Shared Objects)</h2>
+
+<p>On the this website we DO NOT display visual content using Adobe Flash Player. However, some embedded content (widget) may want to use Adobe Flash Player. We strongly encourage you disabling Adobe Flash Player plugin in your browser.</p>
+
+<p>Adobe uses Flash cookies (also known as Local Shared Objects) to help improve your experience as a user. Flash cookies are stored on your device in much the same way as usual cookies, but they are managed differently by your browser.</p>
+
+<p>If you wish to disable or delete a Flash cookie, see <a href="http://www.adobe.com/security/flashplayer/" target="_blank">Adobe Flashplayer Security Settings</a> (opens in a new window).</p>
+
+<h1 id="5-granting-us-permission-to-use-cookies">5.  Granting us permission to use cookies</h1>
+
+<p>By using our website you accept the fact that we place these types of cookies on your device.</p>
+
+          </div>
+
+        </section>
+
+    </article>
+
+                <footer role="contentinfo" class="footer">
+  <p><small>© 2016. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="http://blog.konstantinpavlov.net/legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="http://blog.konstantinpavlov.net/assets/js/prism.min.js?v=1477977074"></script>
+    <script src="http://blog.konstantinpavlov.net/assets/js/foot-scripts.min.js?v=1477977074"></script>
+
+    <script type="text/javascript">
+
+      
+        
+          if(GHOSTIUM.haveDisqus) {
+            var disqus_developer = 1;
+            var disqus_shortname = 'konstantinpavlov';
+
+
+            if(typeof DISQUS !== 'object') {
+              (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+              }());
+            }
+          } else {
+            document.querySelector('.post-comments').remove();
+          }
+        
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+  </body>
+</html>

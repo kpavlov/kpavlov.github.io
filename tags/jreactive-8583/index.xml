@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Culture of Code</title>
+    <link>http://blog.konstantinpavlov.net/tags/jreactive-8583/index.xml</link>
+    <description>Recent content on The Culture of Code</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://blog.konstantinpavlov.net/tags/jreactive-8583/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Implementing Automatic Reconnection for Netty Client</title>
+      <link>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</link>
+      <pubDate>Wed, 08 Jul 2015 07:48:05 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</guid>
+      <description>&lt;p&gt;One of the first requirement of &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583&#34; target=&#34;_blank&#34;&gt;Netty ISO8588 client connector&lt;/a&gt; was the support for automatic reconnect.&lt;/p&gt;
+
+&lt;p&gt;One of the first receipts I came across was &lt;a href=&#34;http://tterm.blogspot.com/2014/03/netty-tcp-client-with-reconnect-handling.html&#34; target=&#34;_blank&#34;&gt;Thomas Termin&amp;rsquo;s one&lt;/a&gt;. He suggests adding a ChannelHandler which will schedule the calling of client&amp;rsquo;s &lt;code&gt;connect()&lt;/code&gt; method once a Channel becomes inactive. Plus adding ChannelFutureListener which will re-create a bootstrap and re-connect if initial connection was failed.&lt;/p&gt;
+
+&lt;p&gt;Although this is a working solution, I had a feeling that something is not optimal. Namely, the new Bootstrap is being created on every connection attempt.&lt;/p&gt;
+
+&lt;p&gt;So, I created a FutureListener which should be registered once a Channel is closed.&lt;/p&gt;
+
+&lt;p&gt;Here is the &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/main/java/org/jreactive/iso8583/netty/pipeline/ReconnectOnCloseListener.java&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ReconnectOnCloseListener&lt;/code&gt;&lt;/a&gt; code:&lt;/p&gt;
+
+&lt;p&gt;```java ReconnectOnCloseListener.java
+    public class ReconnectOnCloseListener implements ChannelFutureListener {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    private final Logger logger = getLogger(ReconnectOnCloseListener.class);
+
+    private final Iso8583Client client;
+    private final int reconnectInterval;
+    private final AtomicBoolean disconnectRequested = new AtomicBoolean(false);
+    private final ScheduledExecutorService executorService;
+
+    public ReconnectOnCloseListener(Iso8583Client client, int reconnectInterval, ScheduledExecutorService executorService) {
+        this.client = client;
+        this.reconnectInterval = reconnectInterval;
+        this.executorService = executorService;
+    }
+
+    public void requestReconnect() {
+        disconnectRequested.set(false);
+    }
+
+    public void requestDisconnect() {
+        disconnectRequested.set(true);
+    }
+
+    @Override
+    public void operationComplete(ChannelFuture future) throws Exception {
+        final Channel channel = future.channel();
+        logger.debug(&amp;quot;Client connection was closed to {}&amp;quot;, channel.remoteAddress());
+        channel.disconnect();
+        scheduleReconnect();
+    }
+
+    public void scheduleReconnect() {
+        if (!disconnectRequested.get()) {
+            logger.trace(&amp;quot;Failed to connect. Will try again in {} millis&amp;quot;, reconnectInterval);
+            executorService.schedule(
+                    client::connectAsync,
+                    reconnectInterval, TimeUnit.MILLISECONDS);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;
+To establish the connection I use the following [code][Iso8583Client]:
+
+```java
+    reconnectOnCloseListener.requestReconnect();
+    final ChannelFuture connectFuture = bootstrap.connect();
+    connectFuture.addListener(connFuture -&amp;gt; {
+        if (!connectFuture.isSuccess()) {
+            reconnectOnCloseListener.scheduleReconnect();
+            return;
+        }
+        Channel channel = connectFuture.channel();
+        logger.info(&amp;quot;Client is connected to {}&amp;quot;, channel.remoteAddress());
+        setChannel(channel);
+        channel.closeFuture().addListener(reconnectOnCloseListener);
+    });
+    connectFuture.sync();// if you need to connect synchronously
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you want to disconnect, you&amp;rsquo;ll need to disable automatic reconnection first:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    reconnectOnCloseListener.requestDisconnect();
+    channel.close();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The solution works fine so far (&lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/test/java/org/jreactive/iso8583/example/ClientReconnectIT.java&#34; target=&#34;_blank&#34;&gt;integration test&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Another option is to add a ChannelOutboundHandler which will handle disconnects.&lt;/p&gt;
+
+&lt;h3 id=&#34;links&#34;&gt;Links&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sources: &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/main/java/org/jreactive/iso8583/netty/pipeline/ReconnectOnCloseListener.java&#34; target=&#34;_blank&#34;&gt;ReconnectListener&lt;/a&gt;, &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/main/java/org/jreactive/iso8583/client/Iso8583Client.java#L67&#34; target=&#34;_blank&#34;&gt;Client&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;StackOverflow: &lt;a href=&#34;http://stackoverflow.com/a/20881135/3315474&#34; target=&#34;_blank&#34;&gt;answer one&lt;/a&gt;, &lt;a href=&#34;http://stackoverflow.com/a/9351628/3315474&#34; target=&#34;_blank&#34;&gt;answer two&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Culture of Code</title>
+    <link>http://blog.konstantinpavlov.net/tags/jmx/index.xml</link>
+    <description>Recent content on The Culture of Code</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://blog.konstantinpavlov.net/tags/jmx/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Jolokia: HTTP/JSON bridge for JMX</title>
+      <link>http://blog.konstantinpavlov.net/blog/2014/06/09/jolokia-http/json-bridge-for-jmx/</link>
+      <pubDate>Mon, 09 Jun 2014 13:17:37 +0300</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2014/06/09/jolokia-http/json-bridge-for-jmx/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/BhutJolokia09_Asit.jpg/640px-BhutJolokia09_Asit.jpg&#34; alt=&#34;Jolokia Logo&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Very often there is a need to monitor the Java application server.
+For example, external monitoring tool, like Nagious/Zenoss/Zabbix needs to get some metrics, like heap memory usage or thread count.&lt;/p&gt;
+
+&lt;p&gt;Usual way to get that metrics is to setup access to application server via JMX.&lt;/p&gt;
+
+&lt;p&gt;But, sometimes, it is not possible to leave some other port opened for JMX and the only port available is HTTP(80 or 8080) or HTTPS(443 or 8443).&lt;/p&gt;
+
+&lt;p&gt;Here the &lt;a href=&#34;http://www.jolokia.org&#34; title=&#34;Jolokia Project&#34; target=&#34;_blank&#34;&gt;Jolokia&lt;/a&gt; comes to rescue!
+&lt;/p&gt;
+
+&lt;p&gt;Jolokia is a HTTP/JSON bridge for JMX server. It can be deployed as web archive (.war) to servlet container and expose MBeans via HTTP.&lt;/p&gt;
+
+&lt;p&gt;Also, it is quite lightweight - only 285K for webarchive.&lt;/p&gt;
+
+&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
+
+&lt;p&gt;Here is a small instruction how to get an access to JMX beans in &lt;a href=&#34;http://blog.konstantinpavlov.net/tags/tomcat&#34;&gt;Tomcat&lt;/a&gt; via &lt;a href=&#34;http://www.jolokia.org&#34; title=&#34;Jolokia Project&#34; target=&#34;_blank&#34;&gt;Jolokia&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.jolokia.org/download.html&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; &lt;code&gt;jolockia.war&lt;/code&gt; and deploy it to servlet container.&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Run in command line:
+
+$ curl localhost:8080/jolokia/read/java.lang:type=Memory/HeapMemoryUsage
+{&#34;request&#34;:{&#34;mbean&#34;:&#34;java.lang:type=Memory&#34;,&#34;attribute&#34;:&#34;HeapMemoryUsage&#34;,&#34;type&#34;:&#34;read&#34;},&#34;value&#34;:{&#34;init&#34;:536870912,&#34;committed&#34;:514850816,&#34;max&#34;:514850816,&#34;used&#34;:132049768},&#34;timestamp&#34;:1402310991,&#34;status&#34;:200}
+$ curl localhost:8080/jolokia/read/java.lang:type=Memory/HeapMemoryUsage/used
+{&#34;request&#34;:{&#34;path&#34;:&#34;used&#34;,&#34;mbean&#34;:&#34;java.lang:type=Memory&#34;,&#34;attribute&#34;:&#34;HeapMemoryUsage&#34;,&#34;type&#34;:&#34;read&#34;},&#34;value&#34;:132049736,&#34;timestamp&#34;:1402310735,&#34;status&#34;:200}
+
+You may also use your browser to see JSON response. I suggest installing &lt;a href=&#34;https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa&#34; title=&#34;JSON Formatter Chrome Extension&#34; target=&#34;_blank&#34;&gt;JSON Fromamter&lt;/a&gt; for better view. &lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2014/06/jolokia-heap.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Now you can configure your monitoring software to ping server periodically and parse &amp;laquo;value&amp;raquo; attribute from JSON response.&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Released version of Jolokia are available in &lt;a href=&#34;https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.jolokia%22&#34; target=&#34;_blank&#34;&gt;central maven repository&lt;/a&gt;:
+
+&lt;dependency&gt;
+	&lt;groupId&gt;org.jolokia&lt;/groupId&gt;
+	&lt;artifactId&gt;jolokia-war&lt;/artifactId&gt;
+	&lt;version&gt;1.2.1&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Also, Jolokia provides OSGi, Mule and JVM &lt;a href=&#34;http://www.jolokia.org/reference/html/agents.html&#34; target=&#34;_blank&#34;&gt;agents&lt;/a&gt; as well as Webarchive (War) agent.&lt;/p&gt;
+
+&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.jolokia.org&#34; title=&#34;Jolokia Project&#34; target=&#34;_blank&#34;&gt;Jolokia Project Home&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/rhuss/jolokia&#34; title=&#34;Jolokia on GitHub&#34; target=&#34;_blank&#34;&gt;Jolokia Project on GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Webapp Inter-Communication in Tomcat</title>
+      <link>http://blog.konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</link>
+      <pubDate>Fri, 09 May 2014 22:40:12 +0300</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Sometimes you need to access services deployed in one web application from another web application within same application server. For Tomcat there is not so many options to do it. In this article we&amp;rsquo;ll discuss you how to use JMX for communication between web applications.&lt;/em&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When both web applications are deployed on the same &lt;a href=&#34;http://tomcat.apache.org&#34; title=&#34;Apache Tomcat&#34; target=&#34;_blank&#34;&gt;Tomcat server&lt;/a&gt; instance there are, at least, two options to communicate between them:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a JAX-WS or RESTful webservice in A.war and invoke it via http client from B.war&lt;/li&gt;
+&lt;li&gt;Expose a service as managed bean in A.war and invoke it via JMX from B.war&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There are at least two disadvantage of the first approach:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Your webservice becomes available to the public and there is a security risk unless you protect access to that service, if you care about this.&lt;/li&gt;
+&lt;li&gt;Web service invocation is not free. Marshalling/unmarshalling is required.&lt;/li&gt;
+&lt;li&gt;You&amp;rsquo;ll have to write a service endpoint class.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;But there is an advantage:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;You may choose deploy your service to different Tomcat. It will not require much work to reconfigure your services.&lt;/li&gt;
+&lt;li&gt;You should not care about classloader issues.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Second solution uses existing server infrastructure. It also may cause a security risk if your JMX services are accessible by remote clients. But it is not often a case, or JMX is usually not as vulnerable as HTTP port.
+Also, you may not warry about marshalling/unmarshalling or serialisation/deserializartion.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s discuss a third solution (JMX) in details.&lt;/p&gt;
+
+&lt;h2 id=&#34;exposing-and-accessing-managed-beans-with-springframework&#34;&gt;Exposing and Accessing Managed Beans with SpringFramework&lt;/h2&gt;
+
+&lt;p&gt;Tomcat has it&amp;rsquo;s own JMX Server and &lt;a href=&#34;http://springframework.org&#34; target=&#34;_blank&#34;&gt;SpringFramework&lt;/a&gt; has JMX exporter feature out of the box.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start with simple example.
+We&amp;rsquo;ll create first web application &lt;code&gt;service.war&lt;/code&gt; exposing &lt;a href=&#34;https://gist.github.com/kpavlov/3e19dcec52b56d550e21#file-api-jar-echoservice&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;EchoService&lt;/code&gt;&lt;/a&gt; via JMX.
+Then we&amp;rsquo;ll access that service in a second web application &lt;code&gt;ui.war&lt;/code&gt; from within a servlet.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s create a maven project with 3 modules:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;modules&amp;gt;
+    &amp;lt;module&amp;gt;api.jar&amp;lt;/module&amp;gt;
+    &amp;lt;module&amp;gt;service.war&amp;lt;/module&amp;gt;
+    &amp;lt;module&amp;gt;ui.war&amp;lt;/module&amp;gt;
+&amp;lt;/modules&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First module, &lt;em&gt;api.jar&lt;/em&gt;, will contain a service interface, &lt;code&gt;EchoService&lt;/code&gt; which is pretty simple
+(here and later imports are omitted):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;public interface EchoService {
+
+    public static final String MBEAN_NAME = &amp;quot;com.example:type=service,name=EchoService&amp;quot;;
+
+    String echo(String input);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Second module, &lt;em&gt;service.war&lt;/em&gt;, will contain a &lt;a href=&#34;https://gist.github.com/kpavlov/3e19dcec52b56d550e21#file-service-war-echoserviceimpl&#34; target=&#34;_blank&#34;&gt;service implementation class&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@ManagedResource(objectName = EchoService.MBEAN_NAME)
+public class EchoServiceImpl implements EchoService {
+
+    @Override
+    @ManagedOperation
+    public String echo(String input) {
+        return &amp;quot;You said: &amp;quot; + input;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip; as well as Spring configuration file &lt;em&gt;services-context.xml&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
+       xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+       xmlns:context=&amp;quot;http://www.springframework.org/schema/context&amp;quot;
+       xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&amp;quot;&amp;gt;
+
+    &amp;lt;context:annotation-config/&amp;gt;
+    &amp;lt;context:mbean-export/&amp;gt;
+
+    &amp;lt;bean id=&amp;quot;echoService&amp;quot; class=&amp;quot;com.example.service.EchoServiceImpl&amp;quot;/&amp;gt;
+
+&amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here the &lt;a href=&#34;http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/jmx.html&#34; target=&#34;_blank&#34;&gt;JMX export feature&lt;/a&gt;
+of &lt;a href=&#34;http://springframework.org&#34; target=&#34;_blank&#34;&gt;SpringFramework&lt;/a&gt; is used.&lt;/p&gt;
+
+&lt;p&gt;And a &lt;em&gt;web.xml&lt;/em&gt; descriptor is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;web-app xmlns=&amp;quot;http://java.sun.com/xml/ns/javaee&amp;quot;
+         xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+         xsi:schemaLocation=&amp;quot;http://java.sun.com/xml/ns/javaee
+          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&amp;quot;
+         version=&amp;quot;3.0&amp;quot;&amp;gt;
+
+    &amp;lt;display-name&amp;gt;Servlet 3.0 Web Application&amp;lt;/display-name&amp;gt;
+
+    &amp;lt;context-param&amp;gt;
+        &amp;lt;param-name&amp;gt;contextConfigLocation&amp;lt;/param-name&amp;gt;
+        &amp;lt;param-value&amp;gt;classpath:/services-context.xml&amp;lt;/param-value&amp;gt;
+    &amp;lt;/context-param&amp;gt;
+
+    &amp;lt;listener&amp;gt;
+        &amp;lt;listener-class&amp;gt;org.springframework.web.context.ContextLoaderListener&amp;lt;/listener-class&amp;gt;
+    &amp;lt;/listener&amp;gt;
+&amp;lt;/web-app&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Third module, &lt;em&gt;ui.war&lt;/em&gt;, will contain a servlet, which will use the service:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@WebServlet(urlPatterns = &amp;quot;/echo/*&amp;quot;)
+public class EchoServlet extends HttpServlet {
+
+    @Autowired
+    private EchoService echoService;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
+        System.out.println(&amp;quot;Servlet initialized&amp;quot;);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        final String input = req.getPathInfo();
+
+        final String output = echoService.echo(input);
+
+        resp.setBufferSize(1024);
+        resp.setStatus(HttpServletResponse.SC_OK);
+        resp.setContentType(&amp;quot;text/plain&amp;quot;);
+        resp.setCharacterEncoding(&amp;quot;UTF-8&amp;quot;);
+        resp.getWriter().write(output);
+        resp.getWriter().close();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;spring context configuration &lt;em&gt;web-context.xml&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;    &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+    &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
+           xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+           xmlns:util=&amp;quot;http://www.springframework.org/schema/util&amp;quot;
+           xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd&amp;quot;&amp;gt;
+
+        &amp;lt;bean id=&amp;quot;echoService&amp;quot; class=&amp;quot;org.springframework.jmx.access.MBeanProxyFactoryBean&amp;quot; lazy-init=&amp;quot;true&amp;quot;&amp;gt;
+            &amp;lt;property name=&amp;quot;objectName&amp;quot;&amp;gt;
+                &amp;lt;util:constant static-field=&amp;quot;com.example.service.EchoService.MBEAN_NAME&amp;quot;/&amp;gt;
+            &amp;lt;/property&amp;gt;
+            &amp;lt;property name=&amp;quot;proxyInterface&amp;quot; value=&amp;quot;com.example.service.EchoService&amp;quot;/&amp;gt;
+        &amp;lt;/bean&amp;gt;
+
+    &amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;web.xml&lt;/em&gt; descriptor:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;    &amp;lt;web-app xmlns=&amp;quot;http://java.sun.com/xml/ns/javaee&amp;quot;
+             xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+             xsi:schemaLocation=&amp;quot;http://java.sun.com/xml/ns/javaee
+              http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&amp;quot;
+             version=&amp;quot;3.0&amp;quot;&amp;gt;
+
+        &amp;lt;display-name&amp;gt;Servlet 3.0 Web Application&amp;lt;/display-name&amp;gt;
+
+        &amp;lt;context-param&amp;gt;
+            &amp;lt;param-name&amp;gt;contextConfigLocation&amp;lt;/param-name&amp;gt;
+            &amp;lt;param-value&amp;gt;WEB-INF/web-context.xml&amp;lt;/param-value&amp;gt;
+        &amp;lt;/context-param&amp;gt;
+
+        &amp;lt;listener&amp;gt;
+            &amp;lt;listener-class&amp;gt;org.springframework.web.context.ContextLoaderListener&amp;lt;/listener-class&amp;gt;
+        &amp;lt;/listener&amp;gt;
+    &amp;lt;/web-app&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When those two webapps are deployed to tomcat, a new JMX bean is created:
+&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2014/05/tomcat-mbean-service.png&#34; alt=&#34;EchoService exposed as Managed Bean&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;and service is accessible from the servlet:
+&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2014/05/tomcat-service-invoked.png&#34; alt=&#34;EchoServlet showing results of EchoService invocation&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;module-dependencies&#34;&gt;Module dependencies&lt;/h3&gt;
+
+&lt;p&gt;All web modules should depend on &lt;em&gt;api.jar&lt;/em&gt; module, because it contains a service interface.&lt;/p&gt;
+
+&lt;p&gt;While your service method signatures contains only standard java classes, available across the Tomcat server,
+you may not care about classloading issues. In this case both &lt;em&gt;service.war&lt;/em&gt; and &lt;em&gt;ui.war&lt;/em&gt; should contain &lt;em&gt;api.jar&lt;/em&gt; as a dependency in their &lt;code&gt;WEB-INF/lib&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;But if you want to return from your service method some custom class,
+you&amp;rsquo;ll need to put that class to &lt;em&gt;api.jar&lt;/em&gt; and place that JAR to &lt;code&gt;${catalina.base}/lib&lt;/code&gt; folder to make that classes available to all web applications. In this case &lt;em&gt;api.jar&lt;/em&gt; should be declared as &lt;em&gt;provided&lt;/em&gt; dependency in webapp modules.&lt;/p&gt;
+
+&lt;p&gt;Having sharing classes in a common classloader eliminates the need of data serialization/deserialization.&lt;/p&gt;
+
+&lt;p&gt;Sources from this article you may find &lt;a href=&#34;https://gist.github.com/kpavlov/3e19dcec52b56d550e21&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

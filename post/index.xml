@@ -1,0 +1,1497 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Post-rsses on The Culture of Code</title>
+    <link>http://blog.konstantinpavlov.net/post/index.xml</link>
+    <description>Recent content in Post-rsses on The Culture of Code</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Sep 2016 10:15:51 +0000</lastBuildDate>
+    <atom:link href="http://blog.konstantinpavlov.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Deploying Private Docker Registry Behind Cloudflaire</title>
+      <link>http://blog.konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</link>
+      <pubDate>Wed, 14 Sep 2016 10:15:51 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</guid>
+      <description>&lt;p&gt;This is a short instruction how to deploy private docker registry on private cloud virtual servers behind &lt;a href=&#34;https://www.cloudflare.com&#34; target=&#34;_blank&#34;&gt;Cloudflaire&lt;/a&gt; proxy.
+
+Suppose, we have two virtual servers on private cloud:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;WAF (web application firewall) with Nginx installed&lt;/li&gt;
+&lt;li&gt;Internal server which will host a Docker private registry.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cloudflaire will serve as HTTPS proxy and forward unencrypted traffic to private WAF which will provide authentication and authorization and dispatch user requests to docker registry server.&lt;/p&gt;
+
+&lt;h2 id=&#34;1-start-docker-registry-server-on-internal-docker-host&#34;&gt;1. Start docker registry server on internal docker host&lt;/h2&gt;
+
+&lt;p&gt;Login to your virtual server and start docker registry:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run -d -p 5000:5000 --restart=always --name registry registry:2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Setup firewall to allow access to docker registry server from WAF&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;iptables -A INPUT -p tcp -s &amp;lt;waf-ip&amp;gt; -i eth1 --dport 5000 -m state --state NEW,ESTABLISHED -j ACCEPT
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2-configure-nginx-on-waf&#34;&gt;2. Configure Nginx on WAF&lt;/h2&gt;
+
+&lt;p&gt;We need to setup BASIC authorization and request forwarding:&lt;/p&gt;
+
+&lt;p&gt;Create password for your docker user (&lt;code&gt;dockeruser&lt;/code&gt;) basic authentication on nginx.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo htpasswd -c /etc/nginx/.htpasswd dockeruser
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;htpasswd&lt;/code&gt; you may find in the package apache2-utils (&lt;code&gt;sudo yum -y install apache2-utils&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Now configure nginx (&lt;code&gt;/etc/nginx.conf&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-nginx&#34;&gt;
+server {
+    listen          80;       # Listen on port 80 for IPv4 requests
+
+    server_name r.newage.io;
+
+    ignore_invalid_headers off;
+
+    location / {
+
+        # disable any limits to avoid HTTP 413 for large image uploads
+        client_max_body_size 0;
+
+        # required to avoid HTTP 411: see Issue #1486 (https://github.com/docker/docker/issues/1486)
+        chunked_transfer_encoding on;
+
+        add_header                  Docker-Distribution-Api-Version registry/2.0 always;
+        auth_basic                  &amp;quot;Restricted&amp;quot;;
+        auth_basic_user_file        /etc/nginx/.htpasswd;
+        proxy_pass                  http://&amp;lt;upstream-host&amp;gt;:5000/;
+
+        proxy_set_header            X-Original-URI       $request_uri;
+        proxy_set_header            Proxy                &amp;quot;&amp;quot;;
+        proxy_set_header            Host                 $host;
+        proxy_set_header            X-Real-IP            $remote_addr;
+        proxy_set_header            X-Forwarded-For      $proxy_add_x_forwarded_for;
+        proxy_set_header            X-Forwarded-Proto    &amp;quot;https&amp;quot;;
+        proxy_read_timeout          900;
+        proxy_max_temp_file_size    0;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and reload nginx configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nginx -s reload
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;3-configure-cloudflaire&#34;&gt;3. Configure Cloudflaire&lt;/h2&gt;
+
+&lt;p&gt;Now we need to login to &lt;a href=&#34;https://www.cloudflare.com&#34; target=&#34;_blank&#34;&gt;cloudflaire&lt;/a&gt; console, create DNS A-record pointing to your WAF server-ip&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;registry.mydomain.com =&amp;gt; WAF public IP
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also we need to setup &amp;laquo;Always Use HTTPS&amp;raquo; &lt;a href=&#34;https://support.cloudflare.com/hc/en-us/articles/224509547-Recommended-Page-Rules-to-Consider&#34; target=&#34;_blank&#34;&gt;page rule&lt;/a&gt; for the domain.&lt;/p&gt;
+
+&lt;h2 id=&#34;4-testing-repository&#34;&gt;4. Testing repository&lt;/h2&gt;
+
+&lt;p&gt;Execute from your local machine:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ docker login -u=dockeruser -p=secret https://registry.mydomain.com
+Password:
+Login Succeeded
+$ docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+
+c04b14da8d14: Pull complete
+Digest: sha256:0256e8a36e2070f7bf2d0b0763dbabdd67798512411de4cdcf9431a1feb60fd9
+Status: Downloaded newer image for hello-world:latest
+$ docker tag hello-world:latest registry.mydomain.com/hello-world:latest
+$ docker push registry.mydomain.com/hello-world:latest
+The push refers to a repository [registry.mydomain.com/hello-world]
+a02596fdd012: Pushed
+latest: digest: sha256:a18ed77532f6d6781500db650194e0f9396ba5f05f8b50d4046b294ae5f83aa4 size: 524
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/registry/recipes/nginx/&#34; target=&#34;_blank&#34;&gt;Authenticating proxy with nginx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://container-solutions.com/running-secured-docker-registry-2-0/&#34; target=&#34;_blank&#34;&gt;Running Secured Docker Registry 2.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/a/39483840/3315474&#34; target=&#34;_blank&#34;&gt;StackOverflow: docker authentication issue&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Installing Ansible 2.1.1 on Debian 8 (Jessie)</title>
+      <link>http://blog.konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</link>
+      <pubDate>Fri, 09 Sep 2016 10:12:48 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</guid>
+      <description>&lt;p&gt;Recently I faced some dependency issues trying to install &lt;a href=&#34;https://ansible.com&#34; target=&#34;_blank&#34;&gt;Ansible 2&lt;/a&gt; on Debian 8 (Jessie).
+Googling a bit I found a solution which was a basically to upgrade or install missing dependencies.
+Following script automates the installation procedure:
+&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get update
+sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-pip python-dev git -y
+sudo pip install PyYAML jinja2 paramiko
+sudo pip install pyasn1 --upgrade
+sudo pip install c
+
+git clone https://github.com/ansible/ansible.git
+cd ansible
+
+## This is important since core and extra modules are in separate repositories!
+git submodule update --init --recursive
+
+## I want to get a stable release, so I checkout a specific tag
+git tag -l
+git checkout tags/v2.1.1.0-1
+
+## Build Ansible from sources
+sudo make install
+
+## If Build fails, then cleanup before retry
+sudo make clean
+
+sudo mkdir /etc/ansible
+sudo cp ~/ansible/examples/hosts /etc/ansible/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.programster.org/debian-8-install-ansible&#34; target=&#34;_blank&#34;&gt;Debian 8 - Install Ansible&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/a/19102614/3315474&#34; target=&#34;_blank&#34;&gt;Upgrading setuptools version&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ansible.com/ansible/intro_installation.html&#34; target=&#34;_blank&#34;&gt;Ansible Documentation - Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/a/19102614/3315474&#34; target=&#34;_blank&#34;&gt;Installing missing &amp;lsquo;cryptography&amp;rsquo; dependencies&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Links on REST API Design</title>
+      <link>http://blog.konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</link>
+      <pubDate>Thu, 18 Aug 2016 22:48:14 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</guid>
+      <description>&lt;p&gt;Here you will find a small collection of links on REST API design.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=5WXYw4J4QOU&#34; target=&#34;_blank&#34;&gt;Designing a Beautiful REST+JSON API&lt;/a&gt; &amp;ndash; In this presentation, Les Hazlewood (@lhazlewood) - Stormpath CTO and Apache Shiro PMC Chair - will share all of the golden nuggets learned while designing, implementing and supporting JSON-based REST APIs, using examples from a clean real-world REST+JSON API built with Java technologies. He covers:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JSON-based data formats in a RESTful API&lt;/li&gt;
+&lt;li&gt;References to other JSON-based resources (aka &amp;lsquo;linking&amp;rsquo;)&lt;/li&gt;
+&lt;li&gt;Resource collections and pagination&lt;/li&gt;
+&lt;li&gt;How to map (and how not to map) HTTP methods to Resource CRUD&lt;/li&gt;
+&lt;li&gt;Resource partial updates&lt;/li&gt;
+&lt;li&gt;Supporting HTTP Method Overloading for clients that don&amp;rsquo;t support HTTP PUT and DELETE&lt;/li&gt;
+&lt;li&gt;API versioning strategies&lt;/li&gt;
+&lt;li&gt;Meaningful Error responses&lt;/li&gt;
+&lt;li&gt;Many-to-many resource relationships&lt;/li&gt;
+&lt;li&gt;HTTP Caching and Optimistic concurrency control&lt;/li&gt;
+&lt;li&gt;Authentication and Security
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/5WXYw4J4QOU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=FeSdFhsKGG0&#34; target=&#34;_blank&#34;&gt;Secure Your API - Tips for REST + JSON Developers&lt;/a&gt; &amp;ndash; Technical overview on how to secure your API, from Les Hazlewood (@lhazlewood), CTO of Stormpath and PMC Chair of Apache Shiro. (Excerpt from Les&amp;rsquo; talk on API design at Silicon Valley Java Users Group)
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/FeSdFhsKGG0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://stormpath.com/blog/secure-your-rest-api-right-way/&#34; target=&#34;_blank&#34;&gt;https://stormpath.com/blog/secure-your-rest-api-right-way/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/319530/restful-authentication&#34; target=&#34;_blank&#34;&gt;http://stackoverflow.com/questions/319530/restful-authentication&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://stormpath.com/blog/designing-rest-json-apis/&#34; target=&#34;_blank&#34;&gt;https://stormpath.com/blog/designing-rest-json-apis/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://docs.stormpath.com/guides/api-key-management/&#34; target=&#34;_blank&#34;&gt;http://docs.stormpath.com/guides/api-key-management/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Hash-based_message_authentication_code&#34; target=&#34;_blank&#34;&gt;http://en.wikipedia.org/wiki/Hash-based_message_authentication_code&lt;/a&gt; &amp;ndash; keyed-hash message authentication code (HMAC)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.coinbase.com/docs/api/authentication&#34; target=&#34;_blank&#34;&gt;https://www.coinbase.com/docs/api/authentication&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://broadcast.oreilly.com/2009/12/principles-for-standardized-rest-authentication.html&#34; target=&#34;_blank&#34;&gt;http://broadcast.oreilly.com/2009/12/principles-for-standardized-rest-authentication.html&lt;/a&gt; &amp;ndash; Query Authentication consists in signing each RESTful request via some additional parameters on the URI.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://blog.synopse.info/post/2011/05/24/How-to-implement-RESTful-authentication&#34; target=&#34;_blank&#34;&gt;http://blog.synopse.info/post/2011/05/24/How-to-implement-RESTful-authentication&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>CI Setup Tips</title>
+      <link>http://blog.konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</link>
+      <pubDate>Sun, 17 Jul 2016 17:00:00 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</guid>
+      <description>
+
+&lt;p&gt;You may find following tips useful when setting up continuous integration infrastructure.&lt;/p&gt;
+
+&lt;h2 id=&#34;security&#34;&gt;Security&lt;/h2&gt;
+
+&lt;p&gt;Use VPN or reverse proxy provider like &lt;a href=&#34;https://www.cloudflare.com/&#34; target=&#34;_blank&#34;&gt;cloudflare.com&lt;/a&gt; to secure your CI infrastructure.
+Never make your real IPs publicly available, otherwise you increase a risk of being hacked.&lt;/p&gt;
+
+&lt;h2 id=&#34;jenkins&#34;&gt;Jenkins&lt;/h2&gt;
+
+&lt;p&gt;Use master node and build agents. Master node acts only as web console. Nodes are for compiling and testing.&lt;/p&gt;
+
+&lt;h2 id=&#34;notifications&#34;&gt;Notifications&lt;/h2&gt;
+
+&lt;p&gt;If you&amp;rsquo;re using google apps for domain, you may use Google&amp;rsquo;s restricted SMTP server to send notifications. You will be restricted to sending messages to Gmail or Google Apps users only, but it&amp;rsquo;s ok in most cases. See this &lt;a href=&#34;https://support.google.com/a/answer/176600?hl=en&#34; target=&#34;_blank&#34;&gt;reference page&lt;/a&gt; from Google.&lt;/p&gt;
+
+&lt;h2 id=&#34;versioning&#34;&gt;Versioning&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Disable redeploy of the artifacts with same versions to the artifact repository (e.g. Nexus)&lt;/li&gt;
+&lt;li&gt;Use &lt;a href=&#34;http://semver.org/&#34; target=&#34;_blank&#34;&gt;semver&lt;/a&gt; specification for versioning your software: _major.minor.build&lt;em&gt;number&lt;/em&gt;.&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Never reuse build numbers. New build =&amp;gt; new software version.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://maven.apache.org/maven-release/maven-release-plugin&#34; target=&#34;_blank&#34;&gt;Maven-release-plugin&lt;/a&gt; will help you to increment versions of your project.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Selenium Tests with Maven and Selenide</title>
+      <link>http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</link>
+      <pubDate>Thu, 12 May 2016 16:26:25 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://selenide.org&#34; target=&#34;_blank&#34;&gt;Selenide&lt;/a&gt; is nice wrapper around selenium web driver allowing to simplify writting UI tests with Selenium.&lt;/p&gt;
+
+&lt;p&gt;Some of the cook features are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jquery-like selector syntax, e.g. &lt;code&gt;$(&amp;quot;div.myclass&amp;quot;).is(Condition.visible)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Automatic screenshots on assertion failure&lt;/li&gt;
+&lt;li&gt;Easy starting Selenium WebDriver&lt;/li&gt;
+&lt;li&gt;And &lt;a href=&#34;http://selenide.org/quick-start.html&#34; target=&#34;_blank&#34;&gt;others&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s write some tests on selenide and make it run from maven in a normal browser or in headless mode.&lt;/p&gt;
+
+&lt;p&gt;First, let&amp;rsquo;s create &lt;a href=&#34;https://raw.githubusercontent.com/kpavlov/selenide-maven-sample/master/pom.xml&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;pom.xml&lt;/em&gt;&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;project xmlns=&amp;quot;http://maven.apache.org/POM/4.0.0&amp;quot;
+         xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+         xsi:schemaLocation=&amp;quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&amp;quot;&amp;gt;
+    &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt;
+
+    &amp;lt;groupId&amp;gt;com.github.kpavlov&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;selenide-sample&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt;
+
+    &amp;lt;properties&amp;gt;
+        &amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;
+        &amp;lt;maven.compiler.source&amp;gt;${java.version}&amp;lt;/maven.compiler.source&amp;gt;
+        &amp;lt;maven.compiler.target&amp;gt;${java.version}&amp;lt;/maven.compiler.target&amp;gt;
+        &amp;lt;selenium.hub.url&amp;gt;http://local.example.com:4444/wd/hub&amp;lt;/selenium.hub.url&amp;gt;
+        &amp;lt;holdBrowserOpen&amp;gt;false&amp;lt;/holdBrowserOpen&amp;gt;
+        &amp;lt;surefire.argLine&amp;gt;-Dbrowser=${browser} -Dselenide.holdBrowserOpen=${holdBrowserOpen}&amp;lt;/surefire.argLine&amp;gt;
+    &amp;lt;/properties&amp;gt;
+
+    &amp;lt;prerequisites&amp;gt;
+        &amp;lt;maven&amp;gt;3.3&amp;lt;/maven&amp;gt;
+    &amp;lt;/prerequisites&amp;gt;
+
+    &amp;lt;profiles&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;firefox&amp;lt;/id&amp;gt;
+            &amp;lt;activation&amp;gt;
+                &amp;lt;activeByDefault&amp;gt;true&amp;lt;/activeByDefault&amp;gt;
+            &amp;lt;/activation&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;firefox&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;chrome&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;chrome&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;phantomjs&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;phantomjs&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;ie&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;ie&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;htmlunit&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;htmlunit&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+            &amp;lt;dependencies&amp;gt;
+                &amp;lt;dependency&amp;gt;
+                    &amp;lt;groupId&amp;gt;org.seleniumhq.selenium&amp;lt;/groupId&amp;gt;
+                    &amp;lt;artifactId&amp;gt;selenium-htmlunit-driver&amp;lt;/artifactId&amp;gt;
+                    &amp;lt;version&amp;gt;LATEST&amp;lt;/version&amp;gt;
+                    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+                &amp;lt;/dependency&amp;gt;
+            &amp;lt;/dependencies&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;ci-server&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;surefire.argLine&amp;gt;-Dremote=${selenium.hub.url} -Dbrowser=${browser}&amp;lt;/surefire.argLine&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;local&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;holdBrowserOpen&amp;gt;true&amp;lt;/holdBrowserOpen&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+    &amp;lt;/profiles&amp;gt;
+
+    &amp;lt;build&amp;gt;
+        &amp;lt;defaultGoal&amp;gt;clean test&amp;lt;/defaultGoal&amp;gt;
+        &amp;lt;plugins&amp;gt;
+            &amp;lt;plugin&amp;gt;
+                &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;maven-surefire-plugin&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;2.19.1&amp;lt;/version&amp;gt;
+                &amp;lt;configuration&amp;gt;
+                    &amp;lt;argLine&amp;gt;${surefire.argLine}&amp;lt;/argLine&amp;gt;
+                &amp;lt;/configuration&amp;gt;
+            &amp;lt;/plugin&amp;gt;
+        &amp;lt;/plugins&amp;gt;
+        &amp;lt;pluginManagement&amp;gt;
+            &amp;lt;plugins&amp;gt;
+                &amp;lt;plugin&amp;gt;
+                    &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+                    &amp;lt;artifactId&amp;gt;maven-surefire-plugin&amp;lt;/artifactId&amp;gt;
+                &amp;lt;/plugin&amp;gt;
+            &amp;lt;/plugins&amp;gt;
+        &amp;lt;/pluginManagement&amp;gt;
+    &amp;lt;/build&amp;gt;
+
+    &amp;lt;dependencies&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.slf4j&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;slf4j-simple&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;1.7.13&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;com.codeborne&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;selenide&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;3.5.1&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;4.12&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+    &amp;lt;/dependencies&amp;gt;
+&amp;lt;/project&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice the properties:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;surefire.argLine&lt;/strong&gt; &amp;ndash; defines a command line parameters for running tests.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;browser&lt;/strong&gt; &amp;ndash; specifies a browser to use.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;selenium.hub.url&lt;/strong&gt; &amp;ndash; URL where selenium hub is running, for tests with remote web driver, e.g. on CI server.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;holdBrowserOpen&lt;/strong&gt; &amp;ndash; should the browser be closed after tests.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Also there are a fistful of profiles to use as a shortcuts, e.g.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mvn clean test -Pphantomjs&lt;/code&gt; &amp;ndash; run tests locally with phantomjs headless browser. Requires phantomjs to be installed&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mvn clean test -Pfirefox,local&lt;/code&gt; &amp;ndash; run tests locally with Firefox and leaves a browser open after tests&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mvn clean test -Pci-server,chrome&lt;/code&gt; &amp;ndash; run tests on selenium hub with Chrome&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You may find working example in my &lt;a href=&#34;https://github.com/kpavlov/selenide-maven-sample&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Developing in &#34;Dirty Trunk&#34;</title>
+      <link>http://blog.konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/</link>
+      <pubDate>Fri, 04 Mar 2016 22:26:24 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m going to start a series of posts covering different aspects of DevOps.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start today with branching strategy called &lt;em&gt;&amp;laquo;dirty trunk&amp;raquo;&lt;/em&gt;. Actually, this is an attempt to avoid branching at all.
+
+The idea is that:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;all developers commit their changes directly to &lt;em&gt;master&lt;/em&gt; branch or (&lt;em&gt;trunk&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;CI server is triggered a build on every commit and resulting artifact is accepted or rejected based on test results.&lt;/li&gt;
+&lt;li&gt;once all the tests are passed the artifacts are promoted thus making &lt;em&gt;Continuous Delivery (CD)&lt;/em&gt; possible.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This is a simple strategy to implement from the Ops point of view. But it requires significant effort from the developers to maintain stability of the build. When tests are failing the disrupting change should be immediately fixed or reverted. We used to practice this strategy for two years, but as the team and number of tests grow it was more and more difficult to keep build stability. Finally we switched to feature branching and it helped with a build stability a lot.&lt;!--more--&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;pros&#34;&gt;Pros&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Easy to understand&lt;/li&gt;
+&lt;li&gt;Simple CI/CD-friendly automation flow&lt;/li&gt;
+&lt;li&gt;Sequential build number from subversion commit number&lt;/li&gt;
+&lt;li&gt;This strategy fits well for both git and subversion&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;cons&#34;&gt;Cons&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Requires discipline among developers to &lt;em&gt;not push the changes&lt;/em&gt; unless sanity (smoke) tests are passed on local machine.&lt;/li&gt;
+&lt;li&gt;So, there should be &lt;em&gt;sanity (smoke) tests&lt;/em&gt; &amp;ndash; a subset of tests covering most important functionality.
+We&amp;rsquo;ve called them &amp;laquo;cookies&amp;raquo;: The one who breaks that tests should bring a cookies to the team.&lt;/li&gt;
+&lt;li&gt;Even if your tests passed, maybe somebody has pushed his/her changes while you were running your tests.&lt;/li&gt;
+&lt;li&gt;Keep an eye on the build status after your push, be ready to revert.&lt;/li&gt;
+&lt;li&gt;It may be painful to revert the changes when somebody has pushed a change over a destructing one.&lt;/li&gt;
+&lt;li&gt;As a consequence, build is often broken. We had a dedicated developer who was &lt;em&gt;on duty&lt;/em&gt; fixing the build.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;good-practices&#34;&gt;Good Practices&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Reproducible builds (common practice).&lt;/em&gt; It should be always possible to make a build again (e.g. if you lost your artifact repository). If you&amp;rsquo;re using maven , use &lt;a href=&#34;https://maven.apache.org/maven-release/maven-release-plugin/&#34; target=&#34;_blank&#34;&gt;maven-release-plugin&lt;/a&gt; to increment version, commit, push and set a tag on this version. Later you&amp;rsquo;ll be able to find a version by tag or create a new branch from the tag.&lt;/li&gt;
+&lt;li&gt;Make a build in one step (remember p.2 from &lt;a href=&#34;http://www.joelonsoftware.com/articles/fog0000000043.html&#34; title=&#34;The Joel Test: 12 Steps to Better Code&#34; target=&#34;_blank&#34;&gt;Joel Test&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t rebuild artifacts. It saves time and ensures that you&amp;rsquo;re deploying and testing the same artifact.&lt;/li&gt;
+&lt;li&gt;Tag good commits: make a tag once tests passed (&lt;a href=&#34;https://maven.apache.org/maven-release/maven-release-plugin/&#34; target=&#34;_blank&#34;&gt;maven-release-plugin&lt;/a&gt; can do it for you).&lt;/li&gt;
+&lt;li&gt;Automatically promote good build (Continuous Delivery)&lt;/li&gt;
+&lt;li&gt;Implement auto-revert changes on test failure. At least if there are no newer commits.&lt;/li&gt;
+&lt;li&gt;Make build and run tests in parallel on multiple build agents. This saves time a lot.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;I can recommend this strategy only when your team is small and disciplined and you can run all tests locally before commit, so you&amp;rsquo;ll unlikely break a build. With a poor random tests it leads to fragile codebase and takes a lot of time to support.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Recommended reading: &lt;a href=&#34;http://paulhammant.com/categories.html#Trunk_Based_Development&#34; target=&#34;_blank&#34;&gt;Paul Hammant&amp;rsquo;s blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Ideas, suggestions, comments are welcome.
+Thank you.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Spring&#43;Freemarker Tips</title>
+      <link>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</link>
+      <pubDate>Sun, 21 Feb 2016 18:15:00 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</guid>
+      <description>&lt;p&gt;I hope you will find following tips useful when developing &lt;a href=&#34;https://projects.spring.io/spring-boot&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; application with &lt;a href=&#34;http://freemarker.org&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Enable auto-reload of freemarker templates&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Create spring boot development profile (e.g. &amp;laquo;local&amp;raquo;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Disable template caching and enable file access rather than classpath resource access to templates (&lt;em&gt;application-local.properties&lt;/em&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.cache=false
+spring.freemarker.prefer-file-system-access=true
+spring.freemarker.template-loader-path=file:${user.home}/projects/example/src/main/resources/templates
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Add &lt;code&gt;src/main/resources/freemarker_implicit.ftl&lt;/code&gt; to declare your oftenly used types (_freemarker&lt;em&gt;implicit.ftl&lt;/em&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-freemarker&#34;&gt;[#ftl]
+[#-- @implicitly included --]
+[#-- @ftlvariable name=&amp;quot;items&amp;quot; type=&amp;quot;java.util.List&amp;lt;com.example.domain.Item&amp;gt;&amp;quot; --]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Set setting &lt;code&gt;url_escaping_charset&lt;/code&gt; to avoid specifying it in templates (&lt;em&gt;application-local.properties&lt;/em&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.settings.url_escaping_charset=UTF-8
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;You may want to import your default layout to all your pages automatically (&lt;em&gt;application.properties&lt;/em&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.settings.auto_import=layout/defaultLayout.ftl as layout
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is equivalent to adding explicitly to your page:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-freemarker&#34;&gt;&amp;lt;#import &amp;quot;../layout/defaultLayout.ftl&amp;quot; as layouts&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Why Freemarker and not a &lt;a href=&#34;http://www.thymeleaf.org/&#34; target=&#34;_blank&#34;&gt;Thymeleaf&lt;/a&gt;? Because Thymeleaf is one of the &lt;a href=&#34;https://github.com/jreijn/spring-comparing-template-engines#benchmarks-2015&#34; target=&#34;_blank&#34;&gt;slowest&lt;/a&gt; template engines for Java. Freemarker is in the middle of the list, 1.5 times faster than Thymeleaf. &lt;a href=&#34;http://velocity.apache.org/&#34; target=&#34;_blank&#34;&gt;Velocity&lt;/a&gt; or &lt;a href=&#34;https://github.com/samskivert/jmustache&#34; target=&#34;_blank&#34;&gt;JMustache&lt;/a&gt; are even faster, but the difference is not as big and Freemarker has quite a lot of useful features.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>DevMode Javascript Exception Handler</title>
+      <link>http://blog.konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</link>
+      <pubDate>Thu, 11 Feb 2016 23:09:16 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</guid>
+      <description>&lt;p&gt;StackOverflow-driven JS development:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;try {
+    something
+} catch (e) {
+     window.open(&#39;https://stackoverflow.com/search?q=[js]+&amp;quot;&#39; + e.message + &#39;&amp;quot;&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Secure Java Coding Best Practices</title>
+      <link>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</link>
+      <pubDate>Sat, 01 Aug 2015 22:22:34 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</guid>
+      <description>&lt;p&gt;Making your web application flawless against security attacks is a challenge for every java developer.
+In this article I will briefly describe common practical development techniques that can help you to achieve it.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-Table_of_Contents&#34; title=&#34;OWASP Top 10&#34; target=&#34;_blank&#34;&gt;OWASP Top 10&lt;/a&gt;, a list of the 10 Most Critical Web Application Security Risks, includes following risks:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A1 - Injection&lt;/li&gt;
+&lt;li&gt;A2 - Broken Authentication &amp;amp; Session Management&lt;/li&gt;
+&lt;li&gt;A3 - Cross-Site Scripting (XSS)&lt;/li&gt;
+&lt;li&gt;A4 - Insecure Direct Object References&lt;/li&gt;
+&lt;li&gt;A5 - Security Misconfiguration&lt;/li&gt;
+&lt;li&gt;A6 - Sensitive Data Exposure&lt;/li&gt;
+&lt;li&gt;A7 - Missing Function Level Access Control&lt;/li&gt;
+&lt;li&gt;A8 - Cross-Site Request Forgery (CSRF)&lt;/li&gt;
+&lt;li&gt;A9 - Using Components with Known Vulnerabilities&lt;/li&gt;
+&lt;li&gt;A10 - Unvalidated Redirects and Forwards&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this article I will highlight most important java coding techniques for building secure web applications.&lt;/p&gt;
+
+&lt;h2 id=&#34;use-sql-prepared-statements-a1-a1&#34;&gt;Use SQL Prepared Statements (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Bind user data to request parameters of the &lt;code&gt;PreparedStatement&lt;/code&gt;. Never construct dynamic sql queries directly, without escaping parameter escaping.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT * FROM Users WHERE username = &#39;&amp;quot; +  userName + &amp;quot;&#39;&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The query with input &lt;code&gt;foo OR 1=1&lt;/code&gt; will select all data from table.&lt;/p&gt;
+
+&lt;p&gt;For plain JDBC use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;String query = &amp;quot;SELECT * FROM Users WHERE name = ?&amp;quot;;
+PreparedStatement statement = connection.prepareStatement(query);
+statement.setString(1, userName);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For Hibernate use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;String query = &amp;quot;SELECT * FROM USERS WHERE name = :userName&amp;quot;;
+TypedQuery&amp;lt;User&amp;gt; query = em.createQuery(query, User.class);
+query.setParameter(“userName”, userName);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;encode-user-data-a3-a3-a10-a10&#34;&gt;Encode User Data (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_%28XSS%29&#34; target=&#34;_blank&#34;&gt;A3&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A10-Unvalidated_Redirects_and_Forwards&#34; target=&#34;_blank&#34;&gt;A10&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;When rendering user-generated content, always encode it properly. This prevents Cross-Site Scripting (XSS).&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;In JSP use &lt;a href=&#34;https://jstl.java.net/&#34; title=&#34;JSP Standard Tag Library&#34; target=&#34;_blank&#34;&gt;JSTL tags&lt;/a&gt;
+Use &lt;code&gt;c:out&lt;/code&gt; tag. Attribute &lt;code&gt;escapeXml&lt;/code&gt; is &lt;strong&gt;&amp;laquo;true&amp;raquo;&lt;/strong&gt; by default, so you may omit it:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jsp&#34;&gt;&amp;lt;c:out value=&amp;quot;${variable}&amp;quot;/&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;When using Spring Framework with JSP view, use &lt;a href=&#34;http://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html#view-jsp&#34; target=&#34;_blank&#34;&gt;Spring&amp;rsquo;s &lt;code&gt;form&lt;/code&gt; tags&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jsp&#34;&gt;&amp;lt;%@ taglib prefix=&amp;quot;form&amp;quot; uri=&amp;quot;http://www.springframework.org/tags/form&amp;quot; %&amp;gt;
+&amp;lt;form:form&amp;gt;
+&amp;lt;table&amp;gt;
+    &amp;lt;tr&amp;gt;
+        &amp;lt;td&amp;gt;First Name:&amp;lt;/td&amp;gt;
+        &amp;lt;td&amp;gt;&amp;lt;form:input path=&amp;quot;firstName&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+    &amp;lt;tr&amp;gt;
+        &amp;lt;td&amp;gt;Last Name:&amp;lt;/td&amp;gt;
+        &amp;lt;td&amp;gt;&amp;lt;form:input path=&amp;quot;lastName&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+    &amp;lt;tr&amp;gt;
+        &amp;lt;td colspan=&amp;quot;2&amp;quot;&amp;gt;
+            &amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Save Changes&amp;quot; /&amp;gt;
+        &amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+&amp;lt;/table&amp;gt;
+&amp;lt;/form:form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;When using Spring Framework with &lt;a href=&#34;http://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html#view-velocity&#34; target=&#34;_blank&#34;&gt;Freemarker and Velocity&lt;/a&gt;, use &lt;code&gt;bindEscaped&lt;/code&gt; and &lt;code&gt;form&lt;/code&gt; macros.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;check-access-a4-a4-a7-a7&#34;&gt;Check Access (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A4-Insecure_Direct_Object_References&#34; target=&#34;_blank&#34;&gt;A4&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A7-Missing_Function_Level_Access_Control&#34; target=&#34;_blank&#34;&gt;A7&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Always check data and functional access. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object.
+Spring Security provides the comprehensive methods to implement functional access.
+Data access (SQL) usually requires correctly constructing of the SQL query.&lt;/p&gt;
+
+&lt;h2 id=&#34;use-http-headers-a1-a1-a3-a3&#34;&gt;Use HTTP Headers (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_%28XSS%29&#34; target=&#34;_blank&#34;&gt;A3&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Use browser headers to prevent XSS and data-injection attacks:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-http&#34;&gt;X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src https://myhost.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Spring-Security provides a set of &lt;a href=&#34;http://docs.spring.io/autorepo/docs/spring-security/current/apidocs/org/springframework/security/config/annotation/web/builders/HttpSecurity.html&#34; target=&#34;_blank&#34;&gt;header filters&lt;/a&gt; out of the box ():&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
+@EnableWebMvcSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .headers()
+                .contentTypeOptions();
+                .xssProtection()
+                .cacheControl()
+                .httpStrictTransportSecurity()
+                .frameOptions()
+                .and()
+            ...;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;use-content-security-policy-header&#34;&gt;Use Content-Security-Policy Header&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Content_Security_Policy&#34; target=&#34;_blank&#34;&gt;Content-Security-Policy&lt;/a&gt; is an &lt;a href=&#34;https://w3c.github.io/webappsec/specs/content-security-policy/&#34; target=&#34;_blank&#34;&gt;W3C specification&lt;/a&gt; offering the possibility to instruct the client browser from which location and/or which type of resources are allowed to be loaded. To define a loading behavior, the CSP specification use &amp;laquo;directive&amp;raquo; where a directive defines a loading behavior for a target resource type.&lt;/p&gt;
+
+&lt;p&gt;Directives can be specified using HTTP response header (a server may send more than one CSP HTTP header field with a given resource representation and a server may send different CSP header field values with different representations of the same resource or with different resources) or HTML Meta tag, the HTTP headers below are defined by the specs:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Content-Security-Policy&lt;/code&gt; : Defined by W3C Specs as standard header, used by Chrome version 25 and later, Firefox version 23 and later, Opera version 19 and later.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;X-Content-Security-Policy&lt;/code&gt; : Used by Firefox until version 23, and Internet Explorer version 10 (which partially implements Content Security Policy).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;X-WebKit-CSP&lt;/code&gt; : Used by Chrome until version 25&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The supported directives you may find at &lt;a href=&#34;https://w3c.github.io/webappsec/specs/content-security-policy/#directives&#34; target=&#34;_blank&#34;&gt;W3C specification&lt;/a&gt; page.&lt;/p&gt;
+
+&lt;p&gt;As fallback default you may use &lt;strong&gt;&lt;code&gt;default-src&lt;/code&gt;&lt;/strong&gt; directive. It defines loading policy for all resources type in case of a resource type dedicated directive is not defined.&lt;/p&gt;
+
+&lt;h2 id=&#34;use-spring-security-csrf-protection-a8-a8&#34;&gt;Use Spring-Security CSRF Protection (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A8-Cross-Site_Request_Forgery_%28CSRF%29&#34; target=&#34;_blank&#34;&gt;A8&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Spring-Security provides a [CSRF] protection out of the box using &lt;a href=&#34;https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#General_Recommendation:_Synchronizer_Token_Pattern&#34; target=&#34;_blank&#34;&gt;Synchronizer Token Pattern&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;Configure CSRF token support:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
+@EnableWebMvcSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf()
+                .and()
+            ...;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Include &lt;code&gt;_csrf.token&lt;/code&gt; hidden field to your forms:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;form action=&amp;quot;...&amp;quot; method=&amp;quot;post&amp;quot;&amp;gt;
+&amp;lt;input type=&amp;quot;hidden&amp;quot;
+    name=&amp;quot;${_csrf.parameterName}&amp;quot;
+    value=&amp;quot;${_csrf.token}&amp;quot;/&amp;gt;
+...
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;disable-xml-external-entity-xxe-processing-a1-a1-a6-a6&#34;&gt;Disable XML External Entity (XXE) Processing (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&#34; target=&#34;_blank&#34;&gt;A6&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Processing of&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;ISO-8859-1&amp;quot;?&amp;gt; 
+&amp;lt;!DOCTYPE request [ 
+&amp;lt;!ENTITY 
+include SYSTEM “file=/etc/passwd&amp;quot;
+ &amp;gt; 
+]&amp;gt; 
+&amp;lt;request&amp;gt; 
+&amp;lt;description&amp;gt; 
+&amp;amp;include;
+ &amp;lt;/description&amp;gt; 
+... 
+&amp;lt;/request&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;&amp;amp;include;&lt;/code&gt; will be replaced with a real data, like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To prevent data exposure (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&#34; target=&#34;_blank&#34;&gt;A6&lt;/a&gt;) and injection (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;) disable some &lt;a href=&#34;http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html#setFeature-java.lang.String-boolean-&#34; target=&#34;_blank&#34;&gt;DocumentBuilderFactory&lt;/a&gt; features:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;DocumentBuilderFactory dbf = new DocumentBuilderFactory();
+
+dbf.setFeature(javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING);
+
+// Do not include external entities
+dbf.setFeature(&amp;quot;http://xml.org/sax/features/external-general-entities&amp;quot;, false);
+ 
+// Disallow DTD inlining by setting this feature to true
+dbf.setFeature(&amp;quot;http://apache.org/xml/features/disallow-doctype-decl&amp;quot;, true);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;data-protection-coding-practices-a6-a6&#34;&gt;Data Protection Coding Practices (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&#34; target=&#34;_blank&#34;&gt;A6&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Without proper server access protection, it is possible to take a whole dump of the process memory with &lt;code&gt;gdb&lt;/code&gt; (&lt;code&gt;gdb --pid [pid]&lt;/code&gt;).
+So the developer should make an extra steps for securing data stored in memory.&lt;/p&gt;
+
+&lt;p&gt;The main idea is to keep sensitive data in memory as less time as possible.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-never-hardcode-passwords&#34;&gt;1. Never hardcode passwords&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Don&amp;rsquo;t store the passwords/keys in your code.&lt;/strong&gt;
+Your code should be immediately available to be open-sourced without disclosing any sensitive data.&lt;/p&gt;
+
+&lt;h3 id=&#34;2-avoid-storing-sensitive-date-in-a-heap&#34;&gt;2. Avoid storing sensitive date in a heap&lt;/h3&gt;
+
+&lt;p&gt;Objects allocated in a Heap memory whereas primitives can be allocated in stack are&lt;/p&gt;
+
+&lt;p&gt;Java uses Stack memory is used for execution of a thread. Stack contain method specific values that are short-lived and references to other objects in the heap that are getting referred from the method. Whenever a method is invoked, a new block is created in the stack memory for the method to hold local primitive values and reference to other objects in the method. As soon as method ends, the block becomes unused and become available for next method.
+Stack memory size is very less compared to Heap memory. Stack memory is short-lived whereas heap memory lives from the start till the end of application execution.&lt;/p&gt;
+
+&lt;p&gt;You can have only values of primitive types (&lt;code&gt;int&lt;/code&gt;, not an &lt;code&gt;Integer&lt;/code&gt;) in a stack. So, you&amp;rsquo;ll may need to specially convert the data.&lt;/p&gt;
+
+&lt;h3 id=&#34;3-use-char-arrays-instead-of-strings-where-possible-and-wipe-zero-data-after-use&#34;&gt;3. Use char arrays instead of Strings where possible and wipe (zero) data after use&lt;/h3&gt;
+
+&lt;p&gt;Consider following class:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;   class CreditCard {
+      String cardNumber;
+      String cvv2;
+   }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can&amp;rsquo;t control how java handles the Strings containing card number and cvv2. If the particular string value is used frequently, JVM may decide to do a &lt;em&gt;string deduplication&lt;/em&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;String de-duplication reduces the memory footprint of String objects on the Java heap by taking advantage of the fact that many String objects are identical.
+Instead of each String object pointing to its own character array, identical String objects can point to and share the same character array.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Consider using following code to control the values explicitly:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class CreditCard {
+    private char[] cardNumber;
+    private char[] cvv2;
+    ...
+
+    public void wipe() {
+        if (cardNumber != null) {
+            Arrays.fill(cardNumber, &#39;x&#39;);	
+        };
+        cardNumber = null;
+        if (cvv2 != null) {
+            Arrays.fill(cvv2, &#39;x&#39;);	
+        }
+        cvv2 = null;            
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        wipe();
+        super.finalize();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can wipe the data when you no longer need it.
+Please note that even if you&amp;rsquo;ll call a method &lt;code&gt;finalize()&lt;/code&gt; explicitly, JVM &lt;a href=&#34;http://stackoverflow.com/a/28906/3315474&#34; target=&#34;_blank&#34;&gt;will call it again&lt;/a&gt;. There is no guarantee when finalize will be called by java GC or will it be called at all.&lt;br /&gt;
+So, it&amp;rsquo;s better to call &lt;code&gt;wipe()&lt;/code&gt; explicitly somewhere in the &lt;code&gt;finally&lt;/code&gt; block.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPD: You may wipe a data in a String using Java Reflection (Peter Verhas&amp;rsquo;s solution)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public static void wipeString(String password) {
+    try {
+        Field stringValue = String.class.getDeclaredField(&amp;quot;value&amp;quot;);
+        stringValue.setAccessible(true);
+        Arrays.fill((char[]) stringValue.get(password), &#39;*&#39;);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+        throw new Error(&amp;quot;Can&#39;t wipe string data&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Following method replaces the content of internal &lt;code&gt;java.lang.String&#39;s&lt;/code&gt; char array field &lt;code&gt;value&lt;/code&gt; with &amp;lsquo;*&amp;rsquo; symbol.
+You should call this method explicitly.&lt;/p&gt;
+
+&lt;h3 id=&#34;4-encrypt-data-in-the-heap&#34;&gt;4. Encrypt data in the heap&lt;/h3&gt;
+
+&lt;p&gt;Even if you keep sensitive data in a Heap, you can make reading and analyzing more difficult by using any encription. The encryption should be fast enough and not necessary be very strong since the risk is low.&lt;/p&gt;
+
+&lt;p&gt;One possible solution is to encrypt sensitive data with a key, generated once per JVM run (e.g. function of system time). When you&amp;rsquo;ll need a decrypted data, use special function to decrypt it. It should be fast enough.
+For example, you may use &lt;a href=&#34;https://en.wikipedia.org/wiki/Blowfish_%28cipher%29&#34; target=&#34;_blank&#34;&gt;Blowfish&lt;/a&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:algorithm-performance-comparison-encryption-perf&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:algorithm-performance-comparison-encryption-perf&#34;&gt;0&lt;/a&gt;&lt;/sup&gt; or even simple &lt;a href=&#34;https://en.wikipedia.org/wiki/XOR_cipher&#34; target=&#34;_blank&#34;&gt;XOR&lt;/a&gt; cipher:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;static final int key = (int)(System.currentTimeMillis() + System.nanoTime());
+....
+int b = a ^ key;
+int c = b ^ key;
+assert (c == a);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Blowfish is fast symmetric cipher but &lt;a href=&#34;https://en.wikipedia.org/wiki/Blowfish_(cipher)#Weakness_and_successors&#34; target=&#34;_blank&#34;&gt;not perfect&lt;/a&gt;. In particular, it is vulnerable to &lt;a href=&#34;https://en.wikipedia.org/wiki/Birthday_attack&#34; target=&#34;_blank&#34;&gt;birthday attack&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;5-prevent-data-duplication&#34;&gt;5. Prevent data duplication&lt;/h3&gt;
+
+&lt;p&gt;Make your class not-cloneable, non-serializable and non-deserializable. Thus you will protect your data from unexpected / unauthorized duplication.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class CreditCard {
+	...
+
+    public final void clone() throws java.lang.CloneNotSupportedException {
+		throw new java.lang.CloneNotSupportedException();
+    }
+
+    private final void readObject(ObjectInputStream in) throws java.io.IOException {
+        throw new java.io.IOException(&amp;quot;Class cannot be deserialized&amp;quot;);
+    }
+
+    private final void writeObject(ObjectOutputStream out) throws java.io.IOException {
+            throw new java.io.IOException(&amp;quot;Object cannot be serialized&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;6-prevent-logging-of-sensitive-data&#34;&gt;6. Prevent Logging of Sensitive Data&lt;/h3&gt;
+
+&lt;p&gt;Secure data may leak to the logs if &lt;code&gt;toString()&lt;/code&gt; method is implemented incorrectly.
+E.g. using &lt;a href=&#34;https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/builder/ToStringBuilder.html#reflectionToString(java.lang.Object)&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ToStringBuilder.reflectionToString(...)&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;http://blog.konstantinpavlov.net/2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;heapdump-prevention-a5&#34;&gt;Heapdump Prevention (A5)&lt;/h2&gt;
+
+&lt;p&gt;It is possible to take a snapshot of the memory for further analysis and extracting confidential information.&lt;/p&gt;
+
+&lt;p&gt;First of all, &lt;strong&gt;don&amp;rsquo;t run your application on Windows&lt;/strong&gt;. Windows is far more vulnerable to the threats than Linux/Unix.&lt;/p&gt;
+
+&lt;p&gt;There are several ways to mitigate that risk by disabling some JVM heapdump features:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Make sure that java attach mechanism is disabled: &lt;code&gt;-XX:+DisableAttachMechanism&lt;/code&gt;. Enables the option that disables the mechanism that lets tools attach to the JVM. By default, this option is disabled, meaning that the attach mechanism is enabled and you can use tools such as &lt;code&gt;jcmd&lt;/code&gt;, &lt;code&gt;jstack&lt;/code&gt;, &lt;code&gt;jmap&lt;/code&gt;, and &lt;code&gt;jinfo&lt;/code&gt;. See &lt;a href=&#34;http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html&#34; target=&#34;_blank&#34;&gt;java command line options&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Disable heapdump on &lt;code&gt;OutOfMemoryError&lt;/code&gt;: &lt;code&gt;-XX:+HeapDumpOnOutOfMemory&lt;/code&gt;. Set heapdump file location to &lt;code&gt;/dev/null&lt;/code&gt; to avoid saving heapdump: &lt;code&gt;XX:HeapDumpPath=/dev/null&lt;/code&gt;.
+&amp;gt; Making a heapdump on OOM is not a good idea on production environment. If heap is big enough (a Gigabites) it could take long time to save heap contents to disk. So I suggest using it for load testing only&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;check-your-dependencies-for-known-vulnerabilities-a9-a9&#34;&gt;Check Your dependencies for known Vulnerabilities (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A9-Using_Components_with_Known_Vulnerabilities&#34; target=&#34;_blank&#34;&gt;A9&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Check &lt;a href=&#34;http://cve.mitre.org/&#34; target=&#34;_blank&#34;&gt; MITRE Common Vulnerabilities and Exposures Database&lt;/a&gt; regularly.&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Integrate &lt;a href=&#34;https://www.owasp.org/index.php/OWASP_Dependency_Check&#34; target=&#34;_blank&#34;&gt;OWASP Dependency Check tool&lt;/a&gt; into your CI pipeline. Run it daily.
+There is a &lt;a href=&#34;http://jeremylong.github.io/DependencyCheck/dependency-check-maven/&#34; target=&#34;_blank&#34;&gt;maven plugin&lt;/a&gt; which can analyze your project dependencies for known vulnerabilities.
+You may consider adding following profile to your &lt;em&gt;pom.xml&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;...
+&amp;lt;profiles&amp;gt;
+    ...
+    &amp;lt;profile&amp;gt;
+        &amp;lt;id&amp;gt;security-check&amp;lt;/id&amp;gt;
+        &amp;lt;build&amp;gt;
+            &amp;lt;plugins&amp;gt;
+                &amp;lt;plugin&amp;gt;
+                    &amp;lt;groupId&amp;gt;org.owasp&amp;lt;/groupId&amp;gt;
+                    &amp;lt;artifactId&amp;gt;dependency-check-maven&amp;lt;/artifactId&amp;gt;
+                    &amp;lt;version&amp;gt;1.4.3&amp;lt;/version&amp;gt;
+                    &amp;lt;executions&amp;gt;
+                        &amp;lt;execution&amp;gt;
+                            &amp;lt;goals&amp;gt;
+                                &amp;lt;goal&amp;gt;check&amp;lt;/goal&amp;gt;
+                            &amp;lt;/goals&amp;gt;
+                            &amp;lt;phase&amp;gt;validate&amp;lt;/phase&amp;gt;
+                        &amp;lt;/execution&amp;gt;
+                    &amp;lt;/executions&amp;gt;
+                &amp;lt;/plugin&amp;gt;
+            &amp;lt;/plugins&amp;gt;
+        &amp;lt;/build&amp;gt;
+    &amp;lt;/profile&amp;gt;
+    ...
+&amp;lt;/profiles&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The list is not comprehensive, comments and suggestions are always welcome.&lt;/p&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-Table_of_Contents&#34; title=&#34;OWASP Top 10&#34; target=&#34;_blank&#34;&gt;OWASP Top 10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;(http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html).&#34; target=&#34;_blank&#34;&gt;Java JM Command Line Options&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.journaldev.com/4098/java-heap-memory-vs-stack-memory-difference&#34; target=&#34;_blank&#34;&gt;Java Heap Memory vs Stack Memory Difference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.javaworld.com/article/2076837/mobile-java/twelve-rules-for-developing-more-secure-java-code.html&#34; title=&#34;Twelve rules for developing more secure Java code&#34; target=&#34;_blank&#34;&gt;Twelve rules for developing more secure Java code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cs.wustl.edu/~jain/cse567-06/ftp/encryption_perf/&#34; title=&#34;Performance Analysis of Data Encryption Algorithms&#34; target=&#34;_blank&#34;&gt;Performance Analysis of Data Encryption Algorithms&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API&#34; target=&#34;_blank&#34;&gt;OWASP Enterprise Security API&lt;/a&gt; / &lt;a href=&#34;https://github.com/ESAPI/esapi-java-legacy&#34; target=&#34;_blank&#34;&gt;ESAPI 2.x on GitHub&lt;/a&gt; &amp;ndash; ESAPI (The OWASP Enterprise Security API) is a free, open source, web application security control library that makes it easier for programmers to write lower-risk applications. The ESAPI libraries are designed to make it easier for programmers to retrofit security into existing applications. The ESAPI libraries also serve as a solid foundation for new development.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jeremylong/DependencyCheck&#34; target=&#34;_blank&#34;&gt;Dependency-Check: checking project dependencies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://speakerdeck.com/drissamri/web-app-security-owasp-top-10-2013&#34; target=&#34;_blank&#34;&gt;Web App Security - OWASP Top 10 2013&lt;/a&gt; by Driss Amri&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mishadoff.com/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/&#34; target=&#34;_blank&#34;&gt;Java Magic. Part 4: sun.misc.Unsafe&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Secure Java Logging with Logback</title>
+      <link>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</link>
+      <pubDate>Sun, 26 Jul 2015 14:01:33 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
+      <description>
+
+&lt;p&gt;Deploying application into secure environment adds some restrictions on logging and log management. &lt;a href=&#34;https://www.owasp.org&#34; target=&#34;_blank&#34;&gt;OWASP community&lt;/a&gt; gives some useful recommendations.&lt;/p&gt;
+
+&lt;h1 id=&#34;owasp-security-testing-guide-recommendations&#34;&gt;OWASP Security Testing Guide Recommendations&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.owasp.org/images/5/52/OWASP_Testing_Guide_v4.pdf&#34; target=&#34;_blank&#34;&gt;OWASP Security Testing Guide&lt;/a&gt; defines a number of questions to be answered when reviewing applciaiton logging configuration (see &lt;a href=&#34;https://www.owasp.org/images/5/52/OWASP_Testing_Guide_v4.pdf&#34; target=&#34;_blank&#34;&gt;OTG-CONFIG-002&lt;/a&gt;):&lt;/p&gt;
+
+&lt;h2 id=&#34;1-do-the-logs-contain-sensitive-information&#34;&gt;1. Do the logs contain sensitive information?&lt;/h2&gt;
+
+&lt;p&gt;Log files should not contain any sensitive data. Anyway, log file access must be restricted:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Event log information should never be visible to end users. Even web administrators should not be able to see such logs since it breaks
+separation of duty controls. Ensure that any access control schema that is used to protect access to raw logs and any applications providing capabilities to view or search the logs is not linked with access control schemas for other application user roles. Neither should any
+log data be viewable by unauthenticated users.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The consequence is that you should not use same authentication mechanism to access application and accessing the log files.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Also, in some jurisdictions, storing some sensitive information in log files, such as personal data, might oblige the enterprise to apply the data protection laws that they would apply to their back-end databases to log files too. And failure to do so, even unknowingly, might
+carry penalties under the data protection laws that apply.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It&amp;rsquo;s not easy to make sure that no sensitive information is not printed to log. When using &lt;a href=&#34;http://logback.qos.ch/&#34; target=&#34;_blank&#34;&gt;logback&lt;/a&gt; it is possible to conigure &lt;a href=&#34;http://logback.qos.ch/manual/layouts.html#replace&#34; target=&#34;_blank&#34;&gt;regexp replace pattern&lt;/a&gt; to wipe certain data from log files being written, e.g. &lt;a href=&#34;http://stackoverflow.com/a/4624952/3315474&#34; target=&#34;_blank&#34;&gt;mask passwords&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To mask credit card number (PAN) you may use the following expression (&lt;code&gt;logback.xml&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;pattern&amp;gt;%-5level - %replace(%msg){&#39;\d{12,19}&#39;, &#39;XXXX&#39;}%n&amp;lt;/pattern&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This expression will replace all numbers with 12 to 19 digits with &lt;code&gt;XXXX&lt;/code&gt;, so some other data will be masked.&lt;/p&gt;
+
+&lt;p&gt;Another pattern variation honors only 16-digit card numbers (PANs) with selective &lt;a href=&#34;https://en.wikipedia.org/wiki/Bank_card_number#Issuer_identification_number_.28IIN.29&#34; target=&#34;_blank&#34;&gt;first digit&lt;/a&gt; and supports spaces between digit groups:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;pattern&amp;gt;%-5level - %replace(%msg){&#39;[1-6][0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}|5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}&#39;, &#39;XXXX&#39;}%n&amp;lt;/pattern&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Masking PANs with Logback is the last resort to ensure the data is masked with a false-positive hits. It is preferrable to mask the data before it is being written to log in the applciation code.&lt;/p&gt;
+
+&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;http://blog.konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-are-the-logs-stored-in-a-dedicated-server&#34;&gt;2. Are the logs stored in a dedicated server?&lt;/h2&gt;
+
+&lt;p&gt;It is advised to keep log files on the separate server to prevent removing/cleaning log files by attacker and to ease of centralized log file analysis.&lt;/p&gt;
+
+&lt;p&gt;Logback offers &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#SocketAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;SocketAppender&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;SimpleSocketServer&lt;/code&gt; and &lt;a href=&#34;http://logback.qos.ch/manual/usingSSL.html&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;SSLSocketAppender&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;SimpleSSLSocketServer&lt;/code&gt; for logging on a remote server instance.&lt;/p&gt;
+
+&lt;p&gt;Second option is &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#DBAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;DBAppender&lt;/code&gt;&lt;/a&gt; to write logs to the database thus keeping them apart from application instance.&lt;/p&gt;
+
+&lt;p&gt;Other option is to use &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#SyslogAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;SyslogAppender&lt;/code&gt;&lt;/a&gt; and delegate logging to system syslog service. But is is not secure enougth: in the system will be hacked, the hacker may re-configure syslog not to send any events to remote log server.&lt;/p&gt;
+
+&lt;p&gt;When using a &lt;a href=&#34;http://logstash.net/&#34; target=&#34;_blank&#34;&gt;Logstash&lt;/a&gt; server, you may send events via &lt;a href=&#34;https://github.com/logstash/logstash-logback-encoder&#34; target=&#34;_blank&#34;&gt;Logstash Logback Encoder&lt;/a&gt;. Thare are &lt;a href=&#34;https://github.com/logstash/logstash-logback-encoder#usage&#34; target=&#34;_blank&#34;&gt;handful of appenders&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also, ypu may consider using &lt;a href=&#34;http://audit.qos.ch/&#34; target=&#34;_blank&#34;&gt;logback-audit&lt;/a&gt; which provides logging vis dedicated log server or directly to the database.&lt;/p&gt;
+
+&lt;h2 id=&#34;3-can-log-usage-generate-a-denial-of-service-condition&#34;&gt;3. Can log usage generate a Denial of Service condition?&lt;/h2&gt;
+
+&lt;p&gt;In case of exceptions on production due to invalid data provided in the request, the exceptions may be printed to logs and cause high IO consumption. This may lead to server unavailability.&lt;/p&gt;
+
+&lt;h3 id=&#34;log-asynchronously&#34;&gt;Log Asynchronously&lt;/h3&gt;
+
+&lt;p&gt;Logback offers some kind of protection against log overhead.
+First is using &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#AsyncAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;AsyncAppender&lt;/code&gt;&lt;/a&gt; to queue log events and spread the load. Set &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#asyncQueueSize&#34; target=&#34;_blank&#34;&gt;queueSize&lt;/a&gt; wisely. Default value is 256 which is not enougth.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;re fine with loosing some less important details then use &lt;code&gt;AsyncAppender&lt;/code&gt; with &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#asyncDiscardingThreshold&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;discardingThreshold&lt;/code&gt;&lt;/a&gt;. Uf the event queue has only 20% capacity remaining, events with fine-grained logging category will be dropped.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://logstash.net/&#34; target=&#34;_blank&#34;&gt;Logstash&lt;/a&gt; provides the &lt;a href=&#34;https://github.com/logstash/logstash-logback-encoder/blob/master/src/main/java/net/logstash/logback/appender/LoggingEventAsyncDisruptorAppender.java&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;AsyncDisruptorAppender&lt;/code&gt;&lt;/a&gt; from the which is similar to logback&amp;rsquo;s &lt;code&gt;AsyncAppender&lt;/code&gt;, except that a &lt;a href=&#34;https://github.com/LMAX-Exchange/disruptor&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;LMAX Disruptors&lt;/code&gt;&lt;/a&gt; &lt;code&gt;RingBuffer&lt;/code&gt; is used as the queuing mechanism, as opposed to a &lt;code&gt;BlockingQueue&lt;/code&gt; providing higher throughput and less GC overhead. These async appenders can delegate to any other underlying logback appender, including standard Logback file appenders. Set LMAX RingBuffer size wizely. Too low values may cause the the blocking of entire application.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Think twice before enabling Async Logging!&lt;/strong&gt; As far as ensuring that a message has been successfully written before the app continues is concerned, you should not log asynchronously.&lt;/p&gt;
+
+&lt;h3 id=&#34;use-appropriate-logging-levels&#34;&gt;Use Appropriate Logging Levels&lt;/h3&gt;
+
+&lt;p&gt;Specifying inappropriate log levels in application and appenders may cause excessive load on production server.
+You&amp;rsquo;re not going to debug on production, right? Then why you are print valuable data with &lt;code&gt;DEBUG&lt;/code&gt; level?
+On production configuration, default appender&amp;rsquo;s logging level shoud be &lt;strong&gt;INFO&lt;/strong&gt;.
+If you always need some information - use &lt;strong&gt;INFO&lt;/strong&gt; level in the application and use the database to save data like raw requests.
+Debugging should be enabled on produciton only in critical situations.&lt;/p&gt;
+
+&lt;h2 id=&#34;4-how-are-the-log-files-rotated-are-logs-kept-for-the-sufficient-time&#34;&gt;4. How are the log files rotated? Are logs kept for the sufficient time?&lt;/h2&gt;
+
+&lt;p&gt;Log files should be rotated at least daily. Reasonable log history depth is 6 months. Some regulations may require to keep log files longer in case of investigations.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Some servers might rotate logs when they reach a given size. If this
+happens, it must be ensured that an attacker cannot force logs to rotate in order to hide his tracks.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;5-how-are-logs-reviewed-can-administrators-use-these-reviews-to-detect-targeted-attacks&#34;&gt;5. How are logs reviewed? Can administrators use these reviews to detect targeted attacks?&lt;/h2&gt;
+
+&lt;p&gt;Log files can be used for attac detection. For example, the first phases of a SQL injection attack may producte 50x (server errors) or 40x (request errors) messages.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Log statistics or analysis should not be generated, nor stored, in the same server that produces the logs. Otherwise, an attacker might, through a web server vulnerability or improper configuration, gain access to them and retrieve similar information as would be disclosed by
+log files themselves.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;6-how-are-log-backups-preserved&#34;&gt;6. How are log backups preserved?&lt;/h2&gt;
+
+&lt;h3 id=&#34;make-log-files-append-only&#34;&gt;Make Log Files Append-only&lt;/h3&gt;
+
+&lt;p&gt;Other type of attack is modification logging configuration file in order to hide the fact of attack.
+Use &lt;a href=&#34;https://en.wikipedia.org/wiki/Mandatory_access_control&#34; target=&#34;_blank&#34;&gt;Mandatory Access Controls&lt;/a&gt; on the log file to make it append-only to users of the app, to mitigate the possibility of tampering or removing existing messages.&lt;/p&gt;
+
+&lt;p&gt;The simplest way to make files append-only is probably &lt;a href=&#34;http://unix.stackexchange.com/a/59983&#34; target=&#34;_blank&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo chattr +a *.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo chattr +a *.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also don&amp;rsquo;t forget to &lt;a href=&#34;http://unix.stackexchange.com/a/1315/125877&#34; target=&#34;_blank&#34;&gt;set default file attributes&lt;/a&gt; for log directory&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# owner make the owner to be root and java group
+sudo chown root:java /var/log/java
+# set uid and gid   
+sudo chmod ug+s /var/log/java  
+# set group to w default 
+sudo setfacl -d -m g::w /var/log/java  
+# set nothing to other
+sudo setfacl -d -m o::--- /var/log/java
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;make-backups&#34;&gt;Make Backups&lt;/h3&gt;
+
+&lt;p&gt;You need to backup the logs, defenitely, as well as other applicaiton data.&lt;/p&gt;
+
+&lt;p&gt;You could additionally take periodic backups of the log file to ensure that nothing has been changed or removed between backups. This assumes that access to your backups is also controlled &amp;ndash; a third party who can tamper with your backups can tamper with your log files in an undetectable fashion.&lt;/p&gt;
+
+&lt;h2 id=&#34;7-is-the-data-being-logged-data-validated-min-max-length-chars-etc-prior-to-being-logged&#34;&gt;7. Is the data being logged data validated (min/max length, chars etc) prior to being logged?&lt;/h2&gt;
+
+&lt;p&gt;Be carefull what are you writting to logs. Always ask yourself: &lt;em&gt;&amp;laquo;Is it possible to produce big or huge logging output?&amp;raquo;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Be carefull when &lt;a href=&#34;http://www.slideshare.net/KonstantinPavlov/playing-the-tostrings&#34; target=&#34;_blank&#34;&gt;implementing the method &lt;code&gt;toString()&lt;/code&gt;&lt;/a&gt;.
+Include only minimum necessary information &lt;code&gt;in toString()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;h1 id=&#34;further-steps-protect-your-logging-configuration&#34;&gt;Further steps: Protect your logging configuration&lt;/h1&gt;
+
+&lt;p&gt;Logback configuration can be included inside application (jar file) or be located in external file (&lt;code&gt;logback.xml&lt;/code&gt;). Hacker may try to modify or remove &lt;code&gt;logback.xml&lt;/code&gt;.
+In order to prevent this attack, &lt;code&gt;logback.xml&lt;/code&gt; should be:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Can not be modified by application user.&lt;/li&gt;
+&lt;li&gt;Monitored by intrusion detection system.&lt;/li&gt;
+&lt;li&gt;Logback auto-reload feature must not be enabled to prevent replacing configuration of the running java applicaiton.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Although auto-reload is very attractive feature of logback, it is reasonable to sacrifice it in favor of security.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Implementing Automatic Reconnection for Netty Client</title>
+      <link>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</link>
+      <pubDate>Wed, 08 Jul 2015 07:48:05 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</guid>
+      <description>&lt;p&gt;One of the first requirement of &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583&#34; target=&#34;_blank&#34;&gt;Netty ISO8588 client connector&lt;/a&gt; was the support for automatic reconnect.&lt;/p&gt;
+
+&lt;p&gt;One of the first receipts I came across was &lt;a href=&#34;http://tterm.blogspot.com/2014/03/netty-tcp-client-with-reconnect-handling.html&#34; target=&#34;_blank&#34;&gt;Thomas Termin&amp;rsquo;s one&lt;/a&gt;. He suggests adding a ChannelHandler which will schedule the calling of client&amp;rsquo;s &lt;code&gt;connect()&lt;/code&gt; method once a Channel becomes inactive. Plus adding ChannelFutureListener which will re-create a bootstrap and re-connect if initial connection was failed.&lt;/p&gt;
+
+&lt;p&gt;Although this is a working solution, I had a feeling that something is not optimal. Namely, the new Bootstrap is being created on every connection attempt.&lt;/p&gt;
+
+&lt;p&gt;So, I created a FutureListener which should be registered once a Channel is closed.&lt;/p&gt;
+
+&lt;p&gt;Here is the &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/main/java/org/jreactive/iso8583/netty/pipeline/ReconnectOnCloseListener.java&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ReconnectOnCloseListener&lt;/code&gt;&lt;/a&gt; code:&lt;/p&gt;
+
+&lt;p&gt;```java ReconnectOnCloseListener.java
+    public class ReconnectOnCloseListener implements ChannelFutureListener {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    private final Logger logger = getLogger(ReconnectOnCloseListener.class);
+
+    private final Iso8583Client client;
+    private final int reconnectInterval;
+    private final AtomicBoolean disconnectRequested = new AtomicBoolean(false);
+    private final ScheduledExecutorService executorService;
+
+    public ReconnectOnCloseListener(Iso8583Client client, int reconnectInterval, ScheduledExecutorService executorService) {
+        this.client = client;
+        this.reconnectInterval = reconnectInterval;
+        this.executorService = executorService;
+    }
+
+    public void requestReconnect() {
+        disconnectRequested.set(false);
+    }
+
+    public void requestDisconnect() {
+        disconnectRequested.set(true);
+    }
+
+    @Override
+    public void operationComplete(ChannelFuture future) throws Exception {
+        final Channel channel = future.channel();
+        logger.debug(&amp;quot;Client connection was closed to {}&amp;quot;, channel.remoteAddress());
+        channel.disconnect();
+        scheduleReconnect();
+    }
+
+    public void scheduleReconnect() {
+        if (!disconnectRequested.get()) {
+            logger.trace(&amp;quot;Failed to connect. Will try again in {} millis&amp;quot;, reconnectInterval);
+            executorService.schedule(
+                    client::connectAsync,
+                    reconnectInterval, TimeUnit.MILLISECONDS);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;
+To establish the connection I use the following [code][Iso8583Client]:
+
+```java
+    reconnectOnCloseListener.requestReconnect();
+    final ChannelFuture connectFuture = bootstrap.connect();
+    connectFuture.addListener(connFuture -&amp;gt; {
+        if (!connectFuture.isSuccess()) {
+            reconnectOnCloseListener.scheduleReconnect();
+            return;
+        }
+        Channel channel = connectFuture.channel();
+        logger.info(&amp;quot;Client is connected to {}&amp;quot;, channel.remoteAddress());
+        setChannel(channel);
+        channel.closeFuture().addListener(reconnectOnCloseListener);
+    });
+    connectFuture.sync();// if you need to connect synchronously
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you want to disconnect, you&amp;rsquo;ll need to disable automatic reconnection first:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    reconnectOnCloseListener.requestDisconnect();
+    channel.close();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The solution works fine so far (&lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/test/java/org/jreactive/iso8583/example/ClientReconnectIT.java&#34; target=&#34;_blank&#34;&gt;integration test&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Another option is to add a ChannelOutboundHandler which will handle disconnects.&lt;/p&gt;
+
+&lt;h3 id=&#34;links&#34;&gt;Links&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sources: &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/main/java/org/jreactive/iso8583/netty/pipeline/ReconnectOnCloseListener.java&#34; target=&#34;_blank&#34;&gt;ReconnectListener&lt;/a&gt;, &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/main/java/org/jreactive/iso8583/client/Iso8583Client.java#L67&#34; target=&#34;_blank&#34;&gt;Client&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;StackOverflow: &lt;a href=&#34;http://stackoverflow.com/a/20881135/3315474&#34; target=&#34;_blank&#34;&gt;answer one&lt;/a&gt;, &lt;a href=&#34;http://stackoverflow.com/a/9351628/3315474&#34; target=&#34;_blank&#34;&gt;answer two&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Java Application Development Tutorial</title>
+      <link>http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</link>
+      <pubDate>Wed, 17 Jun 2015 09:55:16 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;ve been meaning to write a small tutorial for building web applications. Now it&amp;rsquo;s time!
+Let&amp;rsquo;s define the steps and choose some solutions for developing back-end java web application.&lt;/p&gt;
+
+&lt;p&gt;I will give my design recommendations and list a technologies I would use. You may have your own opinion and you may share it in comment. Over time, this post may change since my favourites are also changing over time.&lt;/p&gt;
+
+&lt;h2 id=&#34;technologies-stack&#34;&gt;Technologies Stack&lt;/h2&gt;
+
+&lt;h3 id=&#34;server-side-stack&#34;&gt;Server-Side Stack&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Use latest stable JDK. Now it is Java 8.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use lightweight web container, e.g. Jetty or Tomcat.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use Spring stack instead of J2EE. It is more customizable and extensible. &lt;a href=&#34;http://projects.spring.io/spring-boot/&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; is a default choice.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use embedded web server if possible. &lt;a href=&#34;https://spring.io/guides/gs/spring-boot/&#34; target=&#34;_blank&#34;&gt;Spring Boot Maven Plugin&lt;/a&gt; allows you easily repackage all your jars into single jar or war file.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Package your application as self-executing JARs instead of WARs and run them with &lt;code&gt;./app.jar&lt;/code&gt;. Thus you will never depend on application server infrastructure managed by IT team. Manage your infrastructure yourself!&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use Spring Boot - it offers convention over configuration and many predefined &lt;code&gt;@Configuration&lt;/code&gt;s.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Prefer Java-based Spring Configurations over XML-based. Java offers more restrictive type checking and visibility control.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use Spring Transaction Management (spring-tx) with &lt;code&gt;@Transactional&lt;/code&gt;. Don&amp;rsquo;t set &lt;code&gt;autoCommit=&amp;quot;true&amp;quot;&lt;/code&gt;. It is more flexible.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Prefer &lt;a href=&#34;http://wiki.fasterxml.com/JacksonHome&#34; target=&#34;_blank&#34;&gt;Jackson&lt;/a&gt; with &lt;a href=&#34;https://github.com/FasterXML/jackson-dataformat-xml&#34; title=&#34;Extension for Jackson JSON processor that adds support for serializing POJOs as XML&#34; target=&#34;_blank&#34;&gt;Jackson XML&lt;/a&gt; + &lt;a href=&#34;http://wiki.fasterxml.com/WoodstoxHome&#34; target=&#34;_blank&#34;&gt;Woodstox&lt;/a&gt; over JAXB, it&amp;rsquo;s faster and more convenient. jackson-dataformat-xml offers support for JAXB annotations but you are not forced to use JAXB for marshalling.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use mocks (Mockito) and spring-test for unit testing. Prefer singletons over statics and you&amp;rsquo;ll not need a PowerMockito.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use maven. I don&amp;rsquo;t see any significant advantage of using Gradle in terms of performance. Project should be simple in structure and fast to build, so maven is still performs well.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;front-end-stack&#34;&gt;Front-End Stack&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Use &lt;strong&gt;professional&lt;/strong&gt; front-end frameworks and tools like React, AngularJS, SASS, Npm and Gulp. You&amp;rsquo;re developing a high quality product and you should use proven solutions for front-end. Professional front-end developers do use this tools so you should not &lt;a href=&#34;https://en.wikipedia.org/wiki/Don%27t_repeat_yourself&#34; title=&#34;Don&#39;t repeat yourself&#34; target=&#34;_blank&#34;&gt;re-invent the wheel&lt;/a&gt;.
+&lt;a href=&#34;//www.webjars.org&#34; target=&#34;_blank&#34;&gt;WebJars&lt;/a&gt; is also a good solution if your application is simple enough.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Design your JS application to consume REST API&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Design your server to be expose REST API.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;design-order&#34;&gt;Design Order&lt;/h2&gt;
+
+&lt;p&gt;Start from presentation layer and go down on the controllers and services layers.&lt;/p&gt;
+
+&lt;p&gt;Avoid starting with database schema design unless you know your business domain in depth.
+Your interface (web or api) will dictate required data structure, so persistence layer interfaces will evolve in the future. You may minimize changes by introducing API level in the database, i.e. use views and stored procedures to fix the contract between DBMS and application.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;It&amp;rsquo;s IMPORTANT: Delay making of important architectural solutions as much as possible!&lt;/strong&gt;
+Making decision earlier may catch you in a trap of technologies and tools not suited well for solving your problem. But that knowledge came to yo too late. Typical example: you may have chosen RDBMS but now, when a project is nearly completed, NoSql storage seems to be better fit for your problem.&lt;/p&gt;
+
+&lt;h2 id=&#34;building-front-end&#34;&gt;Building Front-End&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Start with UI without real data. Then create a test data (JSON files) and use simple nodejs http server to serve it together with other assets. When your data requirements are defined, start implementing service API. This approach saves a lot of time: You don&amp;rsquo;t have to change both server and client when design has eventually changed.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Create separate controllers for creating and amending your entities. Data models and validation rules are often different. Most likely you will have significantly different models. Also, edit controllers will be simpler if you&amp;rsquo;ll have less mutable fields in the model.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;building-server-side&#34;&gt;Building Server-Side&lt;/h2&gt;
+
+&lt;h3 id=&#34;presentation-layer&#34;&gt;Presentation Layer&lt;/h3&gt;
+
+&lt;h4 id=&#34;web-views-templates&#34;&gt;Web Views (Templates)&lt;/h4&gt;
+
+&lt;p&gt;This sub-layer includes web templates. Responsible for rendering of View Models.&lt;/p&gt;
+
+&lt;p&gt;There are a number of java template engines. Most notable of them are &lt;a href=&#34;http://www.thymeleaf.org/&#34; target=&#34;_blank&#34;&gt;Thymeleaf&lt;/a&gt; and &lt;a href=&#34;http://freemarker.org/&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
+Thymeleaf offers designing the templates as pure html and then make them work as a template when deployed to web server. Use it if you want your designers to own the templates.
+Freemarker is about three times faster than Thymeleaf but it may not be possible to open the template in a browser.&lt;/p&gt;
+
+&lt;p&gt;You may like to see the &lt;a href=&#34;http://www.slideshare.net/jreijn/comparing-templateenginesjvm&#34; target=&#34;_blank&#34;&gt;presentation&lt;/a&gt; by Jeroen Reijn on JVM template engines with performance comparison.&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t recommend using the JSPs because they don&amp;rsquo;t enforce clear logic and view separation. Low-skilled developers tend to write a presentation or even a business logic in a JSP which will inevitably lead into trouble. De-facto, JSP is deprecated technology.&lt;/p&gt;
+
+&lt;p&gt;There are a doubts about unit testing this layer. It often changes and usually is tested manually (visually) by (system) integration tests.&lt;/p&gt;
+
+&lt;h4 id=&#34;presentation-logic&#34;&gt;Presentation Logic&lt;/h4&gt;
+
+&lt;p&gt;This sub-layer includes web Controllers and View Helpers. Responsible for data syntax validation, preparing view model. Can be easily Unit-Tested.&lt;/p&gt;
+
+&lt;p&gt;Typical technology stack for presentation layer contains:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html&#34; target=&#34;_blank&#34;&gt;Spring Web MVC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://projects.spring.io/spring-security/&#34; title=&#34;Spring Security is a powerful and highly customizable authentication and access-control framework.&#34; target=&#34;_blank&#34;&gt;Spring Security Web&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://wiki.fasterxml.com/JacksonHome&#34; target=&#34;_blank&#34;&gt;Jackson&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please consider following ideas when designing a components for this layer:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Use separate model for presentation layer.&lt;/li&gt;
+&lt;li&gt;Use the front-end test data files to test data conversion in server-side controller level. Your tests should fail when you change JSON format of your objects.&lt;/li&gt;
+&lt;li&gt;Do only validation and presentation-related business login in this layer. You&amp;rsquo;ll have a Business Logic (Service) Layer for business logic.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t perform security (access control) checks in this layer. Leave it to Service Layer.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t manage the transactions in this layer. Leave it to Service Layer.&lt;/li&gt;
+&lt;li&gt;Use javax.validation API and hibernate-validator to annotate DTO beans.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t include any logic into DTO. It&amp;rsquo;s just a POJOs with annotations.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Someone may argue: why not to manage transactions in controllers (presentation layer)? Now imagine you&amp;rsquo;ll need to call the same operation from web UI, rest API and Message Driven Bean. You&amp;rsquo;ll have to add transaction management to each controller and MDB and use Spring &lt;code&gt;TransactionTemplate&lt;/code&gt; instead. Thus you&amp;rsquo;ll end up with copy-pasting business logic to multiple classes and which is not acceptable from the application maintenance point of view. Same is true for security/access control. It should be handled on service layer.&lt;/p&gt;
+
+&lt;h3 id=&#34;business-logic-service-layer&#34;&gt;Business Logic (Service) Layer&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Perform access-control validation in this layer. Same services may be invoked from different controllers (e.g. html and REST ones) so you&amp;rsquo;ll use the same logic.&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;@Transactional&lt;/code&gt; to annotate service classes and methods. Transactions are aged here. If you need a complex transaction management then use a &lt;code&gt;TransactionTemplate&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t access &lt;code&gt;DataSource&lt;/code&gt; or &lt;code&gt;JdbcTemplate&lt;/code&gt; in this layer. Use DAOs instead.&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;When you call a &lt;code&gt;@Transactional&lt;/code&gt; method from non-transactional one in the same spring bean use &lt;code&gt;self&lt;/code&gt;-reference:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Service
+public MyServiceImpl implements MyService {
+    
+    @Autowired
+    private MyDao dao;
+    
+    @Autowired
+    private MyServiceImpl self;
+    
+    @Override
+    public void nonTxMethod() {
+        self.txMethod(); // &amp;quot;self&amp;quot; is a proxy with transactional aspect support
+    }
+    
+    @Override
+    @Transactional
+    public void txMethod() {
+         dao.load(...);
+         ...
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;data-access-layer&#34;&gt;Data Access Layer&lt;/h3&gt;
+
+&lt;p&gt;Access data storage such as relational and not relational databases. Usually supports transactions.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Don&amp;rsquo;t manage transactions on this layers. Transactions are managed on Service layer.&lt;/li&gt;
+&lt;li&gt;Write integration tests that hit database on this layer. You&amp;rsquo;re usually don&amp;rsquo;t need a lot of unit tests here (hello, &amp;laquo;Test Pyramid&amp;raquo;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AbstractTransactionalJUnit4SpringContextTests&lt;/code&gt; is your friend. Extend your integration tests from this class and you&amp;rsquo;ll have a transaction rollback for free.&lt;/li&gt;
+&lt;li&gt;Since integration tests may take time, make them run on &lt;code&gt;integration test&lt;/code&gt; maven phase and exclude them from fast unit tests.&lt;/li&gt;
+&lt;li&gt;Prepare a test data before executing a test. It will be rolled-back automatically. If you need DB transaction to commit, put &lt;code&gt;@Rollback(false)&lt;/code&gt; annotation.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;integration-layer&#34;&gt;Integration Layer&lt;/h3&gt;
+
+&lt;p&gt;Contains connectors to external systems. Usually non-transactional.&lt;/p&gt;
+
+&lt;p&gt;You may write some unit tests here.&lt;/p&gt;
+
+&lt;h3 id=&#34;messaging-layer&#34;&gt;Messaging Layer&lt;/h3&gt;
+
+&lt;p&gt;In modern event-driven architecture message processing is important for integration point of view. Messaging layer typically includes JavaEE Message Driven Beans or various event listeners. This layer is actually a presentation layer but it operates with message payloads as input/output model objects in contrast of View Models and templates used in web presentation layer. For web presentation layer the payload is html page content, whereas for messaging layer the payload is xml, json, protobuf or any other message format.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Self-Hosted Web Analytics Solution for AngularJS</title>
+      <link>http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</link>
+      <pubDate>Wed, 03 Jun 2015 19:05:12 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</guid>
+      <description>&lt;p&gt;There are situations when you need to analyze user&amp;rsquo;s experience but can&amp;rsquo;t use a third-party web analytics solutions like Google Analytics or Yandex Metrika.
+For example, if your production environment is &lt;a href=&#34;https://www.pcisecuritystandards.org/security_standards/&#34; title=&#34;PCI SSC Data Security Standards&#34; target=&#34;_blank&#34;&gt;PCI DSS&lt;/a&gt; compliant.
+In this case you have to deploy self-hosted analytics engine and inside your environment and configure user actions tracking in your application.&lt;/p&gt;
+
+&lt;p&gt;One of the possible solutions is the &lt;a href=&#34;http://piwik.org&#34; target=&#34;_blank&#34;&gt;piwik&lt;/a&gt; as analytics engine + &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt; or &lt;a href=&#34;https://github.com/mike-spainhower/angular-piwik&#34; target=&#34;_blank&#34;&gt;angular-piwik&lt;/a&gt; for tracking events inside AngularJS application.
+In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piwik.org/log-analytics/&#34; target=&#34;_blank&#34;&gt;log analytics&lt;/a&gt;.
+&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
+&lt;a href=&#34;http://demo.piwik.org/&#34; target=&#34;_blank&#34;&gt;Piwik Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Another option is to use &lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;Open Web Analytics (OWA)&lt;/a&gt; and write a plugin for &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt;.
+&lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;OWA Demo&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Loading Indicators for AngularJS</title>
+      <link>http://blog.konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</link>
+      <pubDate>Tue, 02 Jun 2015 18:44:43 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</guid>
+      <description>&lt;p&gt;Modern web application should be user friendly and notify the User when time consuming operation is on the way, e.g. uploading file or downloading data.
+There are a some solutions for AngularJS which are fairy easy to integrate.&lt;/p&gt;
+
+&lt;p&gt;First one is &lt;a href=&#34;http://chieffancypants.github.io/angular-loading-bar&#34; target=&#34;_blank&#34;&gt;Angular Loading Bar&lt;/a&gt;. It can be attached to your application with almost zero configuration and does not affect application design.
+It attaches the interceptor to &lt;code&gt;$http&lt;/code&gt; service and displays a thin progressbar on the top edge of the page.
+&lt;a href=&#34;http://chieffancypants.github.io/angular-loading-bar&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Another component is &lt;a href=&#34;https://github.com/cgross/angular-busy&#34; target=&#34;_blank&#34;&gt;angular-busy&lt;/a&gt;. It is more customizable and can show a spinner with backdrop above any page element. Just wrap it with &lt;code&gt;&amp;lt;div cg-busy=&amp;quot;...&amp;quot;/&amp;gt;&lt;/code&gt;.
+But it may require some customization.
+&lt;a href=&#34;http://cgross.github.io/angular-busy/demo&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Also, there are some &lt;a href=&#34;https://github.com/angular-ui/ui-router/issues/456&#34; title=&#34;Apply a custom animation to ui-view during resolve&#34; target=&#34;_blank&#34;&gt;examples&lt;/a&gt; how to add loading indicator to &lt;a href=&#34;https://github.com/angular-ui/ui-router&#34; target=&#34;_blank&#34;&gt;ui-router&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tags Input Control for AngularJS</title>
+      <link>http://blog.konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</link>
+      <pubDate>Sat, 30 May 2015 09:53:19 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</guid>
+      <description>&lt;p&gt;Stay &lt;abbr title=&#34;Don&#39;t Repeat Yourself&#34;&gt;DRY&lt;/abbr&gt;! Don&amp;rsquo;t waste your time implementing tags input control for AngularJS yourself! There is an excellent AngularJS module for that called &lt;a href=&#34;https://github.com/mbenford/ngTagsInput&#34; target=&#34;_blank&#34;&gt;&amp;laquo;ngTagsInput&amp;raquo;&lt;/a&gt;. It&amp;rsquo;s also supports autocomptetion, validations,custom styles and templates. See the &lt;a href=&#34;http://mbenford.github.io/ngTagsInput/demos&#34; target=&#34;_blank&#34;&gt;demos&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;It took me just 10 minutes to add that type of control to my application.&lt;/p&gt;
+
+&lt;p&gt;All you need to do is:
+1. Add NPM or Bower dependency&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;    npm install ng-tags-input --save
+    bower install ng-tags-input --save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Include script and CSS to your html page. If you&amp;rsquo;re using some dependency injection pre-processor like &lt;a href=&#34;https://www.npmjs.com/package/gulp-inject&#34; target=&#34;_blank&#34;&gt;gulp-inject&lt;/a&gt; or &lt;a href=&#34;https://www.npmjs.com/package/gulp-ng-inject&#34; target=&#34;_blank&#34;&gt;gulp-ng-inject&lt;/a&gt; you don&amp;rsquo;t need it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script src=&amp;quot;angular.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;ng-tags-input.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot; href=&amp;quot;ng-tags-input.css&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;declare module dependency:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;angular.module(&#39;myApp&#39;, [&#39;ngTagsInput&#39;])
+    .controller(&#39;MyCtrl&#39;, function($scope, $http) {
+        $scope.tags = [
+            { text: &#39;just&#39; },
+            { text: &#39;some&#39; },
+            { text: &#39;cool&#39; },
+            { text: &#39;tags&#39; }
+        ];
+        $scope.loadTags = function(query) {
+             return $http.get(&#39;/tags?query=&#39; + query);
+        };
+    });
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Add input control to html&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body ng-app=&amp;quot;myApp&amp;quot; ng-controller=&amp;quot;MyCtrl&amp;quot;&amp;gt;
+    &amp;lt;tags-input ng-model=&amp;quot;tags&amp;quot;&amp;gt;
+        &amp;lt;auto-complete source=&amp;quot;loadTags($query)&amp;quot;&amp;gt;&amp;lt;/auto-complete&amp;gt;
+    &amp;lt;/tags-input&amp;gt;
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Pretty simple, isn&amp;rsquo;t it?
+The only thing to consider is handling of the &lt;code&gt;tags&lt;/code&gt; model. &lt;code&gt;$scope.tags&lt;/code&gt; will be an array of objects on the form &lt;code&gt;{text:value}&lt;/code&gt;. You may need to transfer them to array of strings:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;var tagValues = $scope.tags.map(function(input) {return input.text;});
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

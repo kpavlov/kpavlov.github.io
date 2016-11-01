@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Culture of Code</title>
+    <link>http://blog.konstantinpavlov.net/tags/linux/index.xml</link>
+    <description>Recent content on The Culture of Code</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://blog.konstantinpavlov.net/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Chef for Managing Small Cloud Infrastructure</title>
+      <link>http://blog.konstantinpavlov.net/blog/2014/09/07/chef-for-managing-small-cloud-infrastructure/</link>
+      <pubDate>Sun, 07 Sep 2014 11:37:12 +0000</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2014/09/07/chef-for-managing-small-cloud-infrastructure/</guid>
+      <description>&lt;p&gt;I need to manage a small &lt;a href=&#34;https://www.digitalocean.com/?refcode=3560cbe19651&#34; target=&#34;_blank&#34;&gt;cloud server infrastructure&lt;/a&gt;.
+I have no intention to edit configs by hand all the time, nor write deployment scripts myself.&lt;/p&gt;
+
+&lt;p&gt;Instead, I&amp;rsquo;ll give a chance to &lt;a href=&#34;https://docs.getchef.com/chef_solo.html&#34; target=&#34;_blank&#34;&gt;Chef-Solo&lt;/a&gt; &amp;ndash; a smaller sibling of well-known configuration management tool Chef.
+&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;m considering using a chef-client with &lt;a href=&#34;https://docs.getchef.com/ctl_chef_client.html#run-in-local-mode&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;--local-mode&lt;/code&gt;&lt;/a&gt;, which requires &lt;em&gt;chef-zero&lt;/em&gt; which acts as local chef-server.&lt;/p&gt;
+
+&lt;p&gt;Chef-Solo uses a local repository to get receipts or can download receipt archive (tar.gz) from remote URL.&lt;/p&gt;
+
+&lt;p&gt;To manage configurations Chef uses &lt;em&gt;Cookbooks&lt;/em&gt; and &lt;em&gt;Receipts&lt;/em&gt;.
+A cookbook is the fundamental unit of configuration and policy distribution. A cookbook defines a scenario, such as install and configure MySql.
+A receipt is a fundamental configuration element, which defines how to configure each part of the system.
+Receipts are stored within a cookbooks and can be included into another receipts, allowing reuse.&lt;/p&gt;
+
+&lt;p&gt;OpsCode (the guys who supports Chef) supports a &lt;a href=&#34;https://community.opscode.com/cookbooks&#34; target=&#34;_blank&#34;&gt;repository of cookbooks&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;some-usefull-links&#34;&gt;Some Usefull Links&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://serverfault.com/questions/514104/chef-server-vs-chef-solo&#34; target=&#34;_blank&#34;&gt;Chef Server vs Chef-Solo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://serverfault.com/questions/283470/what-are-the-benefits-of-running-chef-server-instead-of-chef-solo/403612#403612&#34; target=&#34;_blank&#34;&gt;What are the benefits of running Chef-Server instead of Chef-Solo?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.opinionatedprogrammer.com/2011/06/chef-solo-tutorial-managing-a-single-server-with-chef/&#34; target=&#34;_blank&#34;&gt;Chef Solo tutorial: Managing a single server with Chef&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://adamcod.es/2013/06/04/deploy-a-basic-lamp-stack-digital-ocean-chef-solo.html&#34; target=&#34;_blank&#34;&gt;Deploy a basic lamp stack to Digital Ocean with Chef Solo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://community.opscode.com/cookbooks&#34; target=&#34;_blank&#34;&gt;OpsCode Cookbook Repository&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Getting More Entropy in Java on Linux</title>
+      <link>http://blog.konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</link>
+      <pubDate>Fri, 21 Mar 2014 12:30:27 +0300</pubDate>
+      
+      <guid>http://blog.konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;https://31.media.tumblr.com/4166367386765fe2b5f9845906898214/tumblr_inline_n2r2coHbTe1rx1usu.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Setting entropy pool for Java server on linux is fair simple. Just add a system property to specify a device to read from.
+&lt;/p&gt;
+
+&lt;h3 id=&#34;blocking-but-more-secure&#34;&gt;Blocking, but more Secure&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;-Djava.security.egd=file:///dev/random
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is secure but may block your application until enough entropy is available.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;When read, the /dev/random device will only return random bytes within the estimated number of bits of noise in the entropy pool. /dev/random should be suitable for uses that need very high quality randomness such as one-time pad or key generation. When the entropy pool is empty, reads from /dev/random will block until additional environmental noise is gathered.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;non-blocking-but-less-secure&#34;&gt;Non-Blocking But Less Secure&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;-Djava.security.egd=file:///dev/urandom
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A read from the /dev/urandom device will not block waiting for more entropy. As a result, if there is not sufficient entropy in the entropy pool, the returned values are theoretically vulnerable to a cryptographic attack on the algorithms used by the driver. Knowledge of how to do this is not available in the current non-classified literature, but it is theoretically possible that such an attack may exist. If this is a concern in your application, use /dev/random instead.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If solution not working then take a look at workaround: &lt;a href=&#34;http://bugs.java.com/view_bug.do?bug_id=6202721&#34; target=&#34;_blank&#34;&gt;http://bugs.java.com/view_bug.do?bug_id=6202721&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;how-to-get-more-entropy&#34;&gt;How to get more entropy&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Involve an audio entropy daemon like &lt;a href=&#34;http://www.vanheusden.com/aed/&#34; target=&#34;_blank&#34;&gt;AED&lt;/a&gt; to gather noise from your datacenter with an open microphone, maybe combine it with a webcam noise collector like VED. Other sources are talking about &lt;a href=&#34;http://world.std.com/~dtd/random/forward.ps&#34; target=&#34;_blank&#34;&gt;“Cryptographic Randomness from Air Turbulence in Disk devices“&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Use the &lt;a href=&#34;http://egd.sourceforge.net/&#34; target=&#34;_blank&#34;&gt;Entropy Gathering Daemon&lt;/a&gt; to collect weaker entropy from randomness of userspace programs.&lt;/li&gt;
+&lt;li&gt;Have a look at &lt;a href=&#34;http://www.issihosts.com/haveged/&#34; target=&#34;_blank&#34;&gt;haveged&lt;/a&gt; (collecting good entropy on basis of CPU clock flutter)&lt;/li&gt;
+&lt;li&gt;Consider &lt;a href=&#34;http://www.usn-it.de/index.php/2009/02/20/oracle-11g-jdbc-driver-hangs-blocked-by-devrandom-entropy-pool-empty/#comment-40107&#34; target=&#34;_blank&#34;&gt;installing a couple of parrots or canary next to your server.&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Source: &lt;a href=&#34;http://www.usn-it.de/index.php/2009/02/20/oracle-11g-jdbc-driver-hangs-blocked-by-devrandom-entropy-pool-empty/&#34; target=&#34;_blank&#34;&gt;http://www.usn-it.de/index.php/2009/02/20/oracle-11g-jdbc-driver-hangs-blocked-by-devrandom-entropy-pool-empty/&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
