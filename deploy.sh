@@ -3,7 +3,7 @@
 REPO=${GIT_DEPLOY_REPO:-git@github.com:kpavlov/kpavlov.github.io.git}
 
 rm -rf public
-git clone --branch master --depth 25 ${REPO} public
+git clone --branch master --depth 1 --single-branch ${REPO} public
 
 rm -rf public/*
 
@@ -24,6 +24,7 @@ fi
     git config user.email git@konstantunpavlov.net &&
     git add . &&
     git commit -m "$commit_message" &&
+    git gc &&
     git status &&
     git push origin master
 )
