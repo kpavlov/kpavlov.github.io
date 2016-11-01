@@ -19,7 +19,7 @@ if [[ -z $commit_message ]]; then
 fi
 
 (
-    cd dist &&
+    cd public &&
     git config user.name "Konstantin Pavlov" &&
     git config user.email git@konstantunpavlov.net &&
     git add . &&
