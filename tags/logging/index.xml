@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/logging/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/logging/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/logging/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/logging/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Secure Java Logging with Logback</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</link>
+      <link>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</link>
       <pubDate>Sun, 26 Jul 2015 14:01:33 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
       <description>
 
 &lt;p&gt;Deploying application into secure environment adds some restrictions on logging and log management. &lt;a href=&#34;https://www.owasp.org&#34; target=&#34;_blank&#34;&gt;OWASP community&lt;/a&gt; gives some useful recommendations.&lt;/p&gt;
@@ -55,7 +55,7 @@ carry penalties under the data protection laws that apply.&lt;/p&gt;
 
 &lt;p&gt;Masking PANs with Logback is the last resort to ensure the data is masked with a false-positive hits. It is preferrable to mask the data before it is being written to log in the applciation code.&lt;/p&gt;
 
-&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;http://blog.konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;https://konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;2-are-the-logs-stored-in-a-dedicated-server&#34;&gt;2. Are the logs stored in a dedicated server?&lt;/h2&gt;
 

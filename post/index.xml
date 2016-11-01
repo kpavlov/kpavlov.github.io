@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Post-rsses on The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/post/index.xml</link>
+    <link>https://konstantinpavlov.net/post/index.xml</link>
     <description>Recent content in Post-rsses on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 14 Sep 2016 10:15:51 +0000</lastBuildDate>
-    <atom:link href="http://blog.konstantinpavlov.net/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Deploying Private Docker Registry Behind Cloudflaire</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</link>
+      <link>https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</link>
       <pubDate>Wed, 14 Sep 2016 10:15:51 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</guid>
       <description>&lt;p&gt;This is a short instruction how to deploy private docker registry on private cloud virtual servers behind &lt;a href=&#34;https://www.cloudflare.com&#34; target=&#34;_blank&#34;&gt;Cloudflaire&lt;/a&gt; proxy.
 
 Suppose, we have two virtual servers on private cloud:&lt;/p&gt;
@@ -130,10 +130,10 @@ latest: digest: sha256:a18ed77532f6d6781500db650194e0f9396ba5f05f8b50d4046b294ae
     
     <item>
       <title>Installing Ansible 2.1.1 on Debian 8 (Jessie)</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</link>
+      <link>https://konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</link>
       <pubDate>Fri, 09 Sep 2016 10:12:48 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</guid>
       <description>&lt;p&gt;Recently I faced some dependency issues trying to install &lt;a href=&#34;https://ansible.com&#34; target=&#34;_blank&#34;&gt;Ansible 2&lt;/a&gt; on Debian 8 (Jessie).
 Googling a bit I found a solution which was a basically to upgrade or install missing dependencies.
 Following script automates the installation procedure:
@@ -177,10 +177,10 @@ sudo cp ~/ansible/examples/hosts /etc/ansible/
     
     <item>
       <title>Links on REST API Design</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</link>
+      <link>https://konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</link>
       <pubDate>Thu, 18 Aug 2016 22:48:14 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</guid>
       <description>&lt;p&gt;Here you will find a small collection of links on REST API design.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
@@ -234,10 +234,10 @@ sudo cp ~/ansible/examples/hosts /etc/ansible/
     
     <item>
       <title>CI Setup Tips</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</link>
+      <link>https://konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</link>
       <pubDate>Sun, 17 Jul 2016 17:00:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</guid>
       <description>
 
 &lt;p&gt;You may find following tips useful when setting up continuous integration infrastructure.&lt;/p&gt;
@@ -268,10 +268,10 @@ Never make your real IPs publicly available, otherwise you increase a risk of be
     
     <item>
       <title>Selenium Tests with Maven and Selenide</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</link>
+      <link>https://konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</link>
       <pubDate>Thu, 12 May 2016 16:26:25 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://selenide.org&#34; target=&#34;_blank&#34;&gt;Selenide&lt;/a&gt; is nice wrapper around selenium web driver allowing to simplify writting UI tests with Selenium.&lt;/p&gt;
 
 &lt;p&gt;Some of the cook features are:&lt;/p&gt;
@@ -433,10 +433,10 @@ Never make your real IPs publicly available, otherwise you increase a risk of be
     
     <item>
       <title>Developing in &#34;Dirty Trunk&#34;</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/</link>
+      <link>https://konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/</link>
       <pubDate>Fri, 04 Mar 2016 22:26:24 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m going to start a series of posts covering different aspects of DevOps.&lt;/p&gt;
 
 &lt;p&gt;Let&amp;rsquo;s start today with branching strategy called &lt;em&gt;&amp;laquo;dirty trunk&amp;raquo;&lt;/em&gt;. Actually, this is an attempt to avoid branching at all.
@@ -496,10 +496,10 @@ Thank you.&lt;/p&gt;</description>
     
     <item>
       <title>Spring&#43;Freemarker Tips</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</link>
+      <link>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</link>
       <pubDate>Sun, 21 Feb 2016 18:15:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</guid>
       <description>&lt;p&gt;I hope you will find following tips useful when developing &lt;a href=&#34;https://projects.spring.io/spring-boot&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; application with &lt;a href=&#34;http://freemarker.org&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
 &lt;/p&gt;
 
@@ -545,10 +545,10 @@ spring.freemarker.template-loader-path=file:${user.home}/projects/example/src/ma
     
     <item>
       <title>DevMode Javascript Exception Handler</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</link>
+      <link>https://konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</link>
       <pubDate>Thu, 11 Feb 2016 23:09:16 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</guid>
       <description>&lt;p&gt;StackOverflow-driven JS development:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;try {
@@ -562,10 +562,10 @@ spring.freemarker.template-loader-path=file:${user.home}/projects/example/src/ma
     
     <item>
       <title>Secure Java Coding Best Practices</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</link>
+      <link>https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</link>
       <pubDate>Sat, 01 Aug 2015 22:22:34 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</guid>
       <description>&lt;p&gt;Making your web application flawless against security attacks is a challenge for every java developer.
 In this article I will briefly describe common practical development techniques that can help you to achieve it.&lt;/p&gt;
 
@@ -895,7 +895,7 @@ assert (c == a);
 &lt;p&gt;Secure data may leak to the logs if &lt;code&gt;toString()&lt;/code&gt; method is implemented incorrectly.
 E.g. using &lt;a href=&#34;https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/builder/ToStringBuilder.html#reflectionToString(java.lang.Object)&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ToStringBuilder.reflectionToString(...)&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;http://blog.konstantinpavlov.net/2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;https://konstantinpavlov.net/2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;heapdump-prevention-a5&#34;&gt;Heapdump Prevention (A5)&lt;/h2&gt;
 
@@ -970,10 +970,10 @@ You may consider adding following profile to your &lt;em&gt;pom.xml&lt;/em&gt;:&
     
     <item>
       <title>Secure Java Logging with Logback</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</link>
+      <link>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</link>
       <pubDate>Sun, 26 Jul 2015 14:01:33 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
       <description>
 
 &lt;p&gt;Deploying application into secure environment adds some restrictions on logging and log management. &lt;a href=&#34;https://www.owasp.org&#34; target=&#34;_blank&#34;&gt;OWASP community&lt;/a&gt; gives some useful recommendations.&lt;/p&gt;
@@ -1015,7 +1015,7 @@ carry penalties under the data protection laws that apply.&lt;/p&gt;
 
 &lt;p&gt;Masking PANs with Logback is the last resort to ensure the data is masked with a false-positive hits. It is preferrable to mask the data before it is being written to log in the applciation code.&lt;/p&gt;
 
-&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;http://blog.konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;https://konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;2-are-the-logs-stored-in-a-dedicated-server&#34;&gt;2. Are the logs stored in a dedicated server?&lt;/h2&gt;
 
@@ -1131,10 +1131,10 @@ In order to prevent this attack, &lt;code&gt;logback.xml&lt;/code&gt; should be:
     
     <item>
       <title>Implementing Automatic Reconnection for Netty Client</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</link>
+      <link>https://konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</link>
       <pubDate>Wed, 08 Jul 2015 07:48:05 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</guid>
       <description>&lt;p&gt;One of the first requirement of &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583&#34; target=&#34;_blank&#34;&gt;Netty ISO8588 client connector&lt;/a&gt; was the support for automatic reconnect.&lt;/p&gt;
 
 &lt;p&gt;One of the first receipts I came across was &lt;a href=&#34;http://tterm.blogspot.com/2014/03/netty-tcp-client-with-reconnect-handling.html&#34; target=&#34;_blank&#34;&gt;Thomas Termin&amp;rsquo;s one&lt;/a&gt;. He suggests adding a ChannelHandler which will schedule the calling of client&amp;rsquo;s &lt;code&gt;connect()&lt;/code&gt; method once a Channel becomes inactive. Plus adding ChannelFutureListener which will re-create a bootstrap and re-connect if initial connection was failed.&lt;/p&gt;
@@ -1227,10 +1227,10 @@ To establish the connection I use the following [code][Iso8583Client]:
     
     <item>
       <title>Java Application Development Tutorial</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</link>
+      <link>https://konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</link>
       <pubDate>Wed, 17 Jun 2015 09:55:16 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been meaning to write a small tutorial for building web applications. Now it&amp;rsquo;s time!
 Let&amp;rsquo;s define the steps and choose some solutions for developing back-end java web application.&lt;/p&gt;
 
@@ -1395,17 +1395,17 @@ public MyServiceImpl implements MyService {
     
     <item>
       <title>Self-Hosted Web Analytics Solution for AngularJS</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</link>
+      <link>https://konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</link>
       <pubDate>Wed, 03 Jun 2015 19:05:12 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</guid>
       <description>&lt;p&gt;There are situations when you need to analyze user&amp;rsquo;s experience but can&amp;rsquo;t use a third-party web analytics solutions like Google Analytics or Yandex Metrika.
 For example, if your production environment is &lt;a href=&#34;https://www.pcisecuritystandards.org/security_standards/&#34; title=&#34;PCI SSC Data Security Standards&#34; target=&#34;_blank&#34;&gt;PCI DSS&lt;/a&gt; compliant.
 In this case you have to deploy self-hosted analytics engine and inside your environment and configure user actions tracking in your application.&lt;/p&gt;
 
 &lt;p&gt;One of the possible solutions is the &lt;a href=&#34;http://piwik.org&#34; target=&#34;_blank&#34;&gt;piwik&lt;/a&gt; as analytics engine + &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt; or &lt;a href=&#34;https://github.com/mike-spainhower/angular-piwik&#34; target=&#34;_blank&#34;&gt;angular-piwik&lt;/a&gt; for tracking events inside AngularJS application.
 In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piwik.org/log-analytics/&#34; target=&#34;_blank&#34;&gt;log analytics&lt;/a&gt;.
-&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
+&lt;img src=&#34;https://konstantinpavlov.net/assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
 &lt;a href=&#34;http://demo.piwik.org/&#34; target=&#34;_blank&#34;&gt;Piwik Demo&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Another option is to use &lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;Open Web Analytics (OWA)&lt;/a&gt; and write a plugin for &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt;.
@@ -1415,10 +1415,10 @@ In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piw
     
     <item>
       <title>Loading Indicators for AngularJS</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</link>
+      <link>https://konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</link>
       <pubDate>Tue, 02 Jun 2015 18:44:43 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</guid>
       <description>&lt;p&gt;Modern web application should be user friendly and notify the User when time consuming operation is on the way, e.g. uploading file or downloading data.
 There are a some solutions for AngularJS which are fairy easy to integrate.&lt;/p&gt;
 
@@ -1436,10 +1436,10 @@ But it may require some customization.
     
     <item>
       <title>Tags Input Control for AngularJS</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</link>
+      <link>https://konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</link>
       <pubDate>Sat, 30 May 2015 09:53:19 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</guid>
       <description>&lt;p&gt;Stay &lt;abbr title=&#34;Don&#39;t Repeat Yourself&#34;&gt;DRY&lt;/abbr&gt;! Don&amp;rsquo;t waste your time implementing tags input control for AngularJS yourself! There is an excellent AngularJS module for that called &lt;a href=&#34;https://github.com/mbenford/ngTagsInput&#34; target=&#34;_blank&#34;&gt;&amp;laquo;ngTagsInput&amp;raquo;&lt;/a&gt;. It&amp;rsquo;s also supports autocomptetion, validations,custom styles and templates. See the &lt;a href=&#34;http://mbenford.github.io/ngTagsInput/demos&#34; target=&#34;_blank&#34;&gt;demos&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;It took me just 10 minutes to add that type of control to my application.&lt;/p&gt;

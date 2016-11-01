@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/java/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/java/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Secure Java Coding Best Practices</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</link>
+      <link>https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</link>
       <pubDate>Sat, 01 Aug 2015 22:22:34 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</guid>
       <description>&lt;p&gt;Making your web application flawless against security attacks is a challenge for every java developer.
 In this article I will briefly describe common practical development techniques that can help you to achieve it.&lt;/p&gt;
 
@@ -343,7 +343,7 @@ assert (c == a);
 &lt;p&gt;Secure data may leak to the logs if &lt;code&gt;toString()&lt;/code&gt; method is implemented incorrectly.
 E.g. using &lt;a href=&#34;https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/builder/ToStringBuilder.html#reflectionToString(java.lang.Object)&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ToStringBuilder.reflectionToString(...)&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;http://blog.konstantinpavlov.net/2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;https://konstantinpavlov.net/2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;heapdump-prevention-a5&#34;&gt;Heapdump Prevention (A5)&lt;/h2&gt;
 
@@ -418,10 +418,10 @@ You may consider adding following profile to your &lt;em&gt;pom.xml&lt;/em&gt;:&
     
     <item>
       <title>Secure Java Logging with Logback</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</link>
+      <link>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</link>
       <pubDate>Sun, 26 Jul 2015 14:01:33 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
       <description>
 
 &lt;p&gt;Deploying application into secure environment adds some restrictions on logging and log management. &lt;a href=&#34;https://www.owasp.org&#34; target=&#34;_blank&#34;&gt;OWASP community&lt;/a&gt; gives some useful recommendations.&lt;/p&gt;
@@ -463,7 +463,7 @@ carry penalties under the data protection laws that apply.&lt;/p&gt;
 
 &lt;p&gt;Masking PANs with Logback is the last resort to ensure the data is masked with a false-positive hits. It is preferrable to mask the data before it is being written to log in the applciation code.&lt;/p&gt;
 
-&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;http://blog.konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;https://konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;2-are-the-logs-stored-in-a-dedicated-server&#34;&gt;2. Are the logs stored in a dedicated server?&lt;/h2&gt;
 
@@ -579,10 +579,10 @@ In order to prevent this attack, &lt;code&gt;logback.xml&lt;/code&gt; should be:
     
     <item>
       <title>Implementing Automatic Reconnection for Netty Client</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</link>
+      <link>https://konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</link>
       <pubDate>Wed, 08 Jul 2015 07:48:05 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</guid>
       <description>&lt;p&gt;One of the first requirement of &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583&#34; target=&#34;_blank&#34;&gt;Netty ISO8588 client connector&lt;/a&gt; was the support for automatic reconnect.&lt;/p&gt;
 
 &lt;p&gt;One of the first receipts I came across was &lt;a href=&#34;http://tterm.blogspot.com/2014/03/netty-tcp-client-with-reconnect-handling.html&#34; target=&#34;_blank&#34;&gt;Thomas Termin&amp;rsquo;s one&lt;/a&gt;. He suggests adding a ChannelHandler which will schedule the calling of client&amp;rsquo;s &lt;code&gt;connect()&lt;/code&gt; method once a Channel becomes inactive. Plus adding ChannelFutureListener which will re-create a bootstrap and re-connect if initial connection was failed.&lt;/p&gt;
@@ -675,10 +675,10 @@ To establish the connection I use the following [code][Iso8583Client]:
     
     <item>
       <title>Java Application Development Tutorial</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</link>
+      <link>https://konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</link>
       <pubDate>Wed, 17 Jun 2015 09:55:16 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been meaning to write a small tutorial for building web applications. Now it&amp;rsquo;s time!
 Let&amp;rsquo;s define the steps and choose some solutions for developing back-end java web application.&lt;/p&gt;
 
@@ -843,10 +843,10 @@ public MyServiceImpl implements MyService {
     
     <item>
       <title>API Authentication: Generating HMAC digest in PHP and Java</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</link>
+      <link>https://konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</link>
       <pubDate>Wed, 20 May 2015 22:24:47 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</guid>
       <description>&lt;p&gt;User authentication is an important part of the web service API design.
 One of the common approach is the Hash-based Message Authentication Code &amp;ndash; &lt;abbr title=&#34;Hash-based Message Authentication Code&#34;&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Hash-based_message_authentication_code&#34; title=&#34;Hash-based message authentication code&#34; target=&#34;_blank&#34;&gt;HMAC&lt;/a&gt;&lt;/abbr&gt;.
 Used together with transport level security it provides reliable mechanizm of user authentication and message integrity validation.
@@ -913,10 +913,10 @@ if (!MessageDigest.isEqual(receivedDigestBytes, expectedDigest)) {
     
     <item>
       <title>Booting Spring Webapp</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</link>
+      <link>https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</link>
       <pubDate>Thu, 19 Feb 2015 23:39:35 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</guid>
       <description>&lt;p&gt;Spring Boot is an excellent tool to bootstrap java application.
 Most of the references mention how to create a standalone java application, optionally with embedded web server (tomcat or jetty). But &lt;a href=&#34;http://projects.spring.io/spring-boot/&#34; title=&#34;Spring Boot Project&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; supports also creating web applications intended to run within servlet container.
 
@@ -1043,10 +1043,10 @@ public class Application extends SpringBootServletInitializer {
     
     <item>
       <title>Base64 Variants in Java 8</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/</link>
+      <link>https://konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/</link>
       <pubDate>Sat, 24 Jan 2015 04:45:10 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/</guid>
       <description>&lt;p&gt;You most likely used Base64 encoding. It&amp;rsquo;s about encoding any sequence of data as a printable string (digits, lower case and upper case letters). But Base64 has variations. E.g., not every Base64 variant allows safe transfer of any data as URL parameters.
 For that purpose there is a special dialect of Base64: Url-safe encoding.
 
@@ -1060,10 +1060,10 @@ String base64String = encoder.encodeToString(byteArray);
     
     <item>
       <title>Conditional Java Configurations in Spring Framework</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/</link>
+      <link>https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/</link>
       <pubDate>Sun, 14 Dec 2014 11:22:29 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/</guid>
       <description>&lt;p&gt;Spring Framework offers very flexible means for binding application components.
 Externalizable properties, composite configuration, nested application contexts and profiles.&lt;/p&gt;
 
@@ -1109,10 +1109,10 @@ class MyConfig {
     
     <item>
       <title>JDBC Driver Settings for Oracle RAC</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</link>
+      <link>https://konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</link>
       <pubDate>Sun, 07 Dec 2014 21:22:41 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</guid>
       <description>&lt;p&gt;If you are modifying your java application to use Oracle Real Application Clustered (RAC) Database instead of standard single-node database server (Express or Standard edition), then you need to modify settings of your JDBC driver.
 &lt;/p&gt;
 
@@ -1151,10 +1151,10 @@ class MyConfig {
     
     <item>
       <title>JAX-WS with Custom SSLSocketFactory</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</link>
+      <link>https://konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</link>
       <pubDate>Mon, 01 Dec 2014 14:34:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s very easy to configure custom &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/javax/net/ssl/SSLSocketFactory.html&#34; target=&#34;_blank&#34;&gt;SSLSocketFactory&lt;/a&gt; for JAX-WS web-service: just specify custom property referring to &lt;code&gt;SSLSocketFactory&lt;/code&gt; bean.
 But there is a nuance&amp;hellip;&lt;/p&gt;
 
@@ -1194,10 +1194,10 @@ But there is a nuance&amp;hellip;&lt;/p&gt;
     
     <item>
       <title>WebJars: Easy Packaging Client Libraries</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</link>
+      <link>https://konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</link>
       <pubDate>Sun, 20 Jul 2014 22:00:48 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</guid>
       <description>&lt;p&gt;When developing java web application it is often annoying to manage third-party javascript libraries. Especially, when it is necessary to upgrade some of them.&lt;/p&gt;
 
 &lt;p&gt;The project &lt;a href=&#34;http://www.webjars.org/&#34; target=&#34;_blank&#34;&gt;&amp;laquo;WebJars&amp;raquo;&lt;/a&gt; makes a life easier for such &lt;del&gt;lazy&lt;/del&gt;efficient developers, like me :-)&lt;/p&gt;
@@ -1209,10 +1209,10 @@ It is described in the &lt;a href=&#34;http://www.webjars.org/documentation&#34;
     
     <item>
       <title>Jolokia: HTTP/JSON bridge for JMX</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/06/09/jolokia-http/json-bridge-for-jmx/</link>
+      <link>https://konstantinpavlov.net/blog/2014/06/09/jolokia-http/json-bridge-for-jmx/</link>
       <pubDate>Mon, 09 Jun 2014 13:17:37 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/06/09/jolokia-http/json-bridge-for-jmx/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/06/09/jolokia-http/json-bridge-for-jmx/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/BhutJolokia09_Asit.jpg/640px-BhutJolokia09_Asit.jpg&#34; alt=&#34;Jolokia Logo&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Very often there is a need to monitor the Java application server.
@@ -1231,7 +1231,7 @@ For example, external monitoring tool, like Nagious/Zenoss/Zabbix needs to get s
 
 &lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
 
-&lt;p&gt;Here is a small instruction how to get an access to JMX beans in &lt;a href=&#34;http://blog.konstantinpavlov.net/tags/tomcat&#34;&gt;Tomcat&lt;/a&gt; via &lt;a href=&#34;http://www.jolokia.org&#34; title=&#34;Jolokia Project&#34; target=&#34;_blank&#34;&gt;Jolokia&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here is a small instruction how to get an access to JMX beans in &lt;a href=&#34;https://konstantinpavlov.net/tags/tomcat&#34;&gt;Tomcat&lt;/a&gt; via &lt;a href=&#34;http://www.jolokia.org&#34; title=&#34;Jolokia Project&#34; target=&#34;_blank&#34;&gt;Jolokia&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.jolokia.org/download.html&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; &lt;code&gt;jolockia.war&lt;/code&gt; and deploy it to servlet container.&lt;/li&gt;
@@ -1243,7 +1243,7 @@ $ curl localhost:8080/jolokia/read/java.lang:type=Memory/HeapMemoryUsage
 $ curl localhost:8080/jolokia/read/java.lang:type=Memory/HeapMemoryUsage/used
 {&#34;request&#34;:{&#34;path&#34;:&#34;used&#34;,&#34;mbean&#34;:&#34;java.lang:type=Memory&#34;,&#34;attribute&#34;:&#34;HeapMemoryUsage&#34;,&#34;type&#34;:&#34;read&#34;},&#34;value&#34;:132049736,&#34;timestamp&#34;:1402310735,&#34;status&#34;:200}
 
-You may also use your browser to see JSON response. I suggest installing &lt;a href=&#34;https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa&#34; title=&#34;JSON Formatter Chrome Extension&#34; target=&#34;_blank&#34;&gt;JSON Fromamter&lt;/a&gt; for better view. &lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2014/06/jolokia-heap.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+You may also use your browser to see JSON response. I suggest installing &lt;a href=&#34;https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa&#34; title=&#34;JSON Formatter Chrome Extension&#34; target=&#34;_blank&#34;&gt;JSON Fromamter&lt;/a&gt; for better view. &lt;img src=&#34;https://konstantinpavlov.net/assets/2014/06/jolokia-heap.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Now you can configure your monitoring software to ping server periodically and parse &amp;laquo;value&amp;raquo; attribute from JSON response.&lt;/li&gt;
@@ -1271,10 +1271,10 @@ You may also use your browser to see JSON response. I suggest installing &lt;a h
     
     <item>
       <title>JSON Validation with JSON Schema</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/</link>
+      <link>https://konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/</link>
       <pubDate>Sat, 10 May 2014 15:48:12 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/</guid>
       <description>&lt;p&gt;JSON has became a de-facto standard for webservices, replacing XML web services.
 It has native support in web browser clients.&lt;/p&gt;
 
@@ -1320,10 +1320,10 @@ final JsonNode reportAsJson = ((AsJson) report).asJson();
     
     <item>
       <title>Webapp Inter-Communication in Tomcat</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</link>
+      <link>https://konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</link>
       <pubDate>Fri, 09 May 2014 22:40:12 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</guid>
       <description>&lt;p&gt;&lt;em&gt;Sometimes you need to access services deployed in one web application from another web application within same application server. For Tomcat there is not so many options to do it. In this article we&amp;rsquo;ll discuss you how to use JMX for communication between web applications.&lt;/em&gt;
 &lt;/p&gt;
 
@@ -1507,10 +1507,10 @@ public class EchoServlet extends HttpServlet {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;When those two webapps are deployed to tomcat, a new JMX bean is created:
-&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2014/05/tomcat-mbean-service.png&#34; alt=&#34;EchoService exposed as Managed Bean&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://konstantinpavlov.net/assets/2014/05/tomcat-mbean-service.png&#34; alt=&#34;EchoService exposed as Managed Bean&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;and service is accessible from the servlet:
-&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2014/05/tomcat-service-invoked.png&#34; alt=&#34;EchoServlet showing results of EchoService invocation&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://konstantinpavlov.net/assets/2014/05/tomcat-service-invoked.png&#34; alt=&#34;EchoServlet showing results of EchoService invocation&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;module-dependencies&#34;&gt;Module dependencies&lt;/h3&gt;
 
@@ -1529,10 +1529,10 @@ you&amp;rsquo;ll need to put that class to &lt;em&gt;api.jar&lt;/em&gt; and plac
     
     <item>
       <title>Getting More Entropy in Java on Linux</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</link>
+      <link>https://konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</link>
       <pubDate>Fri, 21 Mar 2014 12:30:27 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://31.media.tumblr.com/4166367386765fe2b5f9845906898214/tumblr_inline_n2r2coHbTe1rx1usu.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Setting entropy pool for Java server on linux is fair simple. Just add a system property to specify a device to read from.

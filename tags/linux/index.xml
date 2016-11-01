@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/linux/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/linux/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Chef for Managing Small Cloud Infrastructure</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/09/07/chef-for-managing-small-cloud-infrastructure/</link>
+      <link>https://konstantinpavlov.net/blog/2014/09/07/chef-for-managing-small-cloud-infrastructure/</link>
       <pubDate>Sun, 07 Sep 2014 11:37:12 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/09/07/chef-for-managing-small-cloud-infrastructure/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/09/07/chef-for-managing-small-cloud-infrastructure/</guid>
       <description>&lt;p&gt;I need to manage a small &lt;a href=&#34;https://www.digitalocean.com/?refcode=3560cbe19651&#34; target=&#34;_blank&#34;&gt;cloud server infrastructure&lt;/a&gt;.
 I have no intention to edit configs by hand all the time, nor write deployment scripts myself.&lt;/p&gt;
 
@@ -44,10 +44,10 @@ Receipts are stored within a cookbooks and can be included into another receipts
     
     <item>
       <title>Getting More Entropy in Java on Linux</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</link>
+      <link>https://konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</link>
       <pubDate>Fri, 21 Mar 2014 12:30:27 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;https://31.media.tumblr.com/4166367386765fe2b5f9845906898214/tumblr_inline_n2r2coHbTe1rx1usu.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Setting entropy pool for Java server on linux is fair simple. Just add a system property to specify a device to read from.

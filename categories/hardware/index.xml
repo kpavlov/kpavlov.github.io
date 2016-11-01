@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/categories/hardware/index.xml</link>
+    <link>https://konstantinpavlov.net/categories/hardware/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/categories/hardware/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/categories/hardware/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>The Most (and Least) Reliable Hard Drive and SSD Brands</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/05/15/the-most-and-least-reliable-hard-drive-and-ssd-brands/</link>
+      <link>https://konstantinpavlov.net/blog/2014/05/15/the-most-and-least-reliable-hard-drive-and-ssd-brands/</link>
       <pubDate>Thu, 15 May 2014 12:30:47 +0200</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/05/15/the-most-and-least-reliable-hard-drive-and-ssd-brands/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/05/15/the-most-and-least-reliable-hard-drive-and-ssd-brands/</guid>
       <description>&lt;h2 id=&#34;hdd-failure-rates&#34;&gt;HDD Failure Rates&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://i.kinja-img.com/gawker-media/image/upload/s--7MqiawL8--/c_fit,fl_progressive,q_80,w_636/19d8o32tg2hvxpng.png&#34; alt=&#34;HDD 36 Months Survuval Rate&#34; /&gt;

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/oracle/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/oracle/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>JDBC Driver Settings for Oracle RAC</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</link>
+      <link>https://konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</link>
       <pubDate>Sun, 07 Dec 2014 21:22:41 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</guid>
       <description>&lt;p&gt;If you are modifying your java application to use Oracle Real Application Clustered (RAC) Database instead of standard single-node database server (Express or Standard edition), then you need to modify settings of your JDBC driver.
 &lt;/p&gt;
 
@@ -52,10 +52,10 @@
     
     <item>
       <title>Book: &#34;Applied Oracle Security : Developing Secure Database and Middleware Environments&#34; by David Knox</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/05/22/book-applied-oracle-security--developing-secure-database-and-middleware-environments-by-david-knox/</link>
+      <link>https://konstantinpavlov.net/blog/2014/05/22/book-applied-oracle-security--developing-secure-database-and-middleware-environments-by-david-knox/</link>
       <pubDate>Thu, 22 May 2014 22:57:48 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/05/22/book-applied-oracle-security--developing-secure-database-and-middleware-environments-by-david-knox/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/05/22/book-applied-oracle-security--developing-secure-database-and-middleware-environments-by-david-knox/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://amzn.com/B002TGNIWK&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/712iBQfmaHL._SL1500_.jpg&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;
 ISBN: 978-0-07-161371-2&lt;/p&gt;
 </description>
@@ -63,10 +63,10 @@ ISBN: 978-0-07-161371-2&lt;/p&gt;
     
     <item>
       <title>Book: &#34;Expert Oracle Database Architecture: Oracle Database 9i, 10g, and 11g Programming Techniques and Solutions&#34; by Thomas Kyte</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/05/22/book-expert-oracle-database-architecture-oracle-database-9i-10g-and-11g-programming-techniques-and-solutions-by-thomas-kyte/</link>
+      <link>https://konstantinpavlov.net/blog/2014/05/22/book-expert-oracle-database-architecture-oracle-database-9i-10g-and-11g-programming-techniques-and-solutions-by-thomas-kyte/</link>
       <pubDate>Thu, 22 May 2014 22:54:51 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/05/22/book-expert-oracle-database-architecture-oracle-database-9i-10g-and-11g-programming-techniques-and-solutions-by-thomas-kyte/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/05/22/book-expert-oracle-database-architecture-oracle-database-9i-10g-and-11g-programming-techniques-and-solutions-by-thomas-kyte/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://amzn.com/B004VJ46ME&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/51ATPBi5z9L.jpg&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;ul&gt;

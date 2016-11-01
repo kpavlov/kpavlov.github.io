@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Legal-rsses on The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/legal/index.xml</link>
+    <link>https://konstantinpavlov.net/legal/index.xml</link>
     <description>Recent content in Legal-rsses on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/legal/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/legal/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Cookie Policy</title>
-      <link>http://blog.konstantinpavlov.net/legal/cookie-policy/</link>
+      <link>https://konstantinpavlov.net/legal/cookie-policy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/legal/cookie-policy/</guid>
+      <guid>https://konstantinpavlov.net/legal/cookie-policy/</guid>
       <description>
 
 &lt;ol&gt;
@@ -34,7 +34,7 @@
 
 &lt;p&gt;All of our web pages use &amp;laquo;cookies&amp;raquo;. A cookie is a small file of letters and numbers that we place on your computer or mobile device if you agree. These cookies allow us to distinguish you from other users of our website, which helps us to provide you with a good experience when you browse our website and also allow us to improve our website.&lt;/p&gt;
 
-&lt;p&gt;For information about what types of personal information will be gathered when you visit the website, and how this information will be used, please see the &lt;a href=&#34;http://blog.konstantinpavlov.net/legal/privacy&#34;&gt;Website Privacy Policy&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For information about what types of personal information will be gathered when you visit the website, and how this information will be used, please see the &lt;a href=&#34;https://konstantinpavlov.net/legal/privacy&#34;&gt;Website Privacy Policy&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h1 id=&#34;3-we-use-the-following-types-of-cookies&#34;&gt;3.  We use the following types of cookies:&lt;/h1&gt;
 
@@ -67,7 +67,7 @@
 &lt;td&gt;This site&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;cookie&lt;/code&gt;&lt;/td&gt;
 &lt;td&gt;This cookie indicates that user has accepted this Cookies Policy&lt;/td&gt;
-&lt;td&gt;&lt;a href=&#34;http://blog.konstantinpavlov.net/legal/privacy&#34;&gt;Overview of site privacy&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;https://konstantinpavlov.net/legal/privacy&#34;&gt;Overview of site privacy&lt;/a&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
@@ -140,10 +140,10 @@
     
     <item>
       <title>Privacy</title>
-      <link>http://blog.konstantinpavlov.net/legal/privacy/</link>
+      <link>https://konstantinpavlov.net/legal/privacy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/legal/privacy/</guid>
+      <guid>https://konstantinpavlov.net/legal/privacy/</guid>
       <description>&lt;p&gt;This site does not identify it&amp;rsquo;s users and but does use cookies, though.&lt;/p&gt;
 
 &lt;p&gt;That is because we use Google Analytics, a popular web analytics service which uses cookies to help us to count the number of people that visit this site and to analyse how they use it (e.g. we can determine which pages on our site are the most popular ones).&lt;/p&gt;

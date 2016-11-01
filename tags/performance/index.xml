@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/performance/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/performance/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/performance/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/performance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Video: Scalable Memory Allocation using jemalloc Tech Talk (1/11/2011)</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/03/01/video-scalable-memory-allocation-using-jemalloc-tech-talk-1/11/2011/</link>
+      <link>https://konstantinpavlov.net/blog/2014/03/01/video-scalable-memory-allocation-using-jemalloc-tech-talk-1/11/2011/</link>
       <pubDate>Sat, 01 Mar 2014 12:30:28 +0200</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/03/01/video-scalable-memory-allocation-using-jemalloc-tech-talk-1/11/2011/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/03/01/video-scalable-memory-allocation-using-jemalloc-tech-talk-1/11/2011/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://www.facebook.com/video/video.php?v=696488619305&#34; target=&#34;_blank&#34;&gt;Video: Scalable Memory Allocation using jemalloc&lt;/a&gt; - Tech Talk (1/11/2011)&lt;/p&gt;
 
 &lt;p&gt;jemalloc project: &lt;a href=&#34;https://github.com/jemalloc/jemalloc&#34; target=&#34;_blank&#34;&gt;https://github.com/jemalloc/jemalloc&lt;/a&gt;&lt;/p&gt;
@@ -22,10 +22,10 @@
     
     <item>
       <title>Chronicle</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/02/19/chronicle/</link>
+      <link>https://konstantinpavlov.net/blog/2014/02/19/chronicle/</link>
       <pubDate>Wed, 19 Feb 2014 12:30:42 +0200</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/02/19/chronicle/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/02/19/chronicle/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://github.com/peter-lawrey/Java-Chronicle&#34; target=&#34;_blank&#34;&gt;Chronicle&lt;/a&gt; by Peter Lawrey:&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -40,10 +40,10 @@
     
     <item>
       <title>JVM Profiling Mode</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/01/18/jvm-profiling-mode/</link>
+      <link>https://konstantinpavlov.net/blog/2014/01/18/jvm-profiling-mode/</link>
       <pubDate>Sat, 18 Jan 2014 12:33:12 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/01/18/jvm-profiling-mode/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/01/18/jvm-profiling-mode/</guid>
       <description>&lt;p&gt;There is no sense to run profiler in instrumentation mode on a high load.&lt;/p&gt;
 
 &lt;p&gt;Instead of using instrumentation you should use sampling mode.&lt;/p&gt;

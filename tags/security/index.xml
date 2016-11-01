@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/security/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/security/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/security/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/security/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Secure Java Coding Best Practices</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</link>
+      <link>https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</link>
       <pubDate>Sat, 01 Aug 2015 22:22:34 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</guid>
       <description>&lt;p&gt;Making your web application flawless against security attacks is a challenge for every java developer.
 In this article I will briefly describe common practical development techniques that can help you to achieve it.&lt;/p&gt;
 
@@ -343,7 +343,7 @@ assert (c == a);
 &lt;p&gt;Secure data may leak to the logs if &lt;code&gt;toString()&lt;/code&gt; method is implemented incorrectly.
 E.g. using &lt;a href=&#34;https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/builder/ToStringBuilder.html#reflectionToString(java.lang.Object)&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ToStringBuilder.reflectionToString(...)&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;http://blog.konstantinpavlov.net/2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;https://konstantinpavlov.net/2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;heapdump-prevention-a5&#34;&gt;Heapdump Prevention (A5)&lt;/h2&gt;
 
@@ -418,10 +418,10 @@ You may consider adding following profile to your &lt;em&gt;pom.xml&lt;/em&gt;:&
     
     <item>
       <title>Secure Java Logging with Logback</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</link>
+      <link>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</link>
       <pubDate>Sun, 26 Jul 2015 14:01:33 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
       <description>
 
 &lt;p&gt;Deploying application into secure environment adds some restrictions on logging and log management. &lt;a href=&#34;https://www.owasp.org&#34; target=&#34;_blank&#34;&gt;OWASP community&lt;/a&gt; gives some useful recommendations.&lt;/p&gt;
@@ -463,7 +463,7 @@ carry penalties under the data protection laws that apply.&lt;/p&gt;
 
 &lt;p&gt;Masking PANs with Logback is the last resort to ensure the data is masked with a false-positive hits. It is preferrable to mask the data before it is being written to log in the applciation code.&lt;/p&gt;
 
-&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;http://blog.konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;https://konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;2-are-the-logs-stored-in-a-dedicated-server&#34;&gt;2. Are the logs stored in a dedicated server?&lt;/h2&gt;
 
@@ -579,10 +579,10 @@ In order to prevent this attack, &lt;code&gt;logback.xml&lt;/code&gt; should be:
     
     <item>
       <title>API Authentication: Generating HMAC digest in PHP and Java</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</link>
+      <link>https://konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</link>
       <pubDate>Wed, 20 May 2015 22:24:47 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</guid>
       <description>&lt;p&gt;User authentication is an important part of the web service API design.
 One of the common approach is the Hash-based Message Authentication Code &amp;ndash; &lt;abbr title=&#34;Hash-based Message Authentication Code&#34;&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Hash-based_message_authentication_code&#34; title=&#34;Hash-based message authentication code&#34; target=&#34;_blank&#34;&gt;HMAC&lt;/a&gt;&lt;/abbr&gt;.
 Used together with transport level security it provides reliable mechanizm of user authentication and message integrity validation.
@@ -649,10 +649,10 @@ if (!MessageDigest.isEqual(receivedDigestBytes, expectedDigest)) {
     
     <item>
       <title>Web Security Resources</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/05/03/web-security-resources/</link>
+      <link>https://konstantinpavlov.net/blog/2015/05/03/web-security-resources/</link>
       <pubDate>Sun, 03 May 2015 18:23:06 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/05/03/web-security-resources/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/05/03/web-security-resources/</guid>
       <description>&lt;p&gt;Here are some useful links to security resources:&lt;/p&gt;
 
 &lt;ul&gt;

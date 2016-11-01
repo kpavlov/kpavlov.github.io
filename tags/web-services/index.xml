@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/web-services/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/web-services/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/web-services/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/web-services/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Links on REST API Design</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</link>
+      <link>https://konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</link>
       <pubDate>Thu, 18 Aug 2016 22:48:14 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</guid>
       <description>&lt;p&gt;Here you will find a small collection of links on REST API design.&lt;/p&gt;
 
 &lt;p&gt;&lt;/p&gt;
@@ -67,10 +67,10 @@
     
     <item>
       <title>JAX-WS with Custom SSLSocketFactory</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</link>
+      <link>https://konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</link>
       <pubDate>Mon, 01 Dec 2014 14:34:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s very easy to configure custom &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/javax/net/ssl/SSLSocketFactory.html&#34; target=&#34;_blank&#34;&gt;SSLSocketFactory&lt;/a&gt; for JAX-WS web-service: just specify custom property referring to &lt;code&gt;SSLSocketFactory&lt;/code&gt; bean.
 But there is a nuance&amp;hellip;&lt;/p&gt;
 
@@ -110,10 +110,10 @@ But there is a nuance&amp;hellip;&lt;/p&gt;
     
     <item>
       <title>Configuring WS-Security for Axis 1.4 client</title>
-      <link>http://blog.konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/</link>
+      <link>https://konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/</link>
       <pubDate>Wed, 23 May 2007 14:13:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/</guid>
+      <guid>https://konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/</guid>
       <description>&lt;p&gt;I was looking how to enable WS-Security features in the Axis client to my web service application. I have tested it with Axis 1.4 client.
 
 The things you need to configure axis client are:&lt;/p&gt;

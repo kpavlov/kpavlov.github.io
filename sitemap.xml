@@ -2,365 +2,365 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/</loc>
+    <loc>https://konstantinpavlov.net/</loc>
     <lastmod>2016-09-14T10:15:51+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</loc>
+    <loc>https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</loc>
     <lastmod>2016-09-14T10:15:51+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</loc>
+    <loc>https://konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</loc>
     <lastmod>2016-09-09T10:12:48+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</loc>
+    <loc>https://konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</loc>
     <lastmod>2016-08-18T22:48:14+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</loc>
+    <loc>https://konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</loc>
     <lastmod>2016-07-17T17:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</loc>
+    <loc>https://konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</loc>
     <lastmod>2016-05-12T16:26:25+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/</loc>
+    <loc>https://konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/</loc>
     <lastmod>2016-03-04T22:26:24+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</loc>
+    <loc>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</loc>
     <lastmod>2016-02-21T18:15:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</loc>
+    <loc>https://konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</loc>
     <lastmod>2016-02-11T23:09:16+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</loc>
     <lastmod>2015-08-01T22:22:34+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</loc>
     <lastmod>2015-07-26T14:01:33+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</loc>
     <lastmod>2015-07-08T07:48:05+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</loc>
     <lastmod>2015-06-17T09:55:16+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</loc>
     <lastmod>2015-06-03T19:05:12+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</loc>
     <lastmod>2015-06-02T18:44:43+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</loc>
     <lastmod>2015-05-30T09:53:19+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</loc>
     <lastmod>2015-05-20T22:24:47+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</loc>
     <lastmod>2015-05-10T11:52:33+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/05/03/web-security-resources/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/05/03/web-security-resources/</loc>
     <lastmod>2015-05-03T18:23:06+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/04/12/slate-static-api-documentation-generator/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/04/12/slate-static-api-documentation-generator/</loc>
     <lastmod>2015-04-12T22:00:26+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</loc>
     <lastmod>2015-02-19T23:39:35+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/</loc>
     <lastmod>2015-02-08T08:02:51+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/</loc>
     <lastmod>2015-01-28T23:04:54+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/</loc>
     <lastmod>2015-01-24T04:45:10+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/01/17/hexo-useful-tips/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/01/17/hexo-useful-tips/</loc>
     <lastmod>2015-01-17T09:48:02+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/01/10/how-to-run-jetbrains-idea-on-mac-with-jdk-1.8/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/01/10/how-to-run-jetbrains-idea-on-mac-with-jdk-1.8/</loc>
     <lastmod>2015-01-10T11:51:10+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2015/01/05/top-n-must-have-plugins-for-jetbrains-idea/</loc>
+    <loc>https://konstantinpavlov.net/blog/2015/01/05/top-n-must-have-plugins-for-jetbrains-idea/</loc>
     <lastmod>2015-01-05T09:31:18+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/</loc>
     <lastmod>2014-12-14T11:22:29+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</loc>
     <lastmod>2014-12-07T21:22:41+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</loc>
     <lastmod>2014-12-01T14:34:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/11/07/useful-code-templates-for-jetbrains-idea/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/11/07/useful-code-templates-for-jetbrains-idea/</loc>
     <lastmod>2014-11-07T07:10:16+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/09/07/chef-for-managing-small-cloud-infrastructure/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/09/07/chef-for-managing-small-cloud-infrastructure/</loc>
     <lastmod>2014-09-07T11:37:12+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/08/30/recommended-scrum-persentations/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/08/30/recommended-scrum-persentations/</loc>
     <lastmod>2014-08-30T07:46:20+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</loc>
     <lastmod>2014-07-20T22:00:48+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/06/09/jolokia-http/json-bridge-for-jmx/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/06/09/jolokia-http/json-bridge-for-jmx/</loc>
     <lastmod>2014-06-09T13:17:37+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/06/09/ng-grid-library-for-building-dynamic-data-grid-for-angularjs/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/06/09/ng-grid-library-for-building-dynamic-data-grid-for-angularjs/</loc>
     <lastmod>2014-06-09T11:51:21+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/05/22/book-applied-oracle-security--developing-secure-database-and-middleware-environments-by-david-knox/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/05/22/book-applied-oracle-security--developing-secure-database-and-middleware-environments-by-david-knox/</loc>
     <lastmod>2014-05-22T22:57:48+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/05/22/book-expert-oracle-database-architecture-oracle-database-9i-10g-and-11g-programming-techniques-and-solutions-by-thomas-kyte/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/05/22/book-expert-oracle-database-architecture-oracle-database-9i-10g-and-11g-programming-techniques-and-solutions-by-thomas-kyte/</loc>
     <lastmod>2014-05-22T22:54:51+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/05/15/the-most-and-least-reliable-hard-drive-and-ssd-brands/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/05/15/the-most-and-least-reliable-hard-drive-and-ssd-brands/</loc>
     <lastmod>2014-05-15T12:30:47+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/05/11/blog-migration-to-octopress/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/05/11/blog-migration-to-octopress/</loc>
     <lastmod>2014-05-11T09:58:54+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/</loc>
     <lastmod>2014-05-10T15:48:12+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</loc>
     <lastmod>2014-05-09T22:40:12+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/03/31/vaadin-optimizing-sluggish-ui/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/03/31/vaadin-optimizing-sluggish-ui/</loc>
     <lastmod>2014-03-31T12:30:43+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/03/24/continuous-deployment-versioning-and-git/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/03/24/continuous-deployment-versioning-and-git/</loc>
     <lastmod>2014-03-24T12:30:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/03/22/establishing-customizable-tomcat-configuration/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/03/22/establishing-customizable-tomcat-configuration/</loc>
     <lastmod>2014-03-22T12:40:16+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/</loc>
     <lastmod>2014-03-21T12:30:27+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/03/01/video-scalable-memory-allocation-using-jemalloc-tech-talk-1/11/2011/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/03/01/video-scalable-memory-allocation-using-jemalloc-tech-talk-1/11/2011/</loc>
     <lastmod>2014-03-01T12:30:28+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/02/19/chronicle/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/02/19/chronicle/</loc>
     <lastmod>2014-02-19T12:30:42+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/01/18/jvm-profiling-mode/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/01/18/jvm-profiling-mode/</loc>
     <lastmod>2014-01-18T12:33:12+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/01/16/give-good-names-for-your-threads/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/01/16/give-good-names-for-your-threads/</loc>
     <lastmod>2014-01-16T12:16:26+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/01/12/merge-sort-with-transylvanian-saxon-german-folk-dance/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/01/12/merge-sort-with-transylvanian-saxon-german-folk-dance/</loc>
     <lastmod>2014-01-12T12:30:54+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2014/01/11/quick-sort-with-hungarian-folk-dance/</loc>
+    <loc>https://konstantinpavlov.net/blog/2014/01/11/quick-sort-with-hungarian-folk-dance/</loc>
     <lastmod>2014-01-11T12:30:43+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2013/12/21/javascript-solari-board/</loc>
+    <loc>https://konstantinpavlov.net/blog/2013/12/21/javascript-solari-board/</loc>
     <lastmod>2013-12-21T22:07:59+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2013/11/21/migrating-logback-configuration-from-xml-to-groovy/</loc>
+    <loc>https://konstantinpavlov.net/blog/2013/11/21/migrating-logback-configuration-from-xml-to-groovy/</loc>
     <lastmod>2013-11-21T15:44:14+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2013/04/23/netty-how-to-initiate-ssl-handshake-from-client/</loc>
+    <loc>https://konstantinpavlov.net/blog/2013/04/23/netty-how-to-initiate-ssl-handshake-from-client/</loc>
     <lastmod>2013-04-23T12:55:57+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2013/04/23/brewing-scala-on-mac-os-x/</loc>
+    <loc>https://konstantinpavlov.net/blog/2013/04/23/brewing-scala-on-mac-os-x/</loc>
     <lastmod>2013-04-23T13:58:54+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2013/04/22/using-expected-exceptions-in-unittests/</loc>
+    <loc>https://konstantinpavlov.net/blog/2013/04/22/using-expected-exceptions-in-unittests/</loc>
     <lastmod>2013-04-22T11:17:01+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2013/04/10/bootstrapping-intellij-idea-12.1-to-run-scala/</loc>
+    <loc>https://konstantinpavlov.net/blog/2013/04/10/bootstrapping-intellij-idea-12.1-to-run-scala/</loc>
     <lastmod>2013-04-10T13:48:43+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2013/04/10/installing-scala-2.10.1-on-mac-os-x-10.6.8-with-macports/</loc>
+    <loc>https://konstantinpavlov.net/blog/2013/04/10/installing-scala-2.10.1-on-mac-os-x-10.6.8-with-macports/</loc>
     <lastmod>2013-04-10T13:22:43+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2013/01/27/crearing-an-array-in-javascript/</loc>
+    <loc>https://konstantinpavlov.net/blog/2013/01/27/crearing-an-array-in-javascript/</loc>
     <lastmod>2013-01-27T17:26:00+02:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2013/01/19/semantic-versioning-specification-semver/</loc>
+    <loc>https://konstantinpavlov.net/blog/2013/01/19/semantic-versioning-specification-semver/</loc>
     <lastmod>2013-01-19T19:20:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2012/05/25/book-good-old-peopleware/</loc>
+    <loc>https://konstantinpavlov.net/blog/2012/05/25/book-good-old-peopleware/</loc>
     <lastmod>2012-05-25T09:40:00+04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2012/05/25/book-continuous-delivery...-by-jez-humble-and-david-farley/</loc>
+    <loc>https://konstantinpavlov.net/blog/2012/05/25/book-continuous-delivery...-by-jez-humble-and-david-farley/</loc>
     <lastmod>2012-05-25T09:29:00+04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2012/05/20/configuring-protobuf-to-java-compiler-in-maven/</loc>
+    <loc>https://konstantinpavlov.net/blog/2012/05/20/configuring-protobuf-to-java-compiler-in-maven/</loc>
     <lastmod>2012-05-20T21:51:00+03:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/</loc>
+    <loc>https://konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/</loc>
     <lastmod>2012-04-22T13:09:42+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/</loc>
+    <loc>https://konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/</loc>
     <lastmod>2011-10-05T12:37:37+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/</loc>
+    <loc>https://konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/</loc>
     <lastmod>2010-07-22T17:20:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/</loc>
+    <loc>https://konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/</loc>
     <lastmod>2009-01-09T17:23:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/</loc>
+    <loc>https://konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/</loc>
     <lastmod>2009-01-01T00:01:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/</loc>
+    <loc>https://konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/</loc>
     <lastmod>2007-05-23T14:13:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/about/</loc>
+    <loc>https://konstantinpavlov.net/about/</loc>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/legal/cookie-policy/</loc>
+    <loc>https://konstantinpavlov.net/legal/cookie-policy/</loc>
   </url>
   
   <url>
-    <loc>http://blog.konstantinpavlov.net/legal/privacy/</loc>
+    <loc>https://konstantinpavlov.net/legal/privacy/</loc>
   </url>
   
 </urlset>

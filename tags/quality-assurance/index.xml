@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/quality-assurance/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/quality-assurance/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/quality-assurance/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/quality-assurance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Selenium Tests with Maven and Selenide</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</link>
+      <link>https://konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</link>
       <pubDate>Thu, 12 May 2016 16:26:25 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://selenide.org&#34; target=&#34;_blank&#34;&gt;Selenide&lt;/a&gt; is nice wrapper around selenium web driver allowing to simplify writting UI tests with Selenium.&lt;/p&gt;
 
 &lt;p&gt;Some of the cook features are:&lt;/p&gt;
@@ -175,10 +175,10 @@
     
     <item>
       <title>Recalling Testing Principles</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/</link>
+      <link>https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/</link>
       <pubDate>Wed, 28 Jan 2015 23:04:54 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/</guid>
       <description>&lt;p&gt;If you are involved in software development then recalling a basic testing principles once again is not a waste of time. So here are the principles:&lt;/p&gt;
 
 &lt;ol&gt;

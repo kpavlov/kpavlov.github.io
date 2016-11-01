@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/web/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/web/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/web/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Spring&#43;Freemarker Tips</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</link>
+      <link>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</link>
       <pubDate>Sun, 21 Feb 2016 18:15:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</guid>
       <description>&lt;p&gt;I hope you will find following tips useful when developing &lt;a href=&#34;https://projects.spring.io/spring-boot&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; application with &lt;a href=&#34;http://freemarker.org&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
 &lt;/p&gt;
 
@@ -59,10 +59,10 @@ spring.freemarker.template-loader-path=file:${user.home}/projects/example/src/ma
     
     <item>
       <title>DevMode Javascript Exception Handler</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</link>
+      <link>https://konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</link>
       <pubDate>Thu, 11 Feb 2016 23:09:16 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</guid>
       <description>&lt;p&gt;StackOverflow-driven JS development:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;try {
@@ -76,10 +76,10 @@ spring.freemarker.template-loader-path=file:${user.home}/projects/example/src/ma
     
     <item>
       <title>Secure Java Coding Best Practices</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</link>
+      <link>https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</link>
       <pubDate>Sat, 01 Aug 2015 22:22:34 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/</guid>
       <description>&lt;p&gt;Making your web application flawless against security attacks is a challenge for every java developer.
 In this article I will briefly describe common practical development techniques that can help you to achieve it.&lt;/p&gt;
 
@@ -409,7 +409,7 @@ assert (c == a);
 &lt;p&gt;Secure data may leak to the logs if &lt;code&gt;toString()&lt;/code&gt; method is implemented incorrectly.
 E.g. using &lt;a href=&#34;https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/builder/ToStringBuilder.html#reflectionToString(java.lang.Object)&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ToStringBuilder.reflectionToString(...)&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;http://blog.konstantinpavlov.net/2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;https://konstantinpavlov.net/2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;heapdump-prevention-a5&#34;&gt;Heapdump Prevention (A5)&lt;/h2&gt;
 
@@ -484,10 +484,10 @@ You may consider adding following profile to your &lt;em&gt;pom.xml&lt;/em&gt;:&
     
     <item>
       <title>Java Application Development Tutorial</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</link>
+      <link>https://konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</link>
       <pubDate>Wed, 17 Jun 2015 09:55:16 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/</guid>
       <description>&lt;p&gt;I&amp;rsquo;ve been meaning to write a small tutorial for building web applications. Now it&amp;rsquo;s time!
 Let&amp;rsquo;s define the steps and choose some solutions for developing back-end java web application.&lt;/p&gt;
 
@@ -652,17 +652,17 @@ public MyServiceImpl implements MyService {
     
     <item>
       <title>Self-Hosted Web Analytics Solution for AngularJS</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</link>
+      <link>https://konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</link>
       <pubDate>Wed, 03 Jun 2015 19:05:12 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</guid>
       <description>&lt;p&gt;There are situations when you need to analyze user&amp;rsquo;s experience but can&amp;rsquo;t use a third-party web analytics solutions like Google Analytics or Yandex Metrika.
 For example, if your production environment is &lt;a href=&#34;https://www.pcisecuritystandards.org/security_standards/&#34; title=&#34;PCI SSC Data Security Standards&#34; target=&#34;_blank&#34;&gt;PCI DSS&lt;/a&gt; compliant.
 In this case you have to deploy self-hosted analytics engine and inside your environment and configure user actions tracking in your application.&lt;/p&gt;
 
 &lt;p&gt;One of the possible solutions is the &lt;a href=&#34;http://piwik.org&#34; target=&#34;_blank&#34;&gt;piwik&lt;/a&gt; as analytics engine + &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt; or &lt;a href=&#34;https://github.com/mike-spainhower/angular-piwik&#34; target=&#34;_blank&#34;&gt;angular-piwik&lt;/a&gt; for tracking events inside AngularJS application.
 In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piwik.org/log-analytics/&#34; target=&#34;_blank&#34;&gt;log analytics&lt;/a&gt;.
-&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
+&lt;img src=&#34;https://konstantinpavlov.net/assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
 &lt;a href=&#34;http://demo.piwik.org/&#34; target=&#34;_blank&#34;&gt;Piwik Demo&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Another option is to use &lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;Open Web Analytics (OWA)&lt;/a&gt; and write a plugin for &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt;.
@@ -672,10 +672,10 @@ In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piw
     
     <item>
       <title>One More Grid for AngularJS</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</link>
+      <link>https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</link>
       <pubDate>Sun, 10 May 2015 11:52:33 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</guid>
       <description>&lt;p&gt;After playing with &lt;a href=&#34;http://ui-grid.info/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ui.grid&lt;/code&gt;&lt;/a&gt; I found &lt;a href=&#34;http://www.angulargrid.com&#34; target=&#34;_blank&#34;&gt;one more&lt;/a&gt; library to impmenent grids in AngularJS - &lt;a href=&#34;http://www.angulargrid.com&#34; target=&#34;_blank&#34;&gt;angularGrid&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;It&amp;rsquo;s quite easy to integrate and faster than &lt;a href=&#34;http://ui-grid.info/&#34; target=&#34;_blank&#34;&gt;ui.grid&lt;/a&gt;. You may find other reasons of using this grid on the &lt;a href=&#34;http://www.angulargrid.com/why-the-world-needed-another-angularjs-grid/&#34; target=&#34;_blank&#34;&gt;author&amp;rsquo;s post&lt;/a&gt;.&lt;/p&gt;
@@ -684,10 +684,10 @@ In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piw
     
     <item>
       <title>Web Security Resources</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/05/03/web-security-resources/</link>
+      <link>https://konstantinpavlov.net/blog/2015/05/03/web-security-resources/</link>
       <pubDate>Sun, 03 May 2015 18:23:06 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/05/03/web-security-resources/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/05/03/web-security-resources/</guid>
       <description>&lt;p&gt;Here are some useful links to security resources:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -707,10 +707,10 @@ In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piw
     
     <item>
       <title>Booting Spring Webapp</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</link>
+      <link>https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</link>
       <pubDate>Thu, 19 Feb 2015 23:39:35 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</guid>
       <description>&lt;p&gt;Spring Boot is an excellent tool to bootstrap java application.
 Most of the references mention how to create a standalone java application, optionally with embedded web server (tomcat or jetty). But &lt;a href=&#34;http://projects.spring.io/spring-boot/&#34; title=&#34;Spring Boot Project&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; supports also creating web applications intended to run within servlet container.
 
@@ -837,10 +837,10 @@ public class Application extends SpringBootServletInitializer {
     
     <item>
       <title>WebJars: Easy Packaging Client Libraries</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</link>
+      <link>https://konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</link>
       <pubDate>Sun, 20 Jul 2014 22:00:48 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</guid>
       <description>&lt;p&gt;When developing java web application it is often annoying to manage third-party javascript libraries. Especially, when it is necessary to upgrade some of them.&lt;/p&gt;
 
 &lt;p&gt;The project &lt;a href=&#34;http://www.webjars.org/&#34; target=&#34;_blank&#34;&gt;&amp;laquo;WebJars&amp;raquo;&lt;/a&gt; makes a life easier for such &lt;del&gt;lazy&lt;/del&gt;efficient developers, like me :-)&lt;/p&gt;
@@ -852,10 +852,10 @@ It is described in the &lt;a href=&#34;http://www.webjars.org/documentation&#34;
     
     <item>
       <title>Vaadin: Optimizing Sluggish UI</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/03/31/vaadin-optimizing-sluggish-ui/</link>
+      <link>https://konstantinpavlov.net/blog/2014/03/31/vaadin-optimizing-sluggish-ui/</link>
       <pubDate>Mon, 31 Mar 2014 12:30:43 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/03/31/vaadin-optimizing-sluggish-ui/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/03/31/vaadin-optimizing-sluggish-ui/</guid>
       <description>&lt;p&gt;&lt;em&gt;Some receipts how to optimize Vaadin application.&lt;/em&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;

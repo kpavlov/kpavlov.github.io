@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/design-patterns/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/design-patterns/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Builder Pattern Usage: Rule of Thumb</title>
-      <link>http://blog.konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/</link>
+      <link>https://konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/</link>
       <pubDate>Wed, 05 Oct 2011 12:37:37 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/</guid>
+      <guid>https://konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Builder_pattern&#34; title=&#34;Builder Design Pattern&#34; target=&#34;_blank&#34;&gt;Builder Pattern&lt;/a&gt; is a creational design pattern. But, like any other pattern, it should be used judiciously.
 &lt;/p&gt;
 

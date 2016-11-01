@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/continuous-deployment/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/continuous-deployment/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/continuous-deployment/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/continuous-deployment/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Continuous Deployment, Versioning and Git</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/03/24/continuous-deployment-versioning-and-git/</link>
+      <link>https://konstantinpavlov.net/blog/2014/03/24/continuous-deployment-versioning-and-git/</link>
       <pubDate>Mon, 24 Mar 2014 12:30:35 +0200</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/03/24/continuous-deployment-versioning-and-git/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/03/24/continuous-deployment-versioning-and-git/</guid>
       <description>&lt;h2 id=&#34;releasing-with-git-and-maven&#34;&gt;Releasing with Git and Maven&lt;/h2&gt;
 
 &lt;p&gt;A post about versioning in maven projects using git: &lt;a href=&#34;https://www.jayway.com/2012/04/07/continuous-deployment-versioning-and-git/&#34; target=&#34;_blank&#34;&gt;https://www.jayway.com/2012/04/07/continuous-deployment-versioning-and-git/&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;gitflow&#34;&gt;GitFlow&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2014/03/git-model@2x.png&#34; alt=&#34;GitFlow Workflow&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://konstantinpavlov.net/assets/2014/03/git-model@2x.png&#34; alt=&#34;GitFlow Workflow&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://nvie.com/posts/a-successful-git-branching-model/&#34; target=&#34;_blank&#34;&gt;A successful Git branching model&lt;/a&gt; by Vincent Driessen at nvie.com
 

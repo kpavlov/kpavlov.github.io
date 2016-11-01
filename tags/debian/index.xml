@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/debian/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/debian/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/debian/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/debian/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Installing Ansible 2.1.1 on Debian 8 (Jessie)</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</link>
+      <link>https://konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</link>
       <pubDate>Fri, 09 Sep 2016 10:12:48 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/</guid>
       <description>&lt;p&gt;Recently I faced some dependency issues trying to install &lt;a href=&#34;https://ansible.com&#34; target=&#34;_blank&#34;&gt;Ansible 2&lt;/a&gt; on Debian 8 (Jessie).
 Googling a bit I found a solution which was a basically to upgrade or install missing dependencies.
 Following script automates the installation procedure:

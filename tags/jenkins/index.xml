@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/jenkins/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/jenkins/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>CI Setup Tips</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</link>
+      <link>https://konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</link>
       <pubDate>Sun, 17 Jul 2016 17:00:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</guid>
       <description>
 
 &lt;p&gt;You may find following tips useful when setting up continuous integration infrastructure.&lt;/p&gt;

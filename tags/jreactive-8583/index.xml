@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/jreactive-8583/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/jreactive-8583/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/jreactive-8583/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/jreactive-8583/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Implementing Automatic Reconnection for Netty Client</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</link>
+      <link>https://konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</link>
       <pubDate>Wed, 08 Jul 2015 07:48:05 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/</guid>
       <description>&lt;p&gt;One of the first requirement of &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583&#34; target=&#34;_blank&#34;&gt;Netty ISO8588 client connector&lt;/a&gt; was the support for automatic reconnect.&lt;/p&gt;
 
 &lt;p&gt;One of the first receipts I came across was &lt;a href=&#34;http://tterm.blogspot.com/2014/03/netty-tcp-client-with-reconnect-handling.html&#34; target=&#34;_blank&#34;&gt;Thomas Termin&amp;rsquo;s one&lt;/a&gt;. He suggests adding a ChannelHandler which will schedule the calling of client&amp;rsquo;s &lt;code&gt;connect()&lt;/code&gt; method once a Channel becomes inactive. Plus adding ChannelFutureListener which will re-create a bootstrap and re-connect if initial connection was failed.&lt;/p&gt;

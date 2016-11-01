@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/json/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/json/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/json/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/json/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>JSON Validation with JSON Schema</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/</link>
+      <link>https://konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/</link>
       <pubDate>Sat, 10 May 2014 15:48:12 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/</guid>
       <description>&lt;p&gt;JSON has became a de-facto standard for webservices, replacing XML web services.
 It has native support in web browser clients.&lt;/p&gt;
 
@@ -59,10 +59,10 @@ final JsonNode reportAsJson = ((AsJson) report).asJson();
     
     <item>
       <title>Java-protobuf-format: Easy Protobuf-to-JSON Serialization in Java</title>
-      <link>http://blog.konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/</link>
+      <link>https://konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/</link>
       <pubDate>Sun, 22 Apr 2012 13:09:42 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/</guid>
+      <guid>https://konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/</guid>
       <description>&lt;p&gt;If you need Google Protobuf-to-JSON serialization (and vice versa) there is quick solution.
 &lt;a href=&#34;http://code.google.com/p/protobuf-java-format/&#34; target=&#34;_blank&#34;&gt;Protobuf-java-format&lt;/a&gt; library provides serialization of protobuf-generated java classes to number of formats: JSON, XML, HTML, Java property file format, Smile, CoachDB.&lt;/p&gt;
 

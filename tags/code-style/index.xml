@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/code-style/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/code-style/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/code-style/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/code-style/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How to Run JetBrains Idea on Mac with JDK 1.8</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/01/10/how-to-run-jetbrains-idea-on-mac-with-jdk-1.8/</link>
+      <link>https://konstantinpavlov.net/blog/2015/01/10/how-to-run-jetbrains-idea-on-mac-with-jdk-1.8/</link>
       <pubDate>Sat, 10 Jan 2015 11:51:10 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/01/10/how-to-run-jetbrains-idea-on-mac-with-jdk-1.8/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/01/10/how-to-run-jetbrains-idea-on-mac-with-jdk-1.8/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://www.jetbrains.com/idea/&#34; target=&#34;_blank&#34;&gt;JetBrains Idea&lt;/a&gt; is the perfect IDE for Java. It requires JDK 1.6+ to run.
 When you want to run it on Mac without Java 1.6 installed, OS will ask you to install it.
 But if you have already newer Java version installed, you may run Idea under that newer JDK.&lt;/p&gt;
@@ -43,10 +43,10 @@ But if you have already newer Java version installed, you may run Idea under tha
     
     <item>
       <title>Top N Must-Have Plugins for JetBrains Idea</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/01/05/top-n-must-have-plugins-for-jetbrains-idea/</link>
+      <link>https://konstantinpavlov.net/blog/2015/01/05/top-n-must-have-plugins-for-jetbrains-idea/</link>
       <pubDate>Mon, 05 Jan 2015 09:31:18 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/01/05/top-n-must-have-plugins-for-jetbrains-idea/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/01/05/top-n-must-have-plugins-for-jetbrains-idea/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://www.jetbrains.com/idea/&#34; target=&#34;_blank&#34;&gt;JetBrains Idea&lt;/a&gt; is my favorite IDE and I love it! It has the most necessary features for java developer out-of-the-box. Even in Community Edition you&amp;rsquo;ll find a lot of them! Difference between Community and Ultimate editions is with a set of plugins from JetBrains available. Native plugins are well tested and work like a charm, in contrast with Eclipse, where you have to do install/configure some extra plugins before you can start coding. I mean maven integrations (.m2eclipse).&lt;/p&gt;
 
 &lt;p&gt;For commercial plugins there are some free alternatives e.g. &lt;a href=&#34;http://confluence.jetbrains.com/display/CONTEST/Database+Navigator&#34; target=&#34;_blank&#34;&gt;Database Navigator&lt;/a&gt; for database support. There are some more free plugins useful both for Community and Ultimate editions.&lt;/p&gt;
@@ -66,10 +66,10 @@ But if you have already newer Java version installed, you may run Idea under tha
     
     <item>
       <title>Useful Code Templates for Jetbrains Idea</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/11/07/useful-code-templates-for-jetbrains-idea/</link>
+      <link>https://konstantinpavlov.net/blog/2014/11/07/useful-code-templates-for-jetbrains-idea/</link>
       <pubDate>Fri, 07 Nov 2014 07:10:16 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/11/07/useful-code-templates-for-jetbrains-idea/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/11/07/useful-code-templates-for-jetbrains-idea/</guid>
       <description>&lt;p&gt;Jetbrains Idea is a perfect IDE (sorry, Eclipse fans).
 But, like every tool, sometimes it needs some customization to fit your needs.
 Today I want to show how to adjust it&amp;rsquo;s code-generation templates.&lt;/p&gt;
@@ -77,7 +77,7 @@ Today I want to show how to adjust it&amp;rsquo;s code-generation templates.&lt;
 &lt;p&gt;When you generates a new class or method using Idea, it creates one using predefined templates.
 You may modify that template in &lt;strong&gt;&amp;laquo;Settings -&amp;gt; File and Code templates&amp;raquo;&lt;/strong&gt; section.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2014/11/code-templates-for-idea-1.png&#34; alt=&#34;Modifying file&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;https://konstantinpavlov.net/assets/2014/11/code-templates-for-idea-1.png&#34; alt=&#34;Modifying file&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h2 id=&#34;idea-configuration&#34;&gt;Idea Configuration&lt;/h2&gt;
@@ -142,10 +142,10 @@ Just press &lt;code&gt;Cmd+J&lt;/code&gt; when cursor is in class declaration ar
     
     <item>
       <title>Give Good Names for Your Threads</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/01/16/give-good-names-for-your-threads/</link>
+      <link>https://konstantinpavlov.net/blog/2014/01/16/give-good-names-for-your-threads/</link>
       <pubDate>Thu, 16 Jan 2014 12:16:26 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/01/16/give-good-names-for-your-threads/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/01/16/give-good-names-for-your-threads/</guid>
       <description>&lt;p&gt;When configuring executors in multithreaded application, do not forget to assign names to your threads. It simplifies later profiling a lot, when you see a meaningful thread names in your profiler.&lt;/p&gt;
 
 &lt;p&gt;For example, you may use &lt;a href=&#34;https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/concurrent/CustomizableThreadFactory.html&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;CustomizableThreadFactory&lt;/code&gt;&lt;/a&gt; from SpringFramework for that.&lt;/p&gt;

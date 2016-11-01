@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/agile/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/agile/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/agile/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/agile/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Recommended Scrum Persentations</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/08/30/recommended-scrum-persentations/</link>
+      <link>https://konstantinpavlov.net/blog/2014/08/30/recommended-scrum-persentations/</link>
       <pubDate>Sat, 30 Aug 2014 07:46:20 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/08/30/recommended-scrum-persentations/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/08/30/recommended-scrum-persentations/</guid>
       <description>&lt;p&gt;For those, who not yet familiar with Scrum, I highly recommend to watch the &lt;a href=&#34;http://scrumtrainingseries.com/&#34; target=&#34;_blank&#34;&gt;&amp;laquo;Scrum Training Series&amp;raquo; presentations&lt;/a&gt; and the &lt;a href=&#34;http://agilemethodology.org/&#34; target=&#34;_blank&#34;&gt;AgileMethodology.org&lt;/a&gt; website.&lt;/p&gt;
 
 &lt;p&gt;A &lt;a href=&#34;http://scrumreferencecard.com/scrum-reference-card/&#34; target=&#34;_blank&#34;&gt;Scrum Reference Card&lt;/a&gt; is also useful to understand what the Scrum is, it&amp;rsquo;s processes, roles and practices.&lt;/p&gt;

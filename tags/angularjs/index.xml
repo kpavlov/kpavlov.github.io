@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/angularjs/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/angularjs/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Self-Hosted Web Analytics Solution for AngularJS</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</link>
+      <link>https://konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</link>
       <pubDate>Wed, 03 Jun 2015 19:05:12 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</guid>
       <description>&lt;p&gt;There are situations when you need to analyze user&amp;rsquo;s experience but can&amp;rsquo;t use a third-party web analytics solutions like Google Analytics or Yandex Metrika.
 For example, if your production environment is &lt;a href=&#34;https://www.pcisecuritystandards.org/security_standards/&#34; title=&#34;PCI SSC Data Security Standards&#34; target=&#34;_blank&#34;&gt;PCI DSS&lt;/a&gt; compliant.
 In this case you have to deploy self-hosted analytics engine and inside your environment and configure user actions tracking in your application.&lt;/p&gt;
 
 &lt;p&gt;One of the possible solutions is the &lt;a href=&#34;http://piwik.org&#34; target=&#34;_blank&#34;&gt;piwik&lt;/a&gt; as analytics engine + &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt; or &lt;a href=&#34;https://github.com/mike-spainhower/angular-piwik&#34; target=&#34;_blank&#34;&gt;angular-piwik&lt;/a&gt; for tracking events inside AngularJS application.
 In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piwik.org/log-analytics/&#34; target=&#34;_blank&#34;&gt;log analytics&lt;/a&gt;.
-&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
+&lt;img src=&#34;https://konstantinpavlov.net/assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
 &lt;a href=&#34;http://demo.piwik.org/&#34; target=&#34;_blank&#34;&gt;Piwik Demo&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Another option is to use &lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;Open Web Analytics (OWA)&lt;/a&gt; and write a plugin for &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt;.
@@ -30,10 +30,10 @@ In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piw
     
     <item>
       <title>Loading Indicators for AngularJS</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</link>
+      <link>https://konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</link>
       <pubDate>Tue, 02 Jun 2015 18:44:43 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</guid>
       <description>&lt;p&gt;Modern web application should be user friendly and notify the User when time consuming operation is on the way, e.g. uploading file or downloading data.
 There are a some solutions for AngularJS which are fairy easy to integrate.&lt;/p&gt;
 
@@ -51,10 +51,10 @@ But it may require some customization.
     
     <item>
       <title>Tags Input Control for AngularJS</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</link>
+      <link>https://konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</link>
       <pubDate>Sat, 30 May 2015 09:53:19 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</guid>
       <description>&lt;p&gt;Stay &lt;abbr title=&#34;Don&#39;t Repeat Yourself&#34;&gt;DRY&lt;/abbr&gt;! Don&amp;rsquo;t waste your time implementing tags input control for AngularJS yourself! There is an excellent AngularJS module for that called &lt;a href=&#34;https://github.com/mbenford/ngTagsInput&#34; target=&#34;_blank&#34;&gt;&amp;laquo;ngTagsInput&amp;raquo;&lt;/a&gt;. It&amp;rsquo;s also supports autocomptetion, validations,custom styles and templates. See the &lt;a href=&#34;http://mbenford.github.io/ngTagsInput/demos&#34; target=&#34;_blank&#34;&gt;demos&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;It took me just 10 minutes to add that type of control to my application.&lt;/p&gt;
@@ -110,10 +110,10 @@ The only thing to consider is handling of the &lt;code&gt;tags&lt;/code&gt; mode
     
     <item>
       <title>One More Grid for AngularJS</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</link>
+      <link>https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</link>
       <pubDate>Sun, 10 May 2015 11:52:33 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</guid>
       <description>&lt;p&gt;After playing with &lt;a href=&#34;http://ui-grid.info/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ui.grid&lt;/code&gt;&lt;/a&gt; I found &lt;a href=&#34;http://www.angulargrid.com&#34; target=&#34;_blank&#34;&gt;one more&lt;/a&gt; library to impmenent grids in AngularJS - &lt;a href=&#34;http://www.angulargrid.com&#34; target=&#34;_blank&#34;&gt;angularGrid&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;It&amp;rsquo;s quite easy to integrate and faster than &lt;a href=&#34;http://ui-grid.info/&#34; target=&#34;_blank&#34;&gt;ui.grid&lt;/a&gt;. You may find other reasons of using this grid on the &lt;a href=&#34;http://www.angulargrid.com/why-the-world-needed-another-angularjs-grid/&#34; target=&#34;_blank&#34;&gt;author&amp;rsquo;s post&lt;/a&gt;.&lt;/p&gt;
@@ -122,10 +122,10 @@ The only thing to consider is handling of the &lt;code&gt;tags&lt;/code&gt; mode
     
     <item>
       <title>ng-grid: library for building dynamic data-grid for AngularJS</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/06/09/ng-grid-library-for-building-dynamic-data-grid-for-angularjs/</link>
+      <link>https://konstantinpavlov.net/blog/2014/06/09/ng-grid-library-for-building-dynamic-data-grid-for-angularjs/</link>
       <pubDate>Mon, 09 Jun 2014 11:51:21 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/06/09/ng-grid-library-for-building-dynamic-data-grid-for-angularjs/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/06/09/ng-grid-library-for-building-dynamic-data-grid-for-angularjs/</guid>
       <description>&lt;p&gt;I was a curious if there is a solution for implementing dynamic grids for AngularJS.&lt;/p&gt;
 
 &lt;p&gt;In particular, it should provide following basic features like server-side filtering, sorting and paging.

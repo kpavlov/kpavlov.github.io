@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/docker/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/docker/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Deploying Private Docker Registry Behind Cloudflaire</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</link>
+      <link>https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</link>
       <pubDate>Wed, 14 Sep 2016 10:15:51 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/</guid>
       <description>&lt;p&gt;This is a short instruction how to deploy private docker registry on private cloud virtual servers behind &lt;a href=&#34;https://www.cloudflare.com&#34; target=&#34;_blank&#34;&gt;Cloudflaire&lt;/a&gt; proxy.
 
 Suppose, we have two virtual servers on private cloud:&lt;/p&gt;

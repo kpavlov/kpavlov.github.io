@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/spring/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/spring/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Spring&#43;Freemarker Tips</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</link>
+      <link>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</link>
       <pubDate>Sun, 21 Feb 2016 18:15:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</guid>
       <description>&lt;p&gt;I hope you will find following tips useful when developing &lt;a href=&#34;https://projects.spring.io/spring-boot&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; application with &lt;a href=&#34;http://freemarker.org&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
 &lt;/p&gt;
 
@@ -59,10 +59,10 @@ spring.freemarker.template-loader-path=file:${user.home}/projects/example/src/ma
     
     <item>
       <title>Booting Spring Webapp</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</link>
+      <link>https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</link>
       <pubDate>Thu, 19 Feb 2015 23:39:35 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</guid>
       <description>&lt;p&gt;Spring Boot is an excellent tool to bootstrap java application.
 Most of the references mention how to create a standalone java application, optionally with embedded web server (tomcat or jetty). But &lt;a href=&#34;http://projects.spring.io/spring-boot/&#34; title=&#34;Spring Boot Project&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; supports also creating web applications intended to run within servlet container.
 
@@ -189,10 +189,10 @@ public class Application extends SpringBootServletInitializer {
     
     <item>
       <title>Conditional Java Configurations in Spring Framework</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/</link>
+      <link>https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/</link>
       <pubDate>Sun, 14 Dec 2014 11:22:29 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/</guid>
       <description>&lt;p&gt;Spring Framework offers very flexible means for binding application components.
 Externalizable properties, composite configuration, nested application contexts and profiles.&lt;/p&gt;
 
@@ -238,10 +238,10 @@ class MyConfig {
     
     <item>
       <title>JAX-WS with Custom SSLSocketFactory</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</link>
+      <link>https://konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</link>
       <pubDate>Mon, 01 Dec 2014 14:34:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s very easy to configure custom &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/javax/net/ssl/SSLSocketFactory.html&#34; target=&#34;_blank&#34;&gt;SSLSocketFactory&lt;/a&gt; for JAX-WS web-service: just specify custom property referring to &lt;code&gt;SSLSocketFactory&lt;/code&gt; bean.
 But there is a nuance&amp;hellip;&lt;/p&gt;
 
@@ -281,10 +281,10 @@ But there is a nuance&amp;hellip;&lt;/p&gt;
     
     <item>
       <title>Webapp Inter-Communication in Tomcat</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</link>
+      <link>https://konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</link>
       <pubDate>Fri, 09 May 2014 22:40:12 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</guid>
       <description>&lt;p&gt;&lt;em&gt;Sometimes you need to access services deployed in one web application from another web application within same application server. For Tomcat there is not so many options to do it. In this article we&amp;rsquo;ll discuss you how to use JMX for communication between web applications.&lt;/em&gt;
 &lt;/p&gt;
 
@@ -468,10 +468,10 @@ public class EchoServlet extends HttpServlet {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;When those two webapps are deployed to tomcat, a new JMX bean is created:
-&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2014/05/tomcat-mbean-service.png&#34; alt=&#34;EchoService exposed as Managed Bean&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://konstantinpavlov.net/assets/2014/05/tomcat-mbean-service.png&#34; alt=&#34;EchoService exposed as Managed Bean&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;and service is accessible from the servlet:
-&lt;img src=&#34;http://blog.konstantinpavlov.net/assets/2014/05/tomcat-service-invoked.png&#34; alt=&#34;EchoServlet showing results of EchoService invocation&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://konstantinpavlov.net/assets/2014/05/tomcat-service-invoked.png&#34; alt=&#34;EchoServlet showing results of EchoService invocation&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;module-dependencies&#34;&gt;Module dependencies&lt;/h3&gt;
 
@@ -490,10 +490,10 @@ you&amp;rsquo;ll need to put that class to &lt;em&gt;api.jar&lt;/em&gt; and plac
     
     <item>
       <title>Establishing Customizable Tomcat Configuration</title>
-      <link>http://blog.konstantinpavlov.net/blog/2014/03/22/establishing-customizable-tomcat-configuration/</link>
+      <link>https://konstantinpavlov.net/blog/2014/03/22/establishing-customizable-tomcat-configuration/</link>
       <pubDate>Sat, 22 Mar 2014 12:40:16 +0300</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2014/03/22/establishing-customizable-tomcat-configuration/</guid>
+      <guid>https://konstantinpavlov.net/blog/2014/03/22/establishing-customizable-tomcat-configuration/</guid>
       <description>&lt;p&gt;Deploying to &lt;a href=&#34;http://tomcat.apache.org&#34; target=&#34;_blank&#34;&gt;Apache Tomcat&lt;/a&gt; often requires making changes to default configuration.
 These changes are often environment specific.
 Also, when upgrading a Tomcat to new version you need to be sure that all your custom changes have not been lost and were applied to new configuration.
@@ -619,10 +619,10 @@ If you are using &lt;a href=&#34;http://slf4j.org&#34; target=&#34;_blank&#34;&g
     
     <item>
       <title>How to Use Spring from EJB3</title>
-      <link>http://blog.konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/</link>
+      <link>https://konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/</link>
       <pubDate>Fri, 09 Jan 2009 17:23:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/</guid>
+      <guid>https://konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/</guid>
       <description>&lt;p&gt;This is a short instruction how to inject a spring-managed bean into EJB3 component:&lt;/p&gt;
 
 &lt;ol&gt;
@@ -664,10 +664,10 @@ public class MyFacadeBean implements MyFacade {
     
     <item>
       <title>How To Export Spring Managed Bean To JNDI</title>
-      <link>http://blog.konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/</link>
+      <link>https://konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/</link>
       <pubDate>Thu, 01 Jan 2009 00:01:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/</guid>
+      <guid>https://konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/</guid>
       <description>&lt;p&gt;Sometimes it is necessary to export a spring managed bean to JNDI context. Here I want to show how do it.&lt;/p&gt;
 
 &lt;p&gt;In spring, there is a bean that provides a similar functionality for exporting to MBean server: MBeanExporter. Unfortunately, there is no standard JNDI bean exporter implementation in Spring Framework (current version is 2.5.6) - (Why?).

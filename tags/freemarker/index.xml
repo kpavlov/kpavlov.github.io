@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/freemarker/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/freemarker/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/freemarker/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/freemarker/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Spring&#43;Freemarker Tips</title>
-      <link>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</link>
+      <link>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</link>
       <pubDate>Sun, 21 Feb 2016 18:15:00 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</guid>
       <description>&lt;p&gt;I hope you will find following tips useful when developing &lt;a href=&#34;https://projects.spring.io/spring-boot&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; application with &lt;a href=&#34;http://freemarker.org&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
 &lt;/p&gt;
 

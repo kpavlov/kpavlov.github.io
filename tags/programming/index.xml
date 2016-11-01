@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>The Culture of Code</title>
-    <link>http://blog.konstantinpavlov.net/tags/programming/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/programming/index.xml</link>
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://blog.konstantinpavlov.net/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://konstantinpavlov.net/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>API Authentication: Generating HMAC digest in PHP and Java</title>
-      <link>http://blog.konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</link>
+      <link>https://konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</link>
       <pubDate>Wed, 20 May 2015 22:24:47 +0000</pubDate>
       
-      <guid>http://blog.konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</guid>
+      <guid>https://konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/</guid>
       <description>&lt;p&gt;User authentication is an important part of the web service API design.
 One of the common approach is the Hash-based Message Authentication Code &amp;ndash; &lt;abbr title=&#34;Hash-based Message Authentication Code&#34;&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Hash-based_message_authentication_code&#34; title=&#34;Hash-based message authentication code&#34; target=&#34;_blank&#34;&gt;HMAC&lt;/a&gt;&lt;/abbr&gt;.
 Used together with transport level security it provides reliable mechanizm of user authentication and message integrity validation.
