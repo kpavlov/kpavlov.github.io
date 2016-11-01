@@ -1,0 +1,68 @@
+baseurl = "http://blog.konstantinpavlov.net/"
+languageCode = "en-us"
+title = "The Culture of Code"
+
+canonifyurls = true
+paginate = 10
+
+# Build robots.txt file
+enableRobotsTXT = true
+
+theme = "hugo-theme-ghostiumx"
+
+enableEmoji = false
+#pygmentsCodeFencesGuessSyntax = true
+
+
+[permalinks]
+post = "/blog/:year/:month/:day/:slug/"
+
+[author]
+    name = "Konstantin Pavlov"
+    avatar = "/img/avatar-128.png"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+
+[blackfriday]
+angledQuotes = true
+hrefTargetBlank = true
+#sourceRelativeLinksEval = true
+extensions = ["autoHeaderIds"]
+
+[params]
+# site description, will show under navigation
+description = "Thoughts on Software Development"
+
+location="Limassol, Cyprus"
+
+# site cover image url
+cover = "/img/cover.jpg"
+
+# RSS / Email (optional) subscription links (change if using something like Feedburner)
+subscribe_rss = "/index.xml"
+
+# Disqus Comments
+disqus_short_name = "konstantinpavlov"
+
+# google analytics
+googleAnalytics = "UA-2530248-1"
+
+# Enable Pjax for asynchronous (AJAX) content loading
+enable_pjax = true
+
+# social links
+facebook_user = ""
+googleplus_user = ""
+twitter_user = "k_pavlov"
+github_user = "kpavlov"
+#instagram_user = ""
+linkedin_user = "kpavlov"
+#weibo_user = ""
+
+[[params.menu]]
+    name = "About"
+    url  = "/about/"
+    fa_icon = "user-circle-o"
+
