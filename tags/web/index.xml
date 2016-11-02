@@ -422,8 +422,11 @@ E.g. using &lt;a href=&#34;https://commons.apache.org/proper/commons-lang/javado
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Make sure that java attach mechanism is disabled: &lt;code&gt;-XX:+DisableAttachMechanism&lt;/code&gt;. Enables the option that disables the mechanism that lets tools attach to the JVM. By default, this option is disabled, meaning that the attach mechanism is enabled and you can use tools such as &lt;code&gt;jcmd&lt;/code&gt;, &lt;code&gt;jstack&lt;/code&gt;, &lt;code&gt;jmap&lt;/code&gt;, and &lt;code&gt;jinfo&lt;/code&gt;. See &lt;a href=&#34;http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html&#34; target=&#34;_blank&#34;&gt;java command line options&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Disable heapdump on &lt;code&gt;OutOfMemoryError&lt;/code&gt;: &lt;code&gt;-XX:+HeapDumpOnOutOfMemory&lt;/code&gt;. Set heapdump file location to &lt;code&gt;/dev/null&lt;/code&gt; to avoid saving heapdump: &lt;code&gt;XX:HeapDumpPath=/dev/null&lt;/code&gt;.
-&amp;gt; Making a heapdump on OOM is not a good idea on production environment. If heap is big enough (a Gigabites) it could take long time to save heap contents to disk. So I suggest using it for load testing only&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Disable heapdump on &lt;code&gt;OutOfMemoryError&lt;/code&gt;: &lt;code&gt;-XX:-HeapDumpOnOutOfMemoryError&lt;/code&gt;. Set heapdump file location to &lt;code&gt;/dev/null&lt;/code&gt; to avoid saving heapdump: &lt;code&gt;XX:HeapDumpPath=/dev/null&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Making a heapdump on OOM is not a good idea on production environment. If heap is big enough (a Gigabites) it could take long time to save heap contents to disk. So I suggest using it for load testing only&lt;/p&gt;
+&lt;/blockquote&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;check-your-dependencies-for-known-vulnerabilities-a9-a9&#34;&gt;Check Your dependencies for known Vulnerabilities (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A9-Using_Components_with_Known_Vulnerabilities&#34; target=&#34;_blank&#34;&gt;A9&lt;/a&gt;)&lt;/h2&gt;
