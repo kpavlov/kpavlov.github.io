@@ -1,3 +1,7 @@
-_site/
+.idea/
+public/
 .sass-cache/
 .jekyll-metadata
+*.iml
+*.ipr
+*.iws

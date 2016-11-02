@@ -348,7 +348,8 @@ There are several ways to mitigate that risk by disabling some JVM heapdump feat
 
 1. Make sure that java attach mechanism is disabled: `-XX:+DisableAttachMechanism`. Enables the option that disables the mechanism that lets tools attach to the JVM. By default, this option is disabled, meaning that the attach mechanism is enabled and you can use tools such as `jcmd`, `jstack`, `jmap`, and `jinfo`. See [java command line options](http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html). 
 
-2. Disable heapdump on `OutOfMemoryError`: `-XX:+HeapDumpOnOutOfMemory`. Set heapdump file location to `/dev/null` to avoid saving heapdump: `XX:HeapDumpPath=/dev/null`.
+2. Disable heapdump on `OutOfMemoryError`: `-XX:-HeapDumpOnOutOfMemoryError`. Set heapdump file location to `/dev/null` to avoid saving heapdump: `XX:HeapDumpPath=/dev/null`.
+    
     > Making a heapdump on OOM is not a good idea on production environment. If heap is big enough (a Gigabites) it could take long time to save heap contents to disk. So I suggest using it for load testing only
 
 ## Check Your dependencies for known Vulnerabilities ([A9][a9])
