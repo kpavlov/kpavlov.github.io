@@ -2,7 +2,9 @@ baseurl = "https://konstantinpavlov.net/"
 languageCode = "en-us"
 title = "The Culture of Code"
 
-canonifyurls = true
+# enable this to make all relative URLs relative to content root. Note that this does not affect absolute URLs.
+relativeURLs=true
+canonifyURLs=true
 paginate = 10
 
 # Build robots.txt file
