@@ -631,7 +631,7 @@ assert (c == a);
 &lt;p&gt;Secure data may leak to the logs if &lt;code&gt;toString()&lt;/code&gt; method is implemented incorrectly.
 E.g. using &lt;a href=&#34;https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/builder/ToStringBuilder.html#reflectionToString(java.lang.Object)&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ToStringBuilder.reflectionToString(...)&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;https://konstantinpavlov.net/2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;../../2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;heapdump-prevention-a5&#34;&gt;Heapdump Prevention (A5)&lt;/h2&gt;
 
@@ -754,7 +754,7 @@ carry penalties under the data protection laws that apply.&lt;/p&gt;
 
 &lt;p&gt;Masking PANs with Logback is the last resort to ensure the data is masked with a false-positive hits. It is preferrable to mask the data before it is being written to log in the applciation code.&lt;/p&gt;
 
-&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;https://konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;../../2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;2-are-the-logs-stored-in-a-dedicated-server&#34;&gt;2. Are the logs stored in a dedicated server?&lt;/h2&gt;
 
@@ -1144,7 +1144,7 @@ In this case you have to deploy self-hosted analytics engine and inside your env
 
 &lt;p&gt;One of the possible solutions is the &lt;a href=&#34;http://piwik.org&#34; target=&#34;_blank&#34;&gt;piwik&lt;/a&gt; as analytics engine + &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt; or &lt;a href=&#34;https://github.com/mike-spainhower/angular-piwik&#34; target=&#34;_blank&#34;&gt;angular-piwik&lt;/a&gt; for tracking events inside AngularJS application.
 In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piwik.org/log-analytics/&#34; target=&#34;_blank&#34;&gt;log analytics&lt;/a&gt;.
-&lt;img src=&#34;https://konstantinpavlov.net/assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
+&lt;img src=&#34;../../assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
 &lt;a href=&#34;http://demo.piwik.org/&#34; target=&#34;_blank&#34;&gt;Piwik Demo&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Another option is to use &lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;Open Web Analytics (OWA)&lt;/a&gt; and write a plugin for &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt;.

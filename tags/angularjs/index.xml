@@ -20,7 +20,7 @@ In this case you have to deploy self-hosted analytics engine and inside your env
 
 &lt;p&gt;One of the possible solutions is the &lt;a href=&#34;http://piwik.org&#34; target=&#34;_blank&#34;&gt;piwik&lt;/a&gt; as analytics engine + &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt; or &lt;a href=&#34;https://github.com/mike-spainhower/angular-piwik&#34; target=&#34;_blank&#34;&gt;angular-piwik&lt;/a&gt; for tracking events inside AngularJS application.
 In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piwik.org/log-analytics/&#34; target=&#34;_blank&#34;&gt;log analytics&lt;/a&gt;.
-&lt;img src=&#34;https://konstantinpavlov.net/assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
+&lt;img src=&#34;../../assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
 &lt;a href=&#34;http://demo.piwik.org/&#34; target=&#34;_blank&#34;&gt;Piwik Demo&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Another option is to use &lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;Open Web Analytics (OWA)&lt;/a&gt; and write a plugin for &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt;.

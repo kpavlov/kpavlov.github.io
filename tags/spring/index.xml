@@ -468,10 +468,10 @@ public class EchoServlet extends HttpServlet {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;When those two webapps are deployed to tomcat, a new JMX bean is created:
-&lt;img src=&#34;https://konstantinpavlov.net/assets/2014/05/tomcat-mbean-service.png&#34; alt=&#34;EchoService exposed as Managed Bean&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;../../assets/2014/05/tomcat-mbean-service.png&#34; alt=&#34;EchoService exposed as Managed Bean&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;and service is accessible from the servlet:
-&lt;img src=&#34;https://konstantinpavlov.net/assets/2014/05/tomcat-service-invoked.png&#34; alt=&#34;EchoServlet showing results of EchoService invocation&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;../../assets/2014/05/tomcat-service-invoked.png&#34; alt=&#34;EchoServlet showing results of EchoService invocation&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;module-dependencies&#34;&gt;Module dependencies&lt;/h3&gt;
 

@@ -35,8 +35,8 @@ I don&amp;rsquo;t want to keep my media on Network storage (NAS) or External dri
 &lt;ol&gt;
 &lt;li&gt;Backup tour iTunes media folder &lt;code&gt;/Users/user/Music/iTunes&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;Move iTunes media files to the &lt;code&gt;/Users/Shared/iTunes Media&lt;/code&gt; folder.
-Set new media files location: &lt;img src=&#34;https://konstantinpavlov.net/assets/2015/02/itunes-media-settings.png&#34; alt=&#34;iTunes Media Settings&#34; /&gt;
-Then run &lt;strong&gt;File &amp;gt; Library &amp;gt; Organize Library&lt;/strong&gt; and select &lt;strong&gt;&amp;laquo;Consolidate Files&amp;raquo;&lt;/strong&gt; to copy your files to new location. &lt;img src=&#34;https://konstantinpavlov.net/assets/2015/02/itunes-consoludate.png&#34; alt=&#34;Consoludate Files&#34; /&gt;&lt;/li&gt;
+Set new media files location: &lt;img src=&#34;../../assets/2015/02/itunes-media-settings.png&#34; alt=&#34;iTunes Media Settings&#34; /&gt;
+Then run &lt;strong&gt;File &amp;gt; Library &amp;gt; Organize Library&lt;/strong&gt; and select &lt;strong&gt;&amp;laquo;Consolidate Files&amp;raquo;&lt;/strong&gt; to copy your files to new location. &lt;img src=&#34;../../assets/2015/02/itunes-consoludate.png&#34; alt=&#34;Consoludate Files&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;Remove your old Original files were copied, not moved. You need to remove them (if you have made a backup on step 1):
 &lt;code&gt;bash  
 rm -rf /Users/user/Music/iTunes/iTunes\ Media

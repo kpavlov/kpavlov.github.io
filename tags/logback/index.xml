@@ -55,7 +55,7 @@ carry penalties under the data protection laws that apply.&lt;/p&gt;
 
 &lt;p&gt;Masking PANs with Logback is the last resort to ensure the data is masked with a false-positive hits. It is preferrable to mask the data before it is being written to log in the applciation code.&lt;/p&gt;
 
-&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;https://konstantinpavlov.net/2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;../../2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;2-are-the-logs-stored-in-a-dedicated-server&#34;&gt;2. Are the logs stored in a dedicated server?&lt;/h2&gt;
 

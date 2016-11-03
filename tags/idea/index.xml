@@ -77,7 +77,7 @@ Today I want to show how to adjust it&amp;rsquo;s code-generation templates.&lt;
 &lt;p&gt;When you generates a new class or method using Idea, it creates one using predefined templates.
 You may modify that template in &lt;strong&gt;&amp;laquo;Settings -&amp;gt; File and Code templates&amp;raquo;&lt;/strong&gt; section.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://konstantinpavlov.net/assets/2014/11/code-templates-for-idea-1.png&#34; alt=&#34;Modifying file&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;../../assets/2014/11/code-templates-for-idea-1.png&#34; alt=&#34;Modifying file&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h2 id=&#34;idea-configuration&#34;&gt;Idea Configuration&lt;/h2&gt;
