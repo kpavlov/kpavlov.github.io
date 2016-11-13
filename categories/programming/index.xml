@@ -232,10 +232,10 @@
     
     <item>
       <title>Spring&#43;Freemarker Tips</title>
-      <link>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</link>
+      <link>https://konstantinpavlov.net/blog/2016/02/21/spring-freemarker-tips/</link>
       <pubDate>Sun, 21 Feb 2016 18:15:00 +0000</pubDate>
       
-      <guid>https://konstantinpavlov.net/blog/2016/02/21/spring&#43;freemarker-tips/</guid>
+      <guid>https://konstantinpavlov.net/blog/2016/02/21/spring-freemarker-tips/</guid>
       <description>&lt;p&gt;I hope you will find following tips useful when developing &lt;a href=&#34;https://projects.spring.io/spring-boot&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; application with &lt;a href=&#34;http://freemarker.org&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
 &lt;/p&gt;
 
