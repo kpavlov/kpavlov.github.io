@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>The Culture of Code</title>
+    <title>Quality Assurance on The Culture of Code</title>
     <link>https://konstantinpavlov.net/tags/quality-assurance/index.xml</link>
-    <description>Recent content on The Culture of Code</description>
+    <description>Recent content in Quality Assurance on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="https://konstantinpavlov.net/tags/quality-assurance/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to Start Testing UI Before Backend is Ready</title>
+      <link>https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/</link>
+      <pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/</guid>
+      <description>&lt;p&gt;Recently I was &lt;a href=&#34;http://disq.us/p/1gfbdpc&#34; target=&#34;_blank&#34;&gt;asked&lt;/a&gt; how to start with testing UI before backend is completed.&lt;/p&gt;
+
+&lt;p&gt;It depends on the product a lot. But when we&amp;rsquo;re talking about web, it is often not clear how the final solution should look like and behave.
+If so, it is not reasonable to spend much time writing UI tests using tools like &lt;a href=&#34;www.seleniumhq.org&#34; target=&#34;_blank&#34;&gt;Selenium&lt;/a&gt; before the first prototype is ready. It is not reasonable to write a presentation layer and, in some cases, a business logic on server side before it is clear what kind of data is required for UI.
+To deal with it I suggest starting with UI mockups and use fake data to start prototyping. It is very easy if you&amp;rsquo;re writing single page application (SPA): just put some JSON files as static resources and read this files in applications. For more complex cases like handling &lt;code&gt;POST&lt;/code&gt; requests you may use simple mock server like &lt;a href=&#34;https://www.npmjs.com/package/gulp-connect&#34; target=&#34;_blank&#34;&gt;gulp-connect&lt;/a&gt;. This is required for development so your UI developers don&amp;rsquo;t even need any server running.&lt;/p&gt;
+
+&lt;p&gt;Once you&amp;rsquo;re a bit confident how your UI will look like and behave, it comes the time to cover it with some tests.
+When using Selenium you will normally ends up with developing some DSL framework for your tests which will include some custom assertions and methods to execute common tasks like user login and filing some forms. Now you should prepare more test data and put it in the same JSON files. Most likely, you will need fake server like gulp-connect in this stage.
+Use &lt;a href=&#34;http://selenide.org/documentation/page-objects.html&#34; target=&#34;_blank&#34;&gt;PageObjects&lt;/a&gt; to abstract your tests from minor (or even major) future changes in the UI.&lt;/p&gt;
+
+&lt;p&gt;It is impossible to cover all the cases without real application server. Also, it is very difficult to test requests sent by UI application. But you can test a lot of cases like &lt;em&gt;&amp;laquo;WHEN user requests some url THEN expected data is shown on page&amp;raquo;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;You may start developing your server in parallel with UI when your contract is defined.
+That&amp;rsquo;s why I favor Contract-First approach over &amp;laquo;Contract-Last&amp;raquo;. Over time, the contract will mutate for sure. But this should be not a dramatical changes.&lt;/p&gt;
+
+&lt;p&gt;The reason to start with UI is to define a contract from real UI requirements.
+Initial prototype may be turned down by the clients so writing server-side logic is pointless.&lt;/p&gt;
+
+&lt;p&gt;When server is ready to serve some data to the client, you may start the integration. Create a test data in your database which produces the same data as your JSON files served by mock server. And you should parametric your UI application to get data either from mock server or from real server.
+I&amp;rsquo;m sure there will be issues. But I hope, you&amp;rsquo;ll get less issues since your UI is much more stable now. Happy integration! ;-)&lt;/p&gt;
+
+&lt;p&gt;There is another case: you develop not a SPA but a site with many server-generated pages. The idea is the same:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Separate presentation from business logic&lt;/li&gt;
+&lt;li&gt;Provide mock data for your pages&lt;/li&gt;
+&lt;li&gt;Create a prototype using mock data&lt;/li&gt;
+&lt;li&gt;Test your prototype with mock data&lt;/li&gt;
+&lt;li&gt;When you&amp;rsquo;re confident and happy with the UI design and behavior &amp;ndash; then replace your fake DAO with real one and put test data to database. The same tests should still pass.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I hope this could help.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Selenium Tests with Maven and Selenide</title>

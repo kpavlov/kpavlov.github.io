@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://konstantinpavlov.net/</loc>
-    <lastmod>2016-09-14T10:15:51+00:00</lastmod>
+    <loc>https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/</loc>
+    <lastmod>2017-02-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -356,11 +356,385 @@
   </url>
   
   <url>
+    <loc>https://konstantinpavlov.net/about/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/agile/</loc>
+    <lastmod>2014-08-30T07:46:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/algorithms/</loc>
+    <lastmod>2014-01-12T12:30:54+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/angularjs/</loc>
+    <lastmod>2015-06-03T19:05:12+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/ansible/</loc>
+    <lastmod>2016-09-09T10:12:48+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/architecture/</loc>
+    <lastmod>2015-06-17T09:55:16+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/categories/blogging/</loc>
+    <lastmod>2015-01-17T09:48:02+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/books/</loc>
+    <lastmod>2015-01-28T23:04:54+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/cloudflaire/</loc>
+    <lastmod>2016-09-14T10:15:51+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/code-style/</loc>
+    <lastmod>2015-01-10T11:51:10+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/continuous-deployment/</loc>
+    <lastmod>2014-03-24T12:30:35+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://konstantinpavlov.net/legal/cookie-policy/</loc>
   </url>
   
   <url>
+    <loc>https://konstantinpavlov.net/categories/database/</loc>
+    <lastmod>2014-05-22T22:57:48+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/debian/</loc>
+    <lastmod>2016-09-09T10:12:48+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/design-patterns/</loc>
+    <lastmod>2011-10-05T12:37:37+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/categories/devops/</loc>
+    <lastmod>2016-09-14T10:15:51+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/docker/</loc>
+    <lastmod>2016-09-14T10:15:51+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/documentation/</loc>
+    <lastmod>2015-04-12T22:00:26+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/freemarker/</loc>
+    <lastmod>2016-02-21T18:15:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/fun/</loc>
+    <lastmod>2016-02-11T23:09:16+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/git/</loc>
+    <lastmod>2014-03-24T12:30:35+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/google-protobuf/</loc>
+    <lastmod>2012-05-20T21:51:00+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/gwt/</loc>
+    <lastmod>2010-07-22T17:20:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/categories/hardware/</loc>
+    <lastmod>2014-05-15T12:30:47+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/hdd/</loc>
+    <lastmod>2014-05-15T12:30:47+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/hexo/</loc>
+    <lastmod>2015-01-17T09:48:02+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/idea/</loc>
+    <lastmod>2015-01-10T11:51:10+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/itunes/</loc>
+    <lastmod>2015-02-08T08:02:51+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/java/</loc>
+    <lastmod>2015-08-01T22:22:34+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/javascript/</loc>
+    <lastmod>2016-02-11T23:09:16+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/jenkins/</loc>
+    <lastmod>2016-07-17T17:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/jmx/</loc>
+    <lastmod>2014-06-09T13:17:37+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/jreactive-8583/</loc>
+    <lastmod>2015-07-08T07:48:05+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/json/</loc>
+    <lastmod>2014-05-10T15:48:12+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/legal/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/linux/</loc>
+    <lastmod>2014-09-07T11:37:12+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/logback/</loc>
+    <lastmod>2015-07-26T14:01:33+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/logging/</loc>
+    <lastmod>2015-07-26T14:01:33+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/mac/</loc>
+    <lastmod>2015-02-08T08:02:51+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/maven/</loc>
+    <lastmod>2014-03-24T12:30:35+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/netty/</loc>
+    <lastmod>2015-07-08T07:48:05+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/nginx/</loc>
+    <lastmod>2016-09-14T10:15:51+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/oracle/</loc>
+    <lastmod>2014-12-07T21:22:41+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/performance/</loc>
+    <lastmod>2014-03-01T12:30:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/php/</loc>
+    <lastmod>2015-05-20T22:24:47+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/post/</loc>
+    <lastmod>2017-02-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://konstantinpavlov.net/legal/privacy/</loc>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/categories/programming/</loc>
+    <lastmod>2017-02-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/programming/</loc>
+    <lastmod>2015-05-20T22:24:47+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/categories/project-management/</loc>
+    <lastmod>2014-08-30T07:46:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/categories/quality-assurance/</loc>
+    <lastmod>2016-05-12T16:26:25+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/quality-assurance/</loc>
+    <lastmod>2017-02-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/scala/</loc>
+    <lastmod>2013-04-23T13:58:54+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/scrum/</loc>
+    <lastmod>2014-08-30T07:46:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/security/</loc>
+    <lastmod>2015-08-01T22:22:34+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/spring/</loc>
+    <lastmod>2016-02-21T18:15:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/ssd/</loc>
+    <lastmod>2014-05-15T12:30:47+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/tdd/</loc>
+    <lastmod>2013-04-22T11:17:01+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/</loc>
+    <lastmod>2017-02-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/tomcat/</loc>
+    <lastmod>2015-02-19T23:39:35+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/vaadin/</loc>
+    <lastmod>2014-03-31T12:30:43+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/web/</loc>
+    <lastmod>2016-02-21T18:15:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://konstantinpavlov.net/tags/web-services/</loc>
+    <lastmod>2016-08-18T22:48:14+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>

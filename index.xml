@@ -6,8 +6,49 @@
     <description>Recent content on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Sep 2016 10:15:51 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Feb 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://konstantinpavlov.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to Start Testing UI Before Backend is Ready</title>
+      <link>https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/</link>
+      <pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/</guid>
+      <description>&lt;p&gt;Recently I was &lt;a href=&#34;http://disq.us/p/1gfbdpc&#34; target=&#34;_blank&#34;&gt;asked&lt;/a&gt; how to start with testing UI before backend is completed.&lt;/p&gt;
+
+&lt;p&gt;It depends on the product a lot. But when we&amp;rsquo;re talking about web, it is often not clear how the final solution should look like and behave.
+If so, it is not reasonable to spend much time writing UI tests using tools like &lt;a href=&#34;www.seleniumhq.org&#34; target=&#34;_blank&#34;&gt;Selenium&lt;/a&gt; before the first prototype is ready. It is not reasonable to write a presentation layer and, in some cases, a business logic on server side before it is clear what kind of data is required for UI.
+To deal with it I suggest starting with UI mockups and use fake data to start prototyping. It is very easy if you&amp;rsquo;re writing single page application (SPA): just put some JSON files as static resources and read this files in applications. For more complex cases like handling &lt;code&gt;POST&lt;/code&gt; requests you may use simple mock server like &lt;a href=&#34;https://www.npmjs.com/package/gulp-connect&#34; target=&#34;_blank&#34;&gt;gulp-connect&lt;/a&gt;. This is required for development so your UI developers don&amp;rsquo;t even need any server running.&lt;/p&gt;
+
+&lt;p&gt;Once you&amp;rsquo;re a bit confident how your UI will look like and behave, it comes the time to cover it with some tests.
+When using Selenium you will normally ends up with developing some DSL framework for your tests which will include some custom assertions and methods to execute common tasks like user login and filing some forms. Now you should prepare more test data and put it in the same JSON files. Most likely, you will need fake server like gulp-connect in this stage.
+Use &lt;a href=&#34;http://selenide.org/documentation/page-objects.html&#34; target=&#34;_blank&#34;&gt;PageObjects&lt;/a&gt; to abstract your tests from minor (or even major) future changes in the UI.&lt;/p&gt;
+
+&lt;p&gt;It is impossible to cover all the cases without real application server. Also, it is very difficult to test requests sent by UI application. But you can test a lot of cases like &lt;em&gt;&amp;laquo;WHEN user requests some url THEN expected data is shown on page&amp;raquo;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;You may start developing your server in parallel with UI when your contract is defined.
+That&amp;rsquo;s why I favor Contract-First approach over &amp;laquo;Contract-Last&amp;raquo;. Over time, the contract will mutate for sure. But this should be not a dramatical changes.&lt;/p&gt;
+
+&lt;p&gt;The reason to start with UI is to define a contract from real UI requirements.
+Initial prototype may be turned down by the clients so writing server-side logic is pointless.&lt;/p&gt;
+
+&lt;p&gt;When server is ready to serve some data to the client, you may start the integration. Create a test data in your database which produces the same data as your JSON files served by mock server. And you should parametric your UI application to get data either from mock server or from real server.
+I&amp;rsquo;m sure there will be issues. But I hope, you&amp;rsquo;ll get less issues since your UI is much more stable now. Happy integration! ;-)&lt;/p&gt;
+
+&lt;p&gt;There is another case: you develop not a SPA but a site with many server-generated pages. The idea is the same:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Separate presentation from business logic&lt;/li&gt;
+&lt;li&gt;Provide mock data for your pages&lt;/li&gt;
+&lt;li&gt;Create a prototype using mock data&lt;/li&gt;
+&lt;li&gt;Test your prototype with mock data&lt;/li&gt;
+&lt;li&gt;When you&amp;rsquo;re confident and happy with the UI design and behavior &amp;ndash; then replace your fake DAO with real one and put test data to database. The same tests should still pass.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I hope this could help.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Deploying Private Docker Registry Behind Cloudflaire</title>
@@ -449,7 +490,7 @@ The idea is that:&lt;/p&gt;
 &lt;li&gt;once all the tests are passed the artifacts are promoted thus making &lt;em&gt;Continuous Delivery (CD)&lt;/em&gt; possible.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;This is a simple strategy to implement from the Ops point of view. But it requires significant effort from the developers to maintain stability of the build. When tests are failing the disrupting change should be immediately fixed or reverted. We used to practice this strategy for two years, but as the team and number of tests grow it was more and more difficult to keep build stability. Finally we switched to feature branching and it helped with a build stability a lot.&lt;!--more--&gt;&lt;/p&gt;
+&lt;p&gt;This is a simple strategy to implement from the Ops point of view. But it requires significant effort from the developers to maintain stability of the build. When tests are failing the disrupting change should be immediately fixed or reverted. We used to practice this strategy for two years, but as the team and number of tests grow it was more and more difficult to keep build stability. Finally we switched to feature branching and it helped with a build stability a lot.HUGOMORE42&lt;/p&gt;
 
 &lt;h2 id=&#34;pros&#34;&gt;Pros&lt;/h2&gt;
 
@@ -1434,65 +1475,6 @@ But it may require some customization.
 &lt;a href=&#34;http://cgross.github.io/angular-busy/demo&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Also, there are some &lt;a href=&#34;https://github.com/angular-ui/ui-router/issues/456&#34; title=&#34;Apply a custom animation to ui-view during resolve&#34; target=&#34;_blank&#34;&gt;examples&lt;/a&gt; how to add loading indicator to &lt;a href=&#34;https://github.com/angular-ui/ui-router&#34; target=&#34;_blank&#34;&gt;ui-router&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Tags Input Control for AngularJS</title>
-      <link>https://konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</link>
-      <pubDate>Sat, 30 May 2015 09:53:19 +0000</pubDate>
-      
-      <guid>https://konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</guid>
-      <description>&lt;p&gt;Stay &lt;abbr title=&#34;Don&#39;t Repeat Yourself&#34;&gt;DRY&lt;/abbr&gt;! Don&amp;rsquo;t waste your time implementing tags input control for AngularJS yourself! There is an excellent AngularJS module for that called &lt;a href=&#34;https://github.com/mbenford/ngTagsInput&#34; target=&#34;_blank&#34;&gt;&amp;laquo;ngTagsInput&amp;raquo;&lt;/a&gt;. It&amp;rsquo;s also supports autocomptetion, validations,custom styles and templates. See the &lt;a href=&#34;http://mbenford.github.io/ngTagsInput/demos&#34; target=&#34;_blank&#34;&gt;demos&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;It took me just 10 minutes to add that type of control to my application.&lt;/p&gt;
-
-&lt;p&gt;All you need to do is:
-1. Add NPM or Bower dependency&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;    npm install ng-tags-input --save
-    bower install ng-tags-input --save
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Include script and CSS to your html page. If you&amp;rsquo;re using some dependency injection pre-processor like &lt;a href=&#34;https://www.npmjs.com/package/gulp-inject&#34; target=&#34;_blank&#34;&gt;gulp-inject&lt;/a&gt; or &lt;a href=&#34;https://www.npmjs.com/package/gulp-ng-inject&#34; target=&#34;_blank&#34;&gt;gulp-ng-inject&lt;/a&gt; you don&amp;rsquo;t need it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script src=&amp;quot;angular.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;ng-tags-input.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot; href=&amp;quot;ng-tags-input.css&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;declare module dependency:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;angular.module(&#39;myApp&#39;, [&#39;ngTagsInput&#39;])
-    .controller(&#39;MyCtrl&#39;, function($scope, $http) {
-        $scope.tags = [
-            { text: &#39;just&#39; },
-            { text: &#39;some&#39; },
-            { text: &#39;cool&#39; },
-            { text: &#39;tags&#39; }
-        ];
-        $scope.loadTags = function(query) {
-             return $http.get(&#39;/tags?query=&#39; + query);
-        };
-    });
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Add input control to html&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body ng-app=&amp;quot;myApp&amp;quot; ng-controller=&amp;quot;MyCtrl&amp;quot;&amp;gt;
-    &amp;lt;tags-input ng-model=&amp;quot;tags&amp;quot;&amp;gt;
-        &amp;lt;auto-complete source=&amp;quot;loadTags($query)&amp;quot;&amp;gt;&amp;lt;/auto-complete&amp;gt;
-    &amp;lt;/tags-input&amp;gt;
-&amp;lt;/body&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Pretty simple, isn&amp;rsquo;t it?
-The only thing to consider is handling of the &lt;code&gt;tags&lt;/code&gt; model. &lt;code&gt;$scope.tags&lt;/code&gt; will be an array of objects on the form &lt;code&gt;{text:value}&lt;/code&gt;. You may need to transfer them to array of strings:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;var tagValues = $scope.tags.map(function(input) {return input.text;});
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

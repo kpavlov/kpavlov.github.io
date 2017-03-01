@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>The Culture of Code</title>
+    <title>Java on The Culture of Code</title>
     <link>https://konstantinpavlov.net/tags/java/index.xml</link>
-    <description>Recent content on The Culture of Code</description>
+    <description>Recent content in Java on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="https://konstantinpavlov.net/tags/java/index.xml" rel="self" type="application/rss+xml" />
@@ -1005,7 +1005,7 @@ public class Application extends SpringBootServletInitializer {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;!--more--&gt;
+&lt;p&gt;HUGOMORE42&lt;/p&gt;
 
 &lt;h2 id=&#34;tuning-configuration&#34;&gt;Tuning Configuration&lt;/h2&gt;
 
@@ -1240,11 +1240,11 @@ For example, external monitoring tool, like Nagious/Zenoss/Zabbix needs to get s
 &lt;li&gt;&lt;a href=&#34;http://www.jolokia.org/download.html&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; &lt;code&gt;jolockia.war&lt;/code&gt; and deploy it to servlet container.&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;Run in command line:
-
-$ curl localhost:8080/jolokia/read/java.lang:type=Memory/HeapMemoryUsage
-{&#34;request&#34;:{&#34;mbean&#34;:&#34;java.lang:type=Memory&#34;,&#34;attribute&#34;:&#34;HeapMemoryUsage&#34;,&#34;type&#34;:&#34;read&#34;},&#34;value&#34;:{&#34;init&#34;:536870912,&#34;committed&#34;:514850816,&#34;max&#34;:514850816,&#34;used&#34;:132049768},&#34;timestamp&#34;:1402310991,&#34;status&#34;:200}
-$ curl localhost:8080/jolokia/read/java.lang:type=Memory/HeapMemoryUsage/used
-{&#34;request&#34;:{&#34;path&#34;:&#34;used&#34;,&#34;mbean&#34;:&#34;java.lang:type=Memory&#34;,&#34;attribute&#34;:&#34;HeapMemoryUsage&#34;,&#34;type&#34;:&#34;read&#34;},&#34;value&#34;:132049736,&#34;timestamp&#34;:1402310735,&#34;status&#34;:200}
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;$ curl localhost:8080/jolokia/read/java.lang:type&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;Memory/HeapMemoryUsage
+&lt;span style=&#34;color: #f92672&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;request&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #f92672&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;mbean&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;java.lang:type=Memory&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;attribute&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;HeapMemoryUsage&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;read&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f92672&#34;&gt;}&lt;/span&gt;,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;value&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #f92672&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;init&amp;quot;&lt;/span&gt;:536870912,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;committed&amp;quot;&lt;/span&gt;:514850816,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;max&amp;quot;&lt;/span&gt;:514850816,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;used&amp;quot;&lt;/span&gt;:132049768&lt;span style=&#34;color: #f92672&#34;&gt;}&lt;/span&gt;,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;timestamp&amp;quot;&lt;/span&gt;:1402310991,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;status&amp;quot;&lt;/span&gt;:200&lt;span style=&#34;color: #f92672&#34;&gt;}&lt;/span&gt;
+$ curl localhost:8080/jolokia/read/java.lang:type&lt;span style=&#34;color: #f92672&#34;&gt;=&lt;/span&gt;Memory/HeapMemoryUsage/used
+&lt;span style=&#34;color: #f92672&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;request&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #f92672&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;path&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;used&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;mbean&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;java.lang:type=Memory&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;attribute&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;HeapMemoryUsage&amp;quot;&lt;/span&gt;,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;type&amp;quot;&lt;/span&gt;:&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;read&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #f92672&#34;&gt;}&lt;/span&gt;,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;value&amp;quot;&lt;/span&gt;:132049736,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;timestamp&amp;quot;&lt;/span&gt;:1402310735,&lt;span style=&#34;color: #e6db74&#34;&gt;&amp;quot;status&amp;quot;&lt;/span&gt;:200&lt;span style=&#34;color: #f92672&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
 You may also use your browser to see JSON response. I suggest installing &lt;a href=&#34;https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa&#34; title=&#34;JSON Formatter Chrome Extension&#34; target=&#34;_blank&#34;&gt;JSON Fromamter&lt;/a&gt; for better view. &lt;img src=&#34;../../assets/2014/06/jolokia-heap.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
@@ -1254,12 +1254,12 @@ You may also use your browser to see JSON response. I suggest installing &lt;a h
 &lt;/ol&gt;
 
 &lt;p&gt;Released version of Jolokia are available in &lt;a href=&#34;https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.jolokia%22&#34; target=&#34;_blank&#34;&gt;central maven repository&lt;/a&gt;:
-
-&lt;dependency&gt;
-	&lt;groupId&gt;org.jolokia&lt;/groupId&gt;
-	&lt;artifactId&gt;jolokia-war&lt;/artifactId&gt;
-	&lt;version&gt;1.2.1&lt;/version&gt;
-&lt;/dependency&gt;
+&lt;div class=&#34;highlight&#34; style=&#34;background: #272822&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span style=&#34;color: #f92672&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #f92672&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.jolokia&lt;span style=&#34;color: #f92672&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #f92672&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;jolokia-war&lt;span style=&#34;color: #f92672&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #f92672&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.2.1&lt;span style=&#34;color: #f92672&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #f92672&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/p&gt;
 
 &lt;p&gt;Also, Jolokia provides OSGi, Mule and JVM &lt;a href=&#34;http://www.jolokia.org/reference/html/agents.html&#34; target=&#34;_blank&#34;&gt;agents&lt;/a&gt; as well as Webarchive (War) agent.&lt;/p&gt;

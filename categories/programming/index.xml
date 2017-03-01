@@ -1,12 +1,53 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>The Culture of Code</title>
+    <title>Programming on The Culture of Code</title>
     <link>https://konstantinpavlov.net/categories/programming/index.xml</link>
-    <description>Recent content on The Culture of Code</description>
+    <description>Recent content in Programming on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="https://konstantinpavlov.net/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to Start Testing UI Before Backend is Ready</title>
+      <link>https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/</link>
+      <pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/</guid>
+      <description>&lt;p&gt;Recently I was &lt;a href=&#34;http://disq.us/p/1gfbdpc&#34; target=&#34;_blank&#34;&gt;asked&lt;/a&gt; how to start with testing UI before backend is completed.&lt;/p&gt;
+
+&lt;p&gt;It depends on the product a lot. But when we&amp;rsquo;re talking about web, it is often not clear how the final solution should look like and behave.
+If so, it is not reasonable to spend much time writing UI tests using tools like &lt;a href=&#34;www.seleniumhq.org&#34; target=&#34;_blank&#34;&gt;Selenium&lt;/a&gt; before the first prototype is ready. It is not reasonable to write a presentation layer and, in some cases, a business logic on server side before it is clear what kind of data is required for UI.
+To deal with it I suggest starting with UI mockups and use fake data to start prototyping. It is very easy if you&amp;rsquo;re writing single page application (SPA): just put some JSON files as static resources and read this files in applications. For more complex cases like handling &lt;code&gt;POST&lt;/code&gt; requests you may use simple mock server like &lt;a href=&#34;https://www.npmjs.com/package/gulp-connect&#34; target=&#34;_blank&#34;&gt;gulp-connect&lt;/a&gt;. This is required for development so your UI developers don&amp;rsquo;t even need any server running.&lt;/p&gt;
+
+&lt;p&gt;Once you&amp;rsquo;re a bit confident how your UI will look like and behave, it comes the time to cover it with some tests.
+When using Selenium you will normally ends up with developing some DSL framework for your tests which will include some custom assertions and methods to execute common tasks like user login and filing some forms. Now you should prepare more test data and put it in the same JSON files. Most likely, you will need fake server like gulp-connect in this stage.
+Use &lt;a href=&#34;http://selenide.org/documentation/page-objects.html&#34; target=&#34;_blank&#34;&gt;PageObjects&lt;/a&gt; to abstract your tests from minor (or even major) future changes in the UI.&lt;/p&gt;
+
+&lt;p&gt;It is impossible to cover all the cases without real application server. Also, it is very difficult to test requests sent by UI application. But you can test a lot of cases like &lt;em&gt;&amp;laquo;WHEN user requests some url THEN expected data is shown on page&amp;raquo;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;You may start developing your server in parallel with UI when your contract is defined.
+That&amp;rsquo;s why I favor Contract-First approach over &amp;laquo;Contract-Last&amp;raquo;. Over time, the contract will mutate for sure. But this should be not a dramatical changes.&lt;/p&gt;
+
+&lt;p&gt;The reason to start with UI is to define a contract from real UI requirements.
+Initial prototype may be turned down by the clients so writing server-side logic is pointless.&lt;/p&gt;
+
+&lt;p&gt;When server is ready to serve some data to the client, you may start the integration. Create a test data in your database which produces the same data as your JSON files served by mock server. And you should parametric your UI application to get data either from mock server or from real server.
+I&amp;rsquo;m sure there will be issues. But I hope, you&amp;rsquo;ll get less issues since your UI is much more stable now. Happy integration! ;-)&lt;/p&gt;
+
+&lt;p&gt;There is another case: you develop not a SPA but a site with many server-generated pages. The idea is the same:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Separate presentation from business logic&lt;/li&gt;
+&lt;li&gt;Provide mock data for your pages&lt;/li&gt;
+&lt;li&gt;Create a prototype using mock data&lt;/li&gt;
+&lt;li&gt;Test your prototype with mock data&lt;/li&gt;
+&lt;li&gt;When you&amp;rsquo;re confident and happy with the UI design and behavior &amp;ndash; then replace your fake DAO with real one and put test data to database. The same tests should still pass.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I hope this could help.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Links on REST API Design</title>
@@ -63,171 +104,6 @@
 
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://blog.synopse.info/post/2011/05/24/How-to-implement-RESTful-authentication&#34; target=&#34;_blank&#34;&gt;http://blog.synopse.info/post/2011/05/24/How-to-implement-RESTful-authentication&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
-    </item>
-    
-    <item>
-      <title>Selenium Tests with Maven and Selenide</title>
-      <link>https://konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</link>
-      <pubDate>Thu, 12 May 2016 16:26:25 +0000</pubDate>
-      
-      <guid>https://konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://selenide.org&#34; target=&#34;_blank&#34;&gt;Selenide&lt;/a&gt; is nice wrapper around selenium web driver allowing to simplify writting UI tests with Selenium.&lt;/p&gt;
-
-&lt;p&gt;Some of the cook features are:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;jquery-like selector syntax, e.g. &lt;code&gt;$(&amp;quot;div.myclass&amp;quot;).is(Condition.visible)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Automatic screenshots on assertion failure&lt;/li&gt;
-&lt;li&gt;Easy starting Selenium WebDriver&lt;/li&gt;
-&lt;li&gt;And &lt;a href=&#34;http://selenide.org/quick-start.html&#34; target=&#34;_blank&#34;&gt;others&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;So, let&amp;rsquo;s write some tests on selenide and make it run from maven in a normal browser or in headless mode.&lt;/p&gt;
-
-&lt;p&gt;First, let&amp;rsquo;s create &lt;a href=&#34;https://raw.githubusercontent.com/kpavlov/selenide-maven-sample/master/pom.xml&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;pom.xml&lt;/em&gt;&lt;/a&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
-&amp;lt;project xmlns=&amp;quot;http://maven.apache.org/POM/4.0.0&amp;quot;
-         xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
-         xsi:schemaLocation=&amp;quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&amp;quot;&amp;gt;
-    &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt;
-
-    &amp;lt;groupId&amp;gt;com.github.kpavlov&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;selenide-sample&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt;
-
-    &amp;lt;properties&amp;gt;
-        &amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;
-        &amp;lt;maven.compiler.source&amp;gt;${java.version}&amp;lt;/maven.compiler.source&amp;gt;
-        &amp;lt;maven.compiler.target&amp;gt;${java.version}&amp;lt;/maven.compiler.target&amp;gt;
-        &amp;lt;selenium.hub.url&amp;gt;http://local.example.com:4444/wd/hub&amp;lt;/selenium.hub.url&amp;gt;
-        &amp;lt;holdBrowserOpen&amp;gt;false&amp;lt;/holdBrowserOpen&amp;gt;
-        &amp;lt;surefire.argLine&amp;gt;-Dbrowser=${browser} -Dselenide.holdBrowserOpen=${holdBrowserOpen}&amp;lt;/surefire.argLine&amp;gt;
-    &amp;lt;/properties&amp;gt;
-
-    &amp;lt;prerequisites&amp;gt;
-        &amp;lt;maven&amp;gt;3.3&amp;lt;/maven&amp;gt;
-    &amp;lt;/prerequisites&amp;gt;
-
-    &amp;lt;profiles&amp;gt;
-        &amp;lt;profile&amp;gt;
-            &amp;lt;id&amp;gt;firefox&amp;lt;/id&amp;gt;
-            &amp;lt;activation&amp;gt;
-                &amp;lt;activeByDefault&amp;gt;true&amp;lt;/activeByDefault&amp;gt;
-            &amp;lt;/activation&amp;gt;
-            &amp;lt;properties&amp;gt;
-                &amp;lt;browser&amp;gt;firefox&amp;lt;/browser&amp;gt;
-            &amp;lt;/properties&amp;gt;
-        &amp;lt;/profile&amp;gt;
-        &amp;lt;profile&amp;gt;
-            &amp;lt;id&amp;gt;chrome&amp;lt;/id&amp;gt;
-            &amp;lt;properties&amp;gt;
-                &amp;lt;browser&amp;gt;chrome&amp;lt;/browser&amp;gt;
-            &amp;lt;/properties&amp;gt;
-        &amp;lt;/profile&amp;gt;
-        &amp;lt;profile&amp;gt;
-            &amp;lt;id&amp;gt;phantomjs&amp;lt;/id&amp;gt;
-            &amp;lt;properties&amp;gt;
-                &amp;lt;browser&amp;gt;phantomjs&amp;lt;/browser&amp;gt;
-            &amp;lt;/properties&amp;gt;
-        &amp;lt;/profile&amp;gt;
-        &amp;lt;profile&amp;gt;
-            &amp;lt;id&amp;gt;ie&amp;lt;/id&amp;gt;
-            &amp;lt;properties&amp;gt;
-                &amp;lt;browser&amp;gt;ie&amp;lt;/browser&amp;gt;
-            &amp;lt;/properties&amp;gt;
-        &amp;lt;/profile&amp;gt;
-        &amp;lt;profile&amp;gt;
-            &amp;lt;id&amp;gt;htmlunit&amp;lt;/id&amp;gt;
-            &amp;lt;properties&amp;gt;
-                &amp;lt;browser&amp;gt;htmlunit&amp;lt;/browser&amp;gt;
-            &amp;lt;/properties&amp;gt;
-            &amp;lt;dependencies&amp;gt;
-                &amp;lt;dependency&amp;gt;
-                    &amp;lt;groupId&amp;gt;org.seleniumhq.selenium&amp;lt;/groupId&amp;gt;
-                    &amp;lt;artifactId&amp;gt;selenium-htmlunit-driver&amp;lt;/artifactId&amp;gt;
-                    &amp;lt;version&amp;gt;LATEST&amp;lt;/version&amp;gt;
-                    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
-                &amp;lt;/dependency&amp;gt;
-            &amp;lt;/dependencies&amp;gt;
-        &amp;lt;/profile&amp;gt;
-        &amp;lt;profile&amp;gt;
-            &amp;lt;id&amp;gt;ci-server&amp;lt;/id&amp;gt;
-            &amp;lt;properties&amp;gt;
-                &amp;lt;surefire.argLine&amp;gt;-Dremote=${selenium.hub.url} -Dbrowser=${browser}&amp;lt;/surefire.argLine&amp;gt;
-            &amp;lt;/properties&amp;gt;
-        &amp;lt;/profile&amp;gt;
-        &amp;lt;profile&amp;gt;
-            &amp;lt;id&amp;gt;local&amp;lt;/id&amp;gt;
-            &amp;lt;properties&amp;gt;
-                &amp;lt;holdBrowserOpen&amp;gt;true&amp;lt;/holdBrowserOpen&amp;gt;
-            &amp;lt;/properties&amp;gt;
-        &amp;lt;/profile&amp;gt;
-    &amp;lt;/profiles&amp;gt;
-
-    &amp;lt;build&amp;gt;
-        &amp;lt;defaultGoal&amp;gt;clean test&amp;lt;/defaultGoal&amp;gt;
-        &amp;lt;plugins&amp;gt;
-            &amp;lt;plugin&amp;gt;
-                &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
-                &amp;lt;artifactId&amp;gt;maven-surefire-plugin&amp;lt;/artifactId&amp;gt;
-                &amp;lt;version&amp;gt;2.19.1&amp;lt;/version&amp;gt;
-                &amp;lt;configuration&amp;gt;
-                    &amp;lt;argLine&amp;gt;${surefire.argLine}&amp;lt;/argLine&amp;gt;
-                &amp;lt;/configuration&amp;gt;
-            &amp;lt;/plugin&amp;gt;
-        &amp;lt;/plugins&amp;gt;
-        &amp;lt;pluginManagement&amp;gt;
-            &amp;lt;plugins&amp;gt;
-                &amp;lt;plugin&amp;gt;
-                    &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
-                    &amp;lt;artifactId&amp;gt;maven-surefire-plugin&amp;lt;/artifactId&amp;gt;
-                &amp;lt;/plugin&amp;gt;
-            &amp;lt;/plugins&amp;gt;
-        &amp;lt;/pluginManagement&amp;gt;
-    &amp;lt;/build&amp;gt;
-
-    &amp;lt;dependencies&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.slf4j&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;slf4j-simple&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;1.7.13&amp;lt;/version&amp;gt;
-            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;com.codeborne&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;selenide&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;3.5.1&amp;lt;/version&amp;gt;
-            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;4.12&amp;lt;/version&amp;gt;
-            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-    &amp;lt;/dependencies&amp;gt;
-&amp;lt;/project&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Notice the properties:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;surefire.argLine&lt;/strong&gt; &amp;ndash; defines a command line parameters for running tests.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;browser&lt;/strong&gt; &amp;ndash; specifies a browser to use.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;selenium.hub.url&lt;/strong&gt; &amp;ndash; URL where selenium hub is running, for tests with remote web driver, e.g. on CI server.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;holdBrowserOpen&lt;/strong&gt; &amp;ndash; should the browser be closed after tests.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Also there are a fistful of profiles to use as a shortcuts, e.g.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;mvn clean test -Pphantomjs&lt;/code&gt; &amp;ndash; run tests locally with phantomjs headless browser. Requires phantomjs to be installed&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mvn clean test -Pfirefox,local&lt;/code&gt; &amp;ndash; run tests locally with Firefox and leaves a browser open after tests&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;mvn clean test -Pci-server,chrome&lt;/code&gt; &amp;ndash; run tests on selenium hub with Chrome&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You may find working example in my &lt;a href=&#34;https://github.com/kpavlov/selenide-maven-sample&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -1428,7 +1304,7 @@ public class Application extends SpringBootServletInitializer {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;!--more--&gt;
+&lt;p&gt;HUGOMORE42&lt;/p&gt;
 
 &lt;h2 id=&#34;tuning-configuration&#34;&gt;Tuning Configuration&lt;/h2&gt;
 
