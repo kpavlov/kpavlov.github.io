@@ -14,7 +14,7 @@
       <pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/</guid>
-      <description>&lt;p&gt;Recently I was &lt;a href=&#34;http://disq.us/p/1gfbdpc&#34; target=&#34;_blank&#34;&gt;asked&lt;/a&gt; how to start with testing UI before backend is completed.&lt;/p&gt;
+      <description>&lt;p&gt;A common goal in product development is to start UI and system integration testing as early as possible, maybe even before backend is completed.&lt;/p&gt;
 
 &lt;p&gt;It depends on the product a lot. But when we&amp;rsquo;re talking about web, it is often not clear how the final solution should look like and behave.
 If so, it is not reasonable to spend much time writing UI tests using tools like &lt;a href=&#34;www.seleniumhq.org&#34; target=&#34;_blank&#34;&gt;Selenium&lt;/a&gt; before the first prototype is ready. It is not reasonable to write a presentation layer and, in some cases, a business logic on server side before it is clear what kind of data is required for UI.
@@ -104,6 +104,171 @@ I&amp;rsquo;m sure there will be issues. But I hope, you&amp;rsquo;ll get less i
 
 &lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://blog.synopse.info/post/2011/05/24/How-to-implement-RESTful-authentication&#34; target=&#34;_blank&#34;&gt;http://blog.synopse.info/post/2011/05/24/How-to-implement-RESTful-authentication&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Selenium Tests with Maven and Selenide</title>
+      <link>https://konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</link>
+      <pubDate>Thu, 12 May 2016 16:26:25 +0000</pubDate>
+      
+      <guid>https://konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;http://selenide.org&#34; target=&#34;_blank&#34;&gt;Selenide&lt;/a&gt; is nice wrapper around selenium web driver allowing to simplify writting UI tests with Selenium.&lt;/p&gt;
+
+&lt;p&gt;Some of the cook features are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;jquery-like selector syntax, e.g. &lt;code&gt;$(&amp;quot;div.myclass&amp;quot;).is(Condition.visible)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Automatic screenshots on assertion failure&lt;/li&gt;
+&lt;li&gt;Easy starting Selenium WebDriver&lt;/li&gt;
+&lt;li&gt;And &lt;a href=&#34;http://selenide.org/quick-start.html&#34; target=&#34;_blank&#34;&gt;others&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s write some tests on selenide and make it run from maven in a normal browser or in headless mode.&lt;/p&gt;
+
+&lt;p&gt;First, let&amp;rsquo;s create &lt;a href=&#34;https://raw.githubusercontent.com/kpavlov/selenide-maven-sample/master/pom.xml&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;pom.xml&lt;/em&gt;&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;project xmlns=&amp;quot;http://maven.apache.org/POM/4.0.0&amp;quot;
+         xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+         xsi:schemaLocation=&amp;quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&amp;quot;&amp;gt;
+    &amp;lt;modelVersion&amp;gt;4.0.0&amp;lt;/modelVersion&amp;gt;
+
+    &amp;lt;groupId&amp;gt;com.github.kpavlov&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;selenide-sample&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.0-SNAPSHOT&amp;lt;/version&amp;gt;
+
+    &amp;lt;properties&amp;gt;
+        &amp;lt;java.version&amp;gt;1.8&amp;lt;/java.version&amp;gt;
+        &amp;lt;maven.compiler.source&amp;gt;${java.version}&amp;lt;/maven.compiler.source&amp;gt;
+        &amp;lt;maven.compiler.target&amp;gt;${java.version}&amp;lt;/maven.compiler.target&amp;gt;
+        &amp;lt;selenium.hub.url&amp;gt;http://local.example.com:4444/wd/hub&amp;lt;/selenium.hub.url&amp;gt;
+        &amp;lt;holdBrowserOpen&amp;gt;false&amp;lt;/holdBrowserOpen&amp;gt;
+        &amp;lt;surefire.argLine&amp;gt;-Dbrowser=${browser} -Dselenide.holdBrowserOpen=${holdBrowserOpen}&amp;lt;/surefire.argLine&amp;gt;
+    &amp;lt;/properties&amp;gt;
+
+    &amp;lt;prerequisites&amp;gt;
+        &amp;lt;maven&amp;gt;3.3&amp;lt;/maven&amp;gt;
+    &amp;lt;/prerequisites&amp;gt;
+
+    &amp;lt;profiles&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;firefox&amp;lt;/id&amp;gt;
+            &amp;lt;activation&amp;gt;
+                &amp;lt;activeByDefault&amp;gt;true&amp;lt;/activeByDefault&amp;gt;
+            &amp;lt;/activation&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;firefox&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;chrome&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;chrome&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;phantomjs&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;phantomjs&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;ie&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;ie&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;htmlunit&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;browser&amp;gt;htmlunit&amp;lt;/browser&amp;gt;
+            &amp;lt;/properties&amp;gt;
+            &amp;lt;dependencies&amp;gt;
+                &amp;lt;dependency&amp;gt;
+                    &amp;lt;groupId&amp;gt;org.seleniumhq.selenium&amp;lt;/groupId&amp;gt;
+                    &amp;lt;artifactId&amp;gt;selenium-htmlunit-driver&amp;lt;/artifactId&amp;gt;
+                    &amp;lt;version&amp;gt;LATEST&amp;lt;/version&amp;gt;
+                    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+                &amp;lt;/dependency&amp;gt;
+            &amp;lt;/dependencies&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;ci-server&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;surefire.argLine&amp;gt;-Dremote=${selenium.hub.url} -Dbrowser=${browser}&amp;lt;/surefire.argLine&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+        &amp;lt;profile&amp;gt;
+            &amp;lt;id&amp;gt;local&amp;lt;/id&amp;gt;
+            &amp;lt;properties&amp;gt;
+                &amp;lt;holdBrowserOpen&amp;gt;true&amp;lt;/holdBrowserOpen&amp;gt;
+            &amp;lt;/properties&amp;gt;
+        &amp;lt;/profile&amp;gt;
+    &amp;lt;/profiles&amp;gt;
+
+    &amp;lt;build&amp;gt;
+        &amp;lt;defaultGoal&amp;gt;clean test&amp;lt;/defaultGoal&amp;gt;
+        &amp;lt;plugins&amp;gt;
+            &amp;lt;plugin&amp;gt;
+                &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;maven-surefire-plugin&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;2.19.1&amp;lt;/version&amp;gt;
+                &amp;lt;configuration&amp;gt;
+                    &amp;lt;argLine&amp;gt;${surefire.argLine}&amp;lt;/argLine&amp;gt;
+                &amp;lt;/configuration&amp;gt;
+            &amp;lt;/plugin&amp;gt;
+        &amp;lt;/plugins&amp;gt;
+        &amp;lt;pluginManagement&amp;gt;
+            &amp;lt;plugins&amp;gt;
+                &amp;lt;plugin&amp;gt;
+                    &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+                    &amp;lt;artifactId&amp;gt;maven-surefire-plugin&amp;lt;/artifactId&amp;gt;
+                &amp;lt;/plugin&amp;gt;
+            &amp;lt;/plugins&amp;gt;
+        &amp;lt;/pluginManagement&amp;gt;
+    &amp;lt;/build&amp;gt;
+
+    &amp;lt;dependencies&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.slf4j&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;slf4j-simple&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;1.7.13&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;com.codeborne&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;selenide&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;3.5.1&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;junit&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;junit&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;4.12&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+    &amp;lt;/dependencies&amp;gt;
+&amp;lt;/project&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice the properties:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;surefire.argLine&lt;/strong&gt; &amp;ndash; defines a command line parameters for running tests.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;browser&lt;/strong&gt; &amp;ndash; specifies a browser to use.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;selenium.hub.url&lt;/strong&gt; &amp;ndash; URL where selenium hub is running, for tests with remote web driver, e.g. on CI server.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;holdBrowserOpen&lt;/strong&gt; &amp;ndash; should the browser be closed after tests.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Also there are a fistful of profiles to use as a shortcuts, e.g.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mvn clean test -Pphantomjs&lt;/code&gt; &amp;ndash; run tests locally with phantomjs headless browser. Requires phantomjs to be installed&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mvn clean test -Pfirefox,local&lt;/code&gt; &amp;ndash; run tests locally with Firefox and leaves a browser open after tests&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mvn clean test -Pci-server,chrome&lt;/code&gt; &amp;ndash; run tests on selenium hub with Chrome&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You may find working example in my &lt;a href=&#34;https://github.com/kpavlov/selenide-maven-sample&#34; target=&#34;_blank&#34;&gt;GitHub repository&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -1211,136 +1376,6 @@ if (!MessageDigest.isEqual(receivedDigestBytes, expectedDigest)) {
 &lt;li&gt;&lt;a href=&#34;https://nvd.nist.gov/&#34; target=&#34;_blank&#34;&gt;National Vulnerability Database&lt;/a&gt;  &amp;ndash;  NVD includes databases of security checklists, security related software flaws, misconfigurations, product names, and impact metrics.&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Booting Spring Webapp</title>
-      <link>https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</link>
-      <pubDate>Thu, 19 Feb 2015 23:39:35 +0000</pubDate>
-      
-      <guid>https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/</guid>
-      <description>&lt;p&gt;Spring Boot is an excellent tool to bootstrap java application.
-Most of the references mention how to create a standalone java application, optionally with embedded web server (tomcat or jetty). But &lt;a href=&#34;http://projects.spring.io/spring-boot/&#34; title=&#34;Spring Boot Project&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; supports also creating web applications intended to run within servlet container.
-
-Here is example of maven &lt;em&gt;pom.xml&lt;/em&gt; file for Spring-Boot-enabled web application:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;    ...
-    &amp;lt;packaging&amp;gt;war&amp;lt;/packaging&amp;gt;
-    &amp;lt;properties&amp;gt;
-        &amp;lt;!-- If web.xml is not used --&amp;gt;
-        &amp;lt;failOnMissingWebXml&amp;gt;false&amp;lt;/failOnMissingWebXml&amp;gt;
-        &amp;lt;!-- Set Spring-Boot Version --&amp;gt;
-        &amp;lt;spring-boot.version&amp;gt;1.2.1.RELEASE&amp;lt;/spring-boot.version&amp;gt;
-    &amp;lt;/properties&amp;gt;
-    &amp;lt;dependencyManagement&amp;gt;
-        &amp;lt;dependencies&amp;gt;
-            &amp;lt;dependency&amp;gt;
-                &amp;lt;!-- Import dependency management from Spring Boot --&amp;gt;
-                &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-                &amp;lt;artifactId&amp;gt;spring-boot-dependencies&amp;lt;/artifactId&amp;gt;
-                &amp;lt;version&amp;gt;${spring-boot.version}&amp;lt;/version&amp;gt;
-                &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;
-                &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;
-            &amp;lt;/dependency&amp;gt;
-        &amp;lt;/dependencies&amp;gt;
-    &amp;lt;/dependencyManagement&amp;gt;
-    &amp;lt;dependencies&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;spring-boot-starter-web&amp;lt;/artifactId&amp;gt;
-            &amp;lt;exclusions&amp;gt;
-                &amp;lt;exclusion&amp;gt;
-                    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-                    &amp;lt;artifactId&amp;gt;spring-boot-starter-tomcat&amp;lt;/artifactId&amp;gt;
-                &amp;lt;/exclusion&amp;gt;
-            &amp;lt;/exclusions&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;!-- Provided in Tomcat --&amp;gt;
-            &amp;lt;groupId&amp;gt;javax.servlet&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;javax.servlet-api&amp;lt;/artifactId&amp;gt;
-            &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;!-- Provided in Tomcat --&amp;gt;
-            &amp;lt;groupId&amp;gt;javax.el&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;javax.el-api&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;2.2.4&amp;lt;/version&amp;gt;
-            &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-        &amp;lt;!-- Test dependencies --&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;spring-boot-starter-test&amp;lt;/artifactId&amp;gt;
-            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.glassfish.web&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;javax.el&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;2.2.4&amp;lt;/version&amp;gt;
-            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;        
-    &amp;lt;/dependencies&amp;gt;
-    ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You&amp;rsquo;ll need a &lt;code&gt;SpringBootServletInitializer&lt;/code&gt; to configure web application:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
-@ComponentScan
-@EnableAutoConfiguration
-public class Application extends SpringBootServletInitializer {
-
-    private static Class&amp;lt;Application&amp;gt; applicationClass = Application.class;
-
-    public static void main(String... args) {
-        SpringApplication.run(applicationClass, args);
-    }
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(applicationClass);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;HUGOMORE42&lt;/p&gt;
-
-&lt;h2 id=&#34;tuning-configuration&#34;&gt;Tuning Configuration&lt;/h2&gt;
-
-&lt;p&gt;If you want to have a configuration file hierarchy, e.g.:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Default properties (from classpath)&lt;/li&gt;
-&lt;li&gt;Environment-specific server properties (from &lt;code&gt;$CATALINA_BASE/conf&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Environment-specific application properties (from &lt;code&gt;$CATALINA_BASE/conf&lt;/code&gt;)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;You may specify &lt;code&gt;spring.config.location&lt;/code&gt; env-entries in &lt;code&gt;web.xml&lt;/code&gt;. Spring Boot will read properties from JNDI.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
-&amp;lt;web-app xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns=&amp;quot;http://java.sun.com/xml/ns/javaee&amp;quot;
-         xsi:schemaLocation=&amp;quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&amp;quot;
-         version=&amp;quot;3.0&amp;quot;&amp;gt;
-    &amp;lt;display-na&amp;gt;
-    &amp;lt;env-entry&amp;gt;
-        &amp;lt;env-entry-name&amp;gt;spring.config.location&amp;lt;/env-entry-name&amp;gt;
-        &amp;lt;env-entry-type&amp;gt;java.lang.String&amp;lt;/env-entry-type&amp;gt;
-        &amp;lt;env-entry-value&amp;gt;
-            classpath:/default.properties,
-            file:${catalina.base}/conf/common.properties,
-            file:${catalina.base}/conf/my-application.properties
-        &amp;lt;/env-entry-value&amp;gt;
-    &amp;lt;/env-entry&amp;gt;
-&amp;lt;/web-app&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://spring.io/blog/2014/03/07/deploying-spring-boot-applications#what-about-the-java-ee-application-server&#34; title=&#34;Deploying Spring Boot Applications: What about the Java EE Application Server?&#34; target=&#34;_blank&#34;&gt;Deploying Spring Boot Applications: What about the Java EE Application Server?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html&#34; title=&#34;Spring Boot: Common application properties&#34; target=&#34;_blank&#34;&gt;Spring Boot application properties&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
     </item>
     
   </channel>

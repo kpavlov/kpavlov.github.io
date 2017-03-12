@@ -40,7 +40,6 @@
 
 <meta property="fb:admins" content="">
 
-
     <link href='../index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
     <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="../apple-touch-icon-precomposed.png" rel="apple-touch-icon">
@@ -48,8 +47,8 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../assets/css/style.css?v=1488359750">
-    <link rel="stylesheet" href="../assets/css/prism.min.css?v=1488359750"/>
+    <link rel="stylesheet" href="../assets/css/style.css?v=1489339344">
+    <link rel="stylesheet" href="../assets/css/prism.min.css?v=1489339344"/>
 
     <script type="text/javascript">
         
@@ -79,8 +78,8 @@
     </script>
 </head>
 
-  <body class="">
-    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<body class="">
+<button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
 <nav tabindex="-1" class="drawer">
   <div class="drawer-container">
     
@@ -147,13 +146,13 @@
 </nav>
 
 
-    <div class="drawer-overlay"></div>
-    <main id="container" role="main" class="container">
-      <div class="surface">
-        <div class="surface-container">
-          <div data-pjax-container class="content">
+<div class="drawer-overlay"></div>
+<main id="container" role="main" class="container">
+  <div class="surface">
+    <div class="surface-container">
+      <div data-pjax-container class="content">
 
-            <aside role="banner" class="cover">
+        <aside role="banner" class="cover">
   <div data-load-image="/img/cover.jpg" class="cover-image"></div>
   <div class="cover-container">
     
@@ -167,24 +166,89 @@
 </aside>
 
 
-              <section class="wrapper" tabindex="0">
-                <div class="wrapper-container">
-                  
-                  
-                  
-                  <header>
-                    <p><h2>
-                    
-                      Posts in category <i>Posts</i>
-                    
-                    </h2></p>
-                    <hr>
-                  </header>
+        <section class="wrapper" tabindex="0">
+          <div class="wrapper-container">
+            
+            
+            
+            <header>
+              <p><h2>
+              
+              Posts in category <i>Posts</i>
+              
+            </h2></p>
+              <hr>
+            </header>
 
-                  <section class="post-list">
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+            <section class="post-list">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/" itemprop="url" data-pjax title="Application Development Top-Down">
+        Application Development Top-Down
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>Typical management and technical mistake when developing web applications is building the system ground-up, from persistence level to web. The development usually starts from data modeling, persistence and service layers and, finally, the UI.
+The problem with ground-up approach is that Client can&rsquo;t see and play with the product on early development stages. When a Client gets first working prototype a lot of work has been done both on front-end and back-end side.<a href="https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/" itemprop="url" data-pjax title="Application Development Top-Down">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2017-03-07' itemprop="datePublished">
+          2017-03-07
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../categories/project-management/" data-pjax rel="category" >project-management</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../tags/programming/" data-pjax rel="tag">#programming</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../tags/quality-assurance/" data-pjax rel="tag">#quality-assurance</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../tags/web/" data-pjax rel="tag">#web</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/#disqus_thread" data-disqus-identifier='20170307084834'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T6M" />
+        ~6 min
+      </li>
+    </ul>
+  </footer>
+</article>
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/" itemprop="url" data-pjax title="How to Start Testing UI Before Backend is Ready">
@@ -193,8 +257,8 @@
     </h2>
   </header>
   <section itemprop="description" class="post-item-excerpt">
-    <p>Recently I was asked how to start with testing UI before backend is completed.
-It depends on the product a lot. But when we&rsquo;re talking about web, it is often not clear how the final solution should look like and behave. If so, it is not reasonable to spend much time writing UI tests using tools like Selenium before the first prototype is ready. It is not reasonable to write a presentation layer and, in some cases, a business logic on server side before it is clear what kind of data is required for UI.<a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/" itemprop="url" data-pjax title="How to Start Testing UI Before Backend is Ready">&hellip;</a></p>
+    <p>A common goal in product development is to start UI and system integration testing as early as possible, maybe even before backend is completed.
+It depends on the product a lot. But when we&rsquo;re talking about web, it is often not clear how the final solution should look like and behave. If so, it is not reasonable to spend much time writing UI tests using tools like Selenium before the first prototype is ready.<a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/" itemprop="url" data-pjax title="How to Start Testing UI Before Backend is Ready">&hellip;</a></p>
   </section>
   <footer class="post-item-footer">
     <ul class="post-item-meta-list">
@@ -239,10 +303,9 @@ It depends on the product a lot. But when we&rsquo;re talking about web, it is o
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/" itemprop="url" data-pjax title="Deploying Private Docker Registry Behind Cloudflaire">
@@ -306,10 +369,9 @@ Suppose, we have two virtual servers on private cloud:</p><a href="https://konst
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/" itemprop="url" data-pjax title="Installing Ansible 2.1.1 on Debian 8 (Jessie)">
@@ -370,10 +432,9 @@ Following script automates the installation procedure:
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/" itemprop="url" data-pjax title="Links on REST API Design">
@@ -429,10 +490,9 @@ Following script automates the installation procedure:
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/" itemprop="url" data-pjax title="CI Setup Tips">
@@ -489,10 +549,9 @@ Notifications If you&rsquo;re using google apps for domain, you may use Google&r
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2016/05/12/selenium-tests-with-maven-and-selenide/" itemprop="url" data-pjax title="Selenium Tests with Maven and Selenide">
@@ -527,7 +586,7 @@ Notifications If you&rsquo;re using google apps for domain, you may use Google&r
 
 
     
-    <a itemprop="articleSection" href="../categories/quality-assurance/" data-pjax rel="category" >quality assurance</a>
+    <a itemprop="articleSection" href="../categories/programming/" data-pjax rel="category" >programming</a>
     
 
 </li>
@@ -557,10 +616,9 @@ Notifications If you&rsquo;re using google apps for domain, you may use Google&r
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2016/03/04/developing-in-dirty-trunk/" itemprop="url" data-pjax title="Developing in &#34;Dirty Trunk&#34;">
@@ -609,10 +667,9 @@ The idea is that:</p><a href="https://konstantinpavlov.net/blog/2016/03/04/devel
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2016/02/21/spring-freemarker-tips/" itemprop="url" data-pjax title="Spring&#43;Freemarker Tips">
@@ -675,10 +732,9 @@ The idea is that:</p><a href="https://konstantinpavlov.net/blog/2016/03/04/devel
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/" itemprop="url" data-pjax title="DevMode Javascript Exception Handler">
@@ -741,10 +797,9 @@ try { something } catch (e) { window.open('https://stackoverflow.com/search?q=[j
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/" itemprop="url" data-pjax title="Secure Java Coding Best Practices">
@@ -824,10 +879,9 @@ In this article I will briefly describe common practical development techniques 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/" itemprop="url" data-pjax title="Secure Java Logging with Logback">
@@ -896,10 +950,9 @@ OWASP Security Testing Guide Recommendations OWASP Security Testing Guide define
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/07/08/implementing-automatic-reconnection-for-netty-client/" itemprop="url" data-pjax title="Implementing Automatic Reconnection for Netty Client">
@@ -967,10 +1020,9 @@ OWASP Security Testing Guide Recommendations OWASP Security Testing Guide define
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/06/17/java-application-development-tutorial/" itemprop="url" data-pjax title="Java Application Development Tutorial">
@@ -1035,10 +1087,9 @@ Let&rsquo;s define the steps and choose some solutions for developing back-end j
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/" itemprop="url" data-pjax title="Self-Hosted Web Analytics Solution for AngularJS">
@@ -1101,10 +1152,9 @@ One of the possible solutions is the piwik as analytics engine + Angulartics or 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/" itemprop="url" data-pjax title="Loading Indicators for AngularJS">
@@ -1163,10 +1213,9 @@ First one is Angular Loading Bar. It can be attached to your application with al
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/" itemprop="url" data-pjax title="Tags Input Control for AngularJS">
@@ -1227,10 +1276,9 @@ npm install ng-tags-input --save bower install ng-tags-input --save   Include sc
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/05/20/api-authentication-generating-hmac-digest-in-php-and-java/" itemprop="url" data-pjax title="API Authentication: Generating HMAC digest in PHP and Java">
@@ -1299,10 +1347,9 @@ Used together with transport level security it provides reliable mechanizm of us
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/" itemprop="url" data-pjax title="One More Grid for AngularJS">
@@ -1361,10 +1408,9 @@ It&rsquo;s quite easy to integrate and faster than ui.grid. You may find other r
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/05/03/web-security-resources/" itemprop="url" data-pjax title="Web Security Resources">
@@ -1423,10 +1469,9 @@ It&rsquo;s quite easy to integrate and faster than ui.grid. You may find other r
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/04/12/slate-static-api-documentation-generator/" itemprop="url" data-pjax title="Slate: Static API Documentation Generator">
@@ -1475,10 +1520,9 @@ It&rsquo;s quite easy to integrate and faster than ui.grid. You may find other r
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/" itemprop="url" data-pjax title="Booting Spring Webapp">
@@ -1547,10 +1591,9 @@ Here is example of maven <em>pom.xml</em> file for Spring-Boot-enabled web appli
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/" itemprop="url" data-pjax title="Syncing iTunes Library Between two Computers">
@@ -1600,10 +1643,9 @@ Here is example of maven <em>pom.xml</em> file for Spring-Boot-enabled web appli
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/" itemprop="url" data-pjax title="Recalling Testing Principles">
@@ -1662,10 +1704,9 @@ Here is example of maven <em>pom.xml</em> file for Spring-Boot-enabled web appli
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/" itemprop="url" data-pjax title="Base64 Variants in Java 8">
@@ -1719,10 +1760,9 @@ Here is example of maven <em>pom.xml</em> file for Spring-Boot-enabled web appli
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/01/17/hexo-useful-tips/" itemprop="url" data-pjax title="Hexo Useful Tips">
@@ -1776,10 +1816,9 @@ Here is example of maven <em>pom.xml</em> file for Spring-Boot-enabled web appli
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/01/10/how-to-run-jetbrains-idea-on-mac-with-jdk-1.8/" itemprop="url" data-pjax title="How to Run JetBrains Idea on Mac with JDK 1.8">
@@ -1841,10 +1880,9 @@ Find:
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2015/01/05/top-n-must-have-plugins-for-jetbrains-idea/" itemprop="url" data-pjax title="Top N Must-Have Plugins for JetBrains Idea">
@@ -1902,10 +1940,9 @@ Find:
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/" itemprop="url" data-pjax title="Conditional Java Configurations in Spring Framework">
@@ -1976,10 +2013,9 @@ So, I created the annotation <a href="https://github.com/kpavlov/commons-spring/
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/" itemprop="url" data-pjax title="JDBC Driver Settings for Oracle RAC">
@@ -2038,10 +2074,9 @@ So, I created the annotation <a href="https://github.com/kpavlov/commons-spring/
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/" itemprop="url" data-pjax title="JAX-WS with Custom SSLSocketFactory">
@@ -2104,10 +2139,9 @@ But there is a nuance&hellip;</p><a href="https://konstantinpavlov.net/blog/2014
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/11/07/useful-code-templates-for-jetbrains-idea/" itemprop="url" data-pjax title="Useful Code Templates for Jetbrains Idea">
@@ -2173,10 +2207,9 @@ You may modify that template in <strong>&laquo;Settings -&gt; File and Code temp
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/09/07/chef-for-managing-small-cloud-infrastructure/" itemprop="url" data-pjax title="Chef for Managing Small Cloud Infrastructure">
@@ -2234,10 +2267,9 @@ I have no intention to edit configs by hand all the time, nor write deployment s
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/08/30/recommended-scrum-persentations/" itemprop="url" data-pjax title="Recommended Scrum Persentations">
@@ -2303,10 +2335,9 @@ I have no intention to edit configs by hand all the time, nor write deployment s
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/" itemprop="url" data-pjax title="WebJars: Easy Packaging Client Libraries">
@@ -2366,10 +2397,9 @@ There is a wide range of popular javascript libraries packaged int Jar archives 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/06/09/jolokia-http/json-bridge-for-jmx/" itemprop="url" data-pjax title="Jolokia: HTTP/JSON bridge for JMX">
@@ -2441,10 +2471,9 @@ For example, external monitoring tool, like Nagious/Zenoss/Zabbix needs to get s
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/06/09/ng-grid-library-for-building-dynamic-data-grid-for-angularjs/" itemprop="url" data-pjax title="ng-grid: library for building dynamic data-grid for AngularJS">
@@ -2505,10 +2534,9 @@ For example, external monitoring tool, like Nagious/Zenoss/Zabbix needs to get s
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/05/22/book-applied-oracle-security--developing-secure-database-and-middleware-environments-by-david-knox/" itemprop="url" data-pjax title="Book: &#34;Applied Oracle Security : Developing Secure Database and Middleware Environments&#34; by David Knox">
@@ -2570,10 +2598,9 @@ For example, external monitoring tool, like Nagious/Zenoss/Zabbix needs to get s
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/05/22/book-expert-oracle-database-architecture-oracle-database-9i-10g-and-11g-programming-techniques-and-solutions-by-thomas-kyte/" itemprop="url" data-pjax title="Book: &#34;Expert Oracle Database Architecture: Oracle Database 9i, 10g, and 11g Programming Techniques and Solutions&#34; by Thomas Kyte">
@@ -2636,10 +2663,9 @@ For example, external monitoring tool, like Nagious/Zenoss/Zabbix needs to get s
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/05/15/the-most-and-least-reliable-hard-drive-and-ssd-brands/" itemprop="url" data-pjax title="The Most (and Least) Reliable Hard Drive and SSD Brands">
@@ -2701,10 +2727,9 @@ For example, external monitoring tool, like Nagious/Zenoss/Zabbix needs to get s
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/05/11/blog-migration-to-octopress/" itemprop="url" data-pjax title="Blog Migration to Octopress">
@@ -2752,10 +2777,9 @@ Process was fairy simple. I found two scripts to convert my old posts to Markdow
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/05/10/json-validation-with-json-schema/" itemprop="url" data-pjax title="JSON Validation with JSON Schema">
@@ -2822,10 +2846,9 @@ And it really exists!</p><a href="https://konstantinpavlov.net/blog/2014/05/10/j
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/" itemprop="url" data-pjax title="Webapp Inter-Communication in Tomcat">
@@ -2892,10 +2915,9 @@ And it really exists!</p><a href="https://konstantinpavlov.net/blog/2014/05/10/j
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/03/31/vaadin-optimizing-sluggish-ui/" itemprop="url" data-pjax title="Vaadin: Optimizing Sluggish UI">
@@ -2958,10 +2980,9 @@ And it really exists!</p><a href="https://konstantinpavlov.net/blog/2014/05/10/j
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/03/24/continuous-deployment-versioning-and-git/" itemprop="url" data-pjax title="Continuous Deployment, Versioning and Git">
@@ -3029,10 +3050,9 @@ And it really exists!</p><a href="https://konstantinpavlov.net/blog/2014/05/10/j
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/03/22/establishing-customizable-tomcat-configuration/" itemprop="url" data-pjax title="Establishing Customizable Tomcat Configuration">
@@ -3095,10 +3115,9 @@ This post contains step-by-step instruction will help you to establish custom to
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/03/21/getting-more-entropy-in-java-on-linux/" itemprop="url" data-pjax title="Getting More Entropy in Java on Linux">
@@ -3159,10 +3178,9 @@ This post contains step-by-step instruction will help you to establish custom to
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/03/01/video-scalable-memory-allocation-using-jemalloc-tech-talk-1/11/2011/" itemprop="url" data-pjax title="Video: Scalable Memory Allocation using jemalloc Tech Talk (1/11/2011)">
@@ -3221,10 +3239,9 @@ jemalloc project: https://github.com/jemalloc/jemalloc<a href="https://konstanti
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/02/19/chronicle/" itemprop="url" data-pjax title="Chronicle">
@@ -3284,10 +3301,9 @@ This library also supports distributed, durable, observable collections (Map, Li
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/01/18/jvm-profiling-mode/" itemprop="url" data-pjax title="JVM Profiling Mode">
@@ -3347,10 +3363,9 @@ This article describes the difference between instrumentation and sampling modes
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/01/16/give-good-names-for-your-threads/" itemprop="url" data-pjax title="Give Good Names for Your Threads">
@@ -3409,10 +3424,9 @@ For example, you may use CustomizableThreadFactory from SpringFramework for that
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/01/12/merge-sort-with-transylvanian-saxon-german-folk-dance/" itemprop="url" data-pjax title="Merge-sort with Transylvanian-saxon (German) folk dance">
@@ -3466,10 +3480,9 @@ For example, you may use CustomizableThreadFactory from SpringFramework for that
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2014/01/11/quick-sort-with-hungarian-folk-dance/" itemprop="url" data-pjax title="Quick-sort with Hungarian folk dance">
@@ -3523,10 +3536,9 @@ For example, you may use CustomizableThreadFactory from SpringFramework for that
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2013/12/21/javascript-solari-board/" itemprop="url" data-pjax title="Javascript Solari Board">
@@ -3581,10 +3593,9 @@ This article with a video about how the guys from FogCreek software has integrat
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2013/11/21/migrating-logback-configuration-from-xml-to-groovy/" itemprop="url" data-pjax title="Migrating Logback Configuration from XML to Groovy">
@@ -3641,10 +3652,9 @@ The moving was easy thanks to online conversion tool. And don&rsquo;t forget to 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2013/04/23/netty-how-to-initiate-ssl-handshake-from-client/" itemprop="url" data-pjax title="Netty: How to Initiate SSL Handshake From Client">
@@ -3710,10 +3720,9 @@ Hopefully, there is a convenient way to initiate handshake on the client. Netty 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2013/04/23/brewing-scala-on-mac-os-x/" itemprop="url" data-pjax title="Brewing Scala on Mac OS X">
@@ -3767,10 +3776,9 @@ Hopefully, there is a convenient way to initiate handshake on the client. Netty 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2013/04/22/using-expected-exceptions-in-unittests/" itemprop="url" data-pjax title="Using Expected Exceptions in UnitTests">
@@ -3828,10 +3836,9 @@ Hopefully, there is a convenient way to initiate handshake on the client. Netty 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2013/04/10/bootstrapping-intellij-idea-12.1-to-run-scala/" itemprop="url" data-pjax title="Bootstrapping IntelliJ Idea 12.1 to Run Scala">
@@ -3886,10 +3893,9 @@ Hopefully, there is a convenient way to initiate handshake on the client. Netty 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2013/04/10/installing-scala-2.10.1-on-mac-os-x-10.6.8-with-macports/" itemprop="url" data-pjax title="Installing Scala 2.10.1 on Mac OS X 10.6.8 with Macports">
@@ -3943,10 +3949,9 @@ Hopefully, there is a convenient way to initiate handshake on the client. Netty 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2013/01/27/crearing-an-array-in-javascript/" itemprop="url" data-pjax title="Crearing an array in JavaScript">
@@ -4000,10 +4005,9 @@ Hopefully, there is a convenient way to initiate handshake on the client. Netty 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2013/01/19/semantic-versioning-specification-semver/" itemprop="url" data-pjax title="Semantic Versioning Specification (SemVer)">
@@ -4049,10 +4053,9 @@ It looks very natural: X.Y.Z where X is major version, Y is minor version and Z 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2012/05/25/book-good-old-peopleware/" itemprop="url" data-pjax title="Book: Good Old &#34;Peopleware&#34;">
@@ -4106,10 +4109,9 @@ It looks very natural: X.Y.Z where X is major version, Y is minor version and Z 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2012/05/25/book-continuous-delivery...-by-jez-humble-and-david-farley/" itemprop="url" data-pjax title="Book: &#34;Continuous Delivery...&#34; by Jez Humble and David Farley">
@@ -4163,10 +4165,9 @@ It looks very natural: X.Y.Z where X is major version, Y is minor version and Z 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2012/05/20/configuring-protobuf-to-java-compiler-in-maven/" itemprop="url" data-pjax title="Configuring Protobuf to Java compiler in maven">
@@ -4228,10 +4229,9 @@ It looks very natural: X.Y.Z where X is major version, Y is minor version and Z 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/" itemprop="url" data-pjax title="Java-protobuf-format: Easy Protobuf-to-JSON Serialization in Java">
@@ -4294,10 +4294,9 @@ It looks very natural: X.Y.Z where X is major version, Y is minor version and Z 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/" itemprop="url" data-pjax title="Builder Pattern Usage: Rule of Thumb">
@@ -4352,10 +4351,9 @@ It looks very natural: X.Y.Z where X is major version, Y is minor version and Z 
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/" itemprop="url" data-pjax title="GWT is about to add Native JSON function support in version 2.1">
@@ -4416,10 +4414,9 @@ Now there are three methods JSONParser which may be used to parse JSON string:</
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/" itemprop="url" data-pjax title="How to Use Spring from EJB3">
@@ -4477,10 +4474,9 @@ Now there are three methods JSONParser which may be used to parse JSON string:</
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/" itemprop="url" data-pjax title="How To Export Spring Managed Bean To JNDI">
@@ -4541,10 +4537,9 @@ But it&rsquo;s easy to write it yourself:</p><a href="https://konstantinpavlov.n
     </ul>
   </footer>
 </article>
-
-                    
-                      <article itemscope itemtype="http://schema.org/BlogPosting"
-  role="article" class="post-item">
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/" itemprop="url" data-pjax title="Configuring WS-Security for Axis 1.4 client">
@@ -4604,11 +4599,10 @@ The things you need to configure axis client are:</p><a href="https://konstantin
     </ul>
   </footer>
 </article>
+              
+            </section>
 
-                    
-                  </section>
-
-                  <footer role="contentinfo" class="footer">
+            <footer role="contentinfo" class="footer">
   <p><small>© 2017. All Rights Reserved.</small></p>
   <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
   <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
@@ -4616,14 +4610,14 @@ The things you need to configure axis client are:</p><a href="https://konstantin
 
 
 
-                </div>
-            </section>
           </div>
-        </div>
+        </section>
       </div>
-    </main>
+    </div>
+  </div>
+</main>
 
-    
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
@@ -4641,8 +4635,8 @@ The things you need to configure axis client are:</p><a href="https://konstantin
          <a href="../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../assets/js/prism.min.js?v=1488359750"></script>
-    <script src="../assets/js/foot-scripts.min.js?v=1488359750"></script>
+    <script src="../assets/js/prism.min.js?v=1489339344"></script>
+    <script src="../assets/js/foot-scripts.min.js?v=1489339344"></script>
 
     <script type="text/javascript">
 
@@ -4670,5 +4664,5 @@ The things you need to configure axis client are:</p><a href="https://konstantin
       }
     </script>
 
-  </body>
+</body>
 </html>

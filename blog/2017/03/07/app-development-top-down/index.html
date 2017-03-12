@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+      
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.19" />
+
+    
+      
+    <meta name="description" content="Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later.">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Culture of Code">
+    <meta name="twitter:description" content="Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later.">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The Culture of Code">
+    <meta property="og:description" content="Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later.">
+
+    
+
+<meta name="twitter:site" content="@k_pavlov">
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+
+
+<meta property="fb:admins" content="">
+
+    <link href='../../../../../index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="../../../../../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../../../../../apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1489339344">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1489339344"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+<body class="">
+<button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="../../../../../index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="../../../../../about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="drawer-overlay"></div>
+<main id="container" role="main" class="container">
+  <div class="surface">
+    <div class="surface-container">
+      <div data-pjax-container class="content">
+
+        <section class="wrapper wrapper-post">
+          <div class="wrapper-container">
+            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+              <section class="post-container">
+                <header class="post-header">
+                  <ul class="post-meta-list">
+                    <li class="post-item-meta-item">
+                      <time datetime='2017-03-07' itemprop="datePublished">
+                        2017-03-07
+                      </time>
+                    </li>
+                    
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/project-management/" data-pjax rel="category" >project-management</a>
+    
+
+</li>
+
+
+                    
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/programming/" data-pjax rel="tag">#programming</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/quality-assurance/" data-pjax rel="tag">#quality-assurance</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/web/" data-pjax rel="tag">#web</a>
+    
+
+</li>
+
+
+
+                    
+                    <li class="post-item-meta-item">
+                      <a href="https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/#disqus_thread" data-disqus-identifier='20170307084834'>Comments</a>
+                    </li>
+                    
+                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+                      <meta itemprop="duration" content="T6M" />
+                      ~6 min
+                    </li>
+                  </ul>
+                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/" itemprop="url" data-pjax title="Application Development Top-Down">Application Development Top-Down</a></h1>
+                  
+                  
+                </header>
+                <aside class="post-side">
+                  <div class="post-author">
+                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
+                    </a>
+                    <div class="post-author-info">
+                      <a href="https://konstantinpavlov.net/" class="post-author-name">
+                        Konstantin Pavlov
+                      </a>
+                      <p class="post-author-bio"></p>
+                    </div>
+                  </div>
+                </aside>
+                <div itemprop="articleBody" class="post-body">
+                  
+
+<p>Typical management and technical mistake when developing web applications is building the system ground-up, from persistence level to web.
+The development usually starts from data modeling, persistence and service layers and, finally, the UI.</p>
+
+<p>The problem with ground-up approach is that Client can&rsquo;t see and play with the product on early development stages.
+When a Client gets first working prototype a lot of work has been done both on front-end and back-end side. In worst case is a product which does not meet Client&rsquo;s expectations.</p>
+
+<p>Now there may be two decisions for stakeholders to take: either to continue with development and change both front-end and a back-end, or to cancel the project. A signs of first decision are significant changes of data model or when data model does not match domain model well.</p>
+
+<p>Hopefully, by using agile methodologies the problem may be mitigated. Let me show you a slide from Henrik Kniberg&rsquo;s <a href="https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21" target="_blank">presentation</a>:
+<img src="../../../../../assets/2017/03/what-isagile-henrik-kniberg.jpg" alt="" /></p>
+
+<p>It&rsquo;s a classical iterative development process with short iterations, each iteration adds value. Client, server and DB are changed together in order to add new functionality. And the Client is always happy, even having a part of MVP.</p>
+
+<p>The question is: <em>&laquo;Will the Client be happy with a skateboard? Or she needs at least a bicycle? Is she OK with the application design?&raquo;</em></p>
+
+<p>In the real world the Client may not know if she like the first version or not.
+Ok, we can build a UI &laquo;without design&raquo;, using standard <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> components.
+But even then it&rsquo;s better to ask the Client: &laquo;Is it looks similar the product she would like to get at the end?&raquo;</p>
+
+<p>That&rsquo;s why I propose to consider top-down approach &ndash; <strong><em>Development from Web Prototype.</em></strong>
+I&nbsp;think it&rsquo;s even more agile way since client feedback is collected earlier thus minimizing unnecessary work.</p>
+
+<h2 id="development-plan">Development Plan</h2>
+
+<p>On following diagram I showed a common development phases on a timeline.
+Vision and Analysis phases were left behind the scene.</p>
+
+<p><img src="../../../../../assets/2017/03/app-development-schedule-v1.svg" alt="Application Development Schedule" /></p>
+
+<p>Let&rsquo;s assume, we&rsquo;re going to develop a web application consuming REST API from back-end server.</p>
+
+<h3 id="1-ui-prototype">1. UI Prototype</h3>
+
+<p>The actual development starts with web application prototyping.
+First UI mockups are created and presented to Client.
+This is typically an single page application (SPA) written using some component framework: Angular, React, whatever developers are confident with.
+Hopefully, there is some visual prototype or screen mockups so initial version is created quickly.</p>
+
+<h3 id="2-add-some-static-data">2. Add Some Static Data</h3>
+
+<p>When initial application structure is clear, it&rsquo;s the time to add some data. This should not be a real data as there is no real backend to provide it. It&rsquo;s enough to create some json files and deploy them under <code>/assets</code> or <code>/data</code> folder along with application.</p>
+
+<h3 id="3-start-defining-api-contract">3. Start Defining API Contract</h3>
+
+<p>This static data is a foundation of future API specification (contract). The most popular format for writing API specifications is <a href="https://swagger.io" target="_blank">OpenAPI/Swagger</a>. It suites well for most common cases. Some aspects, like inheritance, are not clear enough in specification but the format is widely accepted in the industry so it&rsquo;s a default choice.</p>
+
+<p>Alternative formats for describing API are:</p>
+
+<ul>
+<li><a href="http://apiblueprint.org/" target="_blank">API Blueprint</a></li>
+<li><a href="http://www.mashape.com" target="_blank">Mashape</a></li>
+<li><a href="https://github.com/mashery/iodocs" target="_blank">Mashery I/O Docs</a><br /></li>
+</ul>
+
+<p>When you have Specification, you can automatically generate and publish API reference documentation.
+This will used often by your team internally and you will publish it later if you decide to make your API public.</p>
+
+<p>There are tools on the market you can use to generate HTML documentation from API Specification.</p>
+
+<h3 id="4-it-s-time-for-testing">4. It&rsquo;s Time for Testing</h3>
+
+<p>Now you have web application fed with static data. It&rsquo;s time to write some tests.
+You may start testing some base functionality you&rsquo;re confident with.
+Web Developers may start testing web components using JS-stuff like mocha, jasmine or similar framework.</p>
+
+<p>It is impossible to cover all the cases without real application server. Also, it is very difficult to test requests sent by UI application. But you can test simple scenarios like: <em>&laquo;WHEN user requests some url THEN expected data is shown on page&raquo;.</em></p>
+
+<h3 id="5-even-for-system-integration-testing">5. …Even for System Integration Testing</h3>
+
+<p>Webapp functional end-to-end testing with test data can be done by web developers.</p>
+
+<p>System integration testing is usually done together by QA team and employs both web and back-end developers.
+It usually covers complex interaction scenarios between front-end and back-end.</p>
+
+<p>Common tool used for system integration testing is Selenium.
+Sometimes it is also necessary to develop some extra tools for direct access to underlaying data and external system emulators (test doubles).
+And often the team will end up designing a custom test DSL to simplify writing this kind of tests</p>
+
+<p>There is a long way to go but even now it&rsquo;s possible to star writing some simple tests</p>
+
+<p>And it is now possible to start creating System Integration tests.
+Even you have no back-end yet, you defined an expected data in static files so there is nothing preventing from using a heavy stuff like Selenium.</p>
+
+<h3 id="6-starting-back-end-mock-controllers">6. Starting Back-End: Mock Controllers</h3>
+
+<p>We have a contract (API specification) and test data in static files (data should match the contract).
+We have also some system integration tests.</p>
+
+<p>Let&rsquo;s concentrate on deployment and testing. We don&rsquo;t need to implement services and data layer so far.</p>
+
+<p>Now we need a back-end and full deployment cycle to test both front-end and back-end together.
+From a API specification we may generate data transfer objects and interfaces of front controllers.
+Then we should implement controllers so they return the same test data.
+Mock controllers are enough. They may serve the same static data as for webapp.</p>
+
+<p>The most important that after completing this step our system integration tests should run against real UI working win real server. And tests should be green.</p>
+
+<h3 id="7-continuing-back-end-controllers-and-mock-dao">7. Continuing Back-End: Controllers and Mock DAO</h3>
+
+<p>Now it&rsquo;s time to implement services, one by one. Database is still not necessary - we may mock persistence (DAO) layer.
+The tests still should be green and we may add more tests now since we have Services now.</p>
+
+<h3 id="8-continuing-back-end-db-and-real-dao">8. Continuing Back-End: DB and Real DAO</h3>
+
+<p>Now we should design our persistence layer, create DAO add test data so the tests are still green.
+After that we&rsquo;ll have all components in our system:</p>
+
+<ul>
+<li>Web Application</li>
+<li>REST API Specification</li>
+<li>Backend: Controllers, Services, DAO</li>
+<li>Database</li>
+</ul>
+
+<p>Now let&rsquo;s continue with short interactions affecting all system layers.</p>
+
+<h2 id="final-notes">Final Notes</h2>
+
+<p>This not a methodology. It&rsquo;s just the idea of how to minimize unnecessary work in conditions of business uncertainty.</p>
+
+<p>You should not use this instruction blindly. Some steps may be omitted or combined for your project.</p>
+
+<h2 id="links">Links</h2>
+
+<ul>
+<li><a href="https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21" target="_blank">&laquo;What is Agile&raquo; by Henrik Kniberg</a></li>
+</ul>
+
+                </div>
+                <footer class="post-footer">
+                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
+                    </a>
+                    <div class="post-author-info">
+                      <h4 class="post-footer-heading">Written By</h4>
+                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
+                        <span itemprop="name">Konstantin Pavlov</span>
+                      </a>
+                      <p itemprop="description" class="post-author-bio"></p>
+                      
+                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                      
+                      
+                      <p class="post-info">
+                        <b class="post-info-title">Published on</b>
+                        <time class="post-date">Mar 7, 2017</time>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="post-social">
+                    <h4 class="post-footer-heading">Spread the word</h4>
+                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                  </div>
+                </footer>
+
+                <nav role="pagination" class="post-list-pagination">
+                  
+                  
+                  <a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/" class="post-list-pagination-item post-list-pagination-item-next"
+                     title="How to Start Testing UI Before Backend is Ready" data-pjax rel="next">
+                    How to Start Testing UI Before Backend is Ready&nbsp;<i class="fa fa-angle-double-right"></i>
+                  </a>
+                  
+                </nav>
+
+              </section>
+              
+              <section itemprop="comment" class="post-comments">
+                <div id="disqus_thread"></div>
+              </section>
+              
+            </article>
+
+            <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="../../../../../legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="../../../../../assets/js/prism.min.js?v=1489339344"></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1489339344"></script>
+
+    <script type="text/javascript">
+
+      
+        
+          if(GHOSTIUM.haveDisqus) {
+            var disqus_developer = 1;
+            var disqus_shortname = 'konstantinpavlov';
+
+
+            if(typeof DISQUS !== 'object') {
+              (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+              }());
+            }
+          } else {
+            document.querySelector('.post-comments').remove();
+          }
+        
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+</body>
+</html>
