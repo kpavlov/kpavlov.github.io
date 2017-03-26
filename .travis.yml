@@ -1,0 +1,20 @@
+language: go
+go:
+  - 1.8
+
+branches:
+  only:
+  - source
+
+sudo: false
+
+install:
+  - go get github.com/spf13/hugo
+
+before_script:
+- git config --global user.name 'Travis CI on behalf of Konstantin Pavlov'
+- git config --global user.email 'git@konstantinpavlov.net'
+- mkdir public
+
+script:
+  - deploy.sh
