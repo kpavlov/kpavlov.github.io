@@ -6,11 +6,10 @@ branches:
   only:
   - source
 
-sudo: true
+sudo: false
 
 install:
-  - sudo apt-get install hugo
-  # - go get github.com/spf13/hugo
+  - go get github.com/spf13/hugo
 
 before_script:
 - git config --global user.name 'Travis CI on behalf of Konstantin Pavlov'
