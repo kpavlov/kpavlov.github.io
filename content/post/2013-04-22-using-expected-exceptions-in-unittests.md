@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Using Expected Exceptions in UnitTests"
 date: 2013-04-22 11:17:01 +0300
 comments: true
@@ -23,4 +22,3 @@ although expected exception is catched and test framework reports test passed.
 
 The Rule of Thumb is:
 **You may use `ExpectedException` only if call of the _method under test_ is the last operator of test method.**
-

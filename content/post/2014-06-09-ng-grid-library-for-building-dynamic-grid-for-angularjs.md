@@ -1,9 +1,8 @@
 ---
-layout: post
 title: "ng-grid: library for building dynamic data-grid for AngularJS"
 date: 2014-06-09 11:51:21 +0300
 comments: true
-categories: 
+categories:
   - programming
 tags:
   - javascript

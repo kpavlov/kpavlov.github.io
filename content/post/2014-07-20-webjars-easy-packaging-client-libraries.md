@@ -1,9 +1,8 @@
 ---
-layout: post
 title: "WebJars: Easy Packaging Client Libraries"
 date: 2014-07-20 22:00:48 +0300
 comments: true
-categories: 
+categories:
   - programming
 tags:
   - java

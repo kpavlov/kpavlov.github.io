@@ -1,11 +1,10 @@
 ---
-layout: post
 title: "Book: \"Expert Oracle Database Architecture: Oracle Database 9i, 10g, and 11g Programming Techniques and Solutions\" by Thomas Kyte"
 date: 2014-05-22 22:54:51 +0300
 comments: true
 categories:
   - programming
-  - database 
+  - database
 tags:
   - books
   - oracle

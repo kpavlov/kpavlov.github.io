@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "One More Grid for AngularJS"
 date: 2015-05-10T11:52:33
 tags:

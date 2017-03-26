@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Java Application Development Tutorial"
 date: 2015-06-17T09:55:16
 updated: 2016-10-27T18:13:32
@@ -65,7 +64,7 @@ Making decision earlier may catch you in a trap of technologies and tools not su
 
 ## Building Front-End
 
-1. Start with UI without real data. Then create a test data (JSON files) and use simple nodejs http server to serve it together with other assets. When your data requirements are defined, start implementing service API. This approach saves a lot of time: You don't have to change both server and client when design has eventually changed. 
+1. Start with UI without real data. Then create a test data (JSON files) and use simple nodejs http server to serve it together with other assets. When your data requirements are defined, start implementing service API. This approach saves a lot of time: You don't have to change both server and client when design has eventually changed.
 
 2. Create separate controllers for creating and amending your entities. Data models and validation rules are often different. Most likely you will have significantly different models. Also, edit controllers will be simpler if you'll have less mutable fields in the model.
 
@@ -119,18 +118,18 @@ Someone may argue: why not to manage transactions in controllers (presentation l
     ```java
     @Service
     public MyServiceImpl implements MyService {
-    
+
         @Autowired
         private MyDao dao;
-    
+
         @Autowired
         private MyServiceImpl self;
-    
+
         @Override
         public void nonTxMethod() {
             self.txMethod(); // "self" is a proxy with transactional aspect support
         }
-    
+
         @Override
         @Transactional
         public void txMethod() {

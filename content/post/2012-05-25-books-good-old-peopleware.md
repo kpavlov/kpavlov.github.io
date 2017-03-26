@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Book: Good Old \"Peopleware\""
 date: 2012-05-25T09:40:00+04:00
 alias: /2012/05/books-good-old-peopleware.html

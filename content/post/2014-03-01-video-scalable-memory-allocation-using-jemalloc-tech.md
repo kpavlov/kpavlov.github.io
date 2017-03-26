@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Video: Scalable Memory Allocation using jemalloc Tech Talk (1/11/2011)'
 date: '2014-03-01T12:30:28+02:00'
 categories:

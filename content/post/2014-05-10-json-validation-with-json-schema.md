@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "JSON Validation with JSON Schema"
 date: 2014-05-10 15:48:12 +0300
 comments: true

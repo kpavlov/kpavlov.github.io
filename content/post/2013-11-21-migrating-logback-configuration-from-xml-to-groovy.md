@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Migrating Logback Configuration from XML to Groovy"
 date: 2013-11-21 15:44:14 +0300
 comments: true

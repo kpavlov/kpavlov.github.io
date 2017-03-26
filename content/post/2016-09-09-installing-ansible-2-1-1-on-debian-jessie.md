@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Installing Ansible 2.1.1 on Debian 8 (Jessie)
 date: 2016-09-09T10:12:48
 categories:

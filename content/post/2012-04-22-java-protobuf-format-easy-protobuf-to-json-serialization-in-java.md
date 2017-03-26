@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Java-protobuf-format: Easy Protobuf-to-JSON Serialization in Java"
 date: 2012-04-22T13:09:42
 comments: true

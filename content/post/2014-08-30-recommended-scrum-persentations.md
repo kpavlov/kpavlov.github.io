@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Recommended Scrum Persentations"
 date: 2014-08-30T07:46:20
 comments: true
@@ -25,7 +24,7 @@ The presentations describes the Scrum process step by step.
 - Responsibilities of the Product Owner, Scrum Development Team, and Scrum Master.Definition of Product Backlog and Sprint Backlog. Five Scrum meetings and example schedule.
 - Scrum Quiz, a practice test to help prepare for class and the Certified Scrum Master (CSM) exam, or others (PSM, PMI-ACP, etc.). You might prefer to return to the quiz after completing modules 2-6.
 
-http://scrumtrainingseries.com/Intro_to_Scrum/Intro_to_Scrum.htm 
+http://scrumtrainingseries.com/Intro_to_Scrum/Intro_to_Scrum.htm
 ([HTML5 version](http://scrumtrainingseries.com/Intro_to_Scrum/))
 
 ## Backlog Refinement Meeting (aka. Backlog Grooming)

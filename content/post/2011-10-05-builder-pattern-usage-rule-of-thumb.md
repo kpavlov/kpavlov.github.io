@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Builder Pattern Usage: Rule of Thumb"
 date: 2011-10-05T12:37:37
 comments: true
@@ -79,4 +78,3 @@ PingResponse nextResponse = builder.setTimestamp(System.currentTimeMillis()).bui
 ```
 
 [builder]: http://en.wikipedia.org/wiki/Builder_pattern "Builder Design Pattern"
-

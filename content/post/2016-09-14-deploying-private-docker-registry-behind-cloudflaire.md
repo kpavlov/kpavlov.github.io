@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Deploying Private Docker Registry Behind Cloudflaire
 date: 2016-09-14T10:15:51
 updated: 2016-09-14T10:26:13

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Bootstrapping IntelliJ Idea 12.1 to Run Scala"
 date: 2013-04-10 13:48:43 +0300
 comments: true

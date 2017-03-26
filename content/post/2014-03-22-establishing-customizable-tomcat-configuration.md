@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Establishing Customizable Tomcat Configuration"
 date: 2014-03-22 12:40:16 +0300
 comments: true
@@ -11,7 +10,7 @@ tags:
 alias: [post/80352392033/establishing-customizable-tomcat-configuration]
 ---
 
-Deploying to [Apache Tomcat](http://tomcat.apache.org) often requires making changes to default configuration. 
+Deploying to [Apache Tomcat](http://tomcat.apache.org) often requires making changes to default configuration.
 These changes are often environment specific.
 Also, when upgrading a Tomcat to new version you need to be sure that all your custom changes have not been lost and were applied to new configuration.
 To deal with all that stuff Tomcat via separation of the configuration.
@@ -39,7 +38,7 @@ As alternative, you may install a tomcat from packages.
 	cp -v ~/java/tomcat/conf/server.xml ~/java/tomcat/conf/tomcat-users.xml ~/java/custom-tomcat/conf/[](null)
     ```
 3. Set system property `$CATALINA_BASE` referring to base directory for resolving dynamic portions of a Catalina installation.
- 
+
     ```bash   
     export CATALINA_BASE=~/java/custom-tomcat
     ```
@@ -47,14 +46,14 @@ Now you can start the Tomcat and see that it uses your custom configuration fold
 
     ```
     $ ./catalina.sh run
-    Using CATALINA_BASE:   /Users/maestro/java/custom-tomcat 
+    Using CATALINA_BASE:   /Users/maestro/java/custom-tomcat
     Using CATALINA_HOME:   /Users/maestro/java/tomcat
     Using CATALINA_TMPDIR: /Users/maestro/java/custom-tomcat/temp
     ...
-    ``` 
-    
+    ```
+
 ## 3. Tomcat runtime parameters customization
- 
+
 To specify JVM options to be used when tomcat server is run, create a bash script `$CATALINA_BASE/bin/setenv.sh`. It will keep environment variables referred in `catalina.sh` script to keep your customizations separate.
 
 Define `$CATALINA_OPTS` inside `setenv.sh`.  Include here and not in JAVA_OPTS all options, that should only be used by Tomcat itself, not by the stop process, the version command etc. Examples are heap size, GC logging, JMX ports etc.
@@ -96,14 +95,14 @@ export CATALINA_OPTS="$CATALINA_OPTS -XX:+DisableExplicitGC"
 if [ -r "$CATALINA_BASE/bin/appenv.sh" ]; then
   . "$CATALINA_BASE/bin/appenv.sh"
 fi
- 
+
 echo "Using CATALINA_OPTS:"
 for arg in $CATALINA_OPTS
 do
     echo ">> " $arg
 done
 echo ""
- 
+
 echo "Using JAVA_OPTS:"
 for arg in $JAVA_OPTS
 do
@@ -113,7 +112,7 @@ done
 echo "_______________________________________________"
 echo ""
 ```
- 
+
 ## 4. Migrate logging to Logback
 
 Tomcat is configured to use Apache Commons Logging API by default.
@@ -126,7 +125,7 @@ If you are using [slf4j][slf4j] in your application and familiar with [Logback][
 - http://hwellmann.blogspot.com/2012/11/logging-with-slf4j-and-logback-in.html
 - https://gist.github.com/terrancesnyder/986029 - example setenv.sh with defaults set for minimal time spent in garbage collection
 - http://wiki.apache.org/tomcat/FAQ/Memoryhttp://wiki.apache.org/tomcat/FAQ/Memory
-- http://confluence.atlassian.com/display/DOC/Garbage+Collector+Performance+Issues 
+- http://confluence.atlassian.com/display/DOC/Garbage+Collector+Performance+Issues
 
 [slf4j]: http://slf4j.org
 [logback]: http://logback.qos.ch

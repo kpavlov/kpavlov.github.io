@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Continuous Deployment, Versioning and Git
 date: '2014-03-24T12:30:35+02:00'
 categories:
@@ -23,7 +22,6 @@ GitFlow model is supported by [SourceTree](http://www.sourcetreeapp.com/) - a ni
 ![SourceTree Screenshot](http://www.sourcetreeapp.com/images/sourcetree-hero-mac-log@2x.png)
 
 # Other resources:
- 
+
  - [Git Workflows](https://www.atlassian.com/git/tutorials/comparing-workflows/) by Atlassian
  - [GitFlow project on GitHub](https://github.com/nvie/gitflow)
-

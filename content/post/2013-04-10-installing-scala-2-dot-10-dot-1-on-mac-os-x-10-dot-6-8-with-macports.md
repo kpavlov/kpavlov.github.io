@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Installing Scala 2.10.1 on Mac OS X 10.6.8 with Macports"
 date: 2013-04-10 13:22:43 +0300
 comments: true

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Links on REST API Design
 tags:
   - web-services

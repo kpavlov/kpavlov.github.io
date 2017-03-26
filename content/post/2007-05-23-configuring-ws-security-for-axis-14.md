@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Configuring WS-Security for Axis 1.4 client"
 date: 2007-05-23T14:13:00
 alias: /2007/05/configuring-ws-security-for-axis-14.html
@@ -37,4 +36,3 @@ The things you need to configure axis client are:
 
 You don't need to hardcode username and password as a handler parameters.
 Just call setUsername(...) and setPassword(...) methods of your Stub.
-

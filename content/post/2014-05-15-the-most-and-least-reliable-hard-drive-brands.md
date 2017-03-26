@@ -1,5 +1,4 @@
 ---
-layout: post
 title: The Most (and Least) Reliable Hard Drive and SSD Brands
 date: '2014-05-15T12:30:47+02:00'
 categories:

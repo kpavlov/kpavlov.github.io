@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Configuring Protobuf to Java compiler in maven
 date: '2012-05-20T21:51:00+03:00'
 categories:

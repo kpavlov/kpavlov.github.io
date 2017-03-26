@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Book: \"Continuous Delivery...\" by Jez Humble and David Farley"
 date: 2012-05-25T09:29:00+04:00
 alias: /2012/05/book-continuous-delivery-by-jez-humble.html

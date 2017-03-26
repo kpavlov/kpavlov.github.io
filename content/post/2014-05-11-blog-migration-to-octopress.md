@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Blog Migration to Octopress"
 date: 2014-05-11 09:58:54 +0300
 comments: true

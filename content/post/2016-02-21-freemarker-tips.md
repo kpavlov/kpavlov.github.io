@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Spring+Freemarker Tips
 slug: spring-freemarker-tips
 date: 2016-02-21T18:15:00

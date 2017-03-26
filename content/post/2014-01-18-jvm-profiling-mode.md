@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "JVM Profiling Mode"
 date: 2014-01-18 12:33:12 +0300
 comments: true
@@ -12,7 +11,7 @@ tags:
 
 There is no sense to run profiler in instrumentation mode on a high load.
 
-Instead of using instrumentation you should use sampling mode. 
+Instead of using instrumentation you should use sampling mode.
 
 [This article][article] describes the difference between instrumentation and sampling modes.
 [JVisualVM][jvisualvm] is a good free tool for this task.

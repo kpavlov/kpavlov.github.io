@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Getting More Entropy in Java on Linux"
 date: 2014-03-21 12:30:27 +0300
 comments: true
@@ -14,7 +13,7 @@ tags:
 
 Setting entropy pool for Java server on linux is fair simple. Just add a system property to specify a device to read from.
 <!--more-->
-### Blocking, but more Secure 
+### Blocking, but more Secure
 
     -Djava.security.egd=file:///dev/random
 
@@ -32,7 +31,7 @@ If solution not working then take a look at workaround: http://bugs.java.com/vie
 
 ### How to get more entropy
 
-1. Involve an audio entropy daemon like [AED](http://www.vanheusden.com/aed/) to gather noise from your datacenter with an open microphone, maybe combine it with a webcam noise collector like VED. Other sources are talking about [“Cryptographic Randomness from Air Turbulence in Disk devices“](http://world.std.com/~dtd/random/forward.ps). 
+1. Involve an audio entropy daemon like [AED](http://www.vanheusden.com/aed/) to gather noise from your datacenter with an open microphone, maybe combine it with a webcam noise collector like VED. Other sources are talking about [“Cryptographic Randomness from Air Turbulence in Disk devices“](http://world.std.com/~dtd/random/forward.ps).
 2. Use the [Entropy Gathering Daemon](http://egd.sourceforge.net/) to collect weaker entropy from randomness of userspace programs.
 3. Have a look at [haveged](http://www.issihosts.com/haveged/) (collecting good entropy on basis of CPU clock flutter)
 4. Consider [installing a couple of parrots or canary next to your server.](http://www.usn-it.de/index.php/2009/02/20/oracle-11g-jdbc-driver-hangs-blocked-by-devrandom-entropy-pool-empty/#comment-40107)

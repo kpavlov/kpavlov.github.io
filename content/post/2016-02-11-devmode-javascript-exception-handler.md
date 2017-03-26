@@ -1,5 +1,4 @@
 ---
-layout: post
 title: DevMode Javascript Exception Handler
 date: 2016-02-11T23:09:16
 categories:

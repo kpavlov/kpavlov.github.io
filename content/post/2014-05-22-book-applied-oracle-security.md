@@ -1,11 +1,10 @@
 ---
-layout: post
 title: "Book: \"Applied Oracle Security : Developing Secure Database and Middleware Environments\" by David Knox"
 date: 2014-05-22 22:57:48 +0300
 comments: true
 categories:
   - programming
-  - database 
+  - database
 tags:
   - books
   - oracle

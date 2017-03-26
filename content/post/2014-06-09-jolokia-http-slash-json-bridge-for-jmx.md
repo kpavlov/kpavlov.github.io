@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Jolokia: HTTP/JSON bridge for JMX"
 date: 2014-06-09 13:17:37 +0300
 comments: true
@@ -62,5 +61,5 @@ Also, Jolokia provides OSGi, Mule and JVM [agents](http://www.jolokia.org/refere
  [jolokia-github]: https://github.com/rhuss/jolokia "Jolokia on GitHub"
  [jolokia-pepper]: https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/BhutJolokia09_Asit.jpg/640px-BhutJolokia09_Asit.jpg
  [jolokia-maven]: https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.jolokia%22
- [json-formatter-extension]: https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa "JSON Formatter Chrome Extension" 
+ [json-formatter-extension]: https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa "JSON Formatter Chrome Extension"
  [tomcat]: /tags/tomcat

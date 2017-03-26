@@ -1,10 +1,9 @@
 ---
-layout: post
 title: "Useful Code Templates for Jetbrains Idea"
 date: 2014-11-07T07:10:16
 comments: true
-categories: 
-  - programming 
+categories:
+  - programming
 tags:
   - code style
   - idea

@@ -1,9 +1,8 @@
 ---
-layout: post
 title: "Chef for Managing Small Cloud Infrastructure"
 date: 2014-09-07T11:37:12
 comments: true
-categories: 
+categories:
  - devops
 tags:
  - linux
@@ -42,4 +41,3 @@ OpsCode (the guys who supports Chef) supports a [repository of cookbooks][opscod
 [chef-client-local-mode]: https://docs.getchef.com/ctl_chef_client.html#run-in-local-mode
 [chef-digitalocean]: http://adamcod.es/2013/06/04/deploy-a-basic-lamp-stack-digital-ocean-chef-solo.html
 [opscode-repo]: https://community.opscode.com/cookbooks
-

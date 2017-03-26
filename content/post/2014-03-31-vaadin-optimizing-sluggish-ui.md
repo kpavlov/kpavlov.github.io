@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Vaadin: Optimizing Sluggish UI'
 date: '2014-03-31T12:30:43+03:00'
 categories:

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Implementing Automatic Reconnection for Netty Client
 keywords: netty,client,reconnect
 date: 2015-07-08T07:48:05
@@ -17,35 +16,35 @@ One of the first requirement of [Netty ISO8588 client connector][jreactive-8583]
 One of the first receipts I came across was [Thomas Termin's one][tterm]. He suggests adding a ChannelHandler which will schedule the calling of client's `connect()` method once a Channel becomes inactive. Plus adding ChannelFutureListener which will re-create a bootstrap and re-connect if initial connection was failed.
 
 Although this is a working solution, I had a feeling that something is not optimal. Namely, the new Bootstrap is being created on every connection attempt.
- 
-So, I created a FutureListener which should be registered once a Channel is closed.<!--more--> 
 
-Here is the [`ReconnectOnCloseListener`][ReconnectOnCloseListener] code: 
+So, I created a FutureListener which should be registered once a Channel is closed.<!--more-->
+
+Here is the [`ReconnectOnCloseListener`][ReconnectOnCloseListener] code:
 
 ```java ReconnectOnCloseListener.java
     public class ReconnectOnCloseListener implements ChannelFutureListener {
-    
+
         private final Logger logger = getLogger(ReconnectOnCloseListener.class);
-    
+
         private final Iso8583Client client;
         private final int reconnectInterval;
         private final AtomicBoolean disconnectRequested = new AtomicBoolean(false);
         private final ScheduledExecutorService executorService;
-    
+
         public ReconnectOnCloseListener(Iso8583Client client, int reconnectInterval, ScheduledExecutorService executorService) {
             this.client = client;
             this.reconnectInterval = reconnectInterval;
             this.executorService = executorService;
         }
-    
+
         public void requestReconnect() {
             disconnectRequested.set(false);
         }
-    
+
         public void requestDisconnect() {
             disconnectRequested.set(true);
         }
-    
+
         @Override
         public void operationComplete(ChannelFuture future) throws Exception {
             final Channel channel = future.channel();
@@ -53,7 +52,7 @@ Here is the [`ReconnectOnCloseListener`][ReconnectOnCloseListener] code:
             channel.disconnect();
             scheduleReconnect();
         }
-    
+
         public void scheduleReconnect() {
             if (!disconnectRequested.get()) {
                 logger.trace("Failed to connect. Will try again in {} millis", reconnectInterval);

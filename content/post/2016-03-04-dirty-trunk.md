@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Developing in "Dirty Trunk"
 date: 2016-03-04T22:26:24
 categories:

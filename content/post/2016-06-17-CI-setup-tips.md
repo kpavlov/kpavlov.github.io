@@ -1,5 +1,4 @@
 ---
-layout: post
 title: CI Setup Tips
 date: 2016-07-17T17:00:00
 categories:

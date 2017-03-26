@@ -1,5 +1,4 @@
 ---
-layout: post
 title: 'Secure Java Logging with Logback'
 keywords: java,logging,logback,security
 date: 2015-07-26T14:01:33
@@ -23,13 +22,13 @@ Deploying application into secure environment adds some restrictions on logging 
 
 Log files should not contain any sensitive data. Anyway, log file access must be restricted:
 
-> Event log information should never be visible to end users. Even web administrators should not be able to see such logs since it breaks 
-separation of duty controls. Ensure that any access control schema that is used to protect access to raw logs and any applications providing capabilities to view or search the logs is not linked with access control schemas for other application user roles. Neither should any 
+> Event log information should never be visible to end users. Even web administrators should not be able to see such logs since it breaks
+separation of duty controls. Ensure that any access control schema that is used to protect access to raw logs and any applications providing capabilities to view or search the logs is not linked with access control schemas for other application user roles. Neither should any
 log data be viewable by unauthenticated users.
 
 The consequence is that you should not use same authentication mechanism to access application and accessing the log files.
 
->Also, in some jurisdictions, storing some sensitive information in log files, such as personal data, might oblige the enterprise to apply the data protection laws that they would apply to their back-end databases to log files too. And failure to do so, even unknowingly, might 
+>Also, in some jurisdictions, storing some sensitive information in log files, such as personal data, might oblige the enterprise to apply the data protection laws that they would apply to their back-end databases to log files too. And failure to do so, even unknowingly, might
 carry penalties under the data protection laws that apply.
 
 It's not easy to make sure that no sensitive information is not printed to log. When using [logback][logback] it is possible to conigure [regexp replace pattern](http://logback.qos.ch/manual/layouts.html#replace) to wipe certain data from log files being written, e.g. [mask passwords](http://stackoverflow.com/a/4624952/3315474).
@@ -39,17 +38,17 @@ To mask credit card number (PAN) you may use the following expression (`logback.
 <pattern>%-5level - %replace(%msg){'\d{12,19}', 'XXXX'}%n</pattern>
 ~~~
 
-This expression will replace all numbers with 12 to 19 digits with `XXXX`, so some other data will be masked. 
+This expression will replace all numbers with 12 to 19 digits with `XXXX`, so some other data will be masked.
 
 Another pattern variation honors only 16-digit card numbers (PANs) with selective [first digit](https://en.wikipedia.org/wiki/Bank_card_number#Issuer_identification_number_.28IIN.29) and supports spaces between digit groups:
 
-~~~xml 
+~~~xml
 <pattern>%-5level - %replace(%msg){'[1-6][0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}|5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}', 'XXXX'}%n</pattern>
 ~~~
 
 Masking PANs with Logback is the last resort to ensure the data is masked with a false-positive hits. It is preferrable to mask the data before it is being written to log in the applciation code.
 
-You may read about securing coding practices in [my next post](/2015/08/01/secure-java-coding-best-practices/ "Secure Java Coding Best Practices"). 
+You may read about securing coding practices in [my next post](/2015/08/01/secure-java-coding-best-practices/ "Secure Java Coding Best Practices").
 
 ## 2. Are the logs stored in a dedicated server?
 
@@ -59,7 +58,7 @@ Logback offers [`SocketAppender`](http://logback.qos.ch/manual/appenders.html#So
 
 Second option is [`DBAppender`](http://logback.qos.ch/manual/appenders.html#DBAppender) to write logs to the database thus keeping them apart from application instance.
 
-Other option is to use [`SyslogAppender`](http://logback.qos.ch/manual/appenders.html#SyslogAppender) and delegate logging to system syslog service. But is is not secure enougth: in the system will be hacked, the hacker may re-configure syslog not to send any events to remote log server. 
+Other option is to use [`SyslogAppender`](http://logback.qos.ch/manual/appenders.html#SyslogAppender) and delegate logging to system syslog service. But is is not secure enougth: in the system will be hacked, the hacker may re-configure syslog not to send any events to remote log server.
 
 When using a [Logstash][logstash] server, you may send events via [Logstash Logback Encoder](https://github.com/logstash/logstash-logback-encoder). Thare are [handful of appenders](https://github.com/logstash/logstash-logback-encoder#usage).
 
@@ -92,14 +91,14 @@ Debugging should be enabled on produciton only in critical situations.
 
 Log files should be rotated at least daily. Reasonable log history depth is 6 months. Some regulations may require to keep log files longer in case of investigations.
 
-> Some servers might rotate logs when they reach a given size. If this 
+> Some servers might rotate logs when they reach a given size. If this
 happens, it must be ensured that an attacker cannot force logs to rotate in order to hide his tracks.
 
 ## 5. How are logs reviewed? Can administrators use these reviews to detect targeted attacks?
 
-Log files can be used for attac detection. For example, the first phases of a SQL injection attack may producte 50x (server errors) or 40x (request errors) messages. 
+Log files can be used for attac detection. For example, the first phases of a SQL injection attack may producte 50x (server errors) or 40x (request errors) messages.
 
-> Log statistics or analysis should not be generated, nor stored, in the same server that produces the logs. Otherwise, an attacker might, through a web server vulnerability or improper configuration, gain access to them and retrieve similar information as would be disclosed by 
+> Log statistics or analysis should not be generated, nor stored, in the same server that produces the logs. Otherwise, an attacker might, through a web server vulnerability or improper configuration, gain access to them and retrieve similar information as would be disclosed by
 log files themselves.
 
 ## 6. How are log backups preserved?
@@ -109,24 +108,24 @@ log files themselves.
 Other type of attack is modification logging configuration file in order to hide the fact of attack.
 Use [Mandatory Access Controls](https://en.wikipedia.org/wiki/Mandatory_access_control) on the log file to make it append-only to users of the app, to mitigate the possibility of tampering or removing existing messages.
 
-The simplest way to make files append-only is probably [this](http://unix.stackexchange.com/a/59983): 
- 
+The simplest way to make files append-only is probably [this](http://unix.stackexchange.com/a/59983):
+
 ```bash    
 sudo chattr +a *.log
 ```
-or 
+or
 ```bash    
 sudo chattr +a *.log
 ```
 
 Also don't forget to [set default file attributes](http://unix.stackexchange.com/a/1315/125877) for log directory
 
-```bash 
+```bash
 # owner make the owner to be root and java group
 sudo chown root:java /var/log/java
 # set uid and gid   
 sudo chmod ug+s /var/log/java  
-# set group to w default 
+# set group to w default
 sudo setfacl -d -m g::w /var/log/java  
 # set nothing to other
 sudo setfacl -d -m o::--- /var/log/java
@@ -138,9 +137,9 @@ You could additionally take periodic backups of the log file to ensure that noth
 
 ## 7. Is the data being logged data validated (min/max length, chars etc) prior to being logged?
 
-Be carefull what are you writting to logs. Always ask yourself: _"Is it possible to produce big or huge logging output?"_ 
+Be carefull what are you writting to logs. Always ask yourself: _"Is it possible to produce big or huge logging output?"_
 
-Be carefull when [implementing the method `toString()`](http://www.slideshare.net/KonstantinPavlov/playing-the-tostrings). 
+Be carefull when [implementing the method `toString()`](http://www.slideshare.net/KonstantinPavlov/playing-the-tostrings).
 Include only minimum necessary information `in toString()` method.
 
 # Further steps: Protect your logging configuration
@@ -158,4 +157,3 @@ Although auto-reload is very attractive feature of logback, it is reasonable to 
 [logback]: http://logback.qos.ch/
 [AsyncDisruptorAppender]: https://github.com/logstash/logstash-logback-encoder/blob/master/src/main/java/net/logstash/logback/appender/LoggingEventAsyncDisruptorAppender.java
 [logstash]: http://logstash.net/
-

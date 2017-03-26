@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Secure Java Coding Best Practices
 date: 2015-08-01T22:22:34
 updated: 2015-09-09T07:50:10
@@ -12,9 +11,9 @@ tags:
   - web
 ---
 Making your web application flawless against security attacks is a challenge for every java developer.
-In this article I will briefly describe common practical development techniques that can help you to achieve it. 
+In this article I will briefly describe common practical development techniques that can help you to achieve it.
 
-[OWASP Top 10][owasp-top-10], a list of the 10 Most Critical Web Application Security Risks, includes following risks: 
+[OWASP Top 10][owasp-top-10], a list of the 10 Most Critical Web Application Security Risks, includes following risks:
 
  * A1 - Injection
  * A2 - Broken Authentication & Session Management
@@ -33,7 +32,7 @@ In this article I will highlight most important java coding techniques for build
 
 Bind user data to request parameters of the `PreparedStatement`. Never construct dynamic sql queries directly, without escaping parameter escaping.  
 
-Example: 
+Example:
 ```sql
 SELECT * FROM Users WHERE username = '" +  userName + "'";
 ```  
@@ -62,7 +61,7 @@ When rendering user-generated content, always encode it properly. This prevents 
 Use `c:out` tag. Attribute `escapeXml` is **"true"** by default, so you may omit it:
 
 ```jsp
-<c:out value="${variable}"/> 
+<c:out value="${variable}"/>
 ```
 
 * When using Spring Framework with JSP view, use [Spring's `form` tags](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html#view-jsp)
@@ -92,7 +91,7 @@ Use `c:out` tag. Attribute `escapeXml` is **"true"** by default, so you may omit
 
 ## Check Access ([A4][a4], [A7][a7])
 
-Always check data and functional access. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object. 
+Always check data and functional access. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object.
 Spring Security provides the comprehensive methods to implement functional access.
 Data access (SQL) usually requires correctly constructing of the SQL query.
 
@@ -130,7 +129,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 ### Use Content-Security-Policy Header
 
-[Content-Security-Policy](https://www.owasp.org/index.php/Content_Security_Policy) is an [W3C specification](https://w3c.github.io/webappsec/specs/content-security-policy/) offering the possibility to instruct the client browser from which location and/or which type of resources are allowed to be loaded. To define a loading behavior, the CSP specification use "directive" where a directive defines a loading behavior for a target resource type. 
+[Content-Security-Policy](https://www.owasp.org/index.php/Content_Security_Policy) is an [W3C specification](https://w3c.github.io/webappsec/specs/content-security-policy/) offering the possibility to instruct the client browser from which location and/or which type of resources are allowed to be loaded. To define a loading behavior, the CSP specification use "directive" where a directive defines a loading behavior for a target resource type.
 
 Directives can be specified using HTTP response header (a server may send more than one CSP HTTP header field with a given resource representation and a server may send different CSP header field values with different representations of the same resource or with different resources) or HTML Meta tag, the HTTP headers below are defined by the specs:
 
@@ -175,20 +174,20 @@ Include `_csrf.token` hidden field to your forms:
 
 ## Disable XML External Entity (XXE) Processing ([A1][a1], [A6][a6])
 
-Processing of 
+Processing of
 
 ```xml
-<?xml version="1.0" encoding="ISO-8859-1"?> 
-<!DOCTYPE request [ 
-<!ENTITY 
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE request [
+<!ENTITY
 include SYSTEM “file=/etc/passwd"
- > 
-]> 
-<request> 
-<description> 
+ >
+]>
+<request>
+<description>
 &include;
- </description> 
-... 
+ </description>
+...
 </request>
 ```
 
@@ -206,7 +205,7 @@ dbf.setFeature(javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING);
 
 // Do not include external entities
 dbf.setFeature("http://xml.org/sax/features/external-general-entities", false);
- 
+
 // Disallow DTD inlining by setting this feature to true
 dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
 ```
@@ -256,11 +255,11 @@ class CreditCard {
 
     public void wipe() {
         if (cardNumber != null) {
-            Arrays.fill(cardNumber, 'x');	
+            Arrays.fill(cardNumber, 'x');
         };
         cardNumber = null;
         if (cvv2 != null) {
-            Arrays.fill(cvv2, 'x');	
+            Arrays.fill(cvv2, 'x');
         }
         cvv2 = null;            
     }
@@ -346,10 +345,10 @@ First of all, **don't run your application on Windows**. Windows is far more vul
 
 There are several ways to mitigate that risk by disabling some JVM heapdump features:
 
-1. Make sure that java attach mechanism is disabled: `-XX:+DisableAttachMechanism`. Enables the option that disables the mechanism that lets tools attach to the JVM. By default, this option is disabled, meaning that the attach mechanism is enabled and you can use tools such as `jcmd`, `jstack`, `jmap`, and `jinfo`. See [java command line options](http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html). 
+1. Make sure that java attach mechanism is disabled: `-XX:+DisableAttachMechanism`. Enables the option that disables the mechanism that lets tools attach to the JVM. By default, this option is disabled, meaning that the attach mechanism is enabled and you can use tools such as `jcmd`, `jstack`, `jmap`, and `jinfo`. See [java command line options](http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html).
 
 2. Disable heapdump on `OutOfMemoryError`: `-XX:-HeapDumpOnOutOfMemoryError`. Set heapdump file location to `/dev/null` to avoid saving heapdump: `XX:HeapDumpPath=/dev/null`.
-    
+
     > Making a heapdump on OOM is not a good idea on production environment. If heap is big enough (a Gigabites) it could take long time to save heap contents to disk. So I suggest using it for load testing only
 
 ## Check Your dependencies for known Vulnerabilities ([A9][a9])
@@ -357,8 +356,8 @@ There are several ways to mitigate that risk by disabling some JVM heapdump feat
 * Check [ MITRE Common Vulnerabilities and Exposures Database](http://cve.mitre.org/) regularly.
 * Integrate [OWASP Dependency Check tool](https://www.owasp.org/index.php/OWASP_Dependency_Check) into your CI pipeline. Run it daily.
   There is a [maven plugin](http://jeremylong.github.io/DependencyCheck/dependency-check-maven/) which can analyze your project dependencies for known vulnerabilities.
-  You may consider adding following profile to your _pom.xml_: 
-  
+  You may consider adding following profile to your _pom.xml_:
+
     ```xml
     ...
     <profiles>
@@ -396,7 +395,7 @@ The list is not comprehensive, comments and suggestions are always welcome.
 * [OWASP Top 10][owasp-top-10]
 * [Java JM Command Line Options][java-options]
 * [Java Heap Memory vs Stack Memory Difference](http://www.journaldev.com/4098/java-heap-memory-vs-stack-memory-difference)
-* [Twelve rules for developing more secure Java code][12rules] 
+* [Twelve rules for developing more secure Java code][12rules]
 * [Performance Analysis of Data Encryption Algorithms][encryption_perf]
 * [OWASP Enterprise Security API](https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API) / [ESAPI 2.x on GitHub](https://github.com/ESAPI/esapi-java-legacy) -- ESAPI (The OWASP Enterprise Security API) is a free, open source, web application security control library that makes it easier for programmers to write lower-risk applications. The ESAPI libraries are designed to make it easier for programmers to retrofit security into existing applications. The ESAPI libraries also serve as a solid foundation for new development.
 * [Dependency-Check: checking project dependencies][dependency-check]
@@ -422,4 +421,3 @@ The list is not comprehensive, comments and suggestions are always welcome.
 [a8]: https://www.owasp.org/index.php/Top_10_2013-A8-Cross-Site_Request_Forgery_%28CSRF%29
 [a9]: https://www.owasp.org/index.php/Top_10_2013-A9-Using_Components_with_Known_Vulnerabilities
 [a10]: https://www.owasp.org/index.php/Top_10_2013-A10-Unvalidated_Redirects_and_Forwards
-
