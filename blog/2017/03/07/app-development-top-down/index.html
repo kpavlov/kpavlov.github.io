@@ -20,13 +20,50 @@
       
     <meta name="description" content="Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later.">
 
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="The Culture of Code">
-    <meta name="twitter:description" content="Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later.">
+	<meta property="og:title" content="Application Development Top-Down" />
+<meta property="og:description" content="Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/" />
 
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="The Culture of Code">
-    <meta property="og:description" content="Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later.">
+
+
+<meta property="article:published_time" content="2017-03-07T08:48:34&#43;02:00"/>
+<meta property="article:modified_time" content="2017-03-07T08:48:34&#43;02:00"/>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta itemprop="name" content="Application Development Top-Down">
+<meta itemprop="description" content="Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later.">
+
+
+<meta itemprop="dateModified" content="2017-03-07T08:48:34&#43;02:00" />
+<meta itemprop="wordCount" content="1077">
+
+
+
+<meta itemprop="keywords" content="blogging,database,devops,hardware,programming,project-management,agile,algorithms,angularjs,ansible,architecture,books,cloudflaire,code-style,continuous-deployment,debian,design-patterns,docker,documentation,freemarker,fun,git,google-protobuf,gwt,hdd,hexo,idea,itunes,java,javascript,jenkins,jmx,jreactive-8583,json,linux,logback,logging,mac,maven,netty,nginx,oracle,performance,php,programming,quality-assurance,scala,scrum,security,spring,ssd,tdd,tomcat,vaadin,web,web-services," />
+
+    
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:text:title" content="Application Development Top-Down"/>
+<meta name="twitter:title" content="Application Development Top-Down"/>
+<meta name="twitter:description" content="Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later."/>
+
+
 
     
 
@@ -47,8 +84,8 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1490560171">
-    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1490560171"/>
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1490565834">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1490565834"/>
 
     <script type="text/javascript">
         
@@ -228,32 +265,32 @@
                 <div itemprop="articleBody" class="post-body">
                   
 
-<p>Typical management and technical mistake when developing web applications is building the system ground-up, from persistence level to web.
-The development usually starts from data modeling, persistence and service layers and, finally, the UI.</p>
+<p>Delivering a product prototype to the client early is often very important to project success.
+A client may have only general idea of a product he wants to get at the end and prototyping may save a lot of time and efforts of the team by reducing amount of unnecessary work.</p>
 
-<p>The problem with ground-up approach is that Client can&rsquo;t see and play with the product on early development stages.
-When a Client gets first working prototype a lot of work has been done both on front-end and back-end side. In worst case is a product which does not meet Client&rsquo;s expectations.</p>
+<p>Accordingly, building web applications ground-up, starting from data model, may be a bad idea.</p>
 
-<p>Now there may be two decisions for stakeholders to take: either to continue with development and change both front-end and a back-end, or to cancel the project. A signs of first decision are significant changes of data model or when data model does not match domain model well.</p>
+<p>The development usually starts from data modeling, persistence and service layers and, finally, the UI.</p>
 
-<p>Hopefully, by using agile methodologies the problem may be mitigated. Let me show you a slide from Henrik Kniberg&rsquo;s <a href="https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21" target="_blank">presentation</a>:
-<img src="../../../../../assets/2017/03/what-isagile-henrik-kniberg.jpg" alt="" /></p>
+<p>The problem with ground-up approach is that client can&rsquo;t see and play with the product on early development stages.
+When a client gets first working prototype a lot of work has already done both on front-end and back-end side.
+And if the prototype does not meet the client&rsquo;s expectations, this work may be thrown away.</p>
 
-<p>It&rsquo;s a classical iterative development process with short iterations, each iteration adds value. Client, server and DB are changed together in order to add new functionality. And the Client is always happy, even having a part of MVP.</p>
+<p>When a significant changes are done to data model or when data model does not match well to domain model &ndash; these are the signs that it was a gap in the analysis and prototyping phases of the project.</p>
 
-<p>The question is: <em>&laquo;Will the Client be happy with a skateboard? Or she needs at least a bicycle? Is she OK with the application design?&raquo;</em></p>
+<p>Hopefully, agile methodologies can mitigate the problem:
+<a href="https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21" target="_blank"><img src="../../../../../assets/2017/03/what-isagile-henrik-kniberg.jpg" alt="" /></a></p>
 
-<p>In the real world the Client may not know if she like the first version or not.
-Ok, we can build a UI &laquo;without design&raquo;, using standard <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> components.
-But even then it&rsquo;s better to ask the Client: &laquo;Is it looks similar the product she would like to get at the end?&raquo;</p>
+<p>It&rsquo;s iterative development process with short iterations when each iteration adds some value. Client-side, server-side and DB are changed together in order to add new functionality. And the Client is always happy, even having a part of MVP.</p>
 
-<p>That&rsquo;s why I propose to consider top-down approach &ndash; <strong><em>Development from Web Prototype.</em></strong>
-I&nbsp;think it&rsquo;s even more agile way since client feedback is collected earlier thus minimizing unnecessary work.</p>
+<p>The question is: <em>&laquo;Should Client be happy with a skateboard?&raquo;</em> In a real world Client may need to try a &laquo;bicycle&raquo; before he can say that it looks similar to product he would like to get at the end.</p>
+
+<p>In such conditions of uncertainty the top-down approach, <strong><em>Development from Web Prototype,</em></strong> may be better solution.
+I&nbsp;think it&rsquo;s even more &laquo;agile&raquo; way since client&rsquo;s feedback is collected earlier, reducing unnecessary work of the team.</p>
 
 <h2 id="development-plan">Development Plan</h2>
 
-<p>On following diagram I showed a common development phases on a timeline.
-Vision and Analysis phases were left behind the scene.</p>
+<p>On following diagram you can see common development phases of the project on a timeline (Vision and Analysis phases were left behind the scene).</p>
 
 <p><img src="../../../../../assets/2017/03/app-development-schedule-v1.svg" alt="Application Development Schedule" /></p>
 
@@ -263,8 +300,7 @@ Vision and Analysis phases were left behind the scene.</p>
 
 <p>The actual development starts with web application prototyping.
 First UI mockups are created and presented to Client.
-This is typically an single page application (SPA) written using some component framework: Angular, React, whatever developers are confident with.
-Hopefully, there is some visual prototype or screen mockups so initial version is created quickly.</p>
+This is typically an single page application (SPA) written using some component framework: Angular, React, whatever developers are confident with. If there is some visual prototype or screen mockups then initial version can be created quickly.</p>
 
 <h3 id="2-add-some-static-data">2. Add Some Static Data</h3>
 
@@ -287,7 +323,7 @@ This will used often by your team internally and you will publish it later if yo
 
 <p>There are tools on the market you can use to generate HTML documentation from API Specification.</p>
 
-<h3 id="4-it-s-time-for-testing">4. It&rsquo;s Time for Testing</h3>
+<h3 id="4-a-time-for-testing">4. A Time for Testing</h3>
 
 <p>Now you have web application fed with static data. It&rsquo;s time to write some tests.
 You may start testing some base functionality you&rsquo;re confident with.
@@ -299,10 +335,10 @@ Web Developers may start testing web components using JS-stuff like mocha, jasmi
 
 <p>Webapp functional end-to-end testing with test data can be done by web developers.</p>
 
-<p>System integration testing is usually done together by QA team and employs both web and back-end developers.
+<p>System integration testing is usually done by QA team and employs both web and back-end developers.
 It usually covers complex interaction scenarios between front-end and back-end.</p>
 
-<p>Common tool used for system integration testing is Selenium.
+<p>Common tool used for system integration testing is <a href="http://www.seleniumhq.org" target="_blank">Selenium</a>.
 Sometimes it is also necessary to develop some extra tools for direct access to underlaying data and external system emulators (test doubles).
 And often the team will end up designing a custom test DSL to simplify writing this kind of tests</p>
 
@@ -330,7 +366,7 @@ Mock controllers are enough. They may serve the same static data as for webapp.<
 <p>Now it&rsquo;s time to implement services, one by one. Database is still not necessary - we may mock persistence (DAO) layer.
 The tests still should be green and we may add more tests now since we have Services now.</p>
 
-<h3 id="8-continuing-back-end-db-and-real-dao">8. Continuing Back-End: DB and Real DAO</h3>
+<h3 id="8-continuing-back-end-real-database-and-dao">8. Continuing Back-End: Real Database and DAO</h3>
 
 <p>Now we should design our persistence layer, create DAO add test data so the tests are still green.
 After that we&rsquo;ll have all components in our system:</p>
@@ -355,6 +391,8 @@ After that we&rsquo;ll have all components in our system:</p>
 <ul>
 <li><a href="https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21" target="_blank">&laquo;What is Agile&raquo; by Henrik Kniberg</a></li>
 </ul>
+
+<p>*[DAO]: Data Access Object</p>
 
                 </div>
                 <footer class="post-footer">
@@ -438,8 +476,8 @@ After that we&rsquo;ll have all components in our system:</p>
          <a href="../../../../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../../../../assets/js/prism.min.js?v=1490560171"></script>
-    <script src="../../../../../assets/js/foot-scripts.min.js?v=1490560171"></script>
+    <script src="../../../../../assets/js/prism.min.js?v=1490565834"></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1490565834"></script>
 
     <script type="text/javascript">
 

@@ -15,8 +15,9 @@
       <pubDate>Tue, 07 Mar 2017 08:48:34 +0200</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/</guid>
-      <description>Typical management and technical mistake when developing web applications is building the system ground-up, from persistence level to web. The development usually starts from data modeling, persistence and service layers and, finally, the UI.
-The problem with ground-up approach is that Client can&amp;rsquo;t see and play with the product on early development stages. When a Client gets first working prototype a lot of work has been done both on front-end and back-end side.</description>
+      <description>Delivering a product prototype to the client early is often very important to project success. A client may have only general idea of a product he wants to get at the end and prototyping may save a lot of time and efforts of the team by reducing amount of unnecessary work.
+Accordingly, building web applications ground-up, starting from data model, may be a bad idea.
+The development usually starts from data modeling, persistence and service layers and, finally, the UI.</description>
     </item>
     
     <item>
