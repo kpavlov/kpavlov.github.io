@@ -9,7 +9,7 @@ branches:
 sudo: true
 
 install:
-  - sudo apt-get install hugo
+  - sudo dpkg -i https://github.com/spf13/hugo/releases/download/v0.19/hugo_0.19_i386.deb
   # - go get github.com/spf13/hugo
 
 before_script:
