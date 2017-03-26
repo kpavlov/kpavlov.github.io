@@ -1,9 +1,10 @@
 ---
 date: "2017-03-07T08:48:34+02:00"
-updated: 2017-03-12
+updated: 2017-03-26
 slug: app-development-top-down
 title: "Application Development Top-Down"
 description: "Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later."
+featured: true
 categories:
   - project-management
 tags:
@@ -11,44 +12,42 @@ tags:
   - quality-assurance
   - web
 ---
+Delivering a product prototype to the client early is often very important to project success.
+A client may have only general idea of a product he wants to get at the end and prototyping may save a lot of time and efforts of the team by reducing amount of unnecessary work.
 
-Typical management and technical mistake when developing web applications is building the system ground-up, from persistence level to web.
+Accordingly, building web applications ground-up, starting from data model, may be a bad idea.
+
 The development usually starts from data modeling, persistence and service layers and, finally, the UI.
 
-The problem with ground-up approach is that Client can't see and play with the product on early development stages.
-When a Client gets first working prototype a lot of work has been done both on front-end and back-end side. In worst case is a product which does not meet Client's expectations.
+The problem with ground-up approach is that client can't see and play with the product on early development stages.
+When a client gets first working prototype a lot of work has already done both on front-end and back-end side.
+And if the prototype does not meet the client's expectations, this work may be thrown away.
 
-Now there may be two decisions for stakeholders to take: either to continue with development and change both front-end and a back-end, or to cancel the project. A signs of first decision are significant changes of data model or when data model does not match domain model well.
+When a significant changes are done to data model or when data model does not match well to domain model -- these are the signs that it was a gap in the analysis and prototyping phases of the project.
 
-Hopefully, by using agile methodologies the problem may be mitigated. Let me show you a slide from Henrik Kniberg's [presentation][henrik-presentation]:
-![](/assets/2017/03/what-isagile-henrik-kniberg.jpg)
+Hopefully, agile methodologies can mitigate the problem:
+[![](/assets/2017/03/what-isagile-henrik-kniberg.jpg)][henrik-presentation]
 
-It's a classical iterative development process with short iterations, each iteration adds value. Client, server and DB are changed together in order to add new functionality. And the Client is always happy, even having a part of MVP.
+It's iterative development process with short iterations when each iteration adds some value. Client-side, server-side and DB are changed together in order to add new functionality. And the Client is always happy, even having a part of MVP.
 
-The question is: *"Will the Client be happy with a skateboard? Or she needs at least a bicycle? Is she OK with the application design?"*
+The question is: *"Should Client be happy with a skateboard?"* In a real world Client may need to try a "bicycle" before he can say that it looks similar to product he would like to get at the end.
 
-In the real world the Client may not know if she like the first version or not.
-Ok, we can build a UI "without design", using standard [Bootstrap](https://getbootstrap.com/) components.
-But even then it's better to ask the Client: "Is it looks similar the product she would like to get at the end?"
-
-That's why I propose to consider top-down approach -- ***Development from Web Prototype.***
-I&nbsp;think it's even more agile way since client feedback is collected earlier thus minimizing unnecessary work.
+In such conditions of uncertainty the top-down approach, ***Development from Web Prototype,*** may be better solution.
+I&nbsp;think it's even more "agile" way since client's feedback is collected earlier, reducing unnecessary work of the team.
 
 ## Development Plan
 
-On following diagram I showed a common development phases on a timeline.
-Vision and Analysis phases were left behind the scene.
+On following diagram you can see common development phases of the project on a timeline (Vision and Analysis phases were left behind the scene).
 
 ![Application Development Schedule](/assets/2017/03/app-development-schedule-v1.svg)
 
 Let's assume, we're going to develop a web application consuming REST API from back-end server.
 
 ### 1. UI Prototype
+
 The actual development starts with web application prototyping.
 First UI mockups are created and presented to Client.
-This is typically an single page application (SPA) written using some component framework: Angular, React, whatever developers are confident with.
-Hopefully, there is some visual prototype or screen mockups so initial version is created quickly.
-
+This is typically an single page application (SPA) written using some component framework: Angular, React, whatever developers are confident with. If there is some visual prototype or screen mockups then initial version can be created quickly.
 
 ### 2. Add Some Static Data
 
@@ -71,7 +70,7 @@ This will used often by your team internally and you will publish it later if yo
 There are tools on the market you can use to generate HTML documentation from API Specification.
 
 
-### 4. It's Time for Testing
+### 4. A Time for Testing
 
 Now you have web application fed with static data. It's time to write some tests.
 You may start testing some base functionality you're confident with.
@@ -84,10 +83,10 @@ It is impossible to cover all the cases without real application server. Also, i
 
 Webapp functional end-to-end testing with test data can be done by web developers.
 
-System integration testing is usually done together by QA team and employs both web and back-end developers.
+System integration testing is usually done by QA team and employs both web and back-end developers.
 It usually covers complex interaction scenarios between front-end and back-end.
 
-Common tool used for system integration testing is Selenium.
+Common tool used for system integration testing is [Selenium](http://www.seleniumhq.org).
 Sometimes it is also necessary to develop some extra tools for direct access to underlaying data and external system emulators (test doubles).
 And often the team will end up designing a custom test DSL to simplify writing this kind of tests
 
@@ -116,7 +115,7 @@ The most important that after completing this step our system integration tests 
 Now it's time to implement services, one by one. Database is still not necessary - we may mock persistence (DAO) layer.
 The tests still should be green and we may add more tests now since we have Services now.
 
-### 8. Continuing Back-End: DB and Real DAO
+### 8. Continuing Back-End: Real Database and DAO
 
 Now we should design our persistence layer, create DAO add test data so the tests are still green.
 After that we'll have all components in our system:
@@ -140,3 +139,5 @@ You should not use this instruction blindly. Some steps may be omitted or combin
 
 [markdown]: https://daringfireball.net/projects/markdown/
 [henrik-presentation]: https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21
+
+*[DAO]: Data Access Object
