@@ -14,7 +14,6 @@ install:
 before_script:
 - git config --global user.name 'Travis CI on behalf of Konstantin Pavlov'
 - git config --global user.email 'git@konstantinpavlov.net'
-- mkdir public
 
 script:
-  - deploy.sh
+  - ./deploy.sh
