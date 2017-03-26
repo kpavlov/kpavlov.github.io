@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+      
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.20-DEV" />
+
+    
+    
+    <meta name="description" content="">
+
+	<meta property="og:title" content="Links on REST API Design" />
+<meta property="og:description" content="Here you will find a small collection of links on REST API design.
+
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/" />
+
+
+
+<meta property="article:published_time" content="2016-08-18T22:48:14&#43;00:00"/>
+<meta property="article:modified_time" content="2016-08-18T22:48:14&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta itemprop="name" content="Links on REST API Design">
+<meta itemprop="description" content="Here you will find a small collection of links on REST API design.
+
+">
+
+
+<meta itemprop="dateModified" content="2016-08-18T22:48:14&#43;00:00" />
+<meta itemprop="wordCount" content="204">
+
+
+
+<meta itemprop="keywords" content="blogging,database,devops,hardware,programming,project-management,agile,algorithms,angularjs,ansible,architecture,books,cloudflaire,code-style,continuous-deployment,debian,design-patterns,docker,documentation,freemarker,fun,git,google-protobuf,gwt,hdd,hexo,idea,itunes,java,javascript,jenkins,jmx,jreactive-8583,json,linux,logback,logging,mac,maven,netty,nginx,oracle,performance,php,programming,quality-assurance,scala,scrum,security,spring,ssd,tdd,tomcat,vaadin,web,web-services," />
+
+    
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:text:title" content="Links on REST API Design"/>
+<meta name="twitter:title" content="Links on REST API Design"/>
+<meta name="twitter:description" content="Here you will find a small collection of links on REST API design.
+
+"/>
+
+
+
+    
+
+<meta name="twitter:site" content="@k_pavlov">
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+
+
+<meta property="fb:admins" content="">
+
+    <link href='../../../../../index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="../../../../../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../../../../../apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1490567313">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1490567313"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+<body class="">
+<button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="../../../../../index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="../../../../../about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="drawer-overlay"></div>
+<main id="container" role="main" class="container">
+  <div class="surface">
+    <div class="surface-container">
+      <div data-pjax-container class="content">
+
+        <section class="wrapper wrapper-post">
+          <div class="wrapper-container">
+            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+              <section class="post-container">
+                <header class="post-header">
+                  <ul class="post-meta-list">
+                    <li class="post-item-meta-item">
+                      <time datetime='2016-08-18' itemprop="datePublished">
+                        2016-08-18
+                      </time>
+                    </li>
+                    
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+                    
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/web-services/" data-pjax rel="tag">#web-services</a>
+    
+
+</li>
+
+
+
+                    
+                    <li class="post-item-meta-item">
+                      <a href="https://konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/#disqus_thread" data-disqus-identifier='20160818224814'>Comments</a>
+                    </li>
+                    
+                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+                      <meta itemprop="duration" content="T1M" />
+                      ~1 min
+                    </li>
+                  </ul>
+                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/" itemprop="url" data-pjax title="Links on REST API Design">Links on REST API Design</a></h1>
+                  
+                  
+                </header>
+                <aside class="post-side">
+                  <div class="post-author">
+                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
+                    </a>
+                    <div class="post-author-info">
+                      <a href="https://konstantinpavlov.net/" class="post-author-name">
+                        Konstantin Pavlov
+                      </a>
+                      <p class="post-author-bio"></p>
+                    </div>
+                  </div>
+                </aside>
+                <div itemprop="articleBody" class="post-body">
+                  <p>Here you will find a small collection of links on REST API design.</p>
+
+<p></p>
+
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=5WXYw4J4QOU" target="_blank">Designing a Beautiful REST+JSON API</a> &ndash; In this presentation, Les Hazlewood (@lhazlewood) - Stormpath CTO and Apache Shiro PMC Chair - will share all of the golden nuggets learned while designing, implementing and supporting JSON-based REST APIs, using examples from a clean real-world REST+JSON API built with Java technologies. He covers:</p>
+
+<ul>
+<li>JSON-based data formats in a RESTful API</li>
+<li>References to other JSON-based resources (aka &lsquo;linking&rsquo;)</li>
+<li>Resource collections and pagination</li>
+<li>How to map (and how not to map) HTTP methods to Resource CRUD</li>
+<li>Resource partial updates</li>
+<li>Supporting HTTP Method Overloading for clients that don&rsquo;t support HTTP PUT and DELETE</li>
+<li>API versioning strategies</li>
+<li>Meaningful Error responses</li>
+<li>Many-to-many resource relationships</li>
+<li>HTTP Caching and Optimistic concurrency control</li>
+<li>Authentication and Security
+
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/5WXYw4J4QOU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0"></iframe>
+ </div>
+</li>
+</ul></li>
+
+<li><p><a href="https://www.youtube.com/watch?v=FeSdFhsKGG0" target="_blank">Secure Your API - Tips for REST + JSON Developers</a> &ndash; Technical overview on how to secure your API, from Les Hazlewood (@lhazlewood), CTO of Stormpath and PMC Chair of Apache Shiro. (Excerpt from Les&rsquo; talk on API design at Silicon Valley Java Users Group)
+
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;">
+  <iframe src="//www.youtube.com/embed/FeSdFhsKGG0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allowfullscreen frameborder="0"></iframe>
+ </div>
+</p></li>
+
+<li><p><a href="https://stormpath.com/blog/secure-your-rest-api-right-way/" target="_blank">https://stormpath.com/blog/secure-your-rest-api-right-way/</a></p></li>
+
+<li><p><a href="http://stackoverflow.com/questions/319530/restful-authentication" target="_blank">http://stackoverflow.com/questions/319530/restful-authentication</a></p></li>
+
+<li><p><a href="https://stormpath.com/blog/designing-rest-json-apis/" target="_blank">https://stormpath.com/blog/designing-rest-json-apis/</a></p></li>
+
+<li><p><a href="http://docs.stormpath.com/guides/api-key-management/" target="_blank">http://docs.stormpath.com/guides/api-key-management/</a></p></li>
+
+<li><p><a href="http://en.wikipedia.org/wiki/Hash-based_message_authentication_code" target="_blank">http://en.wikipedia.org/wiki/Hash-based_message_authentication_code</a> &ndash; keyed-hash message authentication code (HMAC)</p></li>
+
+<li><p><a href="https://www.coinbase.com/docs/api/authentication" target="_blank">https://www.coinbase.com/docs/api/authentication</a></p></li>
+
+<li><p><a href="http://broadcast.oreilly.com/2009/12/principles-for-standardized-rest-authentication.html" target="_blank">http://broadcast.oreilly.com/2009/12/principles-for-standardized-rest-authentication.html</a> &ndash; Query Authentication consists in signing each RESTful request via some additional parameters on the URI.</p></li>
+
+<li><p><a href="http://blog.synopse.info/post/2011/05/24/How-to-implement-RESTful-authentication" target="_blank">http://blog.synopse.info/post/2011/05/24/How-to-implement-RESTful-authentication</a></p></li>
+</ul>
+                </div>
+                <footer class="post-footer">
+                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
+                    </a>
+                    <div class="post-author-info">
+                      <h4 class="post-footer-heading">Written By</h4>
+                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
+                        <span itemprop="name">Konstantin Pavlov</span>
+                      </a>
+                      <p itemprop="description" class="post-author-bio"></p>
+                      
+                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                      
+                      
+                      <p class="post-info">
+                        <b class="post-info-title">Published on</b>
+                        <time class="post-date">Aug 18, 2016</time>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="post-social">
+                    <h4 class="post-footer-heading">Spread the word</h4>
+                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                  </div>
+                </footer>
+
+                <nav role="pagination" class="post-list-pagination">
+                  
+                  <a href="https://konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/" class="post-list-pagination-item post-list-pagination-item-prev"
+                     title="Installing Ansible 2.1.1 on Debian 8 (Jessie)" data-pjax rel="prev">
+                    <i class="fa fa-angle-double-left"></i>&nbsp;Installing Ansible 2.1.1 on Debian 8 (Jessie)
+                  </a>
+                  
+                  
+                  <a href="https://konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/" class="post-list-pagination-item post-list-pagination-item-next"
+                     title="CI Setup Tips" data-pjax rel="next">
+                    CI Setup Tips&nbsp;<i class="fa fa-angle-double-right"></i>
+                  </a>
+                  
+                </nav>
+
+              </section>
+              
+              <section itemprop="comment" class="post-comments">
+                <div id="disqus_thread"></div>
+              </section>
+              
+            </article>
+
+            <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="../../../../../legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="../../../../../assets/js/prism.min.js?v=1490567313"></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1490567313"></script>
+
+    <script type="text/javascript">
+
+      
+        
+          if(GHOSTIUM.haveDisqus) {
+            var disqus_developer = 1;
+            var disqus_shortname = 'konstantinpavlov';
+
+
+            if(typeof DISQUS !== 'object') {
+              (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+              }());
+            }
+          } else {
+            document.querySelector('.post-comments').remove();
+          }
+        
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+</body>
+</html>

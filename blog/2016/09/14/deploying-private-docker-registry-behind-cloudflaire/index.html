@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+      
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.20-DEV" />
+
+    
+    
+    <meta name="description" content="">
+
+	<meta property="og:title" content="Deploying Private Docker Registry Behind Cloudflaire" />
+<meta property="og:description" content="This is a short instruction how to deploy private docker registry on private cloud virtual servers behind Cloudflaire proxy.
+
+Suppose, we have two virtual servers on private cloud:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/" />
+
+
+
+<meta property="article:published_time" content="2016-09-14T10:15:51&#43;00:00"/>
+<meta property="article:modified_time" content="2016-09-14T10:15:51&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta itemprop="name" content="Deploying Private Docker Registry Behind Cloudflaire">
+<meta itemprop="description" content="This is a short instruction how to deploy private docker registry on private cloud virtual servers behind Cloudflaire proxy.
+
+Suppose, we have two virtual servers on private cloud:">
+
+
+<meta itemprop="dateModified" content="2016-09-14T10:15:51&#43;00:00" />
+<meta itemprop="wordCount" content="374">
+
+
+
+<meta itemprop="keywords" content="blogging,database,devops,hardware,programming,project-management,agile,algorithms,angularjs,ansible,architecture,books,cloudflaire,code-style,continuous-deployment,debian,design-patterns,docker,documentation,freemarker,fun,git,google-protobuf,gwt,hdd,hexo,idea,itunes,java,javascript,jenkins,jmx,jreactive-8583,json,linux,logback,logging,mac,maven,netty,nginx,oracle,performance,php,programming,quality-assurance,scala,scrum,security,spring,ssd,tdd,tomcat,vaadin,web,web-services," />
+
+    
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:text:title" content="Deploying Private Docker Registry Behind Cloudflaire"/>
+<meta name="twitter:title" content="Deploying Private Docker Registry Behind Cloudflaire"/>
+<meta name="twitter:description" content="This is a short instruction how to deploy private docker registry on private cloud virtual servers behind Cloudflaire proxy.
+
+Suppose, we have two virtual servers on private cloud:"/>
+
+
+
+    
+
+<meta name="twitter:site" content="@k_pavlov">
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+
+
+<meta property="fb:admins" content="">
+
+    <link href='../../../../../index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="../../../../../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../../../../../apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1490567313">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1490567313"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+<body class="">
+<button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="../../../../../index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="../../../../../about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="drawer-overlay"></div>
+<main id="container" role="main" class="container">
+  <div class="surface">
+    <div class="surface-container">
+      <div data-pjax-container class="content">
+
+        <section class="wrapper wrapper-post">
+          <div class="wrapper-container">
+            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+              <section class="post-container">
+                <header class="post-header">
+                  <ul class="post-meta-list">
+                    <li class="post-item-meta-item">
+                      <time datetime='2016-09-14' itemprop="datePublished">
+                        2016-09-14
+                      </time>
+                    </li>
+                    
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/devops/" data-pjax rel="category" >devops</a>
+    
+
+</li>
+
+
+                    
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/docker/" data-pjax rel="tag">#docker</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/nginx/" data-pjax rel="tag">#nginx</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/cloudflaire/" data-pjax rel="tag">#cloudflaire</a>
+    
+
+</li>
+
+
+
+                    
+                    <li class="post-item-meta-item">
+                      <a href="https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/#disqus_thread" data-disqus-identifier='20160914101551'>Comments</a>
+                    </li>
+                    
+                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+                      <meta itemprop="duration" content="T2M" />
+                      ~2 min
+                    </li>
+                  </ul>
+                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflaire/" itemprop="url" data-pjax title="Deploying Private Docker Registry Behind Cloudflaire">Deploying Private Docker Registry Behind Cloudflaire</a></h1>
+                  
+                  
+                </header>
+                <aside class="post-side">
+                  <div class="post-author">
+                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
+                    </a>
+                    <div class="post-author-info">
+                      <a href="https://konstantinpavlov.net/" class="post-author-name">
+                        Konstantin Pavlov
+                      </a>
+                      <p class="post-author-bio"></p>
+                    </div>
+                  </div>
+                </aside>
+                <div itemprop="articleBody" class="post-body">
+                  <p>This is a short instruction how to deploy private docker registry on private cloud virtual servers behind <a href="https://www.cloudflare.com" target="_blank">Cloudflaire</a> proxy.
+
+Suppose, we have two virtual servers on private cloud:</p>
+
+<ul>
+<li>WAF (web application firewall) with Nginx installed</li>
+<li>Internal server which will host a Docker private registry.</li>
+</ul>
+
+<p>Cloudflaire will serve as HTTPS proxy and forward unencrypted traffic to private WAF which will provide authentication and authorization and dispatch user requests to docker registry server.</p>
+
+<h2 id="1-start-docker-registry-server-on-internal-docker-host">1. Start docker registry server on internal docker host</h2>
+
+<p>Login to your virtual server and start docker registry:</p>
+
+<pre><code>docker run -d -p 5000:5000 --restart=always --name registry registry:2
+</code></pre>
+
+<p>Setup firewall to allow access to docker registry server from WAF</p>
+
+<pre><code>iptables -A INPUT -p tcp -s &lt;waf-ip&gt; -i eth1 --dport 5000 -m state --state NEW,ESTABLISHED -j ACCEPT
+</code></pre>
+
+<h2 id="2-configure-nginx-on-waf">2. Configure Nginx on WAF</h2>
+
+<p>We need to setup BASIC authorization and request forwarding:</p>
+
+<p>Create password for your docker user (<code>dockeruser</code>) basic authentication on nginx.</p>
+
+<pre><code>sudo htpasswd -c /etc/nginx/.htpasswd dockeruser
+</code></pre>
+
+<p><code>htpasswd</code> you may find in the package apache2-utils (<code>sudo yum -y install apache2-utils</code>)</p>
+
+<p>Now configure nginx (<code>/etc/nginx.conf</code>):</p>
+
+<pre><code class="language-nginx">
+server {
+    listen          80;       # Listen on port 80 for IPv4 requests
+
+    server_name r.newage.io;
+
+    ignore_invalid_headers off;
+
+    location / {
+
+        # disable any limits to avoid HTTP 413 for large image uploads
+        client_max_body_size 0;
+
+        # required to avoid HTTP 411: see Issue #1486 (https://github.com/docker/docker/issues/1486)
+        chunked_transfer_encoding on;
+
+        add_header                  Docker-Distribution-Api-Version registry/2.0 always;
+        auth_basic                  &quot;Restricted&quot;;
+        auth_basic_user_file        /etc/nginx/.htpasswd;
+        proxy_pass                  http://&lt;upstream-host&gt;:5000/;
+
+        proxy_set_header            X-Original-URI       $request_uri;
+        proxy_set_header            Proxy                &quot;&quot;;
+        proxy_set_header            Host                 $host;
+        proxy_set_header            X-Real-IP            $remote_addr;
+        proxy_set_header            X-Forwarded-For      $proxy_add_x_forwarded_for;
+        proxy_set_header            X-Forwarded-Proto    &quot;https&quot;;
+        proxy_read_timeout          900;
+        proxy_max_temp_file_size    0;
+    }
+}
+</code></pre>
+
+<p>and reload nginx configuration:</p>
+
+<pre><code>sudo nginx -s reload
+</code></pre>
+
+<h2 id="3-configure-cloudflaire">3. Configure Cloudflaire</h2>
+
+<p>Now we need to login to <a href="https://www.cloudflare.com" target="_blank">cloudflaire</a> console, create DNS A-record pointing to your WAF server-ip</p>
+
+<pre><code>registry.mydomain.com =&gt; WAF public IP
+</code></pre>
+
+<p>Also we need to setup &laquo;Always Use HTTPS&raquo; <a href="https://support.cloudflare.com/hc/en-us/articles/224509547-Recommended-Page-Rules-to-Consider" target="_blank">page rule</a> for the domain.</p>
+
+<h2 id="4-testing-repository">4. Testing repository</h2>
+
+<p>Execute from your local machine:</p>
+
+<pre><code>$ docker login -u=dockeruser -p=secret https://registry.mydomain.com
+Password:
+Login Succeeded
+$ docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+
+c04b14da8d14: Pull complete
+Digest: sha256:0256e8a36e2070f7bf2d0b0763dbabdd67798512411de4cdcf9431a1feb60fd9
+Status: Downloaded newer image for hello-world:latest
+$ docker tag hello-world:latest registry.mydomain.com/hello-world:latest
+$ docker push registry.mydomain.com/hello-world:latest
+The push refers to a repository [registry.mydomain.com/hello-world]
+a02596fdd012: Pushed
+latest: digest: sha256:a18ed77532f6d6781500db650194e0f9396ba5f05f8b50d4046b294ae5f83aa4 size: 524
+</code></pre>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="https://docs.docker.com/registry/recipes/nginx/" target="_blank">Authenticating proxy with nginx</a></li>
+<li><a href="http://container-solutions.com/running-secured-docker-registry-2-0/" target="_blank">Running Secured Docker Registry 2.0</a></li>
+<li><a href="http://stackoverflow.com/a/39483840/3315474" target="_blank">StackOverflow: docker authentication issue</a></li>
+</ul>
+                </div>
+                <footer class="post-footer">
+                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
+                    </a>
+                    <div class="post-author-info">
+                      <h4 class="post-footer-heading">Written By</h4>
+                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
+                        <span itemprop="name">Konstantin Pavlov</span>
+                      </a>
+                      <p itemprop="description" class="post-author-bio"></p>
+                      
+                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                      
+                      
+                      <p class="post-info">
+                        <b class="post-info-title">Published on</b>
+                        <time class="post-date">Sep 14, 2016</time>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="post-social">
+                    <h4 class="post-footer-heading">Spread the word</h4>
+                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                  </div>
+                </footer>
+
+                <nav role="pagination" class="post-list-pagination">
+                  
+                  <a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/" class="post-list-pagination-item post-list-pagination-item-prev"
+                     title="How to Start Testing UI Before Backend is Ready" data-pjax rel="prev">
+                    <i class="fa fa-angle-double-left"></i>&nbsp;How to Start Testing UI Before Backend is Ready
+                  </a>
+                  
+                  
+                  <a href="https://konstantinpavlov.net/blog/2016/09/09/installing-ansible-2.1.1-on-debian-8-jessie/" class="post-list-pagination-item post-list-pagination-item-next"
+                     title="Installing Ansible 2.1.1 on Debian 8 (Jessie)" data-pjax rel="next">
+                    Installing Ansible 2.1.1 on Debian 8 (Jessie)&nbsp;<i class="fa fa-angle-double-right"></i>
+                  </a>
+                  
+                </nav>
+
+              </section>
+              
+              <section itemprop="comment" class="post-comments">
+                <div id="disqus_thread"></div>
+              </section>
+              
+            </article>
+
+            <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="../../../../../legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="../../../../../assets/js/prism.min.js?v=1490567313"></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1490567313"></script>
+
+    <script type="text/javascript">
+
+      
+        
+          if(GHOSTIUM.haveDisqus) {
+            var disqus_developer = 1;
+            var disqus_shortname = 'konstantinpavlov';
+
+
+            if(typeof DISQUS !== 'object') {
+              (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+              }());
+            }
+          } else {
+            document.querySelector('.post-comments').remove();
+          }
+        
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+</body>
+</html>

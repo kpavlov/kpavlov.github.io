@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+      
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.20-DEV" />
+
+    
+    
+    <meta name="description" content="">
+
+	<meta property="og:title" content="How to Use Spring from EJB3" />
+<meta property="og:description" content="This is a short instruction how to inject a spring-managed bean into EJB3 component:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/" />
+
+
+
+<meta property="article:published_time" content="2009-01-09T17:23:00&#43;00:00"/>
+<meta property="article:modified_time" content="2009-01-09T17:23:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta itemprop="name" content="How to Use Spring from EJB3">
+<meta itemprop="description" content="This is a short instruction how to inject a spring-managed bean into EJB3 component:">
+
+
+<meta itemprop="dateModified" content="2009-01-09T17:23:00&#43;00:00" />
+<meta itemprop="wordCount" content="93">
+
+
+
+<meta itemprop="keywords" content="blogging,database,devops,hardware,programming,project-management,agile,algorithms,angularjs,ansible,architecture,books,cloudflaire,code-style,continuous-deployment,debian,design-patterns,docker,documentation,freemarker,fun,git,google-protobuf,gwt,hdd,hexo,idea,itunes,java,javascript,jenkins,jmx,jreactive-8583,json,linux,logback,logging,mac,maven,netty,nginx,oracle,performance,php,programming,quality-assurance,scala,scrum,security,spring,ssd,tdd,tomcat,vaadin,web,web-services," />
+
+    
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:text:title" content="How to Use Spring from EJB3"/>
+<meta name="twitter:title" content="How to Use Spring from EJB3"/>
+<meta name="twitter:description" content="This is a short instruction how to inject a spring-managed bean into EJB3 component:"/>
+
+
+
+    
+
+<meta name="twitter:site" content="@k_pavlov">
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+
+
+<meta property="fb:admins" content="">
+
+    <link href='../../../../../index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="../../../../../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../../../../../apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1490567313">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1490567313"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+<body class="">
+<button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="../../../../../index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="../../../../../about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="drawer-overlay"></div>
+<main id="container" role="main" class="container">
+  <div class="surface">
+    <div class="surface-container">
+      <div data-pjax-container class="content">
+
+        <section class="wrapper wrapper-post">
+          <div class="wrapper-container">
+            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+              <section class="post-container">
+                <header class="post-header">
+                  <ul class="post-meta-list">
+                    <li class="post-item-meta-item">
+                      <time datetime='2009-01-09' itemprop="datePublished">
+                        2009-01-09
+                      </time>
+                    </li>
+                    
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+                    
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/spring/" data-pjax rel="tag">#spring</a>
+    
+
+</li>
+
+
+
+                    
+                    <li class="post-item-meta-item">
+                      <a href="https://konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/#disqus_thread" data-disqus-identifier='20090109172300'>Comments</a>
+                    </li>
+                    
+                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+                      <meta itemprop="duration" content="T1M" />
+                      ~1 min
+                    </li>
+                  </ul>
+                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/" itemprop="url" data-pjax title="How to Use Spring from EJB3">How to Use Spring from EJB3</a></h1>
+                  
+                  
+                </header>
+                <aside class="post-side">
+                  <div class="post-author">
+                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
+                    </a>
+                    <div class="post-author-info">
+                      <a href="https://konstantinpavlov.net/" class="post-author-name">
+                        Konstantin Pavlov
+                      </a>
+                      <p class="post-author-bio"></p>
+                    </div>
+                  </div>
+                </aside>
+                <div itemprop="articleBody" class="post-body">
+                  <p>This is a short instruction how to inject a spring-managed bean into EJB3 component:</p>
+
+<ol>
+<li>Read <a href="http://www.springsource.org/">SpringFratamework&rsquo;s</a> reference here: <a href="http://static.springframework.org/spring/docs/2.5.x/reference/ejb.html#ejb-implementation-ejb3">http://static.springframework.org/spring/docs/2.5.x/reference/ejb.html#ejb-implementation-ejb3</a></li>
+
+<li><p>Place to ejb module&rsquo;s classpath a file <em>beanRefContext.xml</em>:</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE beans PUBLIC &quot;-//SPRING//DTD BEAN//EN&quot; &quot;http://www.springframework.org/dtd/spring-beans.dtd&quot;&gt;
+&lt;beans&gt;
+
+ &lt;bean id=&quot;myBeanFactory&quot; class=&quot;org.springframework.context.support.ClassPathXmlApplicationContext&quot;&gt;
+  &lt;constructor-arg value=&quot;myApplicationContext.xml&quot;/&gt;
+ &lt;/bean&gt;
+
+&lt;/beans&gt;
+</code></pre></li>
+
+<li><p>Create application context file named <code>myApplicationContext.xml</code> and define you beans there. Place this file to the ejb module&rsquo;s classpath.</p></li>
+
+<li><p>Annotate your Stateless Session Bean:</p>
+
+<pre><code class="language-java">@Stateless
+@Interceptors(org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor.class)
+public class MyFacadeBean implements MyFacade {
+
+  @Autowired
+  private MySpringComponent component;
+      ...
+      public void foo() {
+          component.foo();//invocation
+       }
+  }
+</code></pre></li>
+
+<li><p>Deploy and test Your application.</p></li>
+</ol>
+                </div>
+                <footer class="post-footer">
+                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
+                    </a>
+                    <div class="post-author-info">
+                      <h4 class="post-footer-heading">Written By</h4>
+                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
+                        <span itemprop="name">Konstantin Pavlov</span>
+                      </a>
+                      <p itemprop="description" class="post-author-bio"></p>
+                      
+                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                      
+                      
+                      <p class="post-info">
+                        <b class="post-info-title">Published on</b>
+                        <time class="post-date">Jan 9, 2009</time>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="post-social">
+                    <h4 class="post-footer-heading">Spread the word</h4>
+                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                  </div>
+                </footer>
+
+                <nav role="pagination" class="post-list-pagination">
+                  
+                  <a href="https://konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/" class="post-list-pagination-item post-list-pagination-item-prev"
+                     title="GWT is about to add Native JSON function support in version 2.1" data-pjax rel="prev">
+                    <i class="fa fa-angle-double-left"></i>&nbsp;GWT is about to add Native JSON function support in version 2.1
+                  </a>
+                  
+                  
+                  <a href="https://konstantinpavlov.net/blog/2009/01/01/how-to-export-spring-managed-bean-to-jndi/" class="post-list-pagination-item post-list-pagination-item-next"
+                     title="How To Export Spring Managed Bean To JNDI" data-pjax rel="next">
+                    How To Export Spring Managed Bean To JNDI&nbsp;<i class="fa fa-angle-double-right"></i>
+                  </a>
+                  
+                </nav>
+
+              </section>
+              
+              <section itemprop="comment" class="post-comments">
+                <div id="disqus_thread"></div>
+              </section>
+              
+            </article>
+
+            <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="../../../../../legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="../../../../../assets/js/prism.min.js?v=1490567313"></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1490567313"></script>
+
+    <script type="text/javascript">
+
+      
+        
+          if(GHOSTIUM.haveDisqus) {
+            var disqus_developer = 1;
+            var disqus_shortname = 'konstantinpavlov';
+
+
+            if(typeof DISQUS !== 'object') {
+              (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+              }());
+            }
+          } else {
+            document.querySelector('.post-comments').remove();
+          }
+        
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+</body>
+</html>

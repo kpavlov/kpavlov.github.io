@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    
+      
+    <title>The Culture of Code</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="generator" content="Hugo 0.20-DEV" />
+
+    
+    
+    <meta name="description" content="">
+
+	<meta property="og:title" content="Secure Java Coding Best Practices" />
+<meta property="og:description" content="Making your web application flawless against security attacks is a challenge for every java developer.
+In this article I will briefly describe common practical development techniques that can help you to achieve it.
+
+OWASP Top 10, a list of the 10 Most Critical Web Application Security Risks, includes following risks:
+
+
+A1 - Injection
+A2 - Broken Authentication &amp; Session Management
+A3 - Cross-Site Scripting (XSS)
+A4 - Insecure Direct Object References
+A5 - Security Misconfiguration
+A6 - Sensitive Data Exposure
+A7 - Missing Function Level Access Control
+A8 - Cross-Site Request Forgery (CSRF)
+A9 - Using Components with Known Vulnerabilities
+A10 - Unvalidated Redirects and Forwards
+
+
+In this article I will highlight most important java coding techniques for building secure web applications." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/" />
+
+
+
+<meta property="article:published_time" content="2015-08-01T22:22:34&#43;00:00"/>
+<meta property="article:modified_time" content="2015-08-01T22:22:34&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta itemprop="name" content="Secure Java Coding Best Practices">
+<meta itemprop="description" content="Making your web application flawless against security attacks is a challenge for every java developer.
+In this article I will briefly describe common practical development techniques that can help you to achieve it.
+
+OWASP Top 10, a list of the 10 Most Critical Web Application Security Risks, includes following risks:
+
+
+A1 - Injection
+A2 - Broken Authentication &amp; Session Management
+A3 - Cross-Site Scripting (XSS)
+A4 - Insecure Direct Object References
+A5 - Security Misconfiguration
+A6 - Sensitive Data Exposure
+A7 - Missing Function Level Access Control
+A8 - Cross-Site Request Forgery (CSRF)
+A9 - Using Components with Known Vulnerabilities
+A10 - Unvalidated Redirects and Forwards
+
+
+In this article I will highlight most important java coding techniques for building secure web applications.">
+
+
+<meta itemprop="dateModified" content="2015-08-01T22:22:34&#43;00:00" />
+<meta itemprop="wordCount" content="1903">
+
+
+
+<meta itemprop="keywords" content="blogging,database,devops,hardware,programming,project-management,agile,algorithms,angularjs,ansible,architecture,books,cloudflaire,code-style,continuous-deployment,debian,design-patterns,docker,documentation,freemarker,fun,git,google-protobuf,gwt,hdd,hexo,idea,itunes,java,javascript,jenkins,jmx,jreactive-8583,json,linux,logback,logging,mac,maven,netty,nginx,oracle,performance,php,programming,quality-assurance,scala,scrum,security,spring,ssd,tdd,tomcat,vaadin,web,web-services," />
+
+    
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:text:title" content="Secure Java Coding Best Practices"/>
+<meta name="twitter:title" content="Secure Java Coding Best Practices"/>
+<meta name="twitter:description" content="Making your web application flawless against security attacks is a challenge for every java developer.
+In this article I will briefly describe common practical development techniques that can help you to achieve it.
+
+OWASP Top 10, a list of the 10 Most Critical Web Application Security Risks, includes following risks:
+
+
+A1 - Injection
+A2 - Broken Authentication &amp; Session Management
+A3 - Cross-Site Scripting (XSS)
+A4 - Insecure Direct Object References
+A5 - Security Misconfiguration
+A6 - Sensitive Data Exposure
+A7 - Missing Function Level Access Control
+A8 - Cross-Site Request Forgery (CSRF)
+A9 - Using Components with Known Vulnerabilities
+A10 - Unvalidated Redirects and Forwards
+
+
+In this article I will highlight most important java coding techniques for building secure web applications."/>
+
+
+
+    
+
+<meta name="twitter:site" content="@k_pavlov">
+
+<meta name="twitter:creator" content="k_pavlov">
+
+
+
+
+
+<meta property="fb:admins" content="">
+
+    <link href='../../../../../index.xml' rel="alternate" title="The Culture of Code" type="application/atom+xml">
+    <link href="../../../../../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../../../../../apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="//fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1490567313">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1490567313"/>
+
+    <script type="text/javascript">
+        
+        
+        window.paceOptions = {
+            catchupTime: 100,
+            minTime: 100,
+            elements: false,
+            restartOnRequestAfter: 500,
+            startOnPageLoad: true
+        };
+
+        
+        
+        window.GHOSTIUM = {
+          haveGA: true,
+          haveDisqus: true,
+          enablePjax: true
+        }
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+    </script>
+</head>
+
+<body class="">
+<button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    
+    <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//" rel="start" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//categories/" data-pjax>
+    <i class="fa fa-tags"></i>Categories
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://konstantinpavlov.net//tags/" data-pjax>
+    <i class="fa fa-hashtag"></i>Tags
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="../../../../../index.xml" target="_blank">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="../../../../../about/" data-pjax><i class="fa fa-user-circle-o" aria-hidden="true"></i>About</a>
+</li>
+
+
+<li class="drawer-list-divider"></li>
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://twitter.com/k_pavlov" target="_blank">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+
+
+<li class="drawer-list-item">
+  <a href="https://github.com/kpavlov" target="_blank">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+
+
+
+<li class="drawer-list-item">
+  <a href="http://www.linkedin.com/in/kpavlov" target="_blank">
+    <i class="fa fa-linkedin"></i>LinkedIn
+  </a>
+</li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+<div class="drawer-overlay"></div>
+<main id="container" role="main" class="container">
+  <div class="surface">
+    <div class="surface-container">
+      <div data-pjax-container class="content">
+
+        <section class="wrapper wrapper-post">
+          <div class="wrapper-container">
+            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+              <section class="post-container">
+                <header class="post-header">
+                  <ul class="post-meta-list">
+                    <li class="post-item-meta-item">
+                      <time datetime='2015-08-01' itemprop="datePublished">
+                        2015-08-01
+                      </time>
+                    </li>
+                    
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+                    
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/security/" data-pjax rel="tag">#security</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/web/" data-pjax rel="tag">#web</a>
+    
+
+</li>
+
+
+
+                    
+                    <li class="post-item-meta-item">
+                      <a href="https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/#disqus_thread" data-disqus-identifier='20150801222234'>Comments</a>
+                    </li>
+                    
+                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+                      <meta itemprop="duration" content="T9M" />
+                      ~9 min
+                    </li>
+                  </ul>
+                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2015/08/01/secure-java-coding-best-practices/" itemprop="url" data-pjax title="Secure Java Coding Best Practices">Secure Java Coding Best Practices</a></h1>
+                  
+                  
+                </header>
+                <aside class="post-side">
+                  <div class="post-author">
+                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
+                    </a>
+                    <div class="post-author-info">
+                      <a href="https://konstantinpavlov.net/" class="post-author-name">
+                        Konstantin Pavlov
+                      </a>
+                      <p class="post-author-bio"></p>
+                    </div>
+                  </div>
+                </aside>
+                <div itemprop="articleBody" class="post-body">
+                  <p>Making your web application flawless against security attacks is a challenge for every java developer.
+In this article I will briefly describe common practical development techniques that can help you to achieve it.</p>
+
+<p><a href="https://www.owasp.org/index.php/Top_10_2013-Table_of_Contents" title="OWASP Top 10" target="_blank">OWASP Top 10</a>, a list of the 10 Most Critical Web Application Security Risks, includes following risks:</p>
+
+<ul>
+<li>A1 - Injection</li>
+<li>A2 - Broken Authentication &amp; Session Management</li>
+<li>A3 - Cross-Site Scripting (XSS)</li>
+<li>A4 - Insecure Direct Object References</li>
+<li>A5 - Security Misconfiguration</li>
+<li>A6 - Sensitive Data Exposure</li>
+<li>A7 - Missing Function Level Access Control</li>
+<li>A8 - Cross-Site Request Forgery (CSRF)</li>
+<li>A9 - Using Components with Known Vulnerabilities</li>
+<li>A10 - Unvalidated Redirects and Forwards</li>
+</ul>
+
+<p>In this article I will highlight most important java coding techniques for building secure web applications.</p>
+
+<h2 id="use-sql-prepared-statements-a1-a1">Use SQL Prepared Statements (<a href="https://www.owasp.org/index.php/Top_10_2013-A1-Injection" target="_blank">A1</a>)</h2>
+
+<p>Bind user data to request parameters of the <code>PreparedStatement</code>. Never construct dynamic sql queries directly, without escaping parameter escaping.</p>
+
+<p>Example:</p>
+
+<pre><code class="language-sql">SELECT * FROM Users WHERE username = '&quot; +  userName + &quot;'&quot;;
+</code></pre>
+
+<p>The query with input <code>foo OR 1=1</code> will select all data from table.</p>
+
+<p>For plain JDBC use:</p>
+
+<pre><code class="language-java">String query = &quot;SELECT * FROM Users WHERE name = ?&quot;;
+PreparedStatement statement = connection.prepareStatement(query);
+statement.setString(1, userName);
+</code></pre>
+
+<p>For Hibernate use:</p>
+
+<pre><code class="language-java">String query = &quot;SELECT * FROM USERS WHERE name = :userName&quot;;
+TypedQuery&lt;User&gt; query = em.createQuery(query, User.class);
+query.setParameter(“userName”, userName);
+</code></pre>
+
+<h2 id="encode-user-data-a3-a3-a10-a10">Encode User Data (<a href="https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_%28XSS%29" target="_blank">A3</a>, <a href="https://www.owasp.org/index.php/Top_10_2013-A10-Unvalidated_Redirects_and_Forwards" target="_blank">A10</a>)</h2>
+
+<p>When rendering user-generated content, always encode it properly. This prevents Cross-Site Scripting (XSS).</p>
+
+<ul>
+<li>In JSP use <a href="https://jstl.java.net/" title="JSP Standard Tag Library" target="_blank">JSTL tags</a>
+Use <code>c:out</code> tag. Attribute <code>escapeXml</code> is <strong>&laquo;true&raquo;</strong> by default, so you may omit it:</li>
+</ul>
+
+<pre><code class="language-jsp">&lt;c:out value=&quot;${variable}&quot;/&gt;
+</code></pre>
+
+<ul>
+<li><p>When using Spring Framework with JSP view, use <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html#view-jsp" target="_blank">Spring&rsquo;s <code>form</code> tags</a></p>
+
+<pre><code class="language-jsp">&lt;%@ taglib prefix=&quot;form&quot; uri=&quot;http://www.springframework.org/tags/form&quot; %&gt;
+&lt;form:form&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;First Name:&lt;/td&gt;
+        &lt;td&gt;&lt;form:input path=&quot;firstName&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Last Name:&lt;/td&gt;
+        &lt;td&gt;&lt;form:input path=&quot;lastName&quot; /&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td colspan=&quot;2&quot;&gt;
+            &lt;input type=&quot;submit&quot; value=&quot;Save Changes&quot; /&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;/form:form&gt;
+</code></pre></li>
+
+<li><p>When using Spring Framework with <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html#view-velocity" target="_blank">Freemarker and Velocity</a>, use <code>bindEscaped</code> and <code>form</code> macros.</p></li>
+</ul>
+
+<h2 id="check-access-a4-a4-a7-a7">Check Access (<a href="https://www.owasp.org/index.php/Top_10_2013-A4-Insecure_Direct_Object_References" target="_blank">A4</a>, <a href="https://www.owasp.org/index.php/Top_10_2013-A7-Missing_Function_Level_Access_Control" target="_blank">A7</a>)</h2>
+
+<p>Always check data and functional access. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object.
+Spring Security provides the comprehensive methods to implement functional access.
+Data access (SQL) usually requires correctly constructing of the SQL query.</p>
+
+<h2 id="use-http-headers-a1-a1-a3-a3">Use HTTP Headers (<a href="https://www.owasp.org/index.php/Top_10_2013-A1-Injection" target="_blank">A1</a>, <a href="https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_%28XSS%29" target="_blank">A3</a>)</h2>
+
+<p>Use browser headers to prevent XSS and data-injection attacks:</p>
+
+<pre><code class="language-http">X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src https://myhost.com
+</code></pre>
+
+<p>Spring-Security provides a set of <a href="http://docs.spring.io/autorepo/docs/spring-security/current/apidocs/org/springframework/security/config/annotation/web/builders/HttpSecurity.html" target="_blank">header filters</a> out of the box ():</p>
+
+<pre><code class="language-java">@Configuration
+@EnableWebMvcSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .headers()
+                .contentTypeOptions();
+                .xssProtection()
+                .cacheControl()
+                .httpStrictTransportSecurity()
+                .frameOptions()
+                .and()
+            ...;
+    }
+}
+</code></pre>
+
+<h3 id="use-content-security-policy-header">Use Content-Security-Policy Header</h3>
+
+<p><a href="https://www.owasp.org/index.php/Content_Security_Policy" target="_blank">Content-Security-Policy</a> is an <a href="https://w3c.github.io/webappsec/specs/content-security-policy/" target="_blank">W3C specification</a> offering the possibility to instruct the client browser from which location and/or which type of resources are allowed to be loaded. To define a loading behavior, the CSP specification use &laquo;directive&raquo; where a directive defines a loading behavior for a target resource type.</p>
+
+<p>Directives can be specified using HTTP response header (a server may send more than one CSP HTTP header field with a given resource representation and a server may send different CSP header field values with different representations of the same resource or with different resources) or HTML Meta tag, the HTTP headers below are defined by the specs:</p>
+
+<ul>
+<li><code>Content-Security-Policy</code> : Defined by W3C Specs as standard header, used by Chrome version 25 and later, Firefox version 23 and later, Opera version 19 and later.</li>
+<li><code>X-Content-Security-Policy</code> : Used by Firefox until version 23, and Internet Explorer version 10 (which partially implements Content Security Policy).</li>
+<li><code>X-WebKit-CSP</code> : Used by Chrome until version 25</li>
+</ul>
+
+<p>The supported directives you may find at <a href="https://w3c.github.io/webappsec/specs/content-security-policy/#directives" target="_blank">W3C specification</a> page.</p>
+
+<p>As fallback default you may use <strong><code>default-src</code></strong> directive. It defines loading policy for all resources type in case of a resource type dedicated directive is not defined.</p>
+
+<h2 id="use-spring-security-csrf-protection-a8-a8">Use Spring-Security CSRF Protection (<a href="https://www.owasp.org/index.php/Top_10_2013-A8-Cross-Site_Request_Forgery_%28CSRF%29" target="_blank">A8</a>)</h2>
+
+<p>Spring-Security provides a [CSRF] protection out of the box using <a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#General_Recommendation:_Synchronizer_Token_Pattern" target="_blank">Synchronizer Token Pattern</a>:</p>
+
+<p>Configure CSRF token support:</p>
+
+<pre><code class="language-java">@Configuration
+@EnableWebMvcSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf()
+                .and()
+            ...;
+    }
+}
+</code></pre>
+
+<p>Include <code>_csrf.token</code> hidden field to your forms:</p>
+
+<pre><code class="language-html">&lt;form action=&quot;...&quot; method=&quot;post&quot;&gt;
+&lt;input type=&quot;hidden&quot;
+    name=&quot;${_csrf.parameterName}&quot;
+    value=&quot;${_csrf.token}&quot;/&gt;
+...
+&lt;/form&gt;
+</code></pre>
+
+<h2 id="disable-xml-external-entity-xxe-processing-a1-a1-a6-a6">Disable XML External Entity (XXE) Processing (<a href="https://www.owasp.org/index.php/Top_10_2013-A1-Injection" target="_blank">A1</a>, <a href="https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure" target="_blank">A6</a>)</h2>
+
+<p>Processing of</p>
+
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
+&lt;!DOCTYPE request [
+&lt;!ENTITY
+include SYSTEM “file=/etc/passwd&quot;
+ &gt;
+]&gt;
+&lt;request&gt;
+&lt;description&gt;
+&amp;include;
+ &lt;/description&gt;
+...
+&lt;/request&gt;
+</code></pre>
+
+<p>The <code>&amp;include;</code> will be replaced with a real data, like:</p>
+
+<pre><code>root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+</code></pre>
+
+<p>To prevent data exposure (<a href="https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure" target="_blank">A6</a>) and injection (<a href="https://www.owasp.org/index.php/Top_10_2013-A1-Injection" target="_blank">A1</a>) disable some <a href="http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html#setFeature-java.lang.String-boolean-" target="_blank">DocumentBuilderFactory</a> features:</p>
+
+<pre><code class="language-java">DocumentBuilderFactory dbf = new DocumentBuilderFactory();
+
+dbf.setFeature(javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING);
+
+// Do not include external entities
+dbf.setFeature(&quot;http://xml.org/sax/features/external-general-entities&quot;, false);
+
+// Disallow DTD inlining by setting this feature to true
+dbf.setFeature(&quot;http://apache.org/xml/features/disallow-doctype-decl&quot;, true);
+</code></pre>
+
+<h2 id="data-protection-coding-practices-a6-a6">Data Protection Coding Practices (<a href="https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure" target="_blank">A6</a>)</h2>
+
+<p>Without proper server access protection, it is possible to take a whole dump of the process memory with <code>gdb</code> (<code>gdb --pid [pid]</code>).
+So the developer should make an extra steps for securing data stored in memory.</p>
+
+<p>The main idea is to keep sensitive data in memory as less time as possible.</p>
+
+<h3 id="1-never-hardcode-passwords">1. Never hardcode passwords</h3>
+
+<p><strong>Don&rsquo;t store the passwords/keys in your code.</strong>
+Your code should be immediately available to be open-sourced without disclosing any sensitive data.</p>
+
+<h3 id="2-avoid-storing-sensitive-date-in-a-heap">2. Avoid storing sensitive date in a heap</h3>
+
+<p>Objects allocated in a Heap memory whereas primitives can be allocated in stack are</p>
+
+<p>Java uses Stack memory is used for execution of a thread. Stack contain method specific values that are short-lived and references to other objects in the heap that are getting referred from the method. Whenever a method is invoked, a new block is created in the stack memory for the method to hold local primitive values and reference to other objects in the method. As soon as method ends, the block becomes unused and become available for next method.
+Stack memory size is very less compared to Heap memory. Stack memory is short-lived whereas heap memory lives from the start till the end of application execution.</p>
+
+<p>You can have only values of primitive types (<code>int</code>, not an <code>Integer</code>) in a stack. So, you&rsquo;ll may need to specially convert the data.</p>
+
+<h3 id="3-use-char-arrays-instead-of-strings-where-possible-and-wipe-zero-data-after-use">3. Use char arrays instead of Strings where possible and wipe (zero) data after use</h3>
+
+<p>Consider following class:</p>
+
+<pre><code class="language-java">   class CreditCard {
+      String cardNumber;
+      String cvv2;
+   }
+</code></pre>
+
+<p>You can&rsquo;t control how java handles the Strings containing card number and cvv2. If the particular string value is used frequently, JVM may decide to do a <em>string deduplication</em>:</p>
+
+<blockquote>
+<p>String de-duplication reduces the memory footprint of String objects on the Java heap by taking advantage of the fact that many String objects are identical.
+Instead of each String object pointing to its own character array, identical String objects can point to and share the same character array.</p>
+</blockquote>
+
+<p>Consider using following code to control the values explicitly:</p>
+
+<pre><code class="language-java">class CreditCard {
+    private char[] cardNumber;
+    private char[] cvv2;
+    ...
+
+    public void wipe() {
+        if (cardNumber != null) {
+            Arrays.fill(cardNumber, 'x');
+        };
+        cardNumber = null;
+        if (cvv2 != null) {
+            Arrays.fill(cvv2, 'x');
+        }
+        cvv2 = null;            
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        wipe();
+        super.finalize();
+    }
+}
+</code></pre>
+
+<p>Now you can wipe the data when you no longer need it.
+Please note that even if you&rsquo;ll call a method <code>finalize()</code> explicitly, JVM <a href="http://stackoverflow.com/a/28906/3315474" target="_blank">will call it again</a>. There is no guarantee when finalize will be called by java GC or will it be called at all.<br />
+So, it&rsquo;s better to call <code>wipe()</code> explicitly somewhere in the <code>finally</code> block.</p>
+
+<p><strong>UPD: You may wipe a data in a String using Java Reflection (Peter Verhas&rsquo;s solution)</strong></p>
+
+<pre><code class="language-java">public static void wipeString(String password) {
+    try {
+        Field stringValue = String.class.getDeclaredField(&quot;value&quot;);
+        stringValue.setAccessible(true);
+        Arrays.fill((char[]) stringValue.get(password), '*');
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+        throw new Error(&quot;Can't wipe string data&quot;);
+    }
+}
+</code></pre>
+
+<p>Following method replaces the content of internal <code>java.lang.String's</code> char array field <code>value</code> with &lsquo;*&rsquo; symbol.
+You should call this method explicitly.</p>
+
+<h3 id="4-encrypt-data-in-the-heap">4. Encrypt data in the heap</h3>
+
+<p>Even if you keep sensitive data in a Heap, you can make reading and analyzing more difficult by using any encription. The encryption should be fast enough and not necessary be very strong since the risk is low.</p>
+
+<p>One possible solution is to encrypt sensitive data with a key, generated once per JVM run (e.g. function of system time). When you&rsquo;ll need a decrypted data, use special function to decrypt it. It should be fast enough.
+For example, you may use <a href="https://en.wikipedia.org/wiki/Blowfish_%28cipher%29" target="_blank">Blowfish</a><sup class="footnote-ref" id="fnref:algorithm-performance-comparison-encryption-perf"><a rel="footnote" href="#fn:algorithm-performance-comparison-encryption-perf">0</a></sup> or even simple <a href="https://en.wikipedia.org/wiki/XOR_cipher" target="_blank">XOR</a> cipher:</p>
+
+<pre><code class="language-java">static final int key = (int)(System.currentTimeMillis() + System.nanoTime());
+....
+int b = a ^ key;
+int c = b ^ key;
+assert (c == a);
+</code></pre>
+
+<blockquote>
+<p>Blowfish is fast symmetric cipher but <a href="https://en.wikipedia.org/wiki/Blowfish_(cipher)#Weakness_and_successors" target="_blank">not perfect</a>. In particular, it is vulnerable to <a href="https://en.wikipedia.org/wiki/Birthday_attack" target="_blank">birthday attack</a>.</p>
+</blockquote>
+
+<h3 id="5-prevent-data-duplication">5. Prevent data duplication</h3>
+
+<p>Make your class not-cloneable, non-serializable and non-deserializable. Thus you will protect your data from unexpected / unauthorized duplication.</p>
+
+<pre><code class="language-java">class CreditCard {
+	...
+
+    public final void clone() throws java.lang.CloneNotSupportedException {
+		throw new java.lang.CloneNotSupportedException();
+    }
+
+    private final void readObject(ObjectInputStream in) throws java.io.IOException {
+        throw new java.io.IOException(&quot;Class cannot be deserialized&quot;);
+    }
+
+    private final void writeObject(ObjectOutputStream out) throws java.io.IOException {
+            throw new java.io.IOException(&quot;Object cannot be serialized&quot;);
+    }
+}
+</code></pre>
+
+<h3 id="6-prevent-logging-of-sensitive-data">6. Prevent Logging of Sensitive Data</h3>
+
+<p>Secure data may leak to the logs if <code>toString()</code> method is implemented incorrectly.
+E.g. using <a href="https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/builder/ToStringBuilder.html#reflectionToString(java.lang.Object)" target="_blank"><code>ToStringBuilder.reflectionToString(...)</code></a></p>
+
+<p>Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in <a href="../../../../../2015/07/26/secure-java-logging-with-logback/" title="Secure Java Logging with Logback">my previous post</a>.</p>
+
+<h2 id="heapdump-prevention-a5">Heapdump Prevention (A5)</h2>
+
+<p>It is possible to take a snapshot of the memory for further analysis and extracting confidential information.</p>
+
+<p>First of all, <strong>don&rsquo;t run your application on Windows</strong>. Windows is far more vulnerable to the threats than Linux/Unix.</p>
+
+<p>There are several ways to mitigate that risk by disabling some JVM heapdump features:</p>
+
+<ol>
+<li><p>Make sure that java attach mechanism is disabled: <code>-XX:+DisableAttachMechanism</code>. Enables the option that disables the mechanism that lets tools attach to the JVM. By default, this option is disabled, meaning that the attach mechanism is enabled and you can use tools such as <code>jcmd</code>, <code>jstack</code>, <code>jmap</code>, and <code>jinfo</code>. See <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html" target="_blank">java command line options</a>.</p></li>
+
+<li><p>Disable heapdump on <code>OutOfMemoryError</code>: <code>-XX:-HeapDumpOnOutOfMemoryError</code>. Set heapdump file location to <code>/dev/null</code> to avoid saving heapdump: <code>XX:HeapDumpPath=/dev/null</code>.</p>
+
+<blockquote>
+<p>Making a heapdump on OOM is not a good idea on production environment. If heap is big enough (a Gigabites) it could take long time to save heap contents to disk. So I suggest using it for load testing only</p>
+</blockquote></li>
+</ol>
+
+<h2 id="check-your-dependencies-for-known-vulnerabilities-a9-a9">Check Your dependencies for known Vulnerabilities (<a href="https://www.owasp.org/index.php/Top_10_2013-A9-Using_Components_with_Known_Vulnerabilities" target="_blank">A9</a>)</h2>
+
+<ul>
+<li>Check <a href="http://cve.mitre.org/" target="_blank"> MITRE Common Vulnerabilities and Exposures Database</a> regularly.</li>
+
+<li><p>Integrate <a href="https://www.owasp.org/index.php/OWASP_Dependency_Check" target="_blank">OWASP Dependency Check tool</a> into your CI pipeline. Run it daily.
+There is a <a href="http://jeremylong.github.io/DependencyCheck/dependency-check-maven/" target="_blank">maven plugin</a> which can analyze your project dependencies for known vulnerabilities.
+You may consider adding following profile to your <em>pom.xml</em>:</p>
+
+<pre><code class="language-xml">...
+&lt;profiles&gt;
+    ...
+    &lt;profile&gt;
+        &lt;id&gt;security-check&lt;/id&gt;
+        &lt;build&gt;
+            &lt;plugins&gt;
+                &lt;plugin&gt;
+                    &lt;groupId&gt;org.owasp&lt;/groupId&gt;
+                    &lt;artifactId&gt;dependency-check-maven&lt;/artifactId&gt;
+                    &lt;version&gt;1.4.3&lt;/version&gt;
+                    &lt;executions&gt;
+                        &lt;execution&gt;
+                            &lt;goals&gt;
+                                &lt;goal&gt;check&lt;/goal&gt;
+                            &lt;/goals&gt;
+                            &lt;phase&gt;validate&lt;/phase&gt;
+                        &lt;/execution&gt;
+                    &lt;/executions&gt;
+                &lt;/plugin&gt;
+            &lt;/plugins&gt;
+        &lt;/build&gt;
+    &lt;/profile&gt;
+    ...
+&lt;/profiles&gt;
+</code></pre></li>
+</ul>
+
+<hr />
+
+<p>The list is not comprehensive, comments and suggestions are always welcome.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="https://www.owasp.org/index.php/Top_10_2013-Table_of_Contents" title="OWASP Top 10" target="_blank">OWASP Top 10</a></li>
+<li><a href="(http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html)." target="_blank">Java JM Command Line Options</a></li>
+<li><a href="http://www.journaldev.com/4098/java-heap-memory-vs-stack-memory-difference" target="_blank">Java Heap Memory vs Stack Memory Difference</a></li>
+<li><a href="http://www.javaworld.com/article/2076837/mobile-java/twelve-rules-for-developing-more-secure-java-code.html" title="Twelve rules for developing more secure Java code" target="_blank">Twelve rules for developing more secure Java code</a></li>
+<li><a href="http://www.cs.wustl.edu/~jain/cse567-06/ftp/encryption_perf/" title="Performance Analysis of Data Encryption Algorithms" target="_blank">Performance Analysis of Data Encryption Algorithms</a></li>
+<li><a href="https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API" target="_blank">OWASP Enterprise Security API</a> / <a href="https://github.com/ESAPI/esapi-java-legacy" target="_blank">ESAPI 2.x on GitHub</a> &ndash; ESAPI (The OWASP Enterprise Security API) is a free, open source, web application security control library that makes it easier for programmers to write lower-risk applications. The ESAPI libraries are designed to make it easier for programmers to retrofit security into existing applications. The ESAPI libraries also serve as a solid foundation for new development.</li>
+<li><a href="https://github.com/jeremylong/DependencyCheck" target="_blank">Dependency-Check: checking project dependencies</a></li>
+<li><a href="https://speakerdeck.com/drissamri/web-app-security-owasp-top-10-2013" target="_blank">Web App Security - OWASP Top 10 2013</a> by Driss Amri</li>
+<li><a href="http://mishadoff.com/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/" target="_blank">Java Magic. Part 4: sun.misc.Unsafe</a></li>
+</ul>
+                </div>
+                <footer class="post-footer">
+                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
+                    </a>
+                    <div class="post-author-info">
+                      <h4 class="post-footer-heading">Written By</h4>
+                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
+                        <span itemprop="name">Konstantin Pavlov</span>
+                      </a>
+                      <p itemprop="description" class="post-author-bio"></p>
+                      
+                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                      
+                      
+                      <p class="post-info">
+                        <b class="post-info-title">Published on</b>
+                        <time class="post-date">Aug 1, 2015</time>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="post-social">
+                    <h4 class="post-footer-heading">Spread the word</h4>
+                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                  </div>
+                </footer>
+
+                <nav role="pagination" class="post-list-pagination">
+                  
+                  <a href="https://konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/" class="post-list-pagination-item post-list-pagination-item-prev"
+                     title="DevMode Javascript Exception Handler" data-pjax rel="prev">
+                    <i class="fa fa-angle-double-left"></i>&nbsp;DevMode Javascript Exception Handler
+                  </a>
+                  
+                  
+                  <a href="https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/" class="post-list-pagination-item post-list-pagination-item-next"
+                     title="Secure Java Logging with Logback" data-pjax rel="next">
+                    Secure Java Logging with Logback&nbsp;<i class="fa fa-angle-double-right"></i>
+                  </a>
+                  
+                </nav>
+
+              </section>
+              
+              <section itemprop="comment" class="post-comments">
+                <div id="disqus_thread"></div>
+              </section>
+              
+            </article>
+
+            <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/jquery-3.1.1.min.js">\x3C/script>');
+    </script>
+
+    
+
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+
+    <dialog id="cookiePolicyPopup" open="false" style="display: none">
+
+  This site uses cookies to ensure you get the best experience on the site. By continuing to use the site, you agree to accept these cookies.
+     <div role="toolbar">
+         <button id="cookiePolicyAccept">OK</button>
+         <a href="../../../../../legal/cookie-policy">Read More</a>
+     </div>
+</dialog>
+    <script src="../../../../../assets/js/prism.min.js?v=1490567313"></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1490567313"></script>
+
+    <script type="text/javascript">
+
+      
+        
+          if(GHOSTIUM.haveDisqus) {
+            var disqus_developer = 1;
+            var disqus_shortname = 'konstantinpavlov';
+
+
+            if(typeof DISQUS !== 'object') {
+              (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+              }());
+            }
+          } else {
+            document.querySelector('.post-comments').remove();
+          }
+        
+      
+
+
+      (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+              function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+          t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+          t.src='https://www.google-analytics.com/analytics.js';
+          z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+      ga('create','UA-2530248-1');ga('send','pageview');
+
+
+      if(GHOSTIUM.haveDisqus) {
+        var disqus_developer = 1;
+        var disqus_shortname = 'konstantinpavlov';
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+
+</body>
+</html>
