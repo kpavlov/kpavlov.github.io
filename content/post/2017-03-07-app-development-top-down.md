@@ -139,5 +139,3 @@ You should not use this instruction blindly. Some steps may be omitted or combin
 
 [markdown]: https://daringfireball.net/projects/markdown/
 [henrik-presentation]: https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21
-
-*[DAO]: Data Access Object
