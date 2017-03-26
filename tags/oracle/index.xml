@@ -15,39 +15,7 @@
       
       <guid>https://konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/</guid>
       <description>&lt;p&gt;If you are modifying your java application to use Oracle Real Application Clustered (RAC) Database instead of standard single-node database server (Express or Standard edition), then you need to modify settings of your JDBC driver.
-&lt;/p&gt;
-
-&lt;h2 id=&#34;oracle-thin-driver&#34;&gt;Oracle Thin Driver&lt;/h2&gt;
-
-&lt;p&gt;Oracle thin driver&amp;rsquo;s jdbc URL needs to be changed:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=OFF)(FAILOVER=ON)
-(ADDRESS=(PROTOCOL=TCP)(HOST=tst-db1.myco.com)(PORT=1604))
-(ADDRESS=(PROTOCOL=TCP)(HOST=tst-db2.myco.com)(PORT=1604)))
-(CONNECT_DATA=SERVICE_NAME=mydb1.myco.com)(SERVER=DEDICATED)))
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Also, it is highly recommended to use LDAP directory server instead of hardcoding hostnames into configuration directly:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;The point of a tnsnames file, the older Oracle Names server, and the newer, recommended LDAP directory server method of resolving database names is to avoid having to hardcode hostnames, addresses, ports, etc. into your connection string. The DBAs should be able to move the database to a new host or port without breaking anything. The best way to set your thin connect URL is with the following syntax:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;jdbc:oracle:thin:@ldap://&amp;lt;OID server name&amp;gt;:&amp;lt;OID port&amp;gt;/&amp;lt;DB SID or Service Name&amp;gt;,cn=OracleContext,dc=&amp;lt;yourdomain&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/1646630/jdbc-what-is-the-correct-jdbc-url-to-connect-to-a-rac-database&#34; target=&#34;_blank&#34;&gt;stackoverflow&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
-
-&lt;p&gt;More detailed information on configuring JDBC driver for RAC you may find on the Oracle&amp;rsquo;s site:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.oracle.com/database/121/JJUCP/rac.htm#JJUCP8197&#34; title=&#34;UCP RAC Features&#34; target=&#34;_blank&#34;&gt;Using UCP RAC Features&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.oracle.com/database/121/JJDBC/instclnt.htm#JJDBC28217&#34; target=&#34;_blank&#34;&gt;OCI JDBC Driver Specific Features&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.oracle.com/database/121/JJDBC/&#34; title=&#34;Database JDBC Developer&#39;s Guide&#34; target=&#34;_blank&#34;&gt;JDBC Developer&amp;rsquo;s Guide&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.oracle.com/database/121/JJDBC/&#34; title=&#34;Database JDBC Developer&#39;s Guide&#34; target=&#34;_blank&#34;&gt;Universal Connection Pool(UCP) for JDBC Developer&amp;rsquo;s Guide&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -56,9 +24,7 @@
       <pubDate>Thu, 22 May 2014 22:57:48 +0300</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2014/05/22/book-applied-oracle-security--developing-secure-database-and-middleware-environments-by-david-knox/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://amzn.com/B002TGNIWK&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/712iBQfmaHL._SL1500_.jpg&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;
-ISBN: 978-0-07-161371-2&lt;/p&gt;
-</description>
+      <description>ISBN: 978-0-07-161371-2</description>
     </item>
     
     <item>
@@ -67,13 +33,8 @@ ISBN: 978-0-07-161371-2&lt;/p&gt;
       <pubDate>Thu, 22 May 2014 22:54:51 +0300</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2014/05/22/book-expert-oracle-database-architecture-oracle-database-9i-10g-and-11g-programming-techniques-and-solutions-by-thomas-kyte/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://amzn.com/B004VJ46ME&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/51ATPBi5z9L.jpg&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ISBN-13 (pbk): 978-1-4302-2946-9&lt;/li&gt;
-&lt;li&gt;ISBN-13 (electronic): 978-1-4302-2947-6&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>
+ ISBN-13 (pbk): 978-1-4302-2946-9 ISBN-13 (electronic): 978-1-4302-2947-6  </description>
     </item>
     
   </channel>

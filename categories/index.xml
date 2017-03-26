@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on The Culture of Code</title>
+    <link>https://konstantinpavlov.net/categories/index.xml</link>
+    <description>Recent content in Categories on The Culture of Code</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Jan 2015 09:48:02 +0000</lastBuildDate>
+    <atom:link href="https://konstantinpavlov.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Blogging</title>
+      <link>https://konstantinpavlov.net/categories/blogging/</link>
+      <pubDate>Sat, 17 Jan 2015 09:48:02 +0000</pubDate>
+      
+      <guid>https://konstantinpavlov.net/categories/blogging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>https://konstantinpavlov.net/categories/database/</link>
+      <pubDate>Thu, 22 May 2014 22:57:48 +0300</pubDate>
+      
+      <guid>https://konstantinpavlov.net/categories/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Devops</title>
+      <link>https://konstantinpavlov.net/categories/devops/</link>
+      <pubDate>Wed, 14 Sep 2016 10:15:51 +0000</pubDate>
+      
+      <guid>https://konstantinpavlov.net/categories/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hardware</title>
+      <link>https://konstantinpavlov.net/categories/hardware/</link>
+      <pubDate>Thu, 15 May 2014 12:30:47 +0200</pubDate>
+      
+      <guid>https://konstantinpavlov.net/categories/hardware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Programming</title>
+      <link>https://konstantinpavlov.net/categories/programming/</link>
+      <pubDate>Thu, 23 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://konstantinpavlov.net/categories/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Project Management</title>
+      <link>https://konstantinpavlov.net/categories/project-management/</link>
+      <pubDate>Tue, 07 Mar 2017 08:48:34 +0200</pubDate>
+      
+      <guid>https://konstantinpavlov.net/categories/project-management/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
