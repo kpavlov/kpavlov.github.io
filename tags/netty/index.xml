@@ -20,7 +20,88 @@
 
 &lt;p&gt;Although this is a working solution, I had a feeling that something is not optimal. Namely, the new Bootstrap is being created on every connection attempt.&lt;/p&gt;
 
-&lt;p&gt;So, I created a FutureListener which should be registered once a Channel is closed.&lt;/p&gt;</description>
+&lt;p&gt;So, I created a FutureListener which should be registered once a Channel is closed.&lt;/p&gt;
+
+&lt;p&gt;Here is the &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/main/java/org/jreactive/iso8583/netty/pipeline/ReconnectOnCloseListener.java&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ReconnectOnCloseListener&lt;/code&gt;&lt;/a&gt; code:&lt;/p&gt;
+
+&lt;p&gt;```java ReconnectOnCloseListener.java
+    public class ReconnectOnCloseListener implements ChannelFutureListener {&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    private final Logger logger = getLogger(ReconnectOnCloseListener.class);
+
+    private final Iso8583Client client;
+    private final int reconnectInterval;
+    private final AtomicBoolean disconnectRequested = new AtomicBoolean(false);
+    private final ScheduledExecutorService executorService;
+
+    public ReconnectOnCloseListener(Iso8583Client client, int reconnectInterval, ScheduledExecutorService executorService) {
+        this.client = client;
+        this.reconnectInterval = reconnectInterval;
+        this.executorService = executorService;
+    }
+
+    public void requestReconnect() {
+        disconnectRequested.set(false);
+    }
+
+    public void requestDisconnect() {
+        disconnectRequested.set(true);
+    }
+
+    @Override
+    public void operationComplete(ChannelFuture future) throws Exception {
+        final Channel channel = future.channel();
+        logger.debug(&amp;quot;Client connection was closed to {}&amp;quot;, channel.remoteAddress());
+        channel.disconnect();
+        scheduleReconnect();
+    }
+
+    public void scheduleReconnect() {
+        if (!disconnectRequested.get()) {
+            logger.trace(&amp;quot;Failed to connect. Will try again in {} millis&amp;quot;, reconnectInterval);
+            executorService.schedule(
+                    client::connectAsync,
+                    reconnectInterval, TimeUnit.MILLISECONDS);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;
+To establish the connection I use the following [code][Iso8583Client]:
+
+```java
+    reconnectOnCloseListener.requestReconnect();
+    final ChannelFuture connectFuture = bootstrap.connect();
+    connectFuture.addListener(connFuture -&amp;gt; {
+        if (!connectFuture.isSuccess()) {
+            reconnectOnCloseListener.scheduleReconnect();
+            return;
+        }
+        Channel channel = connectFuture.channel();
+        logger.info(&amp;quot;Client is connected to {}&amp;quot;, channel.remoteAddress());
+        setChannel(channel);
+        channel.closeFuture().addListener(reconnectOnCloseListener);
+    });
+    connectFuture.sync();// if you need to connect synchronously
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When you want to disconnect, you&amp;rsquo;ll need to disable automatic reconnection first:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    reconnectOnCloseListener.requestDisconnect();
+    channel.close();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The solution works fine so far (&lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/test/java/org/jreactive/iso8583/example/ClientReconnectIT.java&#34; target=&#34;_blank&#34;&gt;integration test&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;Another option is to add a ChannelOutboundHandler which will handle disconnects.&lt;/p&gt;
+
+&lt;h3 id=&#34;links&#34;&gt;Links&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sources: &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/main/java/org/jreactive/iso8583/netty/pipeline/ReconnectOnCloseListener.java&#34; target=&#34;_blank&#34;&gt;ReconnectListener&lt;/a&gt;, &lt;a href=&#34;https://github.com/kpavlov/jreactive-8583/blob/master/src/main/java/org/jreactive/iso8583/client/Iso8583Client.java#L67&#34; target=&#34;_blank&#34;&gt;Client&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;StackOverflow: &lt;a href=&#34;http://stackoverflow.com/a/20881135/3315474&#34; target=&#34;_blank&#34;&gt;answer one&lt;/a&gt;, &lt;a href=&#34;http://stackoverflow.com/a/9351628/3315474&#34; target=&#34;_blank&#34;&gt;answer two&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -37,7 +118,28 @@ If handler is present, &lt;code&gt;channelConnected()&lt;/code&gt; was never cal
 
 The problem was caused by client, which did not initialized SSL handshake on connection.
 Until handshake completed, no other &lt;code&gt;ChannelHandlers&lt;/code&gt; are notified.
-Hopefully, there is a convenient way to initiate handshake on the client. Netty documentation states:&lt;/p&gt;</description>
+Hopefully, there is a convenient way to initiate handshake on the client. Netty documentation states:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;h2 id=&#34;handshake&#34;&gt;Handshake&lt;/h2&gt;
+
+&lt;p&gt;If &lt;code&gt;isIssueHandshake()&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt; (default) you will need to take care of
+calling &lt;code&gt;handshake()&lt;/code&gt; by your own. In most situations were &lt;code&gt;SslHandler&lt;/code&gt; is
+used in &amp;lsquo;client mode&amp;rsquo; you want to issue a handshake once the
+connection was established. if &lt;code&gt;setIssueHandshake(boolean)&lt;/code&gt; is set to
+&lt;code&gt;true&lt;/code&gt; you don&amp;rsquo;t need to worry about this as the SslHandler will take
+care of it.
+&lt;a href=&#34;http://netty.io/3.6/api/org/jboss/netty/handler/ssl/SslHandler.html&#34; target=&#34;_blank&#34;&gt;http://netty.io/3.6/api/org/jboss/netty/handler/ssl/SslHandler.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So, you should set &lt;code&gt;isIssueHandshake&lt;/code&gt; on &lt;code&gt;SslHandler&lt;/code&gt; before establishing the connection:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;SslHandler sslHandler = new SslHandler(engine);
+setIssueHandshake(true);
+pipeline.addLast(&amp;quot;ssl&amp;quot;, sslHandler);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After that, server got hadshaked and &lt;code&gt;SslHandler&lt;/code&gt; fired connected &lt;code&gt;ChannelStateEvent&lt;/code&gt; to other &lt;code&gt;UpstreamHandlers&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

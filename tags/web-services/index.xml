@@ -16,7 +16,53 @@
       <guid>https://konstantinpavlov.net/blog/2016/08/18/links-on-rest-api-design/</guid>
       <description>&lt;p&gt;Here you will find a small collection of links on REST API design.&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=5WXYw4J4QOU&#34; target=&#34;_blank&#34;&gt;Designing a Beautiful REST+JSON API&lt;/a&gt; &amp;ndash; In this presentation, Les Hazlewood (@lhazlewood) - Stormpath CTO and Apache Shiro PMC Chair - will share all of the golden nuggets learned while designing, implementing and supporting JSON-based REST APIs, using examples from a clean real-world REST+JSON API built with Java technologies. He covers:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JSON-based data formats in a RESTful API&lt;/li&gt;
+&lt;li&gt;References to other JSON-based resources (aka &amp;lsquo;linking&amp;rsquo;)&lt;/li&gt;
+&lt;li&gt;Resource collections and pagination&lt;/li&gt;
+&lt;li&gt;How to map (and how not to map) HTTP methods to Resource CRUD&lt;/li&gt;
+&lt;li&gt;Resource partial updates&lt;/li&gt;
+&lt;li&gt;Supporting HTTP Method Overloading for clients that don&amp;rsquo;t support HTTP PUT and DELETE&lt;/li&gt;
+&lt;li&gt;API versioning strategies&lt;/li&gt;
+&lt;li&gt;Meaningful Error responses&lt;/li&gt;
+&lt;li&gt;Many-to-many resource relationships&lt;/li&gt;
+&lt;li&gt;HTTP Caching and Optimistic concurrency control&lt;/li&gt;
+&lt;li&gt;Authentication and Security
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/5WXYw4J4QOU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=FeSdFhsKGG0&#34; target=&#34;_blank&#34;&gt;Secure Your API - Tips for REST + JSON Developers&lt;/a&gt; &amp;ndash; Technical overview on how to secure your API, from Les Hazlewood (@lhazlewood), CTO of Stormpath and PMC Chair of Apache Shiro. (Excerpt from Les&amp;rsquo; talk on API design at Silicon Valley Java Users Group)
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/FeSdFhsKGG0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+ &lt;/div&gt;
+&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://stormpath.com/blog/secure-your-rest-api-right-way/&#34; target=&#34;_blank&#34;&gt;https://stormpath.com/blog/secure-your-rest-api-right-way/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://stackoverflow.com/questions/319530/restful-authentication&#34; target=&#34;_blank&#34;&gt;http://stackoverflow.com/questions/319530/restful-authentication&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://stormpath.com/blog/designing-rest-json-apis/&#34; target=&#34;_blank&#34;&gt;https://stormpath.com/blog/designing-rest-json-apis/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://docs.stormpath.com/guides/api-key-management/&#34; target=&#34;_blank&#34;&gt;http://docs.stormpath.com/guides/api-key-management/&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Hash-based_message_authentication_code&#34; target=&#34;_blank&#34;&gt;http://en.wikipedia.org/wiki/Hash-based_message_authentication_code&lt;/a&gt; &amp;ndash; keyed-hash message authentication code (HMAC)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.coinbase.com/docs/api/authentication&#34; target=&#34;_blank&#34;&gt;https://www.coinbase.com/docs/api/authentication&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://broadcast.oreilly.com/2009/12/principles-for-standardized-rest-authentication.html&#34; target=&#34;_blank&#34;&gt;http://broadcast.oreilly.com/2009/12/principles-for-standardized-rest-authentication.html&lt;/a&gt; &amp;ndash; Query Authentication consists in signing each RESTful request via some additional parameters on the URI.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;http://blog.synopse.info/post/2011/05/24/How-to-implement-RESTful-authentication&#34; target=&#34;_blank&#34;&gt;http://blog.synopse.info/post/2011/05/24/How-to-implement-RESTful-authentication&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -26,7 +72,40 @@
       
       <guid>https://konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s very easy to configure custom &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/javax/net/ssl/SSLSocketFactory.html&#34; target=&#34;_blank&#34;&gt;SSLSocketFactory&lt;/a&gt; for JAX-WS web-service: just specify custom property referring to &lt;code&gt;SSLSocketFactory&lt;/code&gt; bean.
-But there is a nuance&amp;hellip;&lt;/p&gt;</description>
+But there is a nuance&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;In SpringFramework you may setup web service port with following XML configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;bean id=&amp;quot;myPort&amp;quot; class=&amp;quot;org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean&amp;quot;&amp;gt;
+    &amp;lt;property name=&amp;quot;serviceInterface&amp;quot; value=&amp;quot;com.example.ServicePortInterface&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;wsdlDocumentResource&amp;quot; value=&amp;quot;classpath:wsdl/MyService.wsdl&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;namespaceUri&amp;quot; value=&amp;quot;urn:MyServer&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;serviceName&amp;quot; value=&amp;quot;MyServerService&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;endpointAddress&amp;quot; value=&amp;quot;${my.service.url}&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;customProperties&amp;quot;&amp;gt;
+        &amp;lt;map key-type=&amp;quot;java.lang.String&amp;quot;&amp;gt;
+            &amp;lt;entry key=&amp;quot;com.sun.xml.ws.transport.https.client.SSLSocketFactory&amp;quot;
+                   value-ref=&amp;quot;mySslSocketFactoryBean&amp;quot;/&amp;gt;
+        &amp;lt;/map&amp;gt;
+    &amp;lt;/property&amp;gt;
+&amp;lt;/bean&amp;gt;
+
+&amp;lt;!--  My bean implements javax.net.ssl.SSLSocketFactory --&amp;gt;
+&amp;lt;bean id=&amp;quot;mySslSocketFactoryBean&amp;quot; .../&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The code above will work if you are using JAX-WS reference implementation but will not work with JAX-WS bundled in Oracle JDK. For that case you need to set a custom property named &lt;code&gt;&amp;quot;com.sun.xml.internal.ws.transport.https.client.SSLSocketFactory&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s confusing, but you should use a property name defined in the &lt;code&gt;JAXWSProperties&lt;/code&gt; class of JAX-WS implementation of your choice. For example:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://jax-ws.java.net/nonav/2.2.8/javadocs/rt/com/sun/xml/ws/developer/JAXWSProperties.html#SSL_SOCKET_FACTORY&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;com.sun.xml.ws.developer.JAXWSProperties.SSL_SOCKET_FACTORY&lt;/code&gt;&lt;/a&gt; &amp;ndash; if you&amp;rsquo;re using JAXWS-RI implementation;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;com.sun.xml.internal.ws.developer.JAXWSProperties.SSL_SOCKET_FACTORY&lt;/code&gt; &amp;ndash; for Oracle JDK implementation;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weblogic.wsee.jaxws.JAXWSProperties.SSL_SOCKET_FACTORY&lt;/code&gt; &amp;ndash; for WebLogic server&amp;rsquo;s implementation.
+&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So find a &lt;code&gt;JAXWSProperties&lt;/code&gt; and use a value of constant &lt;code&gt;SSL_SOCKET_FACTORY&lt;/code&gt; in JAX-WS binding custom properties.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -37,7 +116,32 @@ But there is a nuance&amp;hellip;&lt;/p&gt;</description>
       <guid>https://konstantinpavlov.net/blog/2007/05/23/configuring-ws-security-for-axis-1.4-client/</guid>
       <description>&lt;p&gt;I was looking how to enable WS-Security features in the Axis client to my web service application. I have tested it with Axis 1.4 client.
 
-The things you need to configure axis client are:&lt;/p&gt;</description>
+The things you need to configure axis client are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Copy &lt;em&gt;wss4j.jar&lt;/em&gt; (rev. 1.5.1), &lt;em&gt;opensaml-1.1.jar&lt;/em&gt; and &lt;em&gt;xmlsec-20050514.jar&lt;/em&gt; (from the openSAML distribution) to classpath (&lt;code&gt;WEB-INF/lib&lt;/code&gt;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Add handler to &lt;em&gt;client.wsdd&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;!-- Using the WSDoAllSender security handler in request flow --&amp;gt;
+&amp;lt;deployment xmlns=&amp;quot;http://xml.apache.org/axis/wsdd/&amp;quot; java=&amp;quot;http://xml.apache.org/axis/wsdd/providers/java&amp;quot;&amp;gt;
+    &amp;lt;transport name=&amp;quot;http&amp;quot; pivot=&amp;quot;java:org.apache.axis.transport.http.HTTPSender&amp;quot;&amp;gt;
+        &amp;lt;globalconfiguration&amp;gt;
+            &amp;lt;requestflow&amp;gt;
+                &amp;lt;handler type=&amp;quot;java:org.apache.ws.axis.security.WSDoAllSender&amp;quot;&amp;gt;
+                    &amp;lt;parameter name=&amp;quot;action&amp;quot; value=&amp;quot;UsernameToken&amp;quot;/&amp;gt;
+                    &amp;lt;parameter name=&amp;quot;passwordType&amp;quot; value=&amp;quot;PasswordDigest&amp;quot;/&amp;gt;
+                    &amp;lt;parameter name=&amp;quot;mustUnderstand&amp;quot; value=&amp;quot;false&amp;quot;/&amp;gt;
+                &amp;lt;/handler&amp;gt;
+            &amp;lt;/requestflow&amp;gt;
+        &amp;lt;/globalconfiguration&amp;gt;
+    &amp;lt;/transport&amp;gt;
+&amp;lt;/deployment&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You don&amp;rsquo;t need to hardcode username and password as a handler parameters.
+Just call setUsername(&amp;hellip;) and setPassword(&amp;hellip;) methods of your Stub.&lt;/p&gt;</description>
     </item>
     
   </channel>

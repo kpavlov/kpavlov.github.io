@@ -14,8 +14,10 @@
       <pubDate>Sat, 01 Mar 2014 12:30:28 +0200</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2014/03/01/video-scalable-memory-allocation-using-jemalloc-tech-talk-1/11/2011/</guid>
-      <description>Video: Scalable Memory Allocation using jemalloc - Tech Talk (1/11/2011)
-jemalloc project: https://github.com/jemalloc/jemalloc</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.facebook.com/video/video.php?v=696488619305&#34; target=&#34;_blank&#34;&gt;Video: Scalable Memory Allocation using jemalloc&lt;/a&gt; - Tech Talk (1/11/2011)&lt;/p&gt;
+
+&lt;p&gt;jemalloc project: &lt;a href=&#34;https://github.com/jemalloc/jemalloc&#34; target=&#34;_blank&#34;&gt;https://github.com/jemalloc/jemalloc&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -24,9 +26,16 @@ jemalloc project: https://github.com/jemalloc/jemalloc</description>
       <pubDate>Wed, 19 Feb 2014 12:30:42 +0200</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2014/02/19/chronicle/</guid>
-      <description>Chronicle by Peter Lawrey:
- This library is an ultra low latency, high throughput, persisted, messaging and event driven in memory database. The typical latency is as low as 80 nano-seconds and supports throughput of 5-20 million messages/record updates per second.
-This library also supports distributed, durable, observable collections (Map, List, Set) The performance depends on the data structures used, but simple data structures can achieve throughput of 5 million elements or key/value pairs in batches (eg addAll or putAll) and 500K elements or key/values per second when added/updated/removed individually.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/peter-lawrey/Java-Chronicle&#34; target=&#34;_blank&#34;&gt;Chronicle&lt;/a&gt; by Peter Lawrey:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This library is an ultra low latency, high throughput, persisted, messaging and event driven in memory database. The typical latency is as low as 80 nano-seconds and supports throughput of 5-20 million messages/record updates per second.&lt;/p&gt;
+
+&lt;p&gt;This library also supports distributed, durable, observable collections (Map, List, Set) The performance depends on the data structures used, but simple data structures can achieve throughput of 5 million elements or key/value pairs in batches (eg addAll or putAll) and 500K elements or key/values per second when added/updated/removed individually.&lt;/p&gt;
+
+&lt;p&gt;It uses almost no heap, trivial GC impact, can be much larger than your physical memory size (only limited by the size of your disk) and can be shared between processes with better than 1/10th latency of using Sockets over loopback. It can change the way you design your system because it allows you to have independent processes which can be running or not at the same time (as no messages are lost) This is useful for restarting services and testing your services from canned data. e.g. like sub-microsecond durable messaging. You can attach any number of readers, including tools to see the exact state of the data externally. e.g. I use; od -t cx1 {file} to see the current state.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
     </item>
     
     <item>
@@ -35,9 +44,13 @@ This library also supports distributed, durable, observable collections (Map, Li
       <pubDate>Sat, 18 Jan 2014 12:33:12 +0300</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2014/01/18/jvm-profiling-mode/</guid>
-      <description>There is no sense to run profiler in instrumentation mode on a high load.
-Instead of using instrumentation you should use sampling mode.
-This article describes the difference between instrumentation and sampling modes. JVisualVM is a good free tool for this task.</description>
+      <description>&lt;p&gt;There is no sense to run profiler in instrumentation mode on a high load.&lt;/p&gt;
+
+&lt;p&gt;Instead of using instrumentation you should use sampling mode.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://blog.codecentric.de/en/2011/10/measure-java-performance-sampling-or-instrumentation/&#34; title=&#34;Measure Java Performance – Sampling or Instrumentation?&#34; target=&#34;_blank&#34;&gt;This article&lt;/a&gt; describes the difference between instrumentation and sampling modes.
+&lt;a href=&#34;http://docs.oracle.com/javase/6/docs/technotes/tools/share/jvisualvm.html&#34; title=&#34;jvisualvm - Java Virtual Machine Monitoring, Troubleshooting, and Profiling Tool&#34; target=&#34;_blank&#34;&gt;JVisualVM&lt;/a&gt; is a good free tool for this task.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

@@ -15,7 +15,46 @@
       
       <guid>https://konstantinpavlov.net/blog/2016/02/21/spring-freemarker-tips/</guid>
       <description>&lt;p&gt;I hope you will find following tips useful when developing &lt;a href=&#34;https://projects.spring.io/spring-boot&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; application with &lt;a href=&#34;http://freemarker.org&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Enable auto-reload of freemarker templates&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Create spring boot development profile (e.g. &amp;laquo;local&amp;raquo;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Disable template caching and enable file access rather than classpath resource access to templates (&lt;em&gt;application-local.properties&lt;/em&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.cache=false
+spring.freemarker.prefer-file-system-access=true
+spring.freemarker.template-loader-path=file:${user.home}/projects/example/src/main/resources/templates
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Add &lt;code&gt;src/main/resources/freemarker_implicit.ftl&lt;/code&gt; to declare your oftenly used types (_freemarker&lt;em&gt;implicit.ftl&lt;/em&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-freemarker&#34;&gt;[#ftl]
+[#-- @implicitly included --]
+[#-- @ftlvariable name=&amp;quot;items&amp;quot; type=&amp;quot;java.util.List&amp;lt;com.example.domain.Item&amp;gt;&amp;quot; --]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Set setting &lt;code&gt;url_escaping_charset&lt;/code&gt; to avoid specifying it in templates (&lt;em&gt;application-local.properties&lt;/em&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.settings.url_escaping_charset=UTF-8
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;You may want to import your default layout to all your pages automatically (&lt;em&gt;application.properties&lt;/em&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.settings.auto_import=layout/defaultLayout.ftl as layout
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is equivalent to adding explicitly to your page:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-freemarker&#34;&gt;&amp;lt;#import &amp;quot;../layout/defaultLayout.ftl&amp;quot; as layouts&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Why Freemarker and not a &lt;a href=&#34;http://www.thymeleaf.org/&#34; target=&#34;_blank&#34;&gt;Thymeleaf&lt;/a&gt;? Because Thymeleaf is one of the &lt;a href=&#34;https://github.com/jreijn/spring-comparing-template-engines#benchmarks-2015&#34; target=&#34;_blank&#34;&gt;slowest&lt;/a&gt; template engines for Java. Freemarker is in the middle of the list, 1.5 times faster than Thymeleaf. &lt;a href=&#34;http://velocity.apache.org/&#34; target=&#34;_blank&#34;&gt;Velocity&lt;/a&gt; or &lt;a href=&#34;https://github.com/samskivert/jmustache&#34; target=&#34;_blank&#34;&gt;JMustache&lt;/a&gt; are even faster, but the difference is not as big and Freemarker has quite a lot of useful features.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -27,7 +66,125 @@
       <description>&lt;p&gt;Spring Boot is an excellent tool to bootstrap java application.
 Most of the references mention how to create a standalone java application, optionally with embedded web server (tomcat or jetty). But &lt;a href=&#34;http://projects.spring.io/spring-boot/&#34; title=&#34;Spring Boot Project&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; supports also creating web applications intended to run within servlet container.
 
-Here is example of maven &lt;em&gt;pom.xml&lt;/em&gt; file for Spring-Boot-enabled web application:&lt;/p&gt;</description>
+Here is example of maven &lt;em&gt;pom.xml&lt;/em&gt; file for Spring-Boot-enabled web application:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;    ...
+    &amp;lt;packaging&amp;gt;war&amp;lt;/packaging&amp;gt;
+    &amp;lt;properties&amp;gt;
+        &amp;lt;!-- If web.xml is not used --&amp;gt;
+        &amp;lt;failOnMissingWebXml&amp;gt;false&amp;lt;/failOnMissingWebXml&amp;gt;
+        &amp;lt;!-- Set Spring-Boot Version --&amp;gt;
+        &amp;lt;spring-boot.version&amp;gt;1.2.1.RELEASE&amp;lt;/spring-boot.version&amp;gt;
+    &amp;lt;/properties&amp;gt;
+    &amp;lt;dependencyManagement&amp;gt;
+        &amp;lt;dependencies&amp;gt;
+            &amp;lt;dependency&amp;gt;
+                &amp;lt;!-- Import dependency management from Spring Boot --&amp;gt;
+                &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+                &amp;lt;artifactId&amp;gt;spring-boot-dependencies&amp;lt;/artifactId&amp;gt;
+                &amp;lt;version&amp;gt;${spring-boot.version}&amp;lt;/version&amp;gt;
+                &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;
+                &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;
+            &amp;lt;/dependency&amp;gt;
+        &amp;lt;/dependencies&amp;gt;
+    &amp;lt;/dependencyManagement&amp;gt;
+    &amp;lt;dependencies&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;spring-boot-starter-web&amp;lt;/artifactId&amp;gt;
+            &amp;lt;exclusions&amp;gt;
+                &amp;lt;exclusion&amp;gt;
+                    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+                    &amp;lt;artifactId&amp;gt;spring-boot-starter-tomcat&amp;lt;/artifactId&amp;gt;
+                &amp;lt;/exclusion&amp;gt;
+            &amp;lt;/exclusions&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;!-- Provided in Tomcat --&amp;gt;
+            &amp;lt;groupId&amp;gt;javax.servlet&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;javax.servlet-api&amp;lt;/artifactId&amp;gt;
+            &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;!-- Provided in Tomcat --&amp;gt;
+            &amp;lt;groupId&amp;gt;javax.el&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;javax.el-api&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;2.2.4&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;!-- Test dependencies --&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;spring-boot-starter-test&amp;lt;/artifactId&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.glassfish.web&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;javax.el&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;2.2.4&amp;lt;/version&amp;gt;
+            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+        &amp;lt;/dependency&amp;gt;        
+    &amp;lt;/dependencies&amp;gt;
+    ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You&amp;rsquo;ll need a &lt;code&gt;SpringBootServletInitializer&lt;/code&gt; to configure web application:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
+@ComponentScan
+@EnableAutoConfiguration
+public class Application extends SpringBootServletInitializer {
+
+    private static Class&amp;lt;Application&amp;gt; applicationClass = Application.class;
+
+    public static void main(String... args) {
+        SpringApplication.run(applicationClass, args);
+    }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(applicationClass);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;HUGOMORE42&lt;/p&gt;
+
+&lt;h2 id=&#34;tuning-configuration&#34;&gt;Tuning Configuration&lt;/h2&gt;
+
+&lt;p&gt;If you want to have a configuration file hierarchy, e.g.:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Default properties (from classpath)&lt;/li&gt;
+&lt;li&gt;Environment-specific server properties (from &lt;code&gt;$CATALINA_BASE/conf&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Environment-specific application properties (from &lt;code&gt;$CATALINA_BASE/conf&lt;/code&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;You may specify &lt;code&gt;spring.config.location&lt;/code&gt; env-entries in &lt;code&gt;web.xml&lt;/code&gt;. Spring Boot will read properties from JNDI.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;web-app xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns=&amp;quot;http://java.sun.com/xml/ns/javaee&amp;quot;
+         xsi:schemaLocation=&amp;quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&amp;quot;
+         version=&amp;quot;3.0&amp;quot;&amp;gt;
+    &amp;lt;display-na&amp;gt;
+    &amp;lt;env-entry&amp;gt;
+        &amp;lt;env-entry-name&amp;gt;spring.config.location&amp;lt;/env-entry-name&amp;gt;
+        &amp;lt;env-entry-type&amp;gt;java.lang.String&amp;lt;/env-entry-type&amp;gt;
+        &amp;lt;env-entry-value&amp;gt;
+            classpath:/default.properties,
+            file:${catalina.base}/conf/common.properties,
+            file:${catalina.base}/conf/my-application.properties
+        &amp;lt;/env-entry-value&amp;gt;
+    &amp;lt;/env-entry&amp;gt;
+&amp;lt;/web-app&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://spring.io/blog/2014/03/07/deploying-spring-boot-applications#what-about-the-java-ee-application-server&#34; title=&#34;Deploying Spring Boot Applications: What about the Java EE Application Server?&#34; target=&#34;_blank&#34;&gt;Deploying Spring Boot Applications: What about the Java EE Application Server?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html&#34; title=&#34;Spring Boot: Common application properties&#34; target=&#34;_blank&#34;&gt;Spring Boot application properties&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -49,7 +206,34 @@ So, I created the annotation &lt;a href=&#34;https://github.com/kpavlov/commons-
 
 &lt;p&gt;&lt;code&gt;@Enabled&lt;/code&gt; indicates that a component is eligible for registration when evaluated expression is true. This annotation should be used in conjunction with Configuration and Bean annotations.&lt;/p&gt;
 
-&lt;p&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;usage-example&#34;&gt;Usage Example&lt;/h2&gt;
+
+&lt;p&gt;Given property file &lt;code&gt;application.properties&lt;/code&gt; with property values &lt;code&gt;my.service.enabled&lt;/code&gt; and &lt;code&gt;my.config.enabled&lt;/code&gt;. Following code will only instantiate and configure &lt;code&gt;MyService&lt;/code&gt; and &lt;code&gt;MyConfig&lt;/code&gt; if values of appropriate properties are evaluated as true.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
+@PropertySource}(&amp;quot;classpath:/application.properties&amp;quot;)
+@Import(MyConfig.class)
+class AppConfig {
+
+    @Bean
+    @Enabled(&amp;quot;${my.service.enabled}&amp;quot;)
+    MyService myService {
+        return new MyService()
+    }
+}
+
+@Configuration
+@Enabled(&amp;quot;${my.config.enabled}&amp;quot;)
+class MyConfig {
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Link: &lt;a href=&#34;https://github.com/kpavlov/commons-spring&#34; title=&#34;Project on GitHub&#34; target=&#34;_blank&#34;&gt;project on GitHub&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Update: &lt;a href=&#34;http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html&#34; target=&#34;_blank&#34;&gt;spring-boot-conditionals&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -59,7 +243,40 @@ So, I created the annotation &lt;a href=&#34;https://github.com/kpavlov/commons-
       
       <guid>https://konstantinpavlov.net/blog/2014/12/01/jax-ws-with-custom-sslsocketfactory/</guid>
       <description>&lt;p&gt;It&amp;rsquo;s very easy to configure custom &lt;a href=&#34;https://docs.oracle.com/javase/8/docs/api/javax/net/ssl/SSLSocketFactory.html&#34; target=&#34;_blank&#34;&gt;SSLSocketFactory&lt;/a&gt; for JAX-WS web-service: just specify custom property referring to &lt;code&gt;SSLSocketFactory&lt;/code&gt; bean.
-But there is a nuance&amp;hellip;&lt;/p&gt;</description>
+But there is a nuance&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;In SpringFramework you may setup web service port with following XML configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;bean id=&amp;quot;myPort&amp;quot; class=&amp;quot;org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean&amp;quot;&amp;gt;
+    &amp;lt;property name=&amp;quot;serviceInterface&amp;quot; value=&amp;quot;com.example.ServicePortInterface&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;wsdlDocumentResource&amp;quot; value=&amp;quot;classpath:wsdl/MyService.wsdl&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;namespaceUri&amp;quot; value=&amp;quot;urn:MyServer&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;serviceName&amp;quot; value=&amp;quot;MyServerService&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;endpointAddress&amp;quot; value=&amp;quot;${my.service.url}&amp;quot;/&amp;gt;
+    &amp;lt;property name=&amp;quot;customProperties&amp;quot;&amp;gt;
+        &amp;lt;map key-type=&amp;quot;java.lang.String&amp;quot;&amp;gt;
+            &amp;lt;entry key=&amp;quot;com.sun.xml.ws.transport.https.client.SSLSocketFactory&amp;quot;
+                   value-ref=&amp;quot;mySslSocketFactoryBean&amp;quot;/&amp;gt;
+        &amp;lt;/map&amp;gt;
+    &amp;lt;/property&amp;gt;
+&amp;lt;/bean&amp;gt;
+
+&amp;lt;!--  My bean implements javax.net.ssl.SSLSocketFactory --&amp;gt;
+&amp;lt;bean id=&amp;quot;mySslSocketFactoryBean&amp;quot; .../&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The code above will work if you are using JAX-WS reference implementation but will not work with JAX-WS bundled in Oracle JDK. For that case you need to set a custom property named &lt;code&gt;&amp;quot;com.sun.xml.internal.ws.transport.https.client.SSLSocketFactory&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s confusing, but you should use a property name defined in the &lt;code&gt;JAXWSProperties&lt;/code&gt; class of JAX-WS implementation of your choice. For example:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://jax-ws.java.net/nonav/2.2.8/javadocs/rt/com/sun/xml/ws/developer/JAXWSProperties.html#SSL_SOCKET_FACTORY&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;com.sun.xml.ws.developer.JAXWSProperties.SSL_SOCKET_FACTORY&lt;/code&gt;&lt;/a&gt; &amp;ndash; if you&amp;rsquo;re using JAXWS-RI implementation;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;com.sun.xml.internal.ws.developer.JAXWSProperties.SSL_SOCKET_FACTORY&lt;/code&gt; &amp;ndash; for Oracle JDK implementation;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weblogic.wsee.jaxws.JAXWSProperties.SSL_SOCKET_FACTORY&lt;/code&gt; &amp;ndash; for WebLogic server&amp;rsquo;s implementation.
+&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So find a &lt;code&gt;JAXWSProperties&lt;/code&gt; and use a value of constant &lt;code&gt;SSL_SOCKET_FACTORY&lt;/code&gt; in JAX-WS binding custom properties.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -69,7 +286,206 @@ But there is a nuance&amp;hellip;&lt;/p&gt;</description>
       
       <guid>https://konstantinpavlov.net/blog/2014/05/09/webapp-inter-communication-in-tomcat/</guid>
       <description>&lt;p&gt;&lt;em&gt;Sometimes you need to access services deployed in one web application from another web application within same application server. For Tomcat there is not so many options to do it. In this article we&amp;rsquo;ll discuss you how to use JMX for communication between web applications.&lt;/em&gt;
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;p&gt;When both web applications are deployed on the same &lt;a href=&#34;http://tomcat.apache.org&#34; title=&#34;Apache Tomcat&#34; target=&#34;_blank&#34;&gt;Tomcat server&lt;/a&gt; instance there are, at least, two options to communicate between them:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a JAX-WS or RESTful webservice in A.war and invoke it via http client from B.war&lt;/li&gt;
+&lt;li&gt;Expose a service as managed bean in A.war and invoke it via JMX from B.war&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There are at least two disadvantage of the first approach:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Your webservice becomes available to the public and there is a security risk unless you protect access to that service, if you care about this.&lt;/li&gt;
+&lt;li&gt;Web service invocation is not free. Marshalling/unmarshalling is required.&lt;/li&gt;
+&lt;li&gt;You&amp;rsquo;ll have to write a service endpoint class.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;But there is an advantage:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;You may choose deploy your service to different Tomcat. It will not require much work to reconfigure your services.&lt;/li&gt;
+&lt;li&gt;You should not care about classloader issues.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Second solution uses existing server infrastructure. It also may cause a security risk if your JMX services are accessible by remote clients. But it is not often a case, or JMX is usually not as vulnerable as HTTP port.
+Also, you may not warry about marshalling/unmarshalling or serialisation/deserializartion.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s discuss a third solution (JMX) in details.&lt;/p&gt;
+
+&lt;h2 id=&#34;exposing-and-accessing-managed-beans-with-springframework&#34;&gt;Exposing and Accessing Managed Beans with SpringFramework&lt;/h2&gt;
+
+&lt;p&gt;Tomcat has it&amp;rsquo;s own JMX Server and &lt;a href=&#34;http://springframework.org&#34; target=&#34;_blank&#34;&gt;SpringFramework&lt;/a&gt; has JMX exporter feature out of the box.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s start with simple example.
+We&amp;rsquo;ll create first web application &lt;code&gt;service.war&lt;/code&gt; exposing &lt;a href=&#34;https://gist.github.com/kpavlov/3e19dcec52b56d550e21#file-api-jar-echoservice&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;EchoService&lt;/code&gt;&lt;/a&gt; via JMX.
+Then we&amp;rsquo;ll access that service in a second web application &lt;code&gt;ui.war&lt;/code&gt; from within a servlet.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s create a maven project with 3 modules:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;modules&amp;gt;
+    &amp;lt;module&amp;gt;api.jar&amp;lt;/module&amp;gt;
+    &amp;lt;module&amp;gt;service.war&amp;lt;/module&amp;gt;
+    &amp;lt;module&amp;gt;ui.war&amp;lt;/module&amp;gt;
+&amp;lt;/modules&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First module, &lt;em&gt;api.jar&lt;/em&gt;, will contain a service interface, &lt;code&gt;EchoService&lt;/code&gt; which is pretty simple
+(here and later imports are omitted):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;public interface EchoService {
+
+    public static final String MBEAN_NAME = &amp;quot;com.example:type=service,name=EchoService&amp;quot;;
+
+    String echo(String input);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Second module, &lt;em&gt;service.war&lt;/em&gt;, will contain a &lt;a href=&#34;https://gist.github.com/kpavlov/3e19dcec52b56d550e21#file-service-war-echoserviceimpl&#34; target=&#34;_blank&#34;&gt;service implementation class&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@ManagedResource(objectName = EchoService.MBEAN_NAME)
+public class EchoServiceImpl implements EchoService {
+
+    @Override
+    @ManagedOperation
+    public String echo(String input) {
+        return &amp;quot;You said: &amp;quot; + input;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip; as well as Spring configuration file &lt;em&gt;services-context.xml&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
+       xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+       xmlns:context=&amp;quot;http://www.springframework.org/schema/context&amp;quot;
+       xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&amp;quot;&amp;gt;
+
+    &amp;lt;context:annotation-config/&amp;gt;
+    &amp;lt;context:mbean-export/&amp;gt;
+
+    &amp;lt;bean id=&amp;quot;echoService&amp;quot; class=&amp;quot;com.example.service.EchoServiceImpl&amp;quot;/&amp;gt;
+
+&amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here the &lt;a href=&#34;http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/jmx.html&#34; target=&#34;_blank&#34;&gt;JMX export feature&lt;/a&gt;
+of &lt;a href=&#34;http://springframework.org&#34; target=&#34;_blank&#34;&gt;SpringFramework&lt;/a&gt; is used.&lt;/p&gt;
+
+&lt;p&gt;And a &lt;em&gt;web.xml&lt;/em&gt; descriptor is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;web-app xmlns=&amp;quot;http://java.sun.com/xml/ns/javaee&amp;quot;
+         xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+         xsi:schemaLocation=&amp;quot;http://java.sun.com/xml/ns/javaee
+          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&amp;quot;
+         version=&amp;quot;3.0&amp;quot;&amp;gt;
+
+    &amp;lt;display-name&amp;gt;Servlet 3.0 Web Application&amp;lt;/display-name&amp;gt;
+
+    &amp;lt;context-param&amp;gt;
+        &amp;lt;param-name&amp;gt;contextConfigLocation&amp;lt;/param-name&amp;gt;
+        &amp;lt;param-value&amp;gt;classpath:/services-context.xml&amp;lt;/param-value&amp;gt;
+    &amp;lt;/context-param&amp;gt;
+
+    &amp;lt;listener&amp;gt;
+        &amp;lt;listener-class&amp;gt;org.springframework.web.context.ContextLoaderListener&amp;lt;/listener-class&amp;gt;
+    &amp;lt;/listener&amp;gt;
+&amp;lt;/web-app&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Third module, &lt;em&gt;ui.war&lt;/em&gt;, will contain a servlet, which will use the service:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@WebServlet(urlPatterns = &amp;quot;/echo/*&amp;quot;)
+public class EchoServlet extends HttpServlet {
+
+    @Autowired
+    private EchoService echoService;
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
+                config.getServletContext());
+        System.out.println(&amp;quot;Servlet initialized&amp;quot;);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        final String input = req.getPathInfo();
+
+        final String output = echoService.echo(input);
+
+        resp.setBufferSize(1024);
+        resp.setStatus(HttpServletResponse.SC_OK);
+        resp.setContentType(&amp;quot;text/plain&amp;quot;);
+        resp.setCharacterEncoding(&amp;quot;UTF-8&amp;quot;);
+        resp.getWriter().write(output);
+        resp.getWriter().close();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;spring context configuration &lt;em&gt;web-context.xml&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;    &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+    &amp;lt;beans xmlns=&amp;quot;http://www.springframework.org/schema/beans&amp;quot;
+           xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+           xmlns:util=&amp;quot;http://www.springframework.org/schema/util&amp;quot;
+           xsi:schemaLocation=&amp;quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd&amp;quot;&amp;gt;
+
+        &amp;lt;bean id=&amp;quot;echoService&amp;quot; class=&amp;quot;org.springframework.jmx.access.MBeanProxyFactoryBean&amp;quot; lazy-init=&amp;quot;true&amp;quot;&amp;gt;
+            &amp;lt;property name=&amp;quot;objectName&amp;quot;&amp;gt;
+                &amp;lt;util:constant static-field=&amp;quot;com.example.service.EchoService.MBEAN_NAME&amp;quot;/&amp;gt;
+            &amp;lt;/property&amp;gt;
+            &amp;lt;property name=&amp;quot;proxyInterface&amp;quot; value=&amp;quot;com.example.service.EchoService&amp;quot;/&amp;gt;
+        &amp;lt;/bean&amp;gt;
+
+    &amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;web.xml&lt;/em&gt; descriptor:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;    &amp;lt;web-app xmlns=&amp;quot;http://java.sun.com/xml/ns/javaee&amp;quot;
+             xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot;
+             xsi:schemaLocation=&amp;quot;http://java.sun.com/xml/ns/javaee
+              http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&amp;quot;
+             version=&amp;quot;3.0&amp;quot;&amp;gt;
+
+        &amp;lt;display-name&amp;gt;Servlet 3.0 Web Application&amp;lt;/display-name&amp;gt;
+
+        &amp;lt;context-param&amp;gt;
+            &amp;lt;param-name&amp;gt;contextConfigLocation&amp;lt;/param-name&amp;gt;
+            &amp;lt;param-value&amp;gt;WEB-INF/web-context.xml&amp;lt;/param-value&amp;gt;
+        &amp;lt;/context-param&amp;gt;
+
+        &amp;lt;listener&amp;gt;
+            &amp;lt;listener-class&amp;gt;org.springframework.web.context.ContextLoaderListener&amp;lt;/listener-class&amp;gt;
+        &amp;lt;/listener&amp;gt;
+    &amp;lt;/web-app&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;When those two webapps are deployed to tomcat, a new JMX bean is created:
+&lt;img src=&#34;../../assets/2014/05/tomcat-mbean-service.png&#34; alt=&#34;EchoService exposed as Managed Bean&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;and service is accessible from the servlet:
+&lt;img src=&#34;../../assets/2014/05/tomcat-service-invoked.png&#34; alt=&#34;EchoServlet showing results of EchoService invocation&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;module-dependencies&#34;&gt;Module dependencies&lt;/h3&gt;
+
+&lt;p&gt;All web modules should depend on &lt;em&gt;api.jar&lt;/em&gt; module, because it contains a service interface.&lt;/p&gt;
+
+&lt;p&gt;While your service method signatures contains only standard java classes, available across the Tomcat server,
+you may not care about classloading issues. In this case both &lt;em&gt;service.war&lt;/em&gt; and &lt;em&gt;ui.war&lt;/em&gt; should contain &lt;em&gt;api.jar&lt;/em&gt; as a dependency in their &lt;code&gt;WEB-INF/lib&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;p&gt;But if you want to return from your service method some custom class,
+you&amp;rsquo;ll need to put that class to &lt;em&gt;api.jar&lt;/em&gt; and place that JAR to &lt;code&gt;${catalina.base}/lib&lt;/code&gt; folder to make that classes available to all web applications. In this case &lt;em&gt;api.jar&lt;/em&gt; should be declared as &lt;em&gt;provided&lt;/em&gt; dependency in webapp modules.&lt;/p&gt;
+
+&lt;p&gt;Having sharing classes in a common classloader eliminates the need of data serialization/deserialization.&lt;/p&gt;
+
+&lt;p&gt;Sources from this article you may find &lt;a href=&#34;https://gist.github.com/kpavlov/3e19dcec52b56d550e21&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -83,7 +499,122 @@ These changes are often environment specific.
 Also, when upgrading a Tomcat to new version you need to be sure that all your custom changes have not been lost and were applied to new configuration.
 To deal with all that stuff Tomcat via separation of the configuration.
 This post contains step-by-step instruction will help you to establish custom tomcat configuration.
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;h2 id=&#34;1-installing-tomcat&#34;&gt;1. Installing tomcat&lt;/h2&gt;
+
+&lt;p&gt;You download Tomcat distribution binary and extract it to some folder.
+I put it to &lt;code&gt;~/java/apache-tomcat-7.0.52&lt;/code&gt;.
+It is desirable to create a symlink to it. It would allow to switch to another version of tomcat without changing your scripts&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ln -s ~/java/apache-tomcat-7.0.52 ~/java/tomcat
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As alternative, you may install a tomcat from packages.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-create-a-folder-to-keep-your-custom-configuration&#34;&gt;2. Create a folder to keep your custom configuration&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Create a folder where you custom configuration will be located.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir -p ~/java/custom-tomcat/{bin,conf,logs,work,webapps,temp}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Copy default &lt;code&gt;server.xml&lt;/code&gt;, &lt;code&gt;tomcat-users.xml&lt;/code&gt; configuration file to custom location. If you already have a customized &lt;code&gt;server.xml&lt;/code&gt; then put it there&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cp -v ~/java/tomcat/conf/server.xml ~/java/tomcat/conf/tomcat-users.xml ~/java/custom-tomcat/conf/[](null)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Set system property &lt;code&gt;$CATALINA_BASE&lt;/code&gt; referring to base directory for resolving dynamic portions of a Catalina installation.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export CATALINA_BASE=~/java/custom-tomcat
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can start the Tomcat and see that it uses your custom configuration folder:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ./catalina.sh run
+Using CATALINA_BASE:   /Users/maestro/java/custom-tomcat
+Using CATALINA_HOME:   /Users/maestro/java/tomcat
+Using CATALINA_TMPDIR: /Users/maestro/java/custom-tomcat/temp
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;3-tomcat-runtime-parameters-customization&#34;&gt;3. Tomcat runtime parameters customization&lt;/h2&gt;
+
+&lt;p&gt;To specify JVM options to be used when tomcat server is run, create a bash script &lt;code&gt;$CATALINA_BASE/bin/setenv.sh&lt;/code&gt;. It will keep environment variables referred in &lt;code&gt;catalina.sh&lt;/code&gt; script to keep your customizations separate.&lt;/p&gt;
+
+&lt;p&gt;Define &lt;code&gt;$CATALINA_OPTS&lt;/code&gt; inside &lt;code&gt;setenv.sh&lt;/code&gt;.  Include here and not in JAVA_OPTS all options, that should only be used by Tomcat itself, not by the stop process, the version command etc. Examples are heap size, GC logging, JMX ports etc.&lt;/p&gt;
+
+&lt;p&gt;Example &lt;code&gt;setenv.sh&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;echo &amp;quot;Setting parameters from $CATALINA_BASE/bin/setenv.sh&amp;quot;
+echo &amp;quot;_______________________________________________&amp;quot;
+
+# discourage address map swapping by setting Xms and Xmx to the same value
+# http://confluence.atlassian.com/display/DOC/Garbage+Collector+Performance+Issues
+export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -Xms1024m&amp;quot;
+export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -Xmx1025m&amp;quot;
+
+# Increase maximum perm size for web base applications to 4x the default amount
+# http://wiki.apache.org/tomcat/FAQ/Memoryhttp://wiki.apache.org/tomcat/FAQ/Memory
+export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -XX:MaxPermSize=256m&amp;quot;
+
+# Oracle Java as default, uses the serial garbage collector on the
+# Full Tenured heap. The Young space is collected in parallel, but the
+# Tenured is not. This means that at a time of load if a full collection
+# event occurs, since the event is a &#39;stop-the-world&#39; serial event then
+# all application threads other than the garbage collector thread are
+# taken off the CPU. This can have severe consequences if requests continue
+# to accrue during these &#39;outage&#39; periods. (specifically webservices, webapps)
+# [Also enables adaptive sizing automatically]
+export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -XX:+UseParallelGC&amp;quot;
+
+# The hotspot server JVM has specific code-path optimizations
+# which yield an approximate 10% gain over the client version.
+export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -server&amp;quot;
+
+# Disable remote (distributed) garbage collection by Java clients
+# and remove ability for applications to call explicit GC collection
+export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -XX:+DisableExplicitGC&amp;quot;
+
+# Check for application specific parameters at startup
+if [ -r &amp;quot;$CATALINA_BASE/bin/appenv.sh&amp;quot; ]; then
+  . &amp;quot;$CATALINA_BASE/bin/appenv.sh&amp;quot;
+fi
+
+echo &amp;quot;Using CATALINA_OPTS:&amp;quot;
+for arg in $CATALINA_OPTS
+do
+    echo &amp;quot;&amp;gt;&amp;gt; &amp;quot; $arg
+done
+echo &amp;quot;&amp;quot;
+
+echo &amp;quot;Using JAVA_OPTS:&amp;quot;
+for arg in $JAVA_OPTS
+do
+    echo &amp;quot;&amp;gt;&amp;gt; &amp;quot; $arg
+done
+
+echo &amp;quot;_______________________________________________&amp;quot;
+echo &amp;quot;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;4-migrate-logging-to-logback&#34;&gt;4. Migrate logging to Logback&lt;/h2&gt;
+
+&lt;p&gt;Tomcat is configured to use Apache Commons Logging API by default.
+If you are using &lt;a href=&#34;http://slf4j.org&#34; target=&#34;_blank&#34;&gt;slf4j&lt;/a&gt; in your application and familiar with &lt;a href=&#34;http://logback.qos.ch&#34; target=&#34;_blank&#34;&gt;Logback&lt;/a&gt;, then it is reasonable to migrate your tomcat configuration to logback too. You may find details &lt;a href=&#34;http://hwellmann.blogspot.com/2012/11/logging-with-slf4j-and-logback-in.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/kpavlov/tomcat-custom-env&#34; target=&#34;_blank&#34;&gt;https://github.com/kpavlov/tomcat-custom-env&lt;/a&gt; - Custom tomcat installation example on GitHub&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/terrancesnyder/tomcat&#34; target=&#34;_blank&#34;&gt;https://github.com/terrancesnyder/tomcat&lt;/a&gt; - Tomcat Best Practices Shell&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://hwellmann.blogspot.com/2012/11/logging-with-slf4j-and-logback-in.html&#34; target=&#34;_blank&#34;&gt;http://hwellmann.blogspot.com/2012/11/logging-with-slf4j-and-logback-in.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gist.github.com/terrancesnyder/986029&#34; target=&#34;_blank&#34;&gt;https://gist.github.com/terrancesnyder/986029&lt;/a&gt; - example setenv.sh with defaults set for minimal time spent in garbage collection&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://wiki.apache.org/tomcat/FAQ/Memoryhttp://wiki.apache.org/tomcat/FAQ/Memory&#34; target=&#34;_blank&#34;&gt;http://wiki.apache.org/tomcat/FAQ/Memoryhttp://wiki.apache.org/tomcat/FAQ/Memory&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://confluence.atlassian.com/display/DOC/Garbage+Collector+Performance+Issues&#34; target=&#34;_blank&#34;&gt;http://confluence.atlassian.com/display/DOC/Garbage+Collector+Performance+Issues&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -92,7 +623,43 @@ This post contains step-by-step instruction will help you to establish custom to
       <pubDate>Fri, 09 Jan 2009 17:23:00 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/</guid>
-      <description>&lt;p&gt;This is a short instruction how to inject a spring-managed bean into EJB3 component:&lt;/p&gt;</description>
+      <description>&lt;p&gt;This is a short instruction how to inject a spring-managed bean into EJB3 component:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Read &lt;a href=&#34;http://www.springsource.org/&#34;&gt;SpringFratamework&amp;rsquo;s&lt;/a&gt; reference here: &lt;a href=&#34;http://static.springframework.org/spring/docs/2.5.x/reference/ejb.html#ejb-implementation-ejb3&#34;&gt;http://static.springframework.org/spring/docs/2.5.x/reference/ejb.html#ejb-implementation-ejb3&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Place to ejb module&amp;rsquo;s classpath a file &lt;em&gt;beanRefContext.xml&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;!DOCTYPE beans PUBLIC &amp;quot;-//SPRING//DTD BEAN//EN&amp;quot; &amp;quot;http://www.springframework.org/dtd/spring-beans.dtd&amp;quot;&amp;gt;
+&amp;lt;beans&amp;gt;
+
+ &amp;lt;bean id=&amp;quot;myBeanFactory&amp;quot; class=&amp;quot;org.springframework.context.support.ClassPathXmlApplicationContext&amp;quot;&amp;gt;
+  &amp;lt;constructor-arg value=&amp;quot;myApplicationContext.xml&amp;quot;/&amp;gt;
+ &amp;lt;/bean&amp;gt;
+
+&amp;lt;/beans&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Create application context file named &lt;code&gt;myApplicationContext.xml&lt;/code&gt; and define you beans there. Place this file to the ejb module&amp;rsquo;s classpath.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Annotate your Stateless Session Bean:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Stateless
+@Interceptors(org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor.class)
+public class MyFacadeBean implements MyFacade {
+
+  @Autowired
+  private MySpringComponent component;
+      ...
+      public void foo() {
+          component.foo();//invocation
+       }
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Deploy and test Your application.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
     
     <item>
@@ -104,7 +671,67 @@ This post contains step-by-step instruction will help you to establish custom to
       <description>&lt;p&gt;Sometimes it is necessary to export a spring managed bean to JNDI context. Here I want to show how do it.&lt;/p&gt;
 
 &lt;p&gt;In spring, there is a bean that provides a similar functionality for exporting to MBean server: MBeanExporter. Unfortunately, there is no standard JNDI bean exporter implementation in Spring Framework (current version is 2.5.6) - (Why?).
-But it&amp;rsquo;s easy to write it yourself:&lt;/p&gt;</description>
+But it&amp;rsquo;s easy to write it yourself:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;package com.example.spring.jndi.export;
+
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.jndi.JndiTemplate;
+
+public class JndiExporter implements InitializingBean, DisposableBean {
+
+    private String jndiName;
+    private Object bean;
+    private final JndiTemplate jndiTemplate = new JndiTemplate();
+    
+    public String getJndiName() {
+        return jndiName;
+    }
+    
+    public void setJndiName(String jndiName) {
+        this.jndiName = jndiName;
+    }
+    
+    public Object getBean() {
+        return bean;
+    }
+    
+    public void setBean(Object bean) {
+        this.bean = bean;
+    }
+    
+    
+    public void afterPropertiesSet() throws Exception {
+        jndiTemplate.bind(jndiName, bean);
+    }
+    
+    public void destroy() throws Exception {
+        if (bean != null &amp;amp;&amp;amp; jndiName != null &amp;amp;&amp;amp; bean == jndiTemplate.lookup(jndiName)) {
+            jndiTemplate.unbind(jndiName);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add following fragment to spring configuration (&lt;em&gt;applicationContext.xml&lt;/em&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;bean id=&amp;quot;myBean&amp;quot; class=&amp;quot;com.example.MyBean&amp;quot;/&amp;gt;
+
+&amp;lt;bean class=&amp;quot;com.example.spring.jndi.export.JndiExporter&amp;quot;&amp;gt;
+    &amp;lt;property name=&amp;quot;bean&amp;quot; ref=&amp;quot;myBean&amp;quot; /&amp;gt;
+    &amp;lt;property name=&amp;quot;jndiName&amp;quot; value=&amp;quot;MyJNDIName&amp;quot;/&amp;gt;
+&amp;lt;/bean&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Don&amp;rsquo;t forget to make your bean implementing &lt;code&gt;java.io.Serializable&lt;/code&gt; interface.
+Now we can lookup exported bean by adding to the spring config file (&lt;em&gt;applicationContext.xml&lt;/em&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;jee:jndi-lookup id=&amp;quot;myJndiBean&amp;quot; jndi-name=&amp;quot;MyJNDIName&amp;quot; proxy-interface=&amp;quot;com.example.IMyBean&amp;quot; lookup-on-startup=&amp;quot;false&amp;quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you have another bean depending on JNDI resource you may try to load you that bean lazily by setting &lt;code&gt;lazy-init=&amp;quot;true&amp;quot;&lt;/code&gt;.
+You may also try to set &lt;code&gt;lazy-init=&amp;quot;false&amp;quot;&lt;/code&gt; for the &lt;code&gt;JndiExporter&lt;/code&gt; to ensure that the Exporter will be loaded before JNDI-dependent bean or play with &lt;code&gt;&amp;quot;depends-on&amp;quot;&lt;/code&gt; bean attributes.&lt;/p&gt;</description>
     </item>
     
   </channel>

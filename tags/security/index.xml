@@ -32,7 +32,391 @@ In this article I will briefly describe common practical development techniques 
 &lt;li&gt;A10 - Unvalidated Redirects and Forwards&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;In this article I will highlight most important java coding techniques for building secure web applications.&lt;/p&gt;</description>
+&lt;p&gt;In this article I will highlight most important java coding techniques for building secure web applications.&lt;/p&gt;
+
+&lt;h2 id=&#34;use-sql-prepared-statements-a1-a1&#34;&gt;Use SQL Prepared Statements (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Bind user data to request parameters of the &lt;code&gt;PreparedStatement&lt;/code&gt;. Never construct dynamic sql queries directly, without escaping parameter escaping.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT * FROM Users WHERE username = &#39;&amp;quot; +  userName + &amp;quot;&#39;&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The query with input &lt;code&gt;foo OR 1=1&lt;/code&gt; will select all data from table.&lt;/p&gt;
+
+&lt;p&gt;For plain JDBC use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;String query = &amp;quot;SELECT * FROM Users WHERE name = ?&amp;quot;;
+PreparedStatement statement = connection.prepareStatement(query);
+statement.setString(1, userName);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For Hibernate use:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;String query = &amp;quot;SELECT * FROM USERS WHERE name = :userName&amp;quot;;
+TypedQuery&amp;lt;User&amp;gt; query = em.createQuery(query, User.class);
+query.setParameter(“userName”, userName);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;encode-user-data-a3-a3-a10-a10&#34;&gt;Encode User Data (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_%28XSS%29&#34; target=&#34;_blank&#34;&gt;A3&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A10-Unvalidated_Redirects_and_Forwards&#34; target=&#34;_blank&#34;&gt;A10&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;When rendering user-generated content, always encode it properly. This prevents Cross-Site Scripting (XSS).&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;In JSP use &lt;a href=&#34;https://jstl.java.net/&#34; title=&#34;JSP Standard Tag Library&#34; target=&#34;_blank&#34;&gt;JSTL tags&lt;/a&gt;
+Use &lt;code&gt;c:out&lt;/code&gt; tag. Attribute &lt;code&gt;escapeXml&lt;/code&gt; is &lt;strong&gt;&amp;laquo;true&amp;raquo;&lt;/strong&gt; by default, so you may omit it:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jsp&#34;&gt;&amp;lt;c:out value=&amp;quot;${variable}&amp;quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;When using Spring Framework with JSP view, use &lt;a href=&#34;http://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html#view-jsp&#34; target=&#34;_blank&#34;&gt;Spring&amp;rsquo;s &lt;code&gt;form&lt;/code&gt; tags&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jsp&#34;&gt;&amp;lt;%@ taglib prefix=&amp;quot;form&amp;quot; uri=&amp;quot;http://www.springframework.org/tags/form&amp;quot; %&amp;gt;
+&amp;lt;form:form&amp;gt;
+&amp;lt;table&amp;gt;
+    &amp;lt;tr&amp;gt;
+        &amp;lt;td&amp;gt;First Name:&amp;lt;/td&amp;gt;
+        &amp;lt;td&amp;gt;&amp;lt;form:input path=&amp;quot;firstName&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+    &amp;lt;tr&amp;gt;
+        &amp;lt;td&amp;gt;Last Name:&amp;lt;/td&amp;gt;
+        &amp;lt;td&amp;gt;&amp;lt;form:input path=&amp;quot;lastName&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+    &amp;lt;tr&amp;gt;
+        &amp;lt;td colspan=&amp;quot;2&amp;quot;&amp;gt;
+            &amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Save Changes&amp;quot; /&amp;gt;
+        &amp;lt;/td&amp;gt;
+    &amp;lt;/tr&amp;gt;
+&amp;lt;/table&amp;gt;
+&amp;lt;/form:form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;When using Spring Framework with &lt;a href=&#34;http://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html#view-velocity&#34; target=&#34;_blank&#34;&gt;Freemarker and Velocity&lt;/a&gt;, use &lt;code&gt;bindEscaped&lt;/code&gt; and &lt;code&gt;form&lt;/code&gt; macros.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;check-access-a4-a4-a7-a7&#34;&gt;Check Access (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A4-Insecure_Direct_Object_References&#34; target=&#34;_blank&#34;&gt;A4&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A7-Missing_Function_Level_Access_Control&#34; target=&#34;_blank&#34;&gt;A7&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Always check data and functional access. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object.
+Spring Security provides the comprehensive methods to implement functional access.
+Data access (SQL) usually requires correctly constructing of the SQL query.&lt;/p&gt;
+
+&lt;h2 id=&#34;use-http-headers-a1-a1-a3-a3&#34;&gt;Use HTTP Headers (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_%28XSS%29&#34; target=&#34;_blank&#34;&gt;A3&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Use browser headers to prevent XSS and data-injection attacks:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-http&#34;&gt;X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src https://myhost.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Spring-Security provides a set of &lt;a href=&#34;http://docs.spring.io/autorepo/docs/spring-security/current/apidocs/org/springframework/security/config/annotation/web/builders/HttpSecurity.html&#34; target=&#34;_blank&#34;&gt;header filters&lt;/a&gt; out of the box ():&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
+@EnableWebMvcSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .headers()
+                .contentTypeOptions();
+                .xssProtection()
+                .cacheControl()
+                .httpStrictTransportSecurity()
+                .frameOptions()
+                .and()
+            ...;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;use-content-security-policy-header&#34;&gt;Use Content-Security-Policy Header&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Content_Security_Policy&#34; target=&#34;_blank&#34;&gt;Content-Security-Policy&lt;/a&gt; is an &lt;a href=&#34;https://w3c.github.io/webappsec/specs/content-security-policy/&#34; target=&#34;_blank&#34;&gt;W3C specification&lt;/a&gt; offering the possibility to instruct the client browser from which location and/or which type of resources are allowed to be loaded. To define a loading behavior, the CSP specification use &amp;laquo;directive&amp;raquo; where a directive defines a loading behavior for a target resource type.&lt;/p&gt;
+
+&lt;p&gt;Directives can be specified using HTTP response header (a server may send more than one CSP HTTP header field with a given resource representation and a server may send different CSP header field values with different representations of the same resource or with different resources) or HTML Meta tag, the HTTP headers below are defined by the specs:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Content-Security-Policy&lt;/code&gt; : Defined by W3C Specs as standard header, used by Chrome version 25 and later, Firefox version 23 and later, Opera version 19 and later.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;X-Content-Security-Policy&lt;/code&gt; : Used by Firefox until version 23, and Internet Explorer version 10 (which partially implements Content Security Policy).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;X-WebKit-CSP&lt;/code&gt; : Used by Chrome until version 25&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The supported directives you may find at &lt;a href=&#34;https://w3c.github.io/webappsec/specs/content-security-policy/#directives&#34; target=&#34;_blank&#34;&gt;W3C specification&lt;/a&gt; page.&lt;/p&gt;
+
+&lt;p&gt;As fallback default you may use &lt;strong&gt;&lt;code&gt;default-src&lt;/code&gt;&lt;/strong&gt; directive. It defines loading policy for all resources type in case of a resource type dedicated directive is not defined.&lt;/p&gt;
+
+&lt;h2 id=&#34;use-spring-security-csrf-protection-a8-a8&#34;&gt;Use Spring-Security CSRF Protection (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A8-Cross-Site_Request_Forgery_%28CSRF%29&#34; target=&#34;_blank&#34;&gt;A8&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Spring-Security provides a [CSRF] protection out of the box using &lt;a href=&#34;https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#General_Recommendation:_Synchronizer_Token_Pattern&#34; target=&#34;_blank&#34;&gt;Synchronizer Token Pattern&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;Configure CSRF token support:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
+@EnableWebMvcSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf()
+                .and()
+            ...;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Include &lt;code&gt;_csrf.token&lt;/code&gt; hidden field to your forms:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;form action=&amp;quot;...&amp;quot; method=&amp;quot;post&amp;quot;&amp;gt;
+&amp;lt;input type=&amp;quot;hidden&amp;quot;
+    name=&amp;quot;${_csrf.parameterName}&amp;quot;
+    value=&amp;quot;${_csrf.token}&amp;quot;/&amp;gt;
+...
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;disable-xml-external-entity-xxe-processing-a1-a1-a6-a6&#34;&gt;Disable XML External Entity (XXE) Processing (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&#34; target=&#34;_blank&#34;&gt;A6&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Processing of&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;ISO-8859-1&amp;quot;?&amp;gt;
+&amp;lt;!DOCTYPE request [
+&amp;lt;!ENTITY
+include SYSTEM “file=/etc/passwd&amp;quot;
+ &amp;gt;
+]&amp;gt;
+&amp;lt;request&amp;gt;
+&amp;lt;description&amp;gt;
+&amp;amp;include;
+ &amp;lt;/description&amp;gt;
+...
+&amp;lt;/request&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;&amp;amp;include;&lt;/code&gt; will be replaced with a real data, like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To prevent data exposure (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&#34; target=&#34;_blank&#34;&gt;A6&lt;/a&gt;) and injection (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;) disable some &lt;a href=&#34;http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html#setFeature-java.lang.String-boolean-&#34; target=&#34;_blank&#34;&gt;DocumentBuilderFactory&lt;/a&gt; features:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;DocumentBuilderFactory dbf = new DocumentBuilderFactory();
+
+dbf.setFeature(javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING);
+
+// Do not include external entities
+dbf.setFeature(&amp;quot;http://xml.org/sax/features/external-general-entities&amp;quot;, false);
+
+// Disallow DTD inlining by setting this feature to true
+dbf.setFeature(&amp;quot;http://apache.org/xml/features/disallow-doctype-decl&amp;quot;, true);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;data-protection-coding-practices-a6-a6&#34;&gt;Data Protection Coding Practices (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&#34; target=&#34;_blank&#34;&gt;A6&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Without proper server access protection, it is possible to take a whole dump of the process memory with &lt;code&gt;gdb&lt;/code&gt; (&lt;code&gt;gdb --pid [pid]&lt;/code&gt;).
+So the developer should make an extra steps for securing data stored in memory.&lt;/p&gt;
+
+&lt;p&gt;The main idea is to keep sensitive data in memory as less time as possible.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-never-hardcode-passwords&#34;&gt;1. Never hardcode passwords&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Don&amp;rsquo;t store the passwords/keys in your code.&lt;/strong&gt;
+Your code should be immediately available to be open-sourced without disclosing any sensitive data.&lt;/p&gt;
+
+&lt;h3 id=&#34;2-avoid-storing-sensitive-date-in-a-heap&#34;&gt;2. Avoid storing sensitive date in a heap&lt;/h3&gt;
+
+&lt;p&gt;Objects allocated in a Heap memory whereas primitives can be allocated in stack are&lt;/p&gt;
+
+&lt;p&gt;Java uses Stack memory is used for execution of a thread. Stack contain method specific values that are short-lived and references to other objects in the heap that are getting referred from the method. Whenever a method is invoked, a new block is created in the stack memory for the method to hold local primitive values and reference to other objects in the method. As soon as method ends, the block becomes unused and become available for next method.
+Stack memory size is very less compared to Heap memory. Stack memory is short-lived whereas heap memory lives from the start till the end of application execution.&lt;/p&gt;
+
+&lt;p&gt;You can have only values of primitive types (&lt;code&gt;int&lt;/code&gt;, not an &lt;code&gt;Integer&lt;/code&gt;) in a stack. So, you&amp;rsquo;ll may need to specially convert the data.&lt;/p&gt;
+
+&lt;h3 id=&#34;3-use-char-arrays-instead-of-strings-where-possible-and-wipe-zero-data-after-use&#34;&gt;3. Use char arrays instead of Strings where possible and wipe (zero) data after use&lt;/h3&gt;
+
+&lt;p&gt;Consider following class:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;   class CreditCard {
+      String cardNumber;
+      String cvv2;
+   }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can&amp;rsquo;t control how java handles the Strings containing card number and cvv2. If the particular string value is used frequently, JVM may decide to do a &lt;em&gt;string deduplication&lt;/em&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;String de-duplication reduces the memory footprint of String objects on the Java heap by taking advantage of the fact that many String objects are identical.
+Instead of each String object pointing to its own character array, identical String objects can point to and share the same character array.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Consider using following code to control the values explicitly:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class CreditCard {
+    private char[] cardNumber;
+    private char[] cvv2;
+    ...
+
+    public void wipe() {
+        if (cardNumber != null) {
+            Arrays.fill(cardNumber, &#39;x&#39;);
+        };
+        cardNumber = null;
+        if (cvv2 != null) {
+            Arrays.fill(cvv2, &#39;x&#39;);
+        }
+        cvv2 = null;            
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        wipe();
+        super.finalize();
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you can wipe the data when you no longer need it.
+Please note that even if you&amp;rsquo;ll call a method &lt;code&gt;finalize()&lt;/code&gt; explicitly, JVM &lt;a href=&#34;http://stackoverflow.com/a/28906/3315474&#34; target=&#34;_blank&#34;&gt;will call it again&lt;/a&gt;. There is no guarantee when finalize will be called by java GC or will it be called at all.&lt;br /&gt;
+So, it&amp;rsquo;s better to call &lt;code&gt;wipe()&lt;/code&gt; explicitly somewhere in the &lt;code&gt;finally&lt;/code&gt; block.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;UPD: You may wipe a data in a String using Java Reflection (Peter Verhas&amp;rsquo;s solution)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public static void wipeString(String password) {
+    try {
+        Field stringValue = String.class.getDeclaredField(&amp;quot;value&amp;quot;);
+        stringValue.setAccessible(true);
+        Arrays.fill((char[]) stringValue.get(password), &#39;*&#39;);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+        throw new Error(&amp;quot;Can&#39;t wipe string data&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Following method replaces the content of internal &lt;code&gt;java.lang.String&#39;s&lt;/code&gt; char array field &lt;code&gt;value&lt;/code&gt; with &amp;lsquo;*&amp;rsquo; symbol.
+You should call this method explicitly.&lt;/p&gt;
+
+&lt;h3 id=&#34;4-encrypt-data-in-the-heap&#34;&gt;4. Encrypt data in the heap&lt;/h3&gt;
+
+&lt;p&gt;Even if you keep sensitive data in a Heap, you can make reading and analyzing more difficult by using any encription. The encryption should be fast enough and not necessary be very strong since the risk is low.&lt;/p&gt;
+
+&lt;p&gt;One possible solution is to encrypt sensitive data with a key, generated once per JVM run (e.g. function of system time). When you&amp;rsquo;ll need a decrypted data, use special function to decrypt it. It should be fast enough.
+For example, you may use &lt;a href=&#34;https://en.wikipedia.org/wiki/Blowfish_%28cipher%29&#34; target=&#34;_blank&#34;&gt;Blowfish&lt;/a&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:algorithm-performance-comparison-encryption-perf&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:algorithm-performance-comparison-encryption-perf&#34;&gt;0&lt;/a&gt;&lt;/sup&gt; or even simple &lt;a href=&#34;https://en.wikipedia.org/wiki/XOR_cipher&#34; target=&#34;_blank&#34;&gt;XOR&lt;/a&gt; cipher:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;static final int key = (int)(System.currentTimeMillis() + System.nanoTime());
+....
+int b = a ^ key;
+int c = b ^ key;
+assert (c == a);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Blowfish is fast symmetric cipher but &lt;a href=&#34;https://en.wikipedia.org/wiki/Blowfish_(cipher)#Weakness_and_successors&#34; target=&#34;_blank&#34;&gt;not perfect&lt;/a&gt;. In particular, it is vulnerable to &lt;a href=&#34;https://en.wikipedia.org/wiki/Birthday_attack&#34; target=&#34;_blank&#34;&gt;birthday attack&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;5-prevent-data-duplication&#34;&gt;5. Prevent data duplication&lt;/h3&gt;
+
+&lt;p&gt;Make your class not-cloneable, non-serializable and non-deserializable. Thus you will protect your data from unexpected / unauthorized duplication.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class CreditCard {
+	...
+
+    public final void clone() throws java.lang.CloneNotSupportedException {
+		throw new java.lang.CloneNotSupportedException();
+    }
+
+    private final void readObject(ObjectInputStream in) throws java.io.IOException {
+        throw new java.io.IOException(&amp;quot;Class cannot be deserialized&amp;quot;);
+    }
+
+    private final void writeObject(ObjectOutputStream out) throws java.io.IOException {
+            throw new java.io.IOException(&amp;quot;Object cannot be serialized&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;6-prevent-logging-of-sensitive-data&#34;&gt;6. Prevent Logging of Sensitive Data&lt;/h3&gt;
+
+&lt;p&gt;Secure data may leak to the logs if &lt;code&gt;toString()&lt;/code&gt; method is implemented incorrectly.
+E.g. using &lt;a href=&#34;https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/builder/ToStringBuilder.html#reflectionToString(java.lang.Object)&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ToStringBuilder.reflectionToString(...)&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;../../2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;heapdump-prevention-a5&#34;&gt;Heapdump Prevention (A5)&lt;/h2&gt;
+
+&lt;p&gt;It is possible to take a snapshot of the memory for further analysis and extracting confidential information.&lt;/p&gt;
+
+&lt;p&gt;First of all, &lt;strong&gt;don&amp;rsquo;t run your application on Windows&lt;/strong&gt;. Windows is far more vulnerable to the threats than Linux/Unix.&lt;/p&gt;
+
+&lt;p&gt;There are several ways to mitigate that risk by disabling some JVM heapdump features:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Make sure that java attach mechanism is disabled: &lt;code&gt;-XX:+DisableAttachMechanism&lt;/code&gt;. Enables the option that disables the mechanism that lets tools attach to the JVM. By default, this option is disabled, meaning that the attach mechanism is enabled and you can use tools such as &lt;code&gt;jcmd&lt;/code&gt;, &lt;code&gt;jstack&lt;/code&gt;, &lt;code&gt;jmap&lt;/code&gt;, and &lt;code&gt;jinfo&lt;/code&gt;. See &lt;a href=&#34;http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html&#34; target=&#34;_blank&#34;&gt;java command line options&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Disable heapdump on &lt;code&gt;OutOfMemoryError&lt;/code&gt;: &lt;code&gt;-XX:-HeapDumpOnOutOfMemoryError&lt;/code&gt;. Set heapdump file location to &lt;code&gt;/dev/null&lt;/code&gt; to avoid saving heapdump: &lt;code&gt;XX:HeapDumpPath=/dev/null&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Making a heapdump on OOM is not a good idea on production environment. If heap is big enough (a Gigabites) it could take long time to save heap contents to disk. So I suggest using it for load testing only&lt;/p&gt;
+&lt;/blockquote&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;check-your-dependencies-for-known-vulnerabilities-a9-a9&#34;&gt;Check Your dependencies for known Vulnerabilities (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A9-Using_Components_with_Known_Vulnerabilities&#34; target=&#34;_blank&#34;&gt;A9&lt;/a&gt;)&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Check &lt;a href=&#34;http://cve.mitre.org/&#34; target=&#34;_blank&#34;&gt; MITRE Common Vulnerabilities and Exposures Database&lt;/a&gt; regularly.&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Integrate &lt;a href=&#34;https://www.owasp.org/index.php/OWASP_Dependency_Check&#34; target=&#34;_blank&#34;&gt;OWASP Dependency Check tool&lt;/a&gt; into your CI pipeline. Run it daily.
+There is a &lt;a href=&#34;http://jeremylong.github.io/DependencyCheck/dependency-check-maven/&#34; target=&#34;_blank&#34;&gt;maven plugin&lt;/a&gt; which can analyze your project dependencies for known vulnerabilities.
+You may consider adding following profile to your &lt;em&gt;pom.xml&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;...
+&amp;lt;profiles&amp;gt;
+    ...
+    &amp;lt;profile&amp;gt;
+        &amp;lt;id&amp;gt;security-check&amp;lt;/id&amp;gt;
+        &amp;lt;build&amp;gt;
+            &amp;lt;plugins&amp;gt;
+                &amp;lt;plugin&amp;gt;
+                    &amp;lt;groupId&amp;gt;org.owasp&amp;lt;/groupId&amp;gt;
+                    &amp;lt;artifactId&amp;gt;dependency-check-maven&amp;lt;/artifactId&amp;gt;
+                    &amp;lt;version&amp;gt;1.4.3&amp;lt;/version&amp;gt;
+                    &amp;lt;executions&amp;gt;
+                        &amp;lt;execution&amp;gt;
+                            &amp;lt;goals&amp;gt;
+                                &amp;lt;goal&amp;gt;check&amp;lt;/goal&amp;gt;
+                            &amp;lt;/goals&amp;gt;
+                            &amp;lt;phase&amp;gt;validate&amp;lt;/phase&amp;gt;
+                        &amp;lt;/execution&amp;gt;
+                    &amp;lt;/executions&amp;gt;
+                &amp;lt;/plugin&amp;gt;
+            &amp;lt;/plugins&amp;gt;
+        &amp;lt;/build&amp;gt;
+    &amp;lt;/profile&amp;gt;
+    ...
+&amp;lt;/profiles&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The list is not comprehensive, comments and suggestions are always welcome.&lt;/p&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-Table_of_Contents&#34; title=&#34;OWASP Top 10&#34; target=&#34;_blank&#34;&gt;OWASP Top 10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;(http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html).&#34; target=&#34;_blank&#34;&gt;Java JM Command Line Options&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.journaldev.com/4098/java-heap-memory-vs-stack-memory-difference&#34; target=&#34;_blank&#34;&gt;Java Heap Memory vs Stack Memory Difference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.javaworld.com/article/2076837/mobile-java/twelve-rules-for-developing-more-secure-java-code.html&#34; title=&#34;Twelve rules for developing more secure Java code&#34; target=&#34;_blank&#34;&gt;Twelve rules for developing more secure Java code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.cs.wustl.edu/~jain/cse567-06/ftp/encryption_perf/&#34; title=&#34;Performance Analysis of Data Encryption Algorithms&#34; target=&#34;_blank&#34;&gt;Performance Analysis of Data Encryption Algorithms&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API&#34; target=&#34;_blank&#34;&gt;OWASP Enterprise Security API&lt;/a&gt; / &lt;a href=&#34;https://github.com/ESAPI/esapi-java-legacy&#34; target=&#34;_blank&#34;&gt;ESAPI 2.x on GitHub&lt;/a&gt; &amp;ndash; ESAPI (The OWASP Enterprise Security API) is a free, open source, web application security control library that makes it easier for programmers to write lower-risk applications. The ESAPI libraries are designed to make it easier for programmers to retrofit security into existing applications. The ESAPI libraries also serve as a solid foundation for new development.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jeremylong/DependencyCheck&#34; target=&#34;_blank&#34;&gt;Dependency-Check: checking project dependencies&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://speakerdeck.com/drissamri/web-app-security-owasp-top-10-2013&#34; target=&#34;_blank&#34;&gt;Web App Security - OWASP Top 10 2013&lt;/a&gt; by Driss Amri&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://mishadoff.com/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/&#34; target=&#34;_blank&#34;&gt;Java Magic. Part 4: sun.misc.Unsafe&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -41,10 +425,159 @@ In this article I will briefly describe common practical development techniques 
       <pubDate>Sun, 26 Jul 2015 14:01:33 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
-      <description>Deploying application into secure environment adds some restrictions on logging and log management. OWASP community gives some useful recommendations.
-OWASP Security Testing Guide Recommendations OWASP Security Testing Guide defines a number of questions to be answered when reviewing applciaiton logging configuration (see OTG-CONFIG-002):
-1. Do the logs contain sensitive information? Log files should not contain any sensitive data. Anyway, log file access must be restricted:
- Event log information should never be visible to end users.</description>
+      <description>
+
+&lt;p&gt;Deploying application into secure environment adds some restrictions on logging and log management. &lt;a href=&#34;https://www.owasp.org&#34; target=&#34;_blank&#34;&gt;OWASP community&lt;/a&gt; gives some useful recommendations.&lt;/p&gt;
+
+&lt;h1 id=&#34;owasp-security-testing-guide-recommendations&#34;&gt;OWASP Security Testing Guide Recommendations&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.owasp.org/images/5/52/OWASP_Testing_Guide_v4.pdf&#34; target=&#34;_blank&#34;&gt;OWASP Security Testing Guide&lt;/a&gt; defines a number of questions to be answered when reviewing applciaiton logging configuration (see &lt;a href=&#34;https://www.owasp.org/images/5/52/OWASP_Testing_Guide_v4.pdf&#34; target=&#34;_blank&#34;&gt;OTG-CONFIG-002&lt;/a&gt;):&lt;/p&gt;
+
+&lt;h2 id=&#34;1-do-the-logs-contain-sensitive-information&#34;&gt;1. Do the logs contain sensitive information?&lt;/h2&gt;
+
+&lt;p&gt;Log files should not contain any sensitive data. Anyway, log file access must be restricted:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Event log information should never be visible to end users. Even web administrators should not be able to see such logs since it breaks
+separation of duty controls. Ensure that any access control schema that is used to protect access to raw logs and any applications providing capabilities to view or search the logs is not linked with access control schemas for other application user roles. Neither should any
+log data be viewable by unauthenticated users.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The consequence is that you should not use same authentication mechanism to access application and accessing the log files.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Also, in some jurisdictions, storing some sensitive information in log files, such as personal data, might oblige the enterprise to apply the data protection laws that they would apply to their back-end databases to log files too. And failure to do so, even unknowingly, might
+carry penalties under the data protection laws that apply.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It&amp;rsquo;s not easy to make sure that no sensitive information is not printed to log. When using &lt;a href=&#34;http://logback.qos.ch/&#34; target=&#34;_blank&#34;&gt;logback&lt;/a&gt; it is possible to conigure &lt;a href=&#34;http://logback.qos.ch/manual/layouts.html#replace&#34; target=&#34;_blank&#34;&gt;regexp replace pattern&lt;/a&gt; to wipe certain data from log files being written, e.g. &lt;a href=&#34;http://stackoverflow.com/a/4624952/3315474&#34; target=&#34;_blank&#34;&gt;mask passwords&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To mask credit card number (PAN) you may use the following expression (&lt;code&gt;logback.xml&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;pattern&amp;gt;%-5level - %replace(%msg){&#39;\d{12,19}&#39;, &#39;XXXX&#39;}%n&amp;lt;/pattern&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This expression will replace all numbers with 12 to 19 digits with &lt;code&gt;XXXX&lt;/code&gt;, so some other data will be masked.&lt;/p&gt;
+
+&lt;p&gt;Another pattern variation honors only 16-digit card numbers (PANs) with selective &lt;a href=&#34;https://en.wikipedia.org/wiki/Bank_card_number#Issuer_identification_number_.28IIN.29&#34; target=&#34;_blank&#34;&gt;first digit&lt;/a&gt; and supports spaces between digit groups:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;pattern&amp;gt;%-5level - %replace(%msg){&#39;[1-6][0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}|5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}&#39;, &#39;XXXX&#39;}%n&amp;lt;/pattern&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Masking PANs with Logback is the last resort to ensure the data is masked with a false-positive hits. It is preferrable to mask the data before it is being written to log in the applciation code.&lt;/p&gt;
+
+&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;../../2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-are-the-logs-stored-in-a-dedicated-server&#34;&gt;2. Are the logs stored in a dedicated server?&lt;/h2&gt;
+
+&lt;p&gt;It is advised to keep log files on the separate server to prevent removing/cleaning log files by attacker and to ease of centralized log file analysis.&lt;/p&gt;
+
+&lt;p&gt;Logback offers &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#SocketAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;SocketAppender&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;SimpleSocketServer&lt;/code&gt; and &lt;a href=&#34;http://logback.qos.ch/manual/usingSSL.html&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;SSLSocketAppender&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;SimpleSSLSocketServer&lt;/code&gt; for logging on a remote server instance.&lt;/p&gt;
+
+&lt;p&gt;Second option is &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#DBAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;DBAppender&lt;/code&gt;&lt;/a&gt; to write logs to the database thus keeping them apart from application instance.&lt;/p&gt;
+
+&lt;p&gt;Other option is to use &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#SyslogAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;SyslogAppender&lt;/code&gt;&lt;/a&gt; and delegate logging to system syslog service. But is is not secure enougth: in the system will be hacked, the hacker may re-configure syslog not to send any events to remote log server.&lt;/p&gt;
+
+&lt;p&gt;When using a &lt;a href=&#34;http://logstash.net/&#34; target=&#34;_blank&#34;&gt;Logstash&lt;/a&gt; server, you may send events via &lt;a href=&#34;https://github.com/logstash/logstash-logback-encoder&#34; target=&#34;_blank&#34;&gt;Logstash Logback Encoder&lt;/a&gt;. Thare are &lt;a href=&#34;https://github.com/logstash/logstash-logback-encoder#usage&#34; target=&#34;_blank&#34;&gt;handful of appenders&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also, ypu may consider using &lt;a href=&#34;http://audit.qos.ch/&#34; target=&#34;_blank&#34;&gt;logback-audit&lt;/a&gt; which provides logging vis dedicated log server or directly to the database.&lt;/p&gt;
+
+&lt;h2 id=&#34;3-can-log-usage-generate-a-denial-of-service-condition&#34;&gt;3. Can log usage generate a Denial of Service condition?&lt;/h2&gt;
+
+&lt;p&gt;In case of exceptions on production due to invalid data provided in the request, the exceptions may be printed to logs and cause high IO consumption. This may lead to server unavailability.&lt;/p&gt;
+
+&lt;h3 id=&#34;log-asynchronously&#34;&gt;Log Asynchronously&lt;/h3&gt;
+
+&lt;p&gt;Logback offers some kind of protection against log overhead.
+First is using &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#AsyncAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;AsyncAppender&lt;/code&gt;&lt;/a&gt; to queue log events and spread the load. Set &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#asyncQueueSize&#34; target=&#34;_blank&#34;&gt;queueSize&lt;/a&gt; wisely. Default value is 256 which is not enougth.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;re fine with loosing some less important details then use &lt;code&gt;AsyncAppender&lt;/code&gt; with &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#asyncDiscardingThreshold&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;discardingThreshold&lt;/code&gt;&lt;/a&gt;. Uf the event queue has only 20% capacity remaining, events with fine-grained logging category will be dropped.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://logstash.net/&#34; target=&#34;_blank&#34;&gt;Logstash&lt;/a&gt; provides the &lt;a href=&#34;https://github.com/logstash/logstash-logback-encoder/blob/master/src/main/java/net/logstash/logback/appender/LoggingEventAsyncDisruptorAppender.java&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;AsyncDisruptorAppender&lt;/code&gt;&lt;/a&gt; from the which is similar to logback&amp;rsquo;s &lt;code&gt;AsyncAppender&lt;/code&gt;, except that a &lt;a href=&#34;https://github.com/LMAX-Exchange/disruptor&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;LMAX Disruptors&lt;/code&gt;&lt;/a&gt; &lt;code&gt;RingBuffer&lt;/code&gt; is used as the queuing mechanism, as opposed to a &lt;code&gt;BlockingQueue&lt;/code&gt; providing higher throughput and less GC overhead. These async appenders can delegate to any other underlying logback appender, including standard Logback file appenders. Set LMAX RingBuffer size wizely. Too low values may cause the the blocking of entire application.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Think twice before enabling Async Logging!&lt;/strong&gt; As far as ensuring that a message has been successfully written before the app continues is concerned, you should not log asynchronously.&lt;/p&gt;
+
+&lt;h3 id=&#34;use-appropriate-logging-levels&#34;&gt;Use Appropriate Logging Levels&lt;/h3&gt;
+
+&lt;p&gt;Specifying inappropriate log levels in application and appenders may cause excessive load on production server.
+You&amp;rsquo;re not going to debug on production, right? Then why you are print valuable data with &lt;code&gt;DEBUG&lt;/code&gt; level?
+On production configuration, default appender&amp;rsquo;s logging level shoud be &lt;strong&gt;INFO&lt;/strong&gt;.
+If you always need some information - use &lt;strong&gt;INFO&lt;/strong&gt; level in the application and use the database to save data like raw requests.
+Debugging should be enabled on produciton only in critical situations.&lt;/p&gt;
+
+&lt;h2 id=&#34;4-how-are-the-log-files-rotated-are-logs-kept-for-the-sufficient-time&#34;&gt;4. How are the log files rotated? Are logs kept for the sufficient time?&lt;/h2&gt;
+
+&lt;p&gt;Log files should be rotated at least daily. Reasonable log history depth is 6 months. Some regulations may require to keep log files longer in case of investigations.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Some servers might rotate logs when they reach a given size. If this
+happens, it must be ensured that an attacker cannot force logs to rotate in order to hide his tracks.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;5-how-are-logs-reviewed-can-administrators-use-these-reviews-to-detect-targeted-attacks&#34;&gt;5. How are logs reviewed? Can administrators use these reviews to detect targeted attacks?&lt;/h2&gt;
+
+&lt;p&gt;Log files can be used for attac detection. For example, the first phases of a SQL injection attack may producte 50x (server errors) or 40x (request errors) messages.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Log statistics or analysis should not be generated, nor stored, in the same server that produces the logs. Otherwise, an attacker might, through a web server vulnerability or improper configuration, gain access to them and retrieve similar information as would be disclosed by
+log files themselves.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;6-how-are-log-backups-preserved&#34;&gt;6. How are log backups preserved?&lt;/h2&gt;
+
+&lt;h3 id=&#34;make-log-files-append-only&#34;&gt;Make Log Files Append-only&lt;/h3&gt;
+
+&lt;p&gt;Other type of attack is modification logging configuration file in order to hide the fact of attack.
+Use &lt;a href=&#34;https://en.wikipedia.org/wiki/Mandatory_access_control&#34; target=&#34;_blank&#34;&gt;Mandatory Access Controls&lt;/a&gt; on the log file to make it append-only to users of the app, to mitigate the possibility of tampering or removing existing messages.&lt;/p&gt;
+
+&lt;p&gt;The simplest way to make files append-only is probably &lt;a href=&#34;http://unix.stackexchange.com/a/59983&#34; target=&#34;_blank&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo chattr +a *.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo chattr +a *.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also don&amp;rsquo;t forget to &lt;a href=&#34;http://unix.stackexchange.com/a/1315/125877&#34; target=&#34;_blank&#34;&gt;set default file attributes&lt;/a&gt; for log directory&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# owner make the owner to be root and java group
+sudo chown root:java /var/log/java
+# set uid and gid   
+sudo chmod ug+s /var/log/java  
+# set group to w default
+sudo setfacl -d -m g::w /var/log/java  
+# set nothing to other
+sudo setfacl -d -m o::--- /var/log/java
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;make-backups&#34;&gt;Make Backups&lt;/h3&gt;
+
+&lt;p&gt;You need to backup the logs, defenitely, as well as other applicaiton data.&lt;/p&gt;
+
+&lt;p&gt;You could additionally take periodic backups of the log file to ensure that nothing has been changed or removed between backups. This assumes that access to your backups is also controlled &amp;ndash; a third party who can tamper with your backups can tamper with your log files in an undetectable fashion.&lt;/p&gt;
+
+&lt;h2 id=&#34;7-is-the-data-being-logged-data-validated-min-max-length-chars-etc-prior-to-being-logged&#34;&gt;7. Is the data being logged data validated (min/max length, chars etc) prior to being logged?&lt;/h2&gt;
+
+&lt;p&gt;Be carefull what are you writting to logs. Always ask yourself: &lt;em&gt;&amp;laquo;Is it possible to produce big or huge logging output?&amp;raquo;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Be carefull when &lt;a href=&#34;http://www.slideshare.net/KonstantinPavlov/playing-the-tostrings&#34; target=&#34;_blank&#34;&gt;implementing the method &lt;code&gt;toString()&lt;/code&gt;&lt;/a&gt;.
+Include only minimum necessary information &lt;code&gt;in toString()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;h1 id=&#34;further-steps-protect-your-logging-configuration&#34;&gt;Further steps: Protect your logging configuration&lt;/h1&gt;
+
+&lt;p&gt;Logback configuration can be included inside application (jar file) or be located in external file (&lt;code&gt;logback.xml&lt;/code&gt;). Hacker may try to modify or remove &lt;code&gt;logback.xml&lt;/code&gt;.
+In order to prevent this attack, &lt;code&gt;logback.xml&lt;/code&gt; should be:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Can not be modified by application user.&lt;/li&gt;
+&lt;li&gt;Monitored by intrusion detection system.&lt;/li&gt;
+&lt;li&gt;Logback auto-reload feature must not be enabled to prevent replacing configuration of the running java applicaiton.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Although auto-reload is very attractive feature of logback, it is reasonable to sacrifice it in favor of security.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -56,7 +589,65 @@ OWASP Security Testing Guide Recommendations OWASP Security Testing Guide define
       <description>&lt;p&gt;User authentication is an important part of the web service API design.
 One of the common approach is the Hash-based Message Authentication Code &amp;ndash; &lt;abbr title=&#34;Hash-based Message Authentication Code&#34;&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Hash-based_message_authentication_code&#34; title=&#34;Hash-based message authentication code&#34; target=&#34;_blank&#34;&gt;HMAC&lt;/a&gt;&lt;/abbr&gt;.
 Used together with transport level security it provides reliable mechanizm of user authentication and message integrity validation.
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;p&gt;Imagine, we want to create java web service for our customers.
+Data encryption will be guaranteed by using https connection with TLS.
+We will implement API user authentication by using public &lt;em&gt;API Key ID&lt;/em&gt; and a &lt;em&gt;API Key Secret&lt;/em&gt;.
+User should generate an API Key: unique pair of &lt;em&gt;Key ID&lt;/em&gt; and a &lt;em&gt;Key Secret&lt;/em&gt; for his application.
+User should send that &lt;em&gt;Key ID&lt;/em&gt;, message payload and a &lt;em&gt;digest&lt;/em&gt; with every request.
+Digest is generated by signing all HTTP headers and message payload with &lt;em&gt;Key Secret&lt;/em&gt;.
+(see &lt;a href=&#34;http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html#ConstructingTheCanonicalizedResourceElement&#34; title=&#34;Signing and Authenticating REST Requests by Amazon&#34; target=&#34;_blank&#34;&gt;Amazon&amp;rsquo;s recommendations&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;In PHP there is a function &lt;a href=&#34;http://php.net/manual/en/function.hash-hmac.php&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;hash_hmac&lt;/code&gt;&lt;/a&gt; for generating keyed hash value using the HMAC method. Here is the example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
+
+$keyId = &#39;d36cb306-9341-466f-a794-d49fbc485d8b&#39;;
+$payload = &#39;{&amp;quot;command&amp;quot;: &amp;quot;buy&amp;quot;, &amp;quot;amount&amp;quot;:10, currency&amp;quot;:&amp;quot;EURUSD&amp;quot;}&#39;;
+$secret = &#39;se1cr2et3w0r4d&#39;;
+
+echo &#39;SHA-512 HMAC Digest: &#39;, hash_hmac(&#39;sha512&#39;, $keyId . $payload, $secret);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SHA-512 HMAC Digest: 577a7927f55bc6ed1eaec08f7298e7c7596b6f951c4c6e8f24324fd9a1f0790adfdecbbd5ab73ad543fec7e6c3c23246a5dd8fae526e0b802ae99faccd06a29c
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Call PHP function &lt;a href=&#34;http://php.net/manual/en/function.hash-algos.php&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;hash_algos&lt;/code&gt;&lt;/a&gt; to get a list of supported algorithms.&lt;/p&gt;
+
+&lt;p&gt;How to validate the digest in Java:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;String apiKey = ... // X-KEY
+byte[] secret = ... //
+String rawPayload = ...
+String receivedDigest = ... //
+...
+
+Mac digest = Mac.getInstance(&amp;quot;HmacSHA512&amp;quot;);
+SecretKeySpec secretKey = new SecretKeySpec(secret, HMAC_SHA_512);
+
+digest.init(secretKey);
+digest.update(apiKey.getBytes(StandardCharsets.UTF_8));
+digest.update(rawPayload.getBytes(StandardCharsets.UTF_8));
+final byte[] expectedDigest = digest.doFinal();
+digest.reset();
+
+final byte[] receivedDigestBytes = DatatypeConverter.parseHexBinary(receivedDigest);
+if (!MessageDigest.isEqual(receivedDigestBytes, expectedDigest)) {
+    // invalid digest
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html#ConstructingTheCanonicalizedResourceElement&#34; title=&#34;Signing and Authenticating REST Requests by Amazon&#34; target=&#34;_blank&#34;&gt;Amazon: Signing and Authenticating REST Requests&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.oclc.org/developer/develop/authentication/hmac-signature.en.html&#34; target=&#34;_blank&#34;&gt;OCLC: HMAC Signature&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developers.coinbase.com/docs/wallet/api-key-authentication&#34; target=&#34;_blank&#34;&gt;Coinbase: API Key Authentication&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://restcookbook.com/Basics/loggingin/&#34; target=&#34;_blank&#34;&gt;The RESTful CookBook: HMAC&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
@@ -65,8 +656,21 @@ Used together with transport level security it provides reliable mechanizm of us
       <pubDate>Sun, 03 May 2015 18:23:06 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/05/03/web-security-resources/</guid>
-      <description>Here are some useful links to security resources:
- OWASP to 10 v.2013&amp;ndash; A list of the 10 Most Critical Web Application Security Risks. OWASP: list of website security attacks OWASP: list of website vulnerabilities OWASP Development Guide &amp;ndash; The OWASP Developer Guide 2014 is a dramatic re-write of one of OWASP&amp;rsquo;s first and most downloaded projects. The focus moves from countermeasures and weaknesses to secure software engineering. The Developer Guide 2014 is a &amp;laquo;first principles&amp;raquo; book - it&amp;rsquo;s not specific to any one language or framework, as they all borrow ideas and syntax from each other.</description>
+      <description>&lt;p&gt;Here are some useful links to security resources:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project&#34; target=&#34;_blank&#34;&gt;OWASP to 10&lt;/a&gt; &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-Table_of_Contents&#34; target=&#34;_blank&#34;&gt;v.2013&lt;/a&gt;&amp;ndash; A list of the 10 Most Critical Web Application Security Risks.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:Attack&#34; target=&#34;_blank&#34;&gt;OWASP: list of website security attacks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:Vulnerability&#34; target=&#34;_blank&#34;&gt;OWASP: list of website vulnerabilities&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Guide_Project&#34; target=&#34;_blank&#34;&gt;OWASP Development Guide&lt;/a&gt; &amp;ndash; The OWASP Developer Guide 2014 is a dramatic re-write of one of OWASP&amp;rsquo;s first and most downloaded projects. The focus moves from countermeasures and weaknesses to secure software engineering. The Developer Guide 2014 is a &amp;laquo;first principles&amp;raquo; book - it&amp;rsquo;s not specific to any one language or framework, as they all borrow ideas and syntax from each other. There are highly specific issues in different languages, such as PHP configuration settings or Spring MVC issues, but we need to look past these differences and apply the basic tenets of secure system engineering to application security.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Testing_Project&#34; target=&#34;_blank&#34;&gt;OWASP Testing Guide&lt;/a&gt; (&lt;a href=&#34;https://www.owasp.org/images/5/52/OWASP_Testing_Guide_v4.pdf&#34; target=&#34;_blank&#34;&gt;version 4 PDF&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API&#34; target=&#34;_blank&#34;&gt;OWASP Enterprise Security API&lt;/a&gt; / &lt;a href=&#34;https://github.com/ESAPI/esapi-java-legacy&#34; target=&#34;_blank&#34;&gt;ESAPI 2.x on GitHub&lt;/a&gt; &amp;ndash; ESAPI (The OWASP Enterprise Security API) is a free, open source, web application security control library that makes it easier for programmers to write lower-risk applications. The ESAPI libraries are designed to make it easier for programmers to retrofit security into existing applications. The ESAPI libraries also serve as a solid foundation for new development.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/OWASP&#34; target=&#34;_blank&#34;&gt;OWASP Resources on GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.exploit-db.com/&#34; target=&#34;_blank&#34;&gt;Offensive Security Exploit Database Archive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://cve.mitre.org/&#34; target=&#34;_blank&#34;&gt;CVE&lt;/a&gt; &amp;ndash; CVE is a dictionary of publicly known information security vulnerabilities and exposures.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://nvd.nist.gov/&#34; target=&#34;_blank&#34;&gt;National Vulnerability Database&lt;/a&gt;  &amp;ndash;  NVD includes databases of security checklists, security related software flaws, misconfigurations, product names, and impact metrics.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

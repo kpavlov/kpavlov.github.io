@@ -14,8 +14,15 @@
       <pubDate>Thu, 11 Feb 2016 23:09:16 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</guid>
-      <description>StackOverflow-driven JS development:
-try { something } catch (e) { window.open(&#39;https://stackoverflow.com/search?q=[js]+&amp;quot;&#39; + e.message + &#39;&amp;quot;&#39;); }  </description>
+      <description>&lt;p&gt;StackOverflow-driven JS development:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;try {
+    something
+} catch (e) {
+     window.open(&#39;https://stackoverflow.com/search?q=[js]+&amp;quot;&#39; + e.message + &#39;&amp;quot;&#39;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
   </channel>

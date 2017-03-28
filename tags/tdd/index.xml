@@ -14,7 +14,19 @@
       <pubDate>Mon, 22 Apr 2013 11:17:01 +0300</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2013/04/22/using-expected-exceptions-in-unittests/</guid>
-      <description>&lt;p&gt;Sometimes, reviewing code, I see misunderstanding of using &lt;em&gt;Expected Exception&lt;/em&gt; concept in unit tests.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Sometimes, reviewing code, I see misunderstanding of using &lt;em&gt;Expected Exception&lt;/em&gt; concept in unit tests.&lt;/p&gt;
+
+&lt;p&gt;
+Let&amp;rsquo;s consider following test class:&lt;/p&gt;
+
+&lt;script src=&#34;//gist.github.com/kpavlov/4f2fd37058d66744893c.js?file=ExpectedExceptionTest.java&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;There are two test methods here and only first one is not correct.
+When service throws &lt;code&gt;SomeException&lt;/code&gt;, &lt;code&gt;Mockito.verifyZeroInteraction(bar)&lt;/code&gt; is not invoked,
+although expected exception is catched and test framework reports test passed.&lt;/p&gt;
+
+&lt;p&gt;The Rule of Thumb is:
+&lt;strong&gt;You may use &lt;code&gt;ExpectedException&lt;/code&gt; only if call of the &lt;em&gt;method under test&lt;/em&gt; is the last operator of test method.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

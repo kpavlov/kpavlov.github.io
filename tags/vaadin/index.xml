@@ -19,7 +19,10 @@
 &lt;blockquote&gt;
 &lt;p&gt;Is your Vaadin application becoming sluggish? Yes, this can happen - it is no secret. This can happen for every application, with every programming language, with every UI library and with all hardware platforms. Make it a web application and it is not even hard. For end users this is not acceptable, especially when building applications for frequent use.
 
-&lt;a href=&#34;https://vaadin.com/wiki/-/wiki/Main/Optimizing+Sluggish+UI&#34; target=&#34;_blank&#34;&gt;Vaadin: Optimizing Sluggish UI&lt;/a&gt;&lt;/p&gt;</description>
+&lt;a href=&#34;https://vaadin.com/wiki/-/wiki/Main/Optimizing+Sluggish+UI&#34; target=&#34;_blank&#34;&gt;Vaadin: Optimizing Sluggish UI&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I find especially useful advice by Stephen Borgelt to use &lt;a href=&#34;https://vaadin.com/book/-/page/layout.csslayout.html&#34; target=&#34;_blank&#34;&gt;CssLayout&lt;/a&gt; wherever possible.&lt;/p&gt;</description>
     </item>
     
   </channel>

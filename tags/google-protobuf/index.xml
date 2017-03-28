@@ -18,7 +18,47 @@
 
 &lt;p&gt;Install google protobuf compiler on your computer.&lt;/p&gt;
 
-&lt;p&gt;Configure maven protobuf compiler plugin and dependency in  &lt;em&gt;pom.xml&lt;/em&gt; :&lt;/p&gt;</description>
+&lt;p&gt;Configure maven protobuf compiler plugin and dependency in  &lt;em&gt;pom.xml&lt;/em&gt; :&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;properties&amp;gt;
+    &amp;lt;!-- You may need to specify path to protobuf compiler --&amp;gt;
+    &amp;lt;protocCommand&amp;gt;/opt/local/bin/protoc&amp;lt;/protocCommand&amp;gt;
+&amp;lt;/properties&amp;gt;
+
+&amp;lt;build&amp;gt;
+    &amp;lt;plugins&amp;gt;
+        &amp;lt;plugin&amp;gt;
+            &amp;lt;groupId&amp;gt;com.github.igor-petruk.protobuf&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;protobuf-maven-plugin&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;0.5.1&amp;lt;/version&amp;gt;
+            &amp;lt;executions&amp;gt;
+                &amp;lt;execution&amp;gt;
+                    &amp;lt;goals&amp;gt;
+                        &amp;lt;goal&amp;gt;run&amp;lt;/goal&amp;gt;
+                    &amp;lt;/goals&amp;gt;
+                &amp;lt;/execution&amp;gt;
+            &amp;lt;/executions&amp;gt;
+        &amp;lt;/plugin&amp;gt;
+    &amp;lt;/plugins&amp;gt;
+&amp;lt;/build&amp;gt;
+
+&amp;lt;dependencies&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;com.google.protobuf&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;protobuf-java&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;2.4.1&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+&amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create protobuf definition files within &lt;em&gt;/src/main/protobuf/&lt;/em&gt; directory. You may want to specify the following options in .proto files.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-protobuf&#34;&gt;package com.example;
+option java_multiple_files = true;
+option java_outer_classname = &amp;quot;Messages&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;mvn generate-sources and you’re done!&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -28,7 +68,109 @@
       
       <guid>https://konstantinpavlov.net/blog/2012/04/22/java-protobuf-format-easy-protobuf-to-json-serialization-in-java/</guid>
       <description>&lt;p&gt;If you need Google Protobuf-to-JSON serialization (and vice versa) there is quick solution.
-&lt;a href=&#34;http://code.google.com/p/protobuf-java-format/&#34; target=&#34;_blank&#34;&gt;Protobuf-java-format&lt;/a&gt; library provides serialization of protobuf-generated java classes to number of formats: JSON, XML, HTML, Java property file format, Smile, CoachDB.&lt;/p&gt;</description>
+&lt;a href=&#34;http://code.google.com/p/protobuf-java-format/&#34; target=&#34;_blank&#34;&gt;Protobuf-java-format&lt;/a&gt; library provides serialization of protobuf-generated java classes to number of formats: JSON, XML, HTML, Java property file format, Smile, CoachDB.&lt;/p&gt;
+
+&lt;p&gt;Here is a step-by-step instruction.
+
+Configure maven protobuf compiler plugin and dependency in your maven&amp;rsquo;s &lt;em&gt;pom.xml&lt;/em&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;properties&amp;gt;
+    &amp;lt;!-- You may need to specify path to protobuf compiler --&amp;gt;
+    &amp;lt;protocCommand&amp;gt;/opt/local/bin/protoc&amp;lt;/protocCommand&amp;gt;
+&amp;lt;/properties&amp;gt;
+
+&amp;lt;build&amp;gt;
+    &amp;lt;plugins&amp;gt;
+        &amp;lt;plugin&amp;gt;
+            &amp;lt;groupId&amp;gt;com.github.igor-petruk.protobuf&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;protobuf-maven-plugin&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;0.5.1&amp;lt;/version&amp;gt;
+            &amp;lt;executions&amp;gt;
+                &amp;lt;execution&amp;gt;
+                    &amp;lt;goals&amp;gt;
+                        &amp;lt;goal&amp;gt;run&amp;lt;/goal&amp;gt;
+                    &amp;lt;/goals&amp;gt;
+                &amp;lt;/execution&amp;gt;
+            &amp;lt;/executions&amp;gt;
+        &amp;lt;/plugin&amp;gt;
+    &amp;lt;/plugins&amp;gt;
+&amp;lt;/build&amp;gt;
+
+&amp;lt;dependencies&amp;gt;
+    &amp;lt;dependency&amp;gt;
+        &amp;lt;groupId&amp;gt;com.google.protobuf&amp;lt;/groupId&amp;gt;
+        &amp;lt;artifactId&amp;gt;protobuf-java&amp;lt;/artifactId&amp;gt;
+        &amp;lt;version&amp;gt;2.4.1&amp;lt;/version&amp;gt;
+    &amp;lt;/dependency&amp;gt;
+&amp;lt;/dependencies&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add the protobuf-java-format dependency to your maven project (&lt;em&gt;pom.xml&lt;/em&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;...
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;com.googlecode.protobuf-java-format&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;protobuf-java-format&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.2&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Create protobuf definition in &lt;code&gt;/src/main/protobuf/test.proto&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-protobuf&#34;&gt;package example;
+option java_multiple_files = true;
+option java_outer_classname = &amp;quot;Messages&amp;quot;;
+
+message Person {
+    required string name = 1;
+    required Gender gender = 2;
+    optional sint32 age = 3;
+
+    enum Gender {
+        MALE = 1;
+        FEMALE = 2;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now you may serialize and deserialize your Protobuf java objects:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;Person person = Person.newBuilder()
+        .setName(&amp;quot;Bob&amp;quot;)
+        .setAge(10)
+        .setGender(Person.Gender.MALE)
+        .build();
+
+System.out.println(&amp;quot;Original=[&amp;quot; + person + &amp;quot;]&amp;quot;);
+String jsonView = com.googlecode.protobuf.format.JsonFormat.printToString(person);
+
+System.out.println(&amp;quot;JSON=&#39;&amp;quot; + jsonView + &amp;quot;&#39;&amp;quot;);
+
+Person.Builder personBuilder = Person.newBuilder();
+com.googlecode.protobuf.format.JsonFormat.merge(jsonView, personBuilder);
+
+Person person2 = personBuilder.build();
+System.out.println(&amp;quot;Deserialized=[&amp;quot; + person2 + &amp;quot;]&amp;quot;);
+System.out.println(&amp;quot;Original.equals.Deserialized=&amp;quot; + person.equals(person2));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This code will produce following output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Original=[name: &amp;quot;Bob&amp;quot;
+        gender: MALE
+        age: 10
+        ]
+        JSON=&#39;{&amp;quot;name&amp;quot;: &amp;quot;Bob&amp;quot;,&amp;quot;gender&amp;quot;: &amp;quot;MALE&amp;quot;,&amp;quot;age&amp;quot;: 10}&#39;
+Deserialized=[name: &amp;quot;Bob&amp;quot;
+        gender: MALE
+        age: 10
+        ]
+Original.equals.Deserialized=true
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://code.google.com/p/protobuf-java-format/&#34; target=&#34;_blank&#34;&gt;Protobuf-java-format&lt;/a&gt; uses proto object metadata (&lt;code&gt;message.getAllFields()&lt;/code&gt;) under the hood.
+So, it maybe not a fastest solution and not optimized for mobile devices (sometimes it is not always desirable to include metadata into generated proto-classes to be used on mobile devices).
+Though, it’s easy to implement&amp;hellip;&lt;/p&gt;</description>
     </item>
     
   </channel>

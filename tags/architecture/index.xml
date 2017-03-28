@@ -17,7 +17,163 @@
       <description>&lt;p&gt;I&amp;rsquo;ve been meaning to write a small tutorial for building web applications. Now it&amp;rsquo;s time!
 Let&amp;rsquo;s define the steps and choose some solutions for developing back-end java web application.&lt;/p&gt;
 
-&lt;p&gt;I will give my design recommendations and list a technologies I would use. You may have your own opinion and you may share it in comment. Over time, this post may change since my favourites are also changing over time.&lt;/p&gt;</description>
+&lt;p&gt;I will give my design recommendations and list a technologies I would use. You may have your own opinion and you may share it in comment. Over time, this post may change since my favourites are also changing over time.&lt;/p&gt;
+
+&lt;h2 id=&#34;technologies-stack&#34;&gt;Technologies Stack&lt;/h2&gt;
+
+&lt;h3 id=&#34;server-side-stack&#34;&gt;Server-Side Stack&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Use latest stable JDK. Now it is Java 8.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use lightweight web container, e.g. Jetty or Tomcat.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use Spring stack instead of J2EE. It is more customizable and extensible. &lt;a href=&#34;http://projects.spring.io/spring-boot/&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; is a default choice.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use embedded web server if possible. &lt;a href=&#34;https://spring.io/guides/gs/spring-boot/&#34; target=&#34;_blank&#34;&gt;Spring Boot Maven Plugin&lt;/a&gt; allows you easily repackage all your jars into single jar or war file.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Package your application as self-executing JARs instead of WARs and run them with &lt;code&gt;./app.jar&lt;/code&gt;. Thus you will never depend on application server infrastructure managed by IT team. Manage your infrastructure yourself!&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use Spring Boot - it offers convention over configuration and many predefined &lt;code&gt;@Configuration&lt;/code&gt;s.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Prefer Java-based Spring Configurations over XML-based. Java offers more restrictive type checking and visibility control.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use Spring Transaction Management (spring-tx) with &lt;code&gt;@Transactional&lt;/code&gt;. Don&amp;rsquo;t set &lt;code&gt;autoCommit=&amp;quot;true&amp;quot;&lt;/code&gt;. It is more flexible.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Prefer &lt;a href=&#34;http://wiki.fasterxml.com/JacksonHome&#34; target=&#34;_blank&#34;&gt;Jackson&lt;/a&gt; with &lt;a href=&#34;https://github.com/FasterXML/jackson-dataformat-xml&#34; title=&#34;Extension for Jackson JSON processor that adds support for serializing POJOs as XML&#34; target=&#34;_blank&#34;&gt;Jackson XML&lt;/a&gt; + &lt;a href=&#34;http://wiki.fasterxml.com/WoodstoxHome&#34; target=&#34;_blank&#34;&gt;Woodstox&lt;/a&gt; over JAXB, it&amp;rsquo;s faster and more convenient. jackson-dataformat-xml offers support for JAXB annotations but you are not forced to use JAXB for marshalling.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use mocks (Mockito) and spring-test for unit testing. Prefer singletons over statics and you&amp;rsquo;ll not need a PowerMockito.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Use maven. I don&amp;rsquo;t see any significant advantage of using Gradle in terms of performance. Project should be simple in structure and fast to build, so maven is still performs well.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;front-end-stack&#34;&gt;Front-End Stack&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Use &lt;strong&gt;professional&lt;/strong&gt; front-end frameworks and tools like React, AngularJS, SASS, Npm and Gulp. You&amp;rsquo;re developing a high quality product and you should use proven solutions for front-end. Professional front-end developers do use this tools so you should not &lt;a href=&#34;https://en.wikipedia.org/wiki/Don%27t_repeat_yourself&#34; title=&#34;Don&#39;t repeat yourself&#34; target=&#34;_blank&#34;&gt;re-invent the wheel&lt;/a&gt;.
+&lt;a href=&#34;//www.webjars.org&#34; target=&#34;_blank&#34;&gt;WebJars&lt;/a&gt; is also a good solution if your application is simple enough.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Design your JS application to consume REST API&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Design your server to be expose REST API.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;design-order&#34;&gt;Design Order&lt;/h2&gt;
+
+&lt;p&gt;Start from presentation layer and go down on the controllers and services layers.&lt;/p&gt;
+
+&lt;p&gt;Avoid starting with database schema design unless you know your business domain in depth.
+Your interface (web or api) will dictate required data structure, so persistence layer interfaces will evolve in the future. You may minimize changes by introducing API level in the database, i.e. use views and stored procedures to fix the contract between DBMS and application.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;It&amp;rsquo;s IMPORTANT: Delay making of important architectural solutions as much as possible!&lt;/strong&gt;
+Making decision earlier may catch you in a trap of technologies and tools not suited well for solving your problem. But that knowledge came to yo too late. Typical example: you may have chosen RDBMS but now, when a project is nearly completed, NoSql storage seems to be better fit for your problem.&lt;/p&gt;
+
+&lt;h2 id=&#34;building-front-end&#34;&gt;Building Front-End&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Start with UI without real data. Then create a test data (JSON files) and use simple nodejs http server to serve it together with other assets. When your data requirements are defined, start implementing service API. This approach saves a lot of time: You don&amp;rsquo;t have to change both server and client when design has eventually changed.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Create separate controllers for creating and amending your entities. Data models and validation rules are often different. Most likely you will have significantly different models. Also, edit controllers will be simpler if you&amp;rsquo;ll have less mutable fields in the model.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;building-server-side&#34;&gt;Building Server-Side&lt;/h2&gt;
+
+&lt;h3 id=&#34;presentation-layer&#34;&gt;Presentation Layer&lt;/h3&gt;
+
+&lt;h4 id=&#34;web-views-templates&#34;&gt;Web Views (Templates)&lt;/h4&gt;
+
+&lt;p&gt;This sub-layer includes web templates. Responsible for rendering of View Models.&lt;/p&gt;
+
+&lt;p&gt;There are a number of java template engines. Most notable of them are &lt;a href=&#34;http://www.thymeleaf.org/&#34; target=&#34;_blank&#34;&gt;Thymeleaf&lt;/a&gt; and &lt;a href=&#34;http://freemarker.org/&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
+Thymeleaf offers designing the templates as pure html and then make them work as a template when deployed to web server. Use it if you want your designers to own the templates.
+Freemarker is about three times faster than Thymeleaf but it may not be possible to open the template in a browser.&lt;/p&gt;
+
+&lt;p&gt;You may like to see the &lt;a href=&#34;http://www.slideshare.net/jreijn/comparing-templateenginesjvm&#34; target=&#34;_blank&#34;&gt;presentation&lt;/a&gt; by Jeroen Reijn on JVM template engines with performance comparison.&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t recommend using the JSPs because they don&amp;rsquo;t enforce clear logic and view separation. Low-skilled developers tend to write a presentation or even a business logic in a JSP which will inevitably lead into trouble. De-facto, JSP is deprecated technology.&lt;/p&gt;
+
+&lt;p&gt;There are a doubts about unit testing this layer. It often changes and usually is tested manually (visually) by (system) integration tests.&lt;/p&gt;
+
+&lt;h4 id=&#34;presentation-logic&#34;&gt;Presentation Logic&lt;/h4&gt;
+
+&lt;p&gt;This sub-layer includes web Controllers and View Helpers. Responsible for data syntax validation, preparing view model. Can be easily Unit-Tested.&lt;/p&gt;
+
+&lt;p&gt;Typical technology stack for presentation layer contains:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html&#34; target=&#34;_blank&#34;&gt;Spring Web MVC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://projects.spring.io/spring-security/&#34; title=&#34;Spring Security is a powerful and highly customizable authentication and access-control framework.&#34; target=&#34;_blank&#34;&gt;Spring Security Web&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://wiki.fasterxml.com/JacksonHome&#34; target=&#34;_blank&#34;&gt;Jackson&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Please consider following ideas when designing a components for this layer:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Use separate model for presentation layer.&lt;/li&gt;
+&lt;li&gt;Use the front-end test data files to test data conversion in server-side controller level. Your tests should fail when you change JSON format of your objects.&lt;/li&gt;
+&lt;li&gt;Do only validation and presentation-related business login in this layer. You&amp;rsquo;ll have a Business Logic (Service) Layer for business logic.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t perform security (access control) checks in this layer. Leave it to Service Layer.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t manage the transactions in this layer. Leave it to Service Layer.&lt;/li&gt;
+&lt;li&gt;Use javax.validation API and hibernate-validator to annotate DTO beans.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t include any logic into DTO. It&amp;rsquo;s just a POJOs with annotations.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Someone may argue: why not to manage transactions in controllers (presentation layer)? Now imagine you&amp;rsquo;ll need to call the same operation from web UI, rest API and Message Driven Bean. You&amp;rsquo;ll have to add transaction management to each controller and MDB and use Spring &lt;code&gt;TransactionTemplate&lt;/code&gt; instead. Thus you&amp;rsquo;ll end up with copy-pasting business logic to multiple classes and which is not acceptable from the application maintenance point of view. Same is true for security/access control. It should be handled on service layer.&lt;/p&gt;
+
+&lt;h3 id=&#34;business-logic-service-layer&#34;&gt;Business Logic (Service) Layer&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Perform access-control validation in this layer. Same services may be invoked from different controllers (e.g. html and REST ones) so you&amp;rsquo;ll use the same logic.&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;@Transactional&lt;/code&gt; to annotate service classes and methods. Transactions are aged here. If you need a complex transaction management then use a &lt;code&gt;TransactionTemplate&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Don&amp;rsquo;t access &lt;code&gt;DataSource&lt;/code&gt; or &lt;code&gt;JdbcTemplate&lt;/code&gt; in this layer. Use DAOs instead.&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;When you call a &lt;code&gt;@Transactional&lt;/code&gt; method from non-transactional one in the same spring bean use &lt;code&gt;self&lt;/code&gt;-reference:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Service
+public MyServiceImpl implements MyService {
+
+    @Autowired
+    private MyDao dao;
+
+    @Autowired
+    private MyServiceImpl self;
+
+    @Override
+    public void nonTxMethod() {
+        self.txMethod(); // &amp;quot;self&amp;quot; is a proxy with transactional aspect support
+    }
+
+    @Override
+    @Transactional
+    public void txMethod() {
+         dao.load(...);
+         ...
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;data-access-layer&#34;&gt;Data Access Layer&lt;/h3&gt;
+
+&lt;p&gt;Access data storage such as relational and not relational databases. Usually supports transactions.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Don&amp;rsquo;t manage transactions on this layers. Transactions are managed on Service layer.&lt;/li&gt;
+&lt;li&gt;Write integration tests that hit database on this layer. You&amp;rsquo;re usually don&amp;rsquo;t need a lot of unit tests here (hello, &amp;laquo;Test Pyramid&amp;raquo;).&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AbstractTransactionalJUnit4SpringContextTests&lt;/code&gt; is your friend. Extend your integration tests from this class and you&amp;rsquo;ll have a transaction rollback for free.&lt;/li&gt;
+&lt;li&gt;Since integration tests may take time, make them run on &lt;code&gt;integration test&lt;/code&gt; maven phase and exclude them from fast unit tests.&lt;/li&gt;
+&lt;li&gt;Prepare a test data before executing a test. It will be rolled-back automatically. If you need DB transaction to commit, put &lt;code&gt;@Rollback(false)&lt;/code&gt; annotation.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;integration-layer&#34;&gt;Integration Layer&lt;/h3&gt;
+
+&lt;p&gt;Contains connectors to external systems. Usually non-transactional.&lt;/p&gt;
+
+&lt;p&gt;You may write some unit tests here.&lt;/p&gt;
+
+&lt;h3 id=&#34;messaging-layer&#34;&gt;Messaging Layer&lt;/h3&gt;
+
+&lt;p&gt;In modern event-driven architecture message processing is important for integration point of view. Messaging layer typically includes JavaEE Message Driven Beans or various event listeners. This layer is actually a presentation layer but it operates with message payloads as input/output model objects in contrast of View Models and templates used in web presentation layer. For web presentation layer the payload is html page content, whereas for messaging layer the payload is xml, json, protobuf or any other message format.&lt;/p&gt;</description>
     </item>
     
   </channel>

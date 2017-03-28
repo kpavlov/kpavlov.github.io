@@ -14,9 +14,14 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/about/</guid>
-      <description>I have been writing software for more than 15 years. Starting with BASIC on ZX Spectrum and Pascal on x86, moving onto full stack Java / J2EE / GWT and now focusing on Core Java / Spring / Javascript and React.
-I believe in agility in software development, practicing S.O.L.I.D. and Implementation-&amp;gt;Refactoring&amp;raquo;&amp;gt;Test-Driven Development with respect of Ockham&amp;rsquo;s razor and Pareto principles.
-Currently I&amp;rsquo;m living in Limassol, Cyprus, contracting in financial industry.</description>
+      <description>&lt;p&gt;I have been writing software for more than 15 years. Starting with BASIC on &lt;a href=&#34;https://en.wikipedia.org/wiki/ZX_Spectrum&#34; title=&#34;My first PC&#34; target=&#34;_blank&#34;&gt;ZX Spectrum&lt;/a&gt; and Pascal on x86, moving onto full stack Java / J2EE / GWT and now focusing on Core Java / &lt;a href=&#34;https://spring.io&#34; target=&#34;_blank&#34;&gt;Spring&lt;/a&gt; / Javascript and &lt;a href=&#34;https://facebook.github.io/react&#34; target=&#34;_blank&#34;&gt;React&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I believe in agility in software development, practicing &lt;abbr title=&#34;Single responsibility, Open-closed, Liskov substitution, Interface segregation and Dependency inversion&#34;&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29&#34; target=&#34;_blank&#34;&gt;S.O.L.I.D.&lt;/a&gt;&lt;/abbr&gt; and &lt;dfn title=&#34;Test-&gt;Implementation-&amp;gt;Refactoring&amp;raquo;&amp;gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Test-driven_development&#34; target=&#34;_blank&#34;&gt;Test-Driven Development&lt;/a&gt;&lt;/dfn&gt; with respect of &lt;dfn title=&#34;Entities must not be multiplied beyond necessity&#34;&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Occam&#39;s_razor&#34; target=&#34;_blank&#34;&gt;Ockham&amp;rsquo;s razor&lt;/a&gt;&lt;/dfn&gt; and &lt;dfn title=&#34;For many events, roughly 80% of the effects come from 20% of the causes&#34;&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Pareto_principle&#34; target=&#34;_blank&#34;&gt;Pareto&lt;/a&gt;&lt;/dfn&gt; principles.&lt;/p&gt;
+
+&lt;p&gt;Currently I&amp;rsquo;m living in Limassol, Cyprus, contracting in financial industry.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.linkedin.com/in/kpavlov&#34; target=&#34;_blank&#34;&gt;LinkedIn&lt;/a&gt; | &lt;a href=&#34;https://github.com/kpavlov&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
   </channel>

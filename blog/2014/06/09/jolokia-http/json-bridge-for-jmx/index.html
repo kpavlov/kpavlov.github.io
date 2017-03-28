@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="generator" content="Hugo 0.20-DEV" />
+    <meta name="generator" content="Hugo 0.19" />
 
     
     
@@ -67,7 +67,7 @@ Here the Jolokia comes to rescue!
 
 
 <meta itemprop="dateModified" content="2014-06-09T13:17:37&#43;03:00" />
-<meta itemprop="wordCount" content="222">
+<meta itemprop="wordCount" content="224">
 
 
 
@@ -114,8 +114,8 @@ Here the Jolokia comes to rescue!
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../../assets/css/style.css?v=1490571210">
-    <link rel="stylesheet" href="../../../../../../assets/css/prism.min.css?v=1490571210"/>
+    <link rel="stylesheet" href="../../../../../../assets/css/style.css?v=1490679812">
+    <link rel="stylesheet" href="../../../../../../assets/css/prism.min.css?v=1490679812"/>
 
     <script type="text/javascript">
         
@@ -317,11 +317,11 @@ For example, external monitoring tool, like Nagious/Zenoss/Zabbix needs to get s
 <li><a href="http://www.jolokia.org/download.html" target="_blank">Download</a> <code>jolockia.war</code> and deploy it to servlet container.</li>
 
 <li><p>Run in command line:
-
-$ curl localhost:8080/jolokia/read/java.lang:type=Memory/HeapMemoryUsage
-{"request":{"mbean":"java.lang:type=Memory","attribute":"HeapMemoryUsage","type":"read"},"value":{"init":536870912,"committed":514850816,"max":514850816,"used":132049768},"timestamp":1402310991,"status":200}
-$ curl localhost:8080/jolokia/read/java.lang:type=Memory/HeapMemoryUsage/used
-{"request":{"path":"used","mbean":"java.lang:type=Memory","attribute":"HeapMemoryUsage","type":"read"},"value":132049736,"timestamp":1402310735,"status":200}
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span>$ curl localhost:8080/jolokia/read/java.lang:type<span style="color: #f92672">=</span>Memory/HeapMemoryUsage
+<span style="color: #f92672">{</span><span style="color: #e6db74">&quot;request&quot;</span>:<span style="color: #f92672">{</span><span style="color: #e6db74">&quot;mbean&quot;</span>:<span style="color: #e6db74">&quot;java.lang:type=Memory&quot;</span>,<span style="color: #e6db74">&quot;attribute&quot;</span>:<span style="color: #e6db74">&quot;HeapMemoryUsage&quot;</span>,<span style="color: #e6db74">&quot;type&quot;</span>:<span style="color: #e6db74">&quot;read&quot;</span><span style="color: #f92672">}</span>,<span style="color: #e6db74">&quot;value&quot;</span>:<span style="color: #f92672">{</span><span style="color: #e6db74">&quot;init&quot;</span>:536870912,<span style="color: #e6db74">&quot;committed&quot;</span>:514850816,<span style="color: #e6db74">&quot;max&quot;</span>:514850816,<span style="color: #e6db74">&quot;used&quot;</span>:132049768<span style="color: #f92672">}</span>,<span style="color: #e6db74">&quot;timestamp&quot;</span>:1402310991,<span style="color: #e6db74">&quot;status&quot;</span>:200<span style="color: #f92672">}</span>
+$ curl localhost:8080/jolokia/read/java.lang:type<span style="color: #f92672">=</span>Memory/HeapMemoryUsage/used
+<span style="color: #f92672">{</span><span style="color: #e6db74">&quot;request&quot;</span>:<span style="color: #f92672">{</span><span style="color: #e6db74">&quot;path&quot;</span>:<span style="color: #e6db74">&quot;used&quot;</span>,<span style="color: #e6db74">&quot;mbean&quot;</span>:<span style="color: #e6db74">&quot;java.lang:type=Memory&quot;</span>,<span style="color: #e6db74">&quot;attribute&quot;</span>:<span style="color: #e6db74">&quot;HeapMemoryUsage&quot;</span>,<span style="color: #e6db74">&quot;type&quot;</span>:<span style="color: #e6db74">&quot;read&quot;</span><span style="color: #f92672">}</span>,<span style="color: #e6db74">&quot;value&quot;</span>:132049736,<span style="color: #e6db74">&quot;timestamp&quot;</span>:1402310735,<span style="color: #e6db74">&quot;status&quot;</span>:200<span style="color: #f92672">}</span>
+</pre></div>
 
 You may also use your browser to see JSON response. I suggest installing <a href="https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa" title="JSON Formatter Chrome Extension" target="_blank">JSON Fromamter</a> for better view. <img src="../../../../../../assets/2014/06/jolokia-heap.png" alt="" /></p>
 
@@ -331,12 +331,12 @@ You may also use your browser to see JSON response. I suggest installing <a href
 </ol>
 
 <p>Released version of Jolokia are available in <a href="https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.jolokia%22" target="_blank">central maven repository</a>:
-
-<dependency>
-	<groupId>org.jolokia</groupId>
-	<artifactId>jolokia-war</artifactId>
-	<version>1.2.1</version>
-</dependency>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span></span><span style="color: #f92672">&lt;dependency&gt;</span>
+	<span style="color: #f92672">&lt;groupId&gt;</span>org.jolokia<span style="color: #f92672">&lt;/groupId&gt;</span>
+	<span style="color: #f92672">&lt;artifactId&gt;</span>jolokia-war<span style="color: #f92672">&lt;/artifactId&gt;</span>
+	<span style="color: #f92672">&lt;version&gt;</span>1.2.1<span style="color: #f92672">&lt;/version&gt;</span>
+<span style="color: #f92672">&lt;/dependency&gt;</span>
+</pre></div>
 </p>
 
 <p>Also, Jolokia provides OSGi, Mule and JVM <a href="http://www.jolokia.org/reference/html/agents.html" target="_blank">agents</a> as well as Webarchive (War) agent.</p>
@@ -434,8 +434,8 @@ You may also use your browser to see JSON response. I suggest installing <a href
          <a href="../../../../../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../../../../../assets/js/prism.min.js?v=1490571210"></script>
-    <script src="../../../../../../assets/js/foot-scripts.min.js?v=1490571210"></script>
+    <script src="../../../../../../assets/js/prism.min.js?v=1490679812"></script>
+    <script src="../../../../../../assets/js/foot-scripts.min.js?v=1490679812"></script>
 
     <script type="text/javascript">
 
