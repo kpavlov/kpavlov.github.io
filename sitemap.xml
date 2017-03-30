@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://konstantinpavlov.net/blog/2017/03/28/logging-policy/</loc>
+    <lastmod>2017-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/</loc>
     <lastmod>2017-03-07T08:48:34+02:00</lastmod>
   </url>
@@ -357,7 +362,7 @@
   </url>
   
   <url>
-    <loc>https://konstantinpavlov.net/about/</loc>
+    <loc>https://konstantinpavlov.net/about/index/</loc>
   </url>
   
   <url>
@@ -409,6 +414,7 @@
   
   <url>
     <loc>https://konstantinpavlov.net/categories/</loc>
+    <lastmod>2015-01-17T09:48:02+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -454,7 +460,7 @@
   
   <url>
     <loc>https://konstantinpavlov.net/categories/devops/</loc>
-    <lastmod>2016-09-14T10:15:51+00:00</lastmod>
+    <lastmod>2017-03-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -532,7 +538,7 @@
   
   <url>
     <loc>https://konstantinpavlov.net/tags/java/</loc>
-    <lastmod>2015-08-01T22:22:34+00:00</lastmod>
+    <lastmod>2017-03-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -633,7 +639,7 @@
   
   <url>
     <loc>https://konstantinpavlov.net/post/</loc>
-    <lastmod>2017-03-07T08:48:34+02:00</lastmod>
+    <lastmod>2017-03-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -642,14 +648,14 @@
   </url>
   
   <url>
-    <loc>https://konstantinpavlov.net/categories/programming/</loc>
-    <lastmod>2017-02-23T00:00:00+00:00</lastmod>
+    <loc>https://konstantinpavlov.net/tags/programming/</loc>
+    <lastmod>2017-03-07T08:48:34+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://konstantinpavlov.net/tags/programming/</loc>
-    <lastmod>2017-03-07T08:48:34+02:00</lastmod>
+    <loc>https://konstantinpavlov.net/categories/programming/</loc>
+    <lastmod>2017-03-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -697,6 +703,7 @@
   
   <url>
     <loc>https://konstantinpavlov.net/tags/</loc>
+    <lastmod>2014-08-30T07:46:20+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -708,7 +715,7 @@
   
   <url>
     <loc>https://konstantinpavlov.net/</loc>
-    <lastmod>2017-03-07T08:48:34+02:00</lastmod>
+    <lastmod>2017-03-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

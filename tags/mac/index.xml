@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mac on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/mac/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/mac/</link>
     <description>Recent content in Mac on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://konstantinpavlov.net/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Feb 2015 08:02:51 +0000</lastBuildDate>
+    
+	<atom:link href="https://konstantinpavlov.net/tags/mac/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Syncing iTunes Library Between two Computers</title>
@@ -14,51 +17,8 @@
       <pubDate>Sun, 08 Feb 2015 08:02:51 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/</guid>
-      <description>
-
-&lt;p&gt;Given:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Two family Macs with iTunes 12 installed&lt;/li&gt;
-&lt;li&gt;More than 10GB of audio files&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I want to share my media library between these two computers and keep them synchronized. When I add new file on one computer, it should apear on another. When I delete a file on second computer - it should be deleted pn first. When I change iTunes playlists on one computer it should be changed on another.
-I don&amp;rsquo;t want to keep my media on Network storage (NAS) or External drive (USB), because it will be impossible to listen to the music on the go, when NAS or external drive is disconnected (e.g. in cafe).&lt;/p&gt;
-
-&lt;p&gt;To be able to use the same iTunes media library database on two computers I need to make my media files available by at the same path on disk.&lt;!-- more--&gt; Normally, media files are under the user account folder. But it is possible to &lt;a href=&#34;http://support.apple.com/en-us/HT201562&#34; title=&#34;iTunes for Mac: Moving your iTunes Media folder&#34; target=&#34;_blank&#34;&gt;move&lt;/a&gt; them to the location &lt;a href=&#34;http://support.apple.com/en-us/HT1203&#34; title=&#34;iTunes: How to share music between different user accounts on a single computer&#34; target=&#34;_blank&#34;&gt;common for all user accounts&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Next, I need to keep iTunes media file in sync.&lt;/p&gt;
-
-&lt;p&gt;After some research in the Internet I come to following solution.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Backup tour iTunes media folder &lt;code&gt;/Users/user/Music/iTunes&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Move iTunes media files to the &lt;code&gt;/Users/Shared/iTunes Media&lt;/code&gt; folder.
-Set new media files location: &lt;img src=&#34;../../assets/2015/02/itunes-media-settings.png&#34; alt=&#34;iTunes Media Settings&#34; /&gt;
-Then run &lt;strong&gt;File &amp;gt; Library &amp;gt; Organize Library&lt;/strong&gt; and select &lt;strong&gt;&amp;laquo;Consolidate Files&amp;raquo;&lt;/strong&gt; to copy your files to new location. &lt;img src=&#34;../../assets/2015/02/itunes-consoludate.png&#34; alt=&#34;Consoludate Files&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;Remove your old Original files were copied, not moved. You need to remove them (if you have made a backup on step 1):
-&lt;code&gt;bash  
-rm -rf /Users/user/Music/iTunes/iTunes\ Media
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Close iTunes and copy your &lt;code&gt;/Users/user1/Music/iTunes&lt;/code&gt; to &lt;code&gt;/Users/user2/Music/iTunes&lt;/code&gt; on second compuler&lt;/li&gt;
-&lt;li&gt;Copy &lt;code&gt;/Users/Shared/iTunes Media&lt;/code&gt; from first to second computer to the same location.&lt;/li&gt;
-&lt;li&gt;Setup media folder synchronization between two computers using &lt;a href=&#34;http://www.getsync.com&#34; title=&#34;Sync&#34; target=&#34;_blank&#34;&gt;BitTorrent Sync&lt;/a&gt;. If you have smaller media library that fits into DropBox &amp;ndash; then go for it. It is possible to use any cloud solution, e.g. at the moment (February 2015) &lt;a href=&#34;http://help.yandex.com/disk/uploading.xml&#34; title=&#34;Yandex Disk Limits&#34; target=&#34;_blank&#34;&gt;Yandex Disk&lt;/a&gt; offers 10GB for free.&lt;/li&gt;
-&lt;li&gt;Wait for synchronization complete.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;You may start using iTunes on both computers. Keep in mind, that if you modify your media library from both computers simultaneously, you will have only recent changes. You may want to setup one-way synchronization: one computer will be &lt;strong&gt;the Master&lt;/strong&gt; where you will manage your library and the second one is for listening only.&lt;/p&gt;
-
-&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://support.apple.com/en-us/HT201979&#34; title=&#34;iTunes: Understanding iTunes Media Organization&#34; target=&#34;_blank&#34;&gt;iTunes: Understanding iTunes Media Organization&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://oyvteig.blogspot.com/2009/01/003-shared-itunes-library-on-network.html&#34; target=&#34;_blank&#34;&gt;Shared iTunes Library on Network&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://support.apple.com/en-us/HT201979&#34; title=&#34;iTunes: Understanding iTunes Media Organization&#34; target=&#34;_blank&#34;&gt;iTunes: Understanding iTunes Media Organization&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://support.apple.com/en-us/HT201562&#34; title=&#34;iTunes for Mac: Moving your iTunes Media folder&#34; target=&#34;_blank&#34;&gt;iTunes for Mac: Moving your iTunes Media folder&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://support.apple.com/en-us/HT1203&#34; title=&#34;iTunes: How to share music between different user accounts on a single computer&#34; target=&#34;_blank&#34;&gt;iTunes: How to share music between different user accounts on a single computer&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>Given:
+ Two family Macs with iTunes 12 installed More than 10GB of audio files  I want to share my media library between these two computers and keep them synchronized. When I add new file on one computer, it should apear on another. When I delete a file on second computer - it should be deleted pn first. When I change iTunes playlists on one computer it should be changed on another.</description>
     </item>
     
   </channel>

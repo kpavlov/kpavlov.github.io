@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Documentation on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/documentation/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/documentation/</link>
     <description>Recent content in Documentation on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://konstantinpavlov.net/tags/documentation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 12 Apr 2015 22:00:26 +0000</lastBuildDate>
+    
+	<atom:link href="https://konstantinpavlov.net/tags/documentation/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Slate: Static API Documentation Generator</title>
@@ -18,184 +21,7 @@
 &lt;img src=&#34;../../assets/2015/04/slate-site.png&#34; alt=&#34;slate screenshot&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I am the big fan of &lt;a href=&#34;https://daringfireball.net/projects/markdown/&#34; target=&#34;_blank&#34;&gt;Markdown&lt;/a&gt; and I was looking for a tool like this for writing a documentation.
-&lt;/p&gt;
-
-&lt;h2 id=&#34;getting-started-with-slate&#34;&gt;Getting Started with Slate&lt;/h2&gt;
-
-&lt;p&gt;Slate requires Ruby 1.9.3 and newer.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s really easy to get started:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Install Ruby 1.9.3 or newer&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Install Bundler (you may need root permissions)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;gem install bundler
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Fork a &lt;code&gt;https://github.com/tripit/slate.git&lt;/code&gt; repository in GitHub&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Clone your forked repository locally:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/YOURUSERNAME/slate.git
-cd slate
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Install bundle dependencies&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;bundle install
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;If installing dependencies fails you may download &lt;a href=&#34;https://github.com/tripit/slate/releases/tag/v1.0&#34; target=&#34;_blank&#34;&gt;stable version&lt;/a&gt; of slate, extract from archive and try to install dependencies again.
-7. Start the test server&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    bundle exec middleman server
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Navigate to &lt;a href=&#34;http://localhost:5739&#34; target=&#34;_blank&#34;&gt;http://localhost:5739&lt;/a&gt; to see your documentation&lt;/li&gt;
-&lt;li&gt;Run &lt;code&gt;rake build&lt;/code&gt; to generate documentation locally or &lt;code&gt;rake publish&lt;/code&gt; for deploying to remote server (you may need an &lt;a href=&#34;https://github.com/tripit/slate/wiki/Deploying-Slate&#34; target=&#34;_blank&#34;&gt;extra setup&lt;/a&gt;).&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;See the &lt;a href=&#34;https://github.com/tripit/slate/wiki&#34; target=&#34;_blank&#34;&gt;slate wiki&lt;/a&gt; for more details.&lt;/p&gt;
-
-&lt;p&gt;Predefined (sample) API documentation is defined in the &lt;code&gt;sources/index.md&lt;/code&gt; document.
-You may want to create a new one in &lt;code&gt;source/v1/index.md&lt;/code&gt;. It will be transferred to &lt;a href=&#34;http://localhost:5739/v1/&#34; target=&#34;_blank&#34;&gt;http://localhost:5739/v1/&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;generating-pdf-version&#34;&gt;Generating PDF version&lt;/h2&gt;
-
-&lt;p&gt;Along with HTML documentation, having a PDF version is also desirable.
-There is no PDF documentation generator in Slate out of the box. But it is very easy to integrate a ruby PDF generator&lt;/p&gt;
-
-&lt;p&gt;Add and activate pdfmaker ruby gem in &lt;em&gt;config.rb&lt;/em&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;## Pdfmaker custom extension. Add if you want PDF generati
-require &#39;makepdf&#39;
-
-activate :pdfmaker
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then create file &lt;em&gt;makepdf.rb&lt;/em&gt; in the base folder:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-ruby&#34;&gt;module PdfMaker
-  class &amp;lt;&amp;lt; self
-    def registered(app)
-      app.after_build do |builder|
-        begin
-          require &#39;pdfkit&#39;
-
-          kit = PDFKit.new(File.new(&#39;build/pdf.html&#39;),
-                           :page_size =&amp;gt; &#39;A4&#39;,
-                           :margin_top =&amp;gt; 10,
-                           :margin_bottom =&amp;gt; 10,
-                           :margin_left =&amp;gt; 10,
-                           :margin_right =&amp;gt; 10,
-                           :disable_smart_shrinking =&amp;gt; false,
-                           :print_media_type =&amp;gt; true,
-                           :dpi =&amp;gt; 96
-          )
-
-          file = kit.to_file(&#39;build/api.pdf&#39;)
-
-        rescue Exception =&amp;gt;e
-          builder.say_status &amp;quot;PDF Maker&amp;quot;,  &amp;quot;Error: #{e.message}&amp;quot;, Thor::Shell::Color::RED
-          raise
-        end
-        builder.say_status &amp;quot;PDF Maker&amp;quot;,  &amp;quot;PDF file available at build/api.pdf&amp;quot;
-      end
-
-
-    end
-    alias :included :registered
-  end
-end
-
-::Middleman::Extensions.register(:pdfmaker, PdfMaker)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As you can see, &lt;a href=&#34;https://github.com/pdfkit/pdfkit&#34; target=&#34;_blank&#34;&gt;PDFKit&lt;/a&gt; and subsequently &lt;a href=&#34;http://github.com/antialize/wkhtmltopdf&#34; target=&#34;_blank&#34;&gt;wkhtmltopdf&lt;/a&gt; is used under the hood.&lt;/p&gt;
-
-&lt;p&gt;Clone &lt;em&gt;source/layouts/layout.erb&lt;/em&gt; and modify it to be pdf-friendly:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!doctype html&amp;gt;
-&amp;lt;html&amp;gt;
-&amp;lt;head&amp;gt;
-    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
-    &amp;lt;meta content=&amp;quot;IE=edge,chrome=1&amp;quot; http-equiv=&amp;quot;X-UA-Compatible&amp;quot;&amp;gt;
-    &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1, maximum-scale=1&amp;quot;&amp;gt;
-    &amp;lt;meta name=&amp;quot;date&amp;quot; content=&amp;quot;&amp;lt;%= Time.now.strftime(&amp;quot;%Y-%m-%dT%H:%M:%S%Z&amp;quot;) %&amp;gt;&amp;quot;&amp;gt;
-    &amp;lt;title&amp;gt;&amp;lt;%= current_page.data.title %&amp;gt; v.&amp;lt;%= current_page.data.version %&amp;gt;&amp;lt;/title&amp;gt;
-    &amp;lt;meta name=&amp;quot;pdfkit-footer_right&amp;quot; content=&amp;quot;Page [page] of [topage]&amp;quot;&amp;gt;
-    &amp;lt;meta name=&amp;quot;pdfkit-footer_left&amp;quot; content=&amp;quot;[title] | &amp;lt;%= Time.new.strftime(&amp;quot;%Y-%m-%d&amp;quot;) %&amp;gt;&amp;quot;&amp;gt;
-    &amp;lt;meta name=&amp;quot;pdfkit-footer_line&amp;quot; content=&amp;quot;&amp;quot;&amp;gt;
-    &amp;lt;meta name=&amp;quot;pdfkit-footer_font_size&amp;quot; content=&amp;quot;8&amp;quot;&amp;gt;
-    &amp;lt;%= stylesheet_link_tag :print, media: :all %&amp;gt;
-
-&amp;lt;/head&amp;gt;
-
-&amp;lt;body class=&amp;quot;&amp;lt;%= page_classes %&amp;gt;&amp;quot;&amp;gt;
-
-&amp;lt;section class=&amp;quot;titlePage&amp;quot;&amp;gt;
-    &amp;lt;% if current_page.data.home_url %&amp;gt;
-        &amp;lt;a href=&amp;quot;&amp;lt;%= current_page.data.home_url %&amp;gt;&amp;quot;&amp;gt;&amp;lt;%= image_tag &amp;quot;logo.png&amp;quot; %&amp;gt;&amp;lt;/a&amp;gt;
-    &amp;lt;% else %&amp;gt;
-        &amp;lt;%= image_tag &amp;quot;logo.png&amp;quot; %&amp;gt;
-    &amp;lt;% end %&amp;gt;
-
-    &amp;lt;h1&amp;gt;&amp;lt;%= current_page.data.title %&amp;gt;&amp;lt;/h1&amp;gt;
-
-    &amp;lt;footer&amp;gt;
-        &amp;lt;div&amp;gt;Version  &amp;lt;%= current_page.data.version %&amp;gt;&amp;lt;/div&amp;gt;
-        &amp;lt;div&amp;gt;Date: &amp;lt;%= Time.new.strftime(&amp;quot;%Y-%m-%d&amp;quot;) %&amp;gt;&amp;lt;/div&amp;gt;
-    &amp;lt;/footer&amp;gt;
-&amp;lt;/section&amp;gt;
-&amp;lt;section class=&amp;quot;content&amp;quot;&amp;gt;
-    &amp;lt;%= yield %&amp;gt;
-    &amp;lt;% current_page.data.includes &amp;amp;&amp;amp; current_page.data.includes.each do |include| %&amp;gt;
-        &amp;lt;%= partial &amp;quot;includes/#{include}&amp;quot; %&amp;gt;
-    &amp;lt;% end %&amp;gt;
-&amp;lt;/section&amp;gt;
-&amp;lt;/body&amp;gt;
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Notice &lt;code&gt;pdfkit-footer_*&lt;/code&gt; meta tags here.&lt;/p&gt;
-
-&lt;p&gt;Create a separate index file with print layout &lt;em&gt;source/pdf.md&lt;/em&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;---
-layout: &amp;quot;pdf&amp;quot;
-title: API Reference
-version: &amp;quot;2.32&amp;quot;
----
-Blah-blah-blah...
-Rumors volare in berolinum!
-Squid combines greatly with salted ghee.
-Loren ipsum...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Important thing is to specify layout &amp;laquo;pdf&amp;raquo;&lt;/p&gt;
-
-&lt;p&gt;Now you may run generation:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;bundle exec middleman build --clean
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I hope this little instruction will help you to generate a PDF version of your API.&lt;/p&gt;
-
-&lt;h2 id=&#34;other-api-docs-generators&#34;&gt;Other API docs generators.&lt;/h2&gt;
-
-&lt;p&gt;Other static API documentation generators:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/danielgtaylor/aglio&#34; target=&#34;_blank&#34;&gt;Aglio&lt;/a&gt;. It renders API documentation in &lt;a href=&#34;http://apiblueprint.org/&#34; target=&#34;_blank&#34;&gt;API Bluepring&lt;/a&gt; format to Beautiful sites.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/swagger-api/swagger-ui&#34; target=&#34;_blank&#34;&gt;Swagger UI&lt;/a&gt;. It allows to generate REST API documentation from Java sources. See the &lt;a href=&#34;http://pilhuhn.blogspot.de/2012/10/restjax-rs-documentation-generation.html&#34; target=&#34;_blank&#34;&gt;article&lt;/a&gt;, &lt;a href=&#34;https://access.redhat.com/documentation/en-US/JBoss_Operations_Network/3.1/html-single/Rest_API/index.html&#34; target=&#34;_blank&#34;&gt;API documentation example&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://jsondoc.org/&#34; target=&#34;_blank&#34;&gt;http://jsondoc.org/&lt;/a&gt; - Java java library useful to build the documentation of your RESTful services. Can be used to generate a static site.&lt;/p&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
   </channel>

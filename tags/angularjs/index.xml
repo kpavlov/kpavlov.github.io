@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Angularjs on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/angularjs/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/angularjs/</link>
     <description>Recent content in Angularjs on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://konstantinpavlov.net/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Jun 2015 19:05:12 +0000</lastBuildDate>
+    
+	<atom:link href="https://konstantinpavlov.net/tags/angularjs/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Self-Hosted Web Analytics Solution for AngularJS</title>
@@ -14,18 +17,8 @@
       <pubDate>Wed, 03 Jun 2015 19:05:12 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</guid>
-      <description>&lt;p&gt;There are situations when you need to analyze user&amp;rsquo;s experience but can&amp;rsquo;t use a third-party web analytics solutions like Google Analytics or Yandex Metrika.
-For example, if your production environment is &lt;a href=&#34;https://www.pcisecuritystandards.org/security_standards/&#34; title=&#34;PCI SSC Data Security Standards&#34; target=&#34;_blank&#34;&gt;PCI DSS&lt;/a&gt; compliant.
-In this case you have to deploy self-hosted analytics engine and inside your environment and configure user actions tracking in your application.&lt;/p&gt;
-
-&lt;p&gt;One of the possible solutions is the &lt;a href=&#34;http://piwik.org&#34; target=&#34;_blank&#34;&gt;piwik&lt;/a&gt; as analytics engine + &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt; or &lt;a href=&#34;https://github.com/mike-spainhower/angular-piwik&#34; target=&#34;_blank&#34;&gt;angular-piwik&lt;/a&gt; for tracking events inside AngularJS application.
-In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piwik.org/log-analytics/&#34; target=&#34;_blank&#34;&gt;log analytics&lt;/a&gt;.
-&lt;img src=&#34;../../assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
-&lt;a href=&#34;http://demo.piwik.org/&#34; target=&#34;_blank&#34;&gt;Piwik Demo&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Another option is to use &lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;Open Web Analytics (OWA)&lt;/a&gt; and write a plugin for &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt;.
-&lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;OWA Demo&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>There are situations when you need to analyze user&amp;rsquo;s experience but can&amp;rsquo;t use a third-party web analytics solutions like Google Analytics or Yandex Metrika. For example, if your production environment is PCI DSS compliant. In this case you have to deploy self-hosted analytics engine and inside your environment and configure user actions tracking in your application.
+One of the possible solutions is the piwik as analytics engine + Angulartics or angular-piwik for tracking events inside AngularJS application.</description>
     </item>
     
     <item>
@@ -34,19 +27,8 @@ In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piw
       <pubDate>Tue, 02 Jun 2015 18:44:43 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/06/02/loading-indicators-for-angularjs/</guid>
-      <description>&lt;p&gt;Modern web application should be user friendly and notify the User when time consuming operation is on the way, e.g. uploading file or downloading data.
-There are a some solutions for AngularJS which are fairy easy to integrate.&lt;/p&gt;
-
-&lt;p&gt;First one is &lt;a href=&#34;http://chieffancypants.github.io/angular-loading-bar&#34; target=&#34;_blank&#34;&gt;Angular Loading Bar&lt;/a&gt;. It can be attached to your application with almost zero configuration and does not affect application design.
-It attaches the interceptor to &lt;code&gt;$http&lt;/code&gt; service and displays a thin progressbar on the top edge of the page.
-&lt;a href=&#34;http://chieffancypants.github.io/angular-loading-bar&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Another component is &lt;a href=&#34;https://github.com/cgross/angular-busy&#34; target=&#34;_blank&#34;&gt;angular-busy&lt;/a&gt;. It is more customizable and can show a spinner with backdrop above any page element. Just wrap it with &lt;code&gt;&amp;lt;div cg-busy=&amp;quot;...&amp;quot;/&amp;gt;&lt;/code&gt;.
-But it may require some customization.
-&lt;a href=&#34;http://cgross.github.io/angular-busy/demo&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Also, there are some &lt;a href=&#34;https://github.com/angular-ui/ui-router/issues/456&#34; title=&#34;Apply a custom animation to ui-view during resolve&#34; target=&#34;_blank&#34;&gt;examples&lt;/a&gt; how to add loading indicator to &lt;a href=&#34;https://github.com/angular-ui/ui-router&#34; target=&#34;_blank&#34;&gt;ui-router&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <description>Modern web application should be user friendly and notify the User when time consuming operation is on the way, e.g. uploading file or downloading data. There are a some solutions for AngularJS which are fairy easy to integrate.
+First one is Angular Loading Bar. It can be attached to your application with almost zero configuration and does not affect application design. It attaches the interceptor to $http service and displays a thin progressbar on the top edge of the page.</description>
     </item>
     
     <item>
@@ -55,57 +37,10 @@ But it may require some customization.
       <pubDate>Sat, 30 May 2015 09:53:19 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/05/30/tags-input-control-for-angularjs/</guid>
-      <description>&lt;p&gt;Stay &lt;abbr title=&#34;Don&#39;t Repeat Yourself&#34;&gt;DRY&lt;/abbr&gt;! Don&amp;rsquo;t waste your time implementing tags input control for AngularJS yourself! There is an excellent AngularJS module for that called &lt;a href=&#34;https://github.com/mbenford/ngTagsInput&#34; target=&#34;_blank&#34;&gt;&amp;laquo;ngTagsInput&amp;raquo;&lt;/a&gt;. It&amp;rsquo;s also supports autocomptetion, validations,custom styles and templates. See the &lt;a href=&#34;http://mbenford.github.io/ngTagsInput/demos&#34; target=&#34;_blank&#34;&gt;demos&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;It took me just 10 minutes to add that type of control to my application.&lt;/p&gt;
-
-&lt;p&gt;All you need to do is:
-1. Add NPM or Bower dependency&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;    npm install ng-tags-input --save
-    bower install ng-tags-input --save
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Include script and CSS to your html page. If you&amp;rsquo;re using some dependency injection pre-processor like &lt;a href=&#34;https://www.npmjs.com/package/gulp-inject&#34; target=&#34;_blank&#34;&gt;gulp-inject&lt;/a&gt; or &lt;a href=&#34;https://www.npmjs.com/package/gulp-ng-inject&#34; target=&#34;_blank&#34;&gt;gulp-ng-inject&lt;/a&gt; you don&amp;rsquo;t need it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script src=&amp;quot;angular.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;script src=&amp;quot;ng-tags-input.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot; href=&amp;quot;ng-tags-input.css&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;declare module dependency:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;angular.module(&#39;myApp&#39;, [&#39;ngTagsInput&#39;])
-    .controller(&#39;MyCtrl&#39;, function($scope, $http) {
-        $scope.tags = [
-            { text: &#39;just&#39; },
-            { text: &#39;some&#39; },
-            { text: &#39;cool&#39; },
-            { text: &#39;tags&#39; }
-        ];
-        $scope.loadTags = function(query) {
-             return $http.get(&#39;/tags?query=&#39; + query);
-        };
-    });
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Add input control to html&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;body ng-app=&amp;quot;myApp&amp;quot; ng-controller=&amp;quot;MyCtrl&amp;quot;&amp;gt;
-    &amp;lt;tags-input ng-model=&amp;quot;tags&amp;quot;&amp;gt;
-        &amp;lt;auto-complete source=&amp;quot;loadTags($query)&amp;quot;&amp;gt;&amp;lt;/auto-complete&amp;gt;
-    &amp;lt;/tags-input&amp;gt;
-&amp;lt;/body&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Pretty simple, isn&amp;rsquo;t it?
-The only thing to consider is handling of the &lt;code&gt;tags&lt;/code&gt; model. &lt;code&gt;$scope.tags&lt;/code&gt; will be an array of objects on the form &lt;code&gt;{text:value}&lt;/code&gt;. You may need to transfer them to array of strings:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;var tagValues = $scope.tags.map(function(input) {return input.text;});
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Stay DRY! Don&amp;rsquo;t waste your time implementing tags input control for AngularJS yourself! There is an excellent AngularJS module for that called &amp;laquo;ngTagsInput&amp;raquo;. It&amp;rsquo;s also supports autocomptetion, validations,custom styles and templates. See the demos.
+It took me just 10 minutes to add that type of control to my application.
+All you need to do is: 1. Add NPM or Bower dependency
+npm install ng-tags-input --save bower install ng-tags-input --save   Include script and CSS to your html page.</description>
     </item>
     
     <item>
@@ -114,10 +49,8 @@ The only thing to consider is handling of the &lt;code&gt;tags&lt;/code&gt; mode
       <pubDate>Sun, 10 May 2015 11:52:33 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</guid>
-      <description>&lt;p&gt;After playing with &lt;a href=&#34;http://ui-grid.info/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ui.grid&lt;/code&gt;&lt;/a&gt; I found &lt;a href=&#34;http://www.angulargrid.com&#34; target=&#34;_blank&#34;&gt;one more&lt;/a&gt; library to impmenent grids in AngularJS - &lt;a href=&#34;http://www.angulargrid.com&#34; target=&#34;_blank&#34;&gt;angularGrid&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s quite easy to integrate and faster than &lt;a href=&#34;http://ui-grid.info/&#34; target=&#34;_blank&#34;&gt;ui.grid&lt;/a&gt;. You may find other reasons of using this grid on the &lt;a href=&#34;http://www.angulargrid.com/why-the-world-needed-another-angularjs-grid/&#34; target=&#34;_blank&#34;&gt;author&amp;rsquo;s post&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <description>After playing with ui.grid I found one more library to impmenent grids in AngularJS - angularGrid.
+It&amp;rsquo;s quite easy to integrate and faster than ui.grid. You may find other reasons of using this grid on the author&amp;rsquo;s post.</description>
     </item>
     
     <item>
@@ -129,19 +62,7 @@ The only thing to consider is handling of the &lt;code&gt;tags&lt;/code&gt; mode
       <description>&lt;p&gt;I was a curious if there is a solution for implementing dynamic grids for AngularJS.&lt;/p&gt;
 
 &lt;p&gt;In particular, it should provide following basic features like server-side filtering, sorting and paging.
-&lt;/p&gt;
-
-&lt;p&gt;Google suggested a good &lt;a href=&#34;http://ngmodules.org/&#34; target=&#34;_blank&#34;&gt;angular modules directory&lt;/a&gt; where I found the solution very quickly.&lt;/p&gt;
-
-&lt;h2 id=&#34;ng-grid-https-angular-ui-github-io-ng-grid&#34;&gt;&lt;a href=&#34;https://angular-ui.github.io/ng-grid/&#34; target=&#34;_blank&#34;&gt;ng-grid&lt;/a&gt;&lt;/h2&gt;
-
-&lt;p&gt;This library supports both client-side and &lt;a href=&#34;https://angular-ui.github.io/ng-grid/#/paging&#34; target=&#34;_blank&#34;&gt;server-side&lt;/a&gt; data models.&lt;/p&gt;
-
-&lt;p&gt;In the example provided there is a function &lt;code&gt;getPagedDataAsync(pageSize, currentPage, searchText)&lt;/code&gt; which is responsible for getting data from server. It should be customized to be able to send filtering and sorting options to server with JSON request, so it should work as expected.&lt;/p&gt;
-
-&lt;p&gt;Also, there is a support for cell and row templates, selection handling, excel-style data editing, column pinning and even for groupping (make sense for client side data model).&lt;/p&gt;
-
-&lt;p&gt;Example is also available &lt;a href=&#34;http://plnkr.co/edit/50vJrs?p=preview&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="generator" content="Hugo 0.19" />
+    <meta name="generator" content="Hugo 0.20-DEV" />
 
     
     
@@ -27,7 +27,7 @@
 
 
 
-<meta property="og:updated_time" content="2017-03-07T08:48:34&#43;02:00"/>
+<meta property="og:updated_time" content="2017-03-28T00:00:00&#43;00:00"/>
 
 
 
@@ -65,8 +65,8 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../assets/css/style.css?v=1490679812">
-    <link rel="stylesheet" href="../assets/css/prism.min.css?v=1490679812"/>
+    <link rel="stylesheet" href="../assets/css/style.css?v=1490852713">
+    <link rel="stylesheet" href="../assets/css/prism.min.css?v=1490852713"/>
 
     <script type="text/javascript">
         
@@ -204,6 +204,70 @@
          role="article" class="post-item">
   <header class="post-item-header">
     <h2 itemprop="name" class="post-item-title">
+      <a href="https://konstantinpavlov.net/blog/2017/03/28/logging-policy/" itemprop="url" data-pjax title="Logging Policy">
+        Logging Policy
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>There are different points of view on how logging levels should be used in code. I will share mine.
+My assumption is: &laquo;There should be no errors in logs when everything is fine.&raquo;
+The idea is that the strongest log level should trigger alarm causing immediate notification (push or SMS) to operations team.
+Accordingly, that&rsquo;s how logging levels should be used:
+ error &ndash; Some action should be taken immediately! Ops team should enable email or sms notifications when a message of that king appears in logs.<a href="https://konstantinpavlov.net/blog/2017/03/28/logging-policy/" itemprop="url" data-pjax title="Logging Policy">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2017-03-28' itemprop="datePublished">
+          2017-03-28
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../categories/programming/" data-pjax rel="category" >programming</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../categories/devops/" data-pjax rel="category" >devops</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../tags/java/" data-pjax rel="tag">#java</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="https://konstantinpavlov.net/blog/2017/03/28/logging-policy/#disqus_thread" data-disqus-identifier='20170328000000'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T2M" />
+        ~2 min
+      </li>
+    </ul>
+  </footer>
+</article>
+              
+              <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
       <a href="https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/" itemprop="url" data-pjax title="Application Development Top-Down">
         Application Development Top-Down
       </a>
@@ -276,8 +340,8 @@ The development usually starts from data modeling, persistence and service layer
     </h2>
   </header>
   <section itemprop="description" class="post-item-excerpt">
-    <p>A common goal in product development is to start UI and system integration testing as early as possible, maybe even before backend is completed.
-It depends on the product a lot. But when we&rsquo;re talking about web, it is often not clear how the final solution should look like and behave. If so, it is not reasonable to spend much time writing UI tests using tools like Selenium before the first prototype is ready.<a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/" itemprop="url" data-pjax title="How to Start Testing UI Before Backend is Ready">&hellip;</a></p>
+    <p>Recently I was asked how to start with testing UI before backend is completed.
+It depends on the product a lot. But when we&rsquo;re talking about web, it is often not clear how the final solution should look like and behave. If so, it is not reasonable to spend much time writing UI tests using tools like Selenium before the first prototype is ready. It is not reasonable to write a presentation layer and, in some cases, a business logic on server side before it is clear what kind of data is required for UI.<a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/" itemprop="url" data-pjax title="How to Start Testing UI Before Backend is Ready">&hellip;</a></p>
   </section>
   <footer class="post-item-footer">
     <ul class="post-item-meta-list">
@@ -4627,8 +4691,6 @@ The things you need to configure axis client are:</p><a href="https://konstantin
   <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
 </footer>
 
-
-
           </div>
         </section>
       </div>
@@ -4654,8 +4716,8 @@ The things you need to configure axis client are:</p><a href="https://konstantin
          <a href="../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../assets/js/prism.min.js?v=1490679812"></script>
-    <script src="../assets/js/foot-scripts.min.js?v=1490679812"></script>
+    <script src="../assets/js/prism.min.js?v=1490852713"></script>
+    <script src="../assets/js/foot-scripts.min.js?v=1490852713"></script>
 
     <script type="text/javascript">
 
