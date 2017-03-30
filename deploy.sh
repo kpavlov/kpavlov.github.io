@@ -5,8 +5,7 @@ REPO=${GIT_DEPLOY_REPO:-git@github.com:kpavlov/kpavlov.github.io.git}
 rm -rf public
 git clone --branch master --depth 1 --single-branch ${REPO} public
 
-mkdir -p themes
-(cd themes && rm -rf hugo-theme-ghostiumx && git clone --depth 1 --branch master --single-branch https://github.com/kpavlov/hugo-theme-ghostiumx.git)
+source ./theme.sh
 
 commit_title=`git log -n 1 --format="%s" HEAD`
 
