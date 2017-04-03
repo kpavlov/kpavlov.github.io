@@ -1,3 +1,4 @@
+osx_image: xcode8.3
 language: go
 go:
   - 1.7
@@ -7,9 +8,9 @@ branches:
   - source
 
 before_install:
-  - wget https://github.com/spf13/hugo/releases/download/v0.19/hugo_0.19_i386.deb
-  - sudo dpkg -i hugo_0.19_i386.deb
-
+  - brew update
+  - brew install hugo
+  
 before_script:
 - git config --global user.name 'Travis CI on behalf of Konstantin Pavlov'
 - git config --global user.email 'git@konstantinpavlov.net'
