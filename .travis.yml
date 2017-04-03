@@ -7,8 +7,9 @@ branches:
   - source
 
 before_install:
-  - curl -s https://github.com/spf13/hugo/releases/download/v0.19/hugo_0.19_Linux-32bit.tar.gz
+  - wget https://github.com/spf13/hugo/releases/download/v0.19/hugo_0.19_Linux-32bit.tar.gz
   - tar -zxvf hugo_0.19_Linux-32bit.tar.gz
+  - ls -alr .
   - mv hugo_0.19_linux_386/hugo_0.19_linux_386 ./hugo
 
 before_script:
