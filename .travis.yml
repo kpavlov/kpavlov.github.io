@@ -1,4 +1,3 @@
-os: osx
 language: go
 go:
   - 1.7
@@ -8,8 +7,9 @@ branches:
   - source
 
 before_install:
-  - brew update
-  - brew install hugo
+  - curl -s https://github.com/spf13/hugo/releases/download/v0.19/hugo_0.19_Linux-32bit.tar.gz | tar xvf - -C ./
+  - ls -alR ./
+  - mv hugo_0.19_linux_386 hugo
 
 before_script:
 - git config --global user.name 'Travis CI on behalf of Konstantin Pavlov'
