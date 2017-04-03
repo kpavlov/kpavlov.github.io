@@ -1,7 +1,8 @@
 ---
 title: "How To Export Spring Managed Bean To JNDI"
 date: 2009-01-01T00:01:00
-alias: /2009/01/how-to-export-spring-managed-bean-to.html
+aliases:
+  - /2009/01/how-to-export-spring-managed-bean-to.html
 categories:
  - programming
 tags:
@@ -25,28 +26,28 @@ public class JndiExporter implements InitializingBean, DisposableBean {
     private String jndiName;
     private Object bean;
     private final JndiTemplate jndiTemplate = new JndiTemplate();
-    
+
     public String getJndiName() {
         return jndiName;
     }
-    
+
     public void setJndiName(String jndiName) {
         this.jndiName = jndiName;
     }
-    
+
     public Object getBean() {
         return bean;
     }
-    
+
     public void setBean(Object bean) {
         this.bean = bean;
     }
-    
-    
+
+
     public void afterPropertiesSet() throws Exception {
         jndiTemplate.bind(jndiName, bean);
     }
-    
+
     public void destroy() throws Exception {
         if (bean != null && jndiName != null && bean == jndiTemplate.lookup(jndiName)) {
             jndiTemplate.unbind(jndiName);
@@ -69,9 +70,9 @@ Add following fragment to spring configuration (_applicationContext.xml_):
 Don't forget to make your bean implementing `java.io.Serializable` interface.
 Now we can lookup exported bean by adding to the spring config file (_applicationContext.xml_):
 
-```xml 
+```xml
 <jee:jndi-lookup id="myJndiBean" jndi-name="MyJNDIName" proxy-interface="com.example.IMyBean" lookup-on-startup="false"/>
 ```
 
 If you have another bean depending on JNDI resource you may try to load you that bean lazily by setting `lazy-init="true"`.
-You may also try to set `lazy-init="false"` for the `JndiExporter` to ensure that the Exporter will be loaded before JNDI-dependent bean or play with `"depends-on"` bean attributes. 
+You may also try to set `lazy-init="false"` for the `JndiExporter` to ensure that the Exporter will be loaded before JNDI-dependent bean or play with `"depends-on"` bean attributes.

@@ -1,9 +1,9 @@
 ---
-type: page
-
 title: "About Me"
 comments: false
-photos: 
+author: false
+date: 1970-01-01
+photos:
   - /assets/cover.jpg
 ---
 I have been writing software for more than 15 years. Starting with BASIC on [ZX Spectrum][zx-spectrum] and Pascal on x86, moving onto full stack Java / J2EE / GWT and now focusing on Core Java / [Spring](https://spring.io) / Javascript and [React](https://facebook.github.io/react).
@@ -12,7 +12,7 @@ I believe in agility in software development, practicing <abbr title="Single res
 
 Currently I'm living in Limassol, Cyprus, contracting in financial industry.
 
-[LinkedIn][linkedin] | [GitHub][github] 
+[LinkedIn][linkedin] | [GitHub][github]
 
 [solid]: http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29
 [tdd]: http://en.wikipedia.org/wiki/Test-driven_development
@@ -22,4 +22,3 @@ Currently I'm living in Limassol, Cyprus, contracting in financial industry.
 [github]: https://github.com/kpavlov
 [fixparser]: http://fix.aprics.net/ "Online FIX Protocol Message Parser"
 [zx-spectrum]: https://en.wikipedia.org/wiki/ZX_Spectrum "My first PC"
-                                     

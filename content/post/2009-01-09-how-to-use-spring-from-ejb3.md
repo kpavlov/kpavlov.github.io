@@ -1,7 +1,8 @@
 ---
 title: "How to Use Spring from EJB3"
 date: 2009-01-09T17:23:00
-alias: /2007/05/configuring-ws-security-for-axis-14.html
+aliases:
+  - /2007/05/configuring-ws-security-for-axis-14.html
 categories:
  - programming
 tags:

@@ -1,7 +1,8 @@
 ---
 title: Crearing an array in JavaScript
 date: '2013-01-27T17:26:00+02:00'
-alias: /post/41619604653/how-to-clear-array-in-javascript
+aliases:
+  - /post/41619604653/how-to-clear-array-in-javascript
 categories:
   - programming
 tags:

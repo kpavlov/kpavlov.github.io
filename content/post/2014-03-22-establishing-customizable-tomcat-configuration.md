@@ -7,7 +7,8 @@ categories:
 tags:
  - tomcat
  - spring
-alias: [post/80352392033/establishing-customizable-tomcat-configuration]
+aliases:
+   - /post/80352392033/establishing-customizable-tomcat-configuration
 ---
 
 Deploying to [Apache Tomcat](http://tomcat.apache.org) often requires making changes to default configuration.

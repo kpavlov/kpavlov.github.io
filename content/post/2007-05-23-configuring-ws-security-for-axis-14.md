@@ -1,7 +1,8 @@
 ---
 title: "Configuring WS-Security for Axis 1.4 client"
 date: 2007-05-23T14:13:00
-alias: /2007/05/configuring-ws-security-for-axis-14.html
+aliases:
+  - /2007/05/configuring-ws-security-for-axis-14.html
 categories:
  - programming
 tags:

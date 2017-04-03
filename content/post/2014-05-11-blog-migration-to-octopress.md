@@ -7,7 +7,6 @@ categories:
 ---
 I have recently migrated my blog from Blogger and Tumblr to Octopress.
 Process was fairy simple. I found two scripts to convert my old posts to Markdown files for Octopress.
-
 <!--more-->
 ## Importing Blogger Blog Posts to Octopress
 

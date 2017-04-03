@@ -2,7 +2,8 @@
 title: "Netty: How to Initiate SSL Handshake From Client"
 date: "2013-04-23T12:55:57"
 comments: true
-alias: /2013/04/netty-ssl-handshake-initiation-from-client.html
+aliases:
+  - /2013/04/netty-ssl-handshake-initiation-from-client.html
 categories:
   - programming
 tags:

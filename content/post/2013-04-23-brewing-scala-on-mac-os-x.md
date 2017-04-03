@@ -2,7 +2,8 @@
 title: "Brewing Scala on Mac OS X"
 date: 2013-04-23 13:58:54 +0300
 comments: true
-alias: /2013/04/brewing-scala-on-mac-osx.html
+aliases:
+  - /2013/04/brewing-scala-on-mac-osx.html
 categories:
   - programming
 tags:

@@ -1,7 +1,8 @@
 ---
 title: Javascript Solari Board
 date: '2013-12-21T22:07:59+02:00'
-alias: /post/70721412146/solari-board-is-a-javascript-app-for-displaying
+aliases:
+  - /post/70721412146/solari-board-is-a-javascript-app-for-displaying
 categories:
   - devops
 tags:

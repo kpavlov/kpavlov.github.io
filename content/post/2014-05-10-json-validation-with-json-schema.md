@@ -2,7 +2,8 @@
 title: "JSON Validation with JSON Schema"
 date: 2014-05-10 15:48:12 +0300
 comments: true
-alias: /2013/10/json-validation.html
+aliases:
+  - /2013/10/json-validation.html
 categories:
   - programming
 tags:

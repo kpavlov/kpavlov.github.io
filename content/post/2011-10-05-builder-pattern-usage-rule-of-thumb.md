@@ -6,7 +6,8 @@ categories:
   - programming
 tags:
   - design patterns
-alias: /2011/10/builder-pattern-usage-rule-of-thumb.html
+aliases:
+  - /2011/10/builder-pattern-usage-rule-of-thumb.html
 ---
 
 [Builder Pattern][builder] is a creational design pattern. But, like any other pattern, it should be used judiciously.

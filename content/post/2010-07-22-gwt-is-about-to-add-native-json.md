@@ -1,7 +1,8 @@
 ---
 title: "GWT is about to add Native JSON function support in version 2.1"
 date: 2010-07-22T17:20:00
-alias: /2013/05/gwt-is-about-to-add-native-json.html
+aliases:
+  - /2013/05/gwt-is-about-to-add-native-json.html
 categories:
  - programming
 tags:
