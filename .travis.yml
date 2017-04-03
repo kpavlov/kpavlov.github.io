@@ -2,16 +2,13 @@ branches:
   only:
   - source
 
-before_install:
+before_script:
   - wget https://github.com/spf13/hugo/releases/download/v0.19/hugo_0.19_Linux-32bit.tar.gz
   - tar -zxvf hugo_0.19_Linux-32bit.tar.gz
   - mv hugo_0.19_linux_386/hugo_0.19_linux_386 ./hugo
-  - ls -alR .
-  - alias hugo='./hugo'
-
-before_script:
-- git config --global user.name 'Travis CI on behalf of Konstantin Pavlov'
-- git config --global user.email 'git@konstantinpavlov.net'
+  - export PATH=$PATH:$PWD/
+  - git config --global user.name 'Travis CI on behalf of Konstantin Pavlov'
+  - git config --global user.email 'git@konstantinpavlov.net'
 
 script:
   - ./deploy.sh
