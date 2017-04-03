@@ -2,14 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Design Patterns on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/design-patterns/</link>
+    <link>https://konstantinpavlov.net/tags/design-patterns/index.xml</link>
     <description>Recent content in Design Patterns on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Oct 2011 12:37:37 +0000</lastBuildDate>
-    
-	<atom:link href="https://konstantinpavlov.net/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://konstantinpavlov.net/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Builder Pattern Usage: Rule of Thumb</title>
@@ -18,7 +15,73 @@
       
       <guid>https://konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;http://en.wikipedia.org/wiki/Builder_pattern&#34; title=&#34;Builder Design Pattern&#34; target=&#34;_blank&#34;&gt;Builder Pattern&lt;/a&gt; is a creational design pattern. But, like any other pattern, it should be used judiciously.
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;p&gt;It is good when:
+ 1. Creating complex immutable objects
+ 2. Preventing objects being created to be used before initialization is complete.&lt;/p&gt;
+
+&lt;h2 id=&#34;complex-immutable-objects&#34;&gt;Complex Immutable Objects&lt;/h2&gt;
+
+&lt;p&gt;It&amp;rsquo;s important that object being created should be Complex enough and Immutable.
+Overwise it may be an overkill to use a Builder for simple cases.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If object is not complex enough — you may use more simple ways of creating new object, e.g. use static &lt;a href=&#34;https://en.wikipedia.org/wiki/Factory_method&#34; target=&#34;_blank&#34;&gt;factory method&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;If object is not immutable — use setter methods&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;What kind of object are complex? Much depends on context, of course.
+But if object has less than than 2-3 constructor parameters is unlikely to be complex enough to use the Builder.
+I.e, if object can be created with factory method with up to 3 parameters, than object is simple and using Builder pattern is overkill.&lt;/p&gt;
+
+&lt;p&gt;One more pattern should be recalled here is &lt;a href=&#34;https://en.wikipedia.org/wiki/Value_object&#34; target=&#34;_blank&#34;&gt;Value Object&lt;/a&gt; or &lt;a href=&#34;https://en.wikipedia.org/wiki/Data_transfer_object&#34; target=&#34;_blank&#34;&gt;Data Transfer Object (DTO)&lt;/a&gt;.
+Value objects or DTOs may be passed as a constructor parameters to simplify object creation.&lt;/p&gt;
+
+&lt;h2 id=&#34;preventing-early-object-access&#34;&gt;Preventing early object access&lt;/h2&gt;
+
+&lt;p&gt;Builder may be used to create an object which should not be used unless fully initialized.
+Initializing object using setter methods does not prevent client from calling other object business methods. To handle this incomplete state correctly you normally should perform object state check in the beginning of every business method and throw &lt;code&gt;IllegalStateException&lt;/code&gt;&amp;hellip; or just prevent object to be created in inconsistent state.
+One of the way to to this it is to use Builder.
+But anyway, you should check if all the parameters are initialized inside &lt;code&gt;builder.build()&lt;/code&gt; method or inside object constructor:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;import org.apache.commons.lang3.Validate;
+public class PingResponseBuilder {
+    private String serverName;
+    private long timestamp;
+
+    public void setServerName(String name) {
+        this.serverName = name;
+    }
+
+    public void setTimestamp(long millis) {
+        this.timestamp = millis;
+    }
+
+    private void validate() {
+        Validate.notBlank(serverName, &amp;quot;The serverName must not be blank&amp;quot;);
+        Validate.isTrue(timestamp&amp;gt;0, &amp;quot;The timestamp must be greater than zero: %s&amp;quot;, timestamp);
+    }
+
+    public PingResponse build() {
+        validate();
+        return new PingResponse(serverName, timestamp);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Please keep in mind, that although memory is cheap and processors are fast, creating the new Builder instance for every created object instance is not very efficient. You may re-use single builder object (in a thread-safe manner!!!) for creating multiple object instances by setting differing properties, e.g.:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;PingResponseBuilder builder = new PingResponseBuilder();
+builder.setServerName(&amp;quot;A Test Server&amp;quot;);
+builder.setFoo(&amp;quot;foo&amp;quot;);
+builder.setBar(&amp;quot;bar&amp;quot;);
+builder.setBaz(&amp;quot;baz&amp;quot;);
+
+PingResponse firstResponse = builder.setTimestamp(System.currentTimeMillis()).build();
+
+PingResponse nextResponse = builder.setTimestamp(System.currentTimeMillis()).build();
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
   </channel>

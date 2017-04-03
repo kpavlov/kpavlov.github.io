@@ -2,14 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Logging on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/logging/</link>
+    <link>https://konstantinpavlov.net/tags/logging/index.xml</link>
     <description>Recent content in Logging on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 Jul 2015 14:01:33 +0000</lastBuildDate>
-    
-	<atom:link href="https://konstantinpavlov.net/tags/logging/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://konstantinpavlov.net/tags/logging/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Secure Java Logging with Logback</title>
@@ -17,10 +14,159 @@
       <pubDate>Sun, 26 Jul 2015 14:01:33 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/07/26/secure-java-logging-with-logback/</guid>
-      <description>Deploying application into secure environment adds some restrictions on logging and log management. OWASP community gives some useful recommendations.
-OWASP Security Testing Guide Recommendations OWASP Security Testing Guide defines a number of questions to be answered when reviewing applciaiton logging configuration (see OTG-CONFIG-002):
-1. Do the logs contain sensitive information? Log files should not contain any sensitive data. Anyway, log file access must be restricted:
- Event log information should never be visible to end users.</description>
+      <description>
+
+&lt;p&gt;Deploying application into secure environment adds some restrictions on logging and log management. &lt;a href=&#34;https://www.owasp.org&#34; target=&#34;_blank&#34;&gt;OWASP community&lt;/a&gt; gives some useful recommendations.&lt;/p&gt;
+
+&lt;h1 id=&#34;owasp-security-testing-guide-recommendations&#34;&gt;OWASP Security Testing Guide Recommendations&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.owasp.org/images/5/52/OWASP_Testing_Guide_v4.pdf&#34; target=&#34;_blank&#34;&gt;OWASP Security Testing Guide&lt;/a&gt; defines a number of questions to be answered when reviewing applciaiton logging configuration (see &lt;a href=&#34;https://www.owasp.org/images/5/52/OWASP_Testing_Guide_v4.pdf&#34; target=&#34;_blank&#34;&gt;OTG-CONFIG-002&lt;/a&gt;):&lt;/p&gt;
+
+&lt;h2 id=&#34;1-do-the-logs-contain-sensitive-information&#34;&gt;1. Do the logs contain sensitive information?&lt;/h2&gt;
+
+&lt;p&gt;Log files should not contain any sensitive data. Anyway, log file access must be restricted:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Event log information should never be visible to end users. Even web administrators should not be able to see such logs since it breaks
+separation of duty controls. Ensure that any access control schema that is used to protect access to raw logs and any applications providing capabilities to view or search the logs is not linked with access control schemas for other application user roles. Neither should any
+log data be viewable by unauthenticated users.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The consequence is that you should not use same authentication mechanism to access application and accessing the log files.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Also, in some jurisdictions, storing some sensitive information in log files, such as personal data, might oblige the enterprise to apply the data protection laws that they would apply to their back-end databases to log files too. And failure to do so, even unknowingly, might
+carry penalties under the data protection laws that apply.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It&amp;rsquo;s not easy to make sure that no sensitive information is not printed to log. When using &lt;a href=&#34;http://logback.qos.ch/&#34; target=&#34;_blank&#34;&gt;logback&lt;/a&gt; it is possible to conigure &lt;a href=&#34;http://logback.qos.ch/manual/layouts.html#replace&#34; target=&#34;_blank&#34;&gt;regexp replace pattern&lt;/a&gt; to wipe certain data from log files being written, e.g. &lt;a href=&#34;http://stackoverflow.com/a/4624952/3315474&#34; target=&#34;_blank&#34;&gt;mask passwords&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To mask credit card number (PAN) you may use the following expression (&lt;code&gt;logback.xml&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;pattern&amp;gt;%-5level - %replace(%msg){&#39;\d{12,19}&#39;, &#39;XXXX&#39;}%n&amp;lt;/pattern&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This expression will replace all numbers with 12 to 19 digits with &lt;code&gt;XXXX&lt;/code&gt;, so some other data will be masked.&lt;/p&gt;
+
+&lt;p&gt;Another pattern variation honors only 16-digit card numbers (PANs) with selective &lt;a href=&#34;https://en.wikipedia.org/wiki/Bank_card_number#Issuer_identification_number_.28IIN.29&#34; target=&#34;_blank&#34;&gt;first digit&lt;/a&gt; and supports spaces between digit groups:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;pattern&amp;gt;%-5level - %replace(%msg){&#39;[1-6][0-9]{3}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}|5[1-5][0-9]{2}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}&#39;, &#39;XXXX&#39;}%n&amp;lt;/pattern&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Masking PANs with Logback is the last resort to ensure the data is masked with a false-positive hits. It is preferrable to mask the data before it is being written to log in the applciation code.&lt;/p&gt;
+
+&lt;p&gt;You may read about securing coding practices in &lt;a href=&#34;../../2015/08/01/secure-java-coding-best-practices/&#34; title=&#34;Secure Java Coding Best Practices&#34;&gt;my next post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-are-the-logs-stored-in-a-dedicated-server&#34;&gt;2. Are the logs stored in a dedicated server?&lt;/h2&gt;
+
+&lt;p&gt;It is advised to keep log files on the separate server to prevent removing/cleaning log files by attacker and to ease of centralized log file analysis.&lt;/p&gt;
+
+&lt;p&gt;Logback offers &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#SocketAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;SocketAppender&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;SimpleSocketServer&lt;/code&gt; and &lt;a href=&#34;http://logback.qos.ch/manual/usingSSL.html&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;SSLSocketAppender&lt;/code&gt;&lt;/a&gt; with &lt;code&gt;SimpleSSLSocketServer&lt;/code&gt; for logging on a remote server instance.&lt;/p&gt;
+
+&lt;p&gt;Second option is &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#DBAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;DBAppender&lt;/code&gt;&lt;/a&gt; to write logs to the database thus keeping them apart from application instance.&lt;/p&gt;
+
+&lt;p&gt;Other option is to use &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#SyslogAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;SyslogAppender&lt;/code&gt;&lt;/a&gt; and delegate logging to system syslog service. But is is not secure enougth: in the system will be hacked, the hacker may re-configure syslog not to send any events to remote log server.&lt;/p&gt;
+
+&lt;p&gt;When using a &lt;a href=&#34;http://logstash.net/&#34; target=&#34;_blank&#34;&gt;Logstash&lt;/a&gt; server, you may send events via &lt;a href=&#34;https://github.com/logstash/logstash-logback-encoder&#34; target=&#34;_blank&#34;&gt;Logstash Logback Encoder&lt;/a&gt;. Thare are &lt;a href=&#34;https://github.com/logstash/logstash-logback-encoder#usage&#34; target=&#34;_blank&#34;&gt;handful of appenders&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also, ypu may consider using &lt;a href=&#34;http://audit.qos.ch/&#34; target=&#34;_blank&#34;&gt;logback-audit&lt;/a&gt; which provides logging vis dedicated log server or directly to the database.&lt;/p&gt;
+
+&lt;h2 id=&#34;3-can-log-usage-generate-a-denial-of-service-condition&#34;&gt;3. Can log usage generate a Denial of Service condition?&lt;/h2&gt;
+
+&lt;p&gt;In case of exceptions on production due to invalid data provided in the request, the exceptions may be printed to logs and cause high IO consumption. This may lead to server unavailability.&lt;/p&gt;
+
+&lt;h3 id=&#34;log-asynchronously&#34;&gt;Log Asynchronously&lt;/h3&gt;
+
+&lt;p&gt;Logback offers some kind of protection against log overhead.
+First is using &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#AsyncAppender&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;AsyncAppender&lt;/code&gt;&lt;/a&gt; to queue log events and spread the load. Set &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#asyncQueueSize&#34; target=&#34;_blank&#34;&gt;queueSize&lt;/a&gt; wisely. Default value is 256 which is not enougth.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;re fine with loosing some less important details then use &lt;code&gt;AsyncAppender&lt;/code&gt; with &lt;a href=&#34;http://logback.qos.ch/manual/appenders.html#asyncDiscardingThreshold&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;discardingThreshold&lt;/code&gt;&lt;/a&gt;. Uf the event queue has only 20% capacity remaining, events with fine-grained logging category will be dropped.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://logstash.net/&#34; target=&#34;_blank&#34;&gt;Logstash&lt;/a&gt; provides the &lt;a href=&#34;https://github.com/logstash/logstash-logback-encoder/blob/master/src/main/java/net/logstash/logback/appender/LoggingEventAsyncDisruptorAppender.java&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;AsyncDisruptorAppender&lt;/code&gt;&lt;/a&gt; from the which is similar to logback&amp;rsquo;s &lt;code&gt;AsyncAppender&lt;/code&gt;, except that a &lt;a href=&#34;https://github.com/LMAX-Exchange/disruptor&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;LMAX Disruptors&lt;/code&gt;&lt;/a&gt; &lt;code&gt;RingBuffer&lt;/code&gt; is used as the queuing mechanism, as opposed to a &lt;code&gt;BlockingQueue&lt;/code&gt; providing higher throughput and less GC overhead. These async appenders can delegate to any other underlying logback appender, including standard Logback file appenders. Set LMAX RingBuffer size wizely. Too low values may cause the the blocking of entire application.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Think twice before enabling Async Logging!&lt;/strong&gt; As far as ensuring that a message has been successfully written before the app continues is concerned, you should not log asynchronously.&lt;/p&gt;
+
+&lt;h3 id=&#34;use-appropriate-logging-levels&#34;&gt;Use Appropriate Logging Levels&lt;/h3&gt;
+
+&lt;p&gt;Specifying inappropriate log levels in application and appenders may cause excessive load on production server.
+You&amp;rsquo;re not going to debug on production, right? Then why you are print valuable data with &lt;code&gt;DEBUG&lt;/code&gt; level?
+On production configuration, default appender&amp;rsquo;s logging level shoud be &lt;strong&gt;INFO&lt;/strong&gt;.
+If you always need some information - use &lt;strong&gt;INFO&lt;/strong&gt; level in the application and use the database to save data like raw requests.
+Debugging should be enabled on produciton only in critical situations.&lt;/p&gt;
+
+&lt;h2 id=&#34;4-how-are-the-log-files-rotated-are-logs-kept-for-the-sufficient-time&#34;&gt;4. How are the log files rotated? Are logs kept for the sufficient time?&lt;/h2&gt;
+
+&lt;p&gt;Log files should be rotated at least daily. Reasonable log history depth is 6 months. Some regulations may require to keep log files longer in case of investigations.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Some servers might rotate logs when they reach a given size. If this
+happens, it must be ensured that an attacker cannot force logs to rotate in order to hide his tracks.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;5-how-are-logs-reviewed-can-administrators-use-these-reviews-to-detect-targeted-attacks&#34;&gt;5. How are logs reviewed? Can administrators use these reviews to detect targeted attacks?&lt;/h2&gt;
+
+&lt;p&gt;Log files can be used for attac detection. For example, the first phases of a SQL injection attack may producte 50x (server errors) or 40x (request errors) messages.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Log statistics or analysis should not be generated, nor stored, in the same server that produces the logs. Otherwise, an attacker might, through a web server vulnerability or improper configuration, gain access to them and retrieve similar information as would be disclosed by
+log files themselves.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;6-how-are-log-backups-preserved&#34;&gt;6. How are log backups preserved?&lt;/h2&gt;
+
+&lt;h3 id=&#34;make-log-files-append-only&#34;&gt;Make Log Files Append-only&lt;/h3&gt;
+
+&lt;p&gt;Other type of attack is modification logging configuration file in order to hide the fact of attack.
+Use &lt;a href=&#34;https://en.wikipedia.org/wiki/Mandatory_access_control&#34; target=&#34;_blank&#34;&gt;Mandatory Access Controls&lt;/a&gt; on the log file to make it append-only to users of the app, to mitigate the possibility of tampering or removing existing messages.&lt;/p&gt;
+
+&lt;p&gt;The simplest way to make files append-only is probably &lt;a href=&#34;http://unix.stackexchange.com/a/59983&#34; target=&#34;_blank&#34;&gt;this&lt;/a&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo chattr +a *.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo chattr +a *.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also don&amp;rsquo;t forget to &lt;a href=&#34;http://unix.stackexchange.com/a/1315/125877&#34; target=&#34;_blank&#34;&gt;set default file attributes&lt;/a&gt; for log directory&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# owner make the owner to be root and java group
+sudo chown root:java /var/log/java
+# set uid and gid   
+sudo chmod ug+s /var/log/java  
+# set group to w default
+sudo setfacl -d -m g::w /var/log/java  
+# set nothing to other
+sudo setfacl -d -m o::--- /var/log/java
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;make-backups&#34;&gt;Make Backups&lt;/h3&gt;
+
+&lt;p&gt;You need to backup the logs, defenitely, as well as other applicaiton data.&lt;/p&gt;
+
+&lt;p&gt;You could additionally take periodic backups of the log file to ensure that nothing has been changed or removed between backups. This assumes that access to your backups is also controlled &amp;ndash; a third party who can tamper with your backups can tamper with your log files in an undetectable fashion.&lt;/p&gt;
+
+&lt;h2 id=&#34;7-is-the-data-being-logged-data-validated-min-max-length-chars-etc-prior-to-being-logged&#34;&gt;7. Is the data being logged data validated (min/max length, chars etc) prior to being logged?&lt;/h2&gt;
+
+&lt;p&gt;Be carefull what are you writting to logs. Always ask yourself: &lt;em&gt;&amp;laquo;Is it possible to produce big or huge logging output?&amp;raquo;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Be carefull when &lt;a href=&#34;http://www.slideshare.net/KonstantinPavlov/playing-the-tostrings&#34; target=&#34;_blank&#34;&gt;implementing the method &lt;code&gt;toString()&lt;/code&gt;&lt;/a&gt;.
+Include only minimum necessary information &lt;code&gt;in toString()&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;h1 id=&#34;further-steps-protect-your-logging-configuration&#34;&gt;Further steps: Protect your logging configuration&lt;/h1&gt;
+
+&lt;p&gt;Logback configuration can be included inside application (jar file) or be located in external file (&lt;code&gt;logback.xml&lt;/code&gt;). Hacker may try to modify or remove &lt;code&gt;logback.xml&lt;/code&gt;.
+In order to prevent this attack, &lt;code&gt;logback.xml&lt;/code&gt; should be:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Can not be modified by application user.&lt;/li&gt;
+&lt;li&gt;Monitored by intrusion detection system.&lt;/li&gt;
+&lt;li&gt;Logback auto-reload feature must not be enabled to prevent replacing configuration of the running java applicaiton.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Although auto-reload is very attractive feature of logback, it is reasonable to sacrifice it in favor of security.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

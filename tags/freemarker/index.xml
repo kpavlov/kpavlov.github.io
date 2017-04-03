@@ -2,14 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Freemarker on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/freemarker/</link>
+    <link>https://konstantinpavlov.net/tags/freemarker/index.xml</link>
     <description>Recent content in Freemarker on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Feb 2016 18:15:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://konstantinpavlov.net/tags/freemarker/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://konstantinpavlov.net/tags/freemarker/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Spring&#43;Freemarker Tips</title>
@@ -18,7 +15,46 @@
       
       <guid>https://konstantinpavlov.net/blog/2016/02/21/spring-freemarker-tips/</guid>
       <description>&lt;p&gt;I hope you will find following tips useful when developing &lt;a href=&#34;https://projects.spring.io/spring-boot&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; application with &lt;a href=&#34;http://freemarker.org&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Enable auto-reload of freemarker templates&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Create spring boot development profile (e.g. &amp;laquo;local&amp;raquo;)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Disable template caching and enable file access rather than classpath resource access to templates (&lt;em&gt;application-local.properties&lt;/em&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.cache=false
+spring.freemarker.prefer-file-system-access=true
+spring.freemarker.template-loader-path=file:${user.home}/projects/example/src/main/resources/templates
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Add &lt;code&gt;src/main/resources/freemarker_implicit.ftl&lt;/code&gt; to declare your oftenly used types (_freemarker&lt;em&gt;implicit.ftl&lt;/em&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-freemarker&#34;&gt;[#ftl]
+[#-- @implicitly included --]
+[#-- @ftlvariable name=&amp;quot;items&amp;quot; type=&amp;quot;java.util.List&amp;lt;com.example.domain.Item&amp;gt;&amp;quot; --]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Set setting &lt;code&gt;url_escaping_charset&lt;/code&gt; to avoid specifying it in templates (&lt;em&gt;application-local.properties&lt;/em&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.settings.url_escaping_charset=UTF-8
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;You may want to import your default layout to all your pages automatically (&lt;em&gt;application.properties&lt;/em&gt;)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.settings.auto_import=layout/defaultLayout.ftl as layout
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is equivalent to adding explicitly to your page:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-freemarker&#34;&gt;&amp;lt;#import &amp;quot;../layout/defaultLayout.ftl&amp;quot; as layouts&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Why Freemarker and not a &lt;a href=&#34;http://www.thymeleaf.org/&#34; target=&#34;_blank&#34;&gt;Thymeleaf&lt;/a&gt;? Because Thymeleaf is one of the &lt;a href=&#34;https://github.com/jreijn/spring-comparing-template-engines#benchmarks-2015&#34; target=&#34;_blank&#34;&gt;slowest&lt;/a&gt; template engines for Java. Freemarker is in the middle of the list, 1.5 times faster than Thymeleaf. &lt;a href=&#34;http://velocity.apache.org/&#34; target=&#34;_blank&#34;&gt;Velocity&lt;/a&gt; or &lt;a href=&#34;https://github.com/samskivert/jmustache&#34; target=&#34;_blank&#34;&gt;JMustache&lt;/a&gt; are even faster, but the difference is not as big and Freemarker has quite a lot of useful features.&lt;/p&gt;</description>
     </item>
     
   </channel>

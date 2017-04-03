@@ -2,14 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jenkins on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/jenkins/</link>
+    <link>https://konstantinpavlov.net/tags/jenkins/index.xml</link>
     <description>Recent content in Jenkins on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Jul 2016 17:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://konstantinpavlov.net/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://konstantinpavlov.net/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>CI Setup Tips</title>
@@ -17,10 +14,32 @@
       <pubDate>Sun, 17 Jul 2016 17:00:00 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</guid>
-      <description>You may find following tips useful when setting up continuous integration infrastructure.
-Security Use VPN or reverse proxy provider like cloudflare.com to secure your CI infrastructure. Never make your real IPs publicly available, otherwise you increase a risk of being hacked.
-Jenkins Use master node and build agents. Master node acts only as web console. Nodes are for compiling and testing.
-Notifications If you&amp;rsquo;re using google apps for domain, you may use Google&amp;rsquo;s restricted SMTP server to send notifications.</description>
+      <description>
+
+&lt;p&gt;You may find following tips useful when setting up continuous integration infrastructure.&lt;/p&gt;
+
+&lt;h2 id=&#34;security&#34;&gt;Security&lt;/h2&gt;
+
+&lt;p&gt;Use VPN or reverse proxy provider like &lt;a href=&#34;https://www.cloudflare.com/&#34; target=&#34;_blank&#34;&gt;cloudflare.com&lt;/a&gt; to secure your CI infrastructure.
+Never make your real IPs publicly available, otherwise you increase a risk of being hacked.&lt;/p&gt;
+
+&lt;h2 id=&#34;jenkins&#34;&gt;Jenkins&lt;/h2&gt;
+
+&lt;p&gt;Use master node and build agents. Master node acts only as web console. Nodes are for compiling and testing.&lt;/p&gt;
+
+&lt;h2 id=&#34;notifications&#34;&gt;Notifications&lt;/h2&gt;
+
+&lt;p&gt;If you&amp;rsquo;re using google apps for domain, you may use Google&amp;rsquo;s restricted SMTP server to send notifications. You will be restricted to sending messages to Gmail or Google Apps users only, but it&amp;rsquo;s ok in most cases. See this &lt;a href=&#34;https://support.google.com/a/answer/176600?hl=en&#34; target=&#34;_blank&#34;&gt;reference page&lt;/a&gt; from Google.&lt;/p&gt;
+
+&lt;h2 id=&#34;versioning&#34;&gt;Versioning&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Disable redeploy of the artifacts with same versions to the artifact repository (e.g. Nexus)&lt;/li&gt;
+&lt;li&gt;Use &lt;a href=&#34;http://semver.org/&#34; target=&#34;_blank&#34;&gt;semver&lt;/a&gt; specification for versioning your software: _major.minor.build&lt;em&gt;number&lt;/em&gt;.&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Never reuse build numbers. New build =&amp;gt; new software version.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://maven.apache.org/maven-release/maven-release-plugin&#34; target=&#34;_blank&#34;&gt;Maven-release-plugin&lt;/a&gt; will help you to increment versions of your project.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
   </channel>

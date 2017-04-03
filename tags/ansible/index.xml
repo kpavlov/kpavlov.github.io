@@ -2,14 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ansible on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/ansible/</link>
+    <link>https://konstantinpavlov.net/tags/ansible/index.xml</link>
     <description>Recent content in Ansible on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 09 Sep 2016 10:12:48 +0000</lastBuildDate>
-    
-	<atom:link href="https://konstantinpavlov.net/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://konstantinpavlov.net/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Installing Ansible 2.1.1 on Debian 8 (Jessie)</title>
@@ -20,7 +17,42 @@
       <description>&lt;p&gt;Recently I faced some dependency issues trying to install &lt;a href=&#34;https://ansible.com&#34; target=&#34;_blank&#34;&gt;Ansible 2&lt;/a&gt; on Debian 8 (Jessie).
 Googling a bit I found a solution which was a basically to upgrade or install missing dependencies.
 Following script automates the installation procedure:
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get update
+sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-pip python-dev git -y
+sudo pip install PyYAML jinja2 paramiko
+sudo pip install pyasn1 --upgrade
+sudo pip install c
+
+git clone https://github.com/ansible/ansible.git
+cd ansible
+
+## This is important since core and extra modules are in separate repositories!
+git submodule update --init --recursive
+
+## I want to get a stable release, so I checkout a specific tag
+git tag -l
+git checkout tags/v2.1.1.0-1
+
+## Build Ansible from sources
+sudo make install
+
+## If Build fails, then cleanup before retry
+sudo make clean
+
+sudo mkdir /etc/ansible
+sudo cp ~/ansible/examples/hosts /etc/ansible/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://blog.programster.org/debian-8-install-ansible&#34; target=&#34;_blank&#34;&gt;Debian 8 - Install Ansible&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/a/19102614/3315474&#34; target=&#34;_blank&#34;&gt;Upgrading setuptools version&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.ansible.com/ansible/intro_installation.html&#34; target=&#34;_blank&#34;&gt;Ansible Documentation - Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/a/19102614/3315474&#34; target=&#34;_blank&#34;&gt;Installing missing &amp;lsquo;cryptography&amp;rsquo; dependencies&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
   </channel>

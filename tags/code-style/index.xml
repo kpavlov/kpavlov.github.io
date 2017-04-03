@@ -2,14 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Code Style on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/code-style/</link>
+    <link>https://konstantinpavlov.net/tags/code-style/index.xml</link>
     <description>Recent content in Code Style on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Jan 2015 11:51:10 +0000</lastBuildDate>
-    
-	<atom:link href="https://konstantinpavlov.net/tags/code-style/index.xml" rel="self" type="application/rss+xml" />
-    
+    <atom:link href="https://konstantinpavlov.net/tags/code-style/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How to Run JetBrains Idea on Mac with JDK 1.8</title>
@@ -17,11 +14,31 @@
       <pubDate>Sat, 10 Jan 2015 11:51:10 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/01/10/how-to-run-jetbrains-idea-on-mac-with-jdk-1.8/</guid>
-      <description>JetBrains Idea is the perfect IDE for Java. It requires JDK 1.6+ to run. When you want to run it on Mac without Java 1.6 installed, OS will ask you to install it. But if you have already newer Java version installed, you may run Idea under that newer JDK.
-Execute in terminal:
-$open /Applications/IntelliJ\ IDEA\ 14.app/Contents/Info.plist  TextEdit app will be opened.
-Find:
- &amp;lt;key&amp;gt;JVMVersion&amp;lt;/key&amp;gt; &amp;lt;string&amp;gt;1.6*&amp;lt;/string&amp;gt;  then replace 1.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.jetbrains.com/idea/&#34; target=&#34;_blank&#34;&gt;JetBrains Idea&lt;/a&gt; is the perfect IDE for Java. It requires JDK 1.6+ to run.
+When you want to run it on Mac without Java 1.6 installed, OS will ask you to install it.
+But if you have already newer Java version installed, you may run Idea under that newer JDK.&lt;/p&gt;
+
+&lt;p&gt;Execute in terminal:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$open /Applications/IntelliJ\ IDEA\ 14.app/Contents/Info.plist
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;TextEdit app will be opened.&lt;/p&gt;
+
+&lt;p&gt;Find:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; &amp;lt;key&amp;gt;JVMVersion&amp;lt;/key&amp;gt;
+ &amp;lt;string&amp;gt;1.6*&amp;lt;/string&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;then replace 1.6 with 1.8 (assuming, you have JDK 1.8 installed):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; &amp;lt;key&amp;gt;JVMVersion&amp;lt;/key&amp;gt;
+ &amp;lt;string&amp;gt;1.8*&amp;lt;/string&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! Now run&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -30,7 +47,21 @@ Find:
       <pubDate>Mon, 05 Jan 2015 09:31:18 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/01/05/top-n-must-have-plugins-for-jetbrains-idea/</guid>
-      <description>JetBrains Idea is my favorite IDE and I love it! It has the most necessary features for java developer out-of-the-box. Even in Community Edition you&amp;rsquo;ll find a lot of them! Difference between Community and Ultimate editions is with a set of plugins from JetBrains available. Native plugins are well tested and work like a charm, in contrast with Eclipse, where you have to do install/configure some extra plugins before you can start coding.</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.jetbrains.com/idea/&#34; target=&#34;_blank&#34;&gt;JetBrains Idea&lt;/a&gt; is my favorite IDE and I love it! It has the most necessary features for java developer out-of-the-box. Even in Community Edition you&amp;rsquo;ll find a lot of them! Difference between Community and Ultimate editions is with a set of plugins from JetBrains available. Native plugins are well tested and work like a charm, in contrast with Eclipse, where you have to do install/configure some extra plugins before you can start coding. I mean maven integrations (.m2eclipse).&lt;/p&gt;
+
+&lt;p&gt;For commercial plugins there are some free alternatives e.g. &lt;a href=&#34;http://confluence.jetbrains.com/display/CONTEST/Database+Navigator&#34; target=&#34;_blank&#34;&gt;Database Navigator&lt;/a&gt; for database support. There are some more free plugins useful both for Community and Ultimate editions.&lt;/p&gt;
+
+&lt;p&gt;Here is my list:
+ - &lt;a href=&#34;http://confluence.jetbrains.com/display/CONTEST/Database+Navigator&#34; target=&#34;_blank&#34;&gt;Database Navigator&lt;/a&gt;
+ - &lt;a href=&#34;http://www.intellij.org/twiki/bin/view/Main/RegexPlugin&#34; target=&#34;_blank&#34;&gt;RegexPlugin&lt;/a&gt; &amp;ndash; very convenient RegExp editor/tester with regexp reference.
+ - &lt;a href=&#34;http://plugins.jetbrains.com/plugin/4230?pr=idea&#34; target=&#34;_blank&#34;&gt;BashSupport&lt;/a&gt; if you need to write Bash scripts.
+ - &lt;a href=&#34;http://github.com/nicoulaj/idea-markdown&#34; target=&#34;_blank&#34;&gt;Markdown&lt;/a&gt; &amp;ndash; the Markdown language support.
+ - &lt;a href=&#34;https://github.com/syllant/idea-plugin-linessorter&#34; target=&#34;_blank&#34;&gt;Line Sorter&lt;/a&gt; and &lt;a href=&#34;https://code.google.com/p/ideapropertysorterplugin/&#34; target=&#34;_blank&#34;&gt;Property Sorter&lt;/a&gt; plugins for managing file contents.
+ - &lt;a href=&#34;https://github.com/syllant/idea-plugin-remotesynchronizer&#34; target=&#34;_blank&#34;&gt;Remote Synchronizer&lt;/a&gt; for quick deployment and file synchronization over SFTP/FTP.
+ - &lt;a href=&#34;https://github.com/krasa/VisualVMLauncher&#34; target=&#34;_blank&#34;&gt;Visual VM Launcher&lt;/a&gt; to start your application from Idea with JVisualVM attached.&lt;/p&gt;
+
+&lt;p&gt;There are &lt;a href=&#34;http://plugins.jetbrains.com/?idea_ce&#34; target=&#34;_blank&#34;&gt;1160 plugins&lt;/a&gt; available for Community Edition and &lt;a href=&#34;http://plugins.jetbrains.com/?idea&#34; target=&#34;_blank&#34;&gt;1250 plugins&lt;/a&gt; for Ultimate Edition in the repository at the moment. I am sure you can add some plugins you love to this list.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -47,7 +78,66 @@ Today I want to show how to adjust it&amp;rsquo;s code-generation templates.&lt;
 You may modify that template in &lt;strong&gt;&amp;laquo;Settings -&amp;gt; File and Code templates&amp;raquo;&lt;/strong&gt; section.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;../../assets/2014/11/code-templates-for-idea-1.png&#34; alt=&#34;Modifying file&#34; /&gt;
-&lt;/p&gt;</description>
+&lt;/p&gt;
+
+&lt;h2 id=&#34;idea-configuration&#34;&gt;Idea Configuration&lt;/h2&gt;
+
+&lt;p&gt;Idea keeps it&amp;rsquo;s configuration under &lt;code&gt;~/.IntelliJIdeaXX/config&lt;/code&gt; folder.
+I usualy copy my customized settings from in GIT repository, so, it is very easy to share, synchronize and restore it later.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ ls -1F
+codestyles/
+colors/
+componentVersions/
+disabled_plugins.txt
+disabled_update.txt
+eval/
+fileTemplates/
+filetypes/
+idea12.key
+idea13.key
+idea14.key
+inspection/
+jdbc-drivers/
+keymaps/
+options/
+port
+quicklists/
+shelf/
+tasks/
+templates/
+tools/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Code snippets (or code templates) are located inside &lt;code&gt;config/templates&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;h2 id=&#34;code-snippets&#34;&gt;Code Snippets&lt;/h2&gt;
+
+&lt;h3 id=&#34;implemented-method-body&#34;&gt;Implemented Method Body&lt;/h3&gt;
+
+&lt;p&gt;Default method body template generates empty method or method returning default value.
+I suggest throwing &lt;code&gt;UnsupportedOperationException&lt;/code&gt; exception by default. It&amp;rsquo;s more restrictive settings, but good for self-discipline.&lt;/p&gt;
+
+&lt;p&gt;Just create a file &lt;code&gt;config/fileTemplates/code/Implemented Method Body.java&lt;/code&gt; with following contents:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;throw new UnsupportedOperationException(&amp;quot;Method is not implemented: ${CLASS_NAME}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;slf4j-logger-declaration&#34;&gt;SLF4J Logger Declaration&lt;/h3&gt;
+
+&lt;p&gt;If you&amp;rsquo;re using SLF4j as logging framework, following code template will be very usefull.
+Just press &lt;code&gt;Cmd+J&lt;/code&gt; when cursor is in class declaration area and type &lt;code&gt;log&lt;/code&gt;. Add to &lt;em&gt;config/templates/user.xml&lt;/em&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;templateSet group=&amp;quot;user&amp;quot;&amp;gt;
+  &amp;lt;template name=&amp;quot;log&amp;quot; value=&amp;quot;    private final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger($CLASS_NAME$.class);&amp;quot; description=&amp;quot;SLF4j Logger Declaration&amp;quot;
+ toReformat=&amp;quot;true&amp;quot; toShortenFQNames=&amp;quot;true&amp;quot; useStaticImport=&amp;quot;true&amp;quot;&amp;gt;
+    &amp;lt;variable name=&amp;quot;CLASS_NAME&amp;quot; expression=&amp;quot;className()&amp;quot; defaultValue=&amp;quot;&amp;quot; alwaysStopAt=&amp;quot;true&amp;quot; /&amp;gt;
+    &amp;lt;context&amp;gt;
+      &amp;lt;option name=&amp;quot;JAVA_DECLARATION&amp;quot; value=&amp;quot;true&amp;quot; /&amp;gt;
+    &amp;lt;/context&amp;gt;
+  &amp;lt;/template&amp;gt;
+&amp;lt;/templateSet&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
@@ -56,8 +146,10 @@ You may modify that template in &lt;strong&gt;&amp;laquo;Settings -&amp;gt; File
       <pubDate>Thu, 16 Jan 2014 12:16:26 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2014/01/16/give-good-names-for-your-threads/</guid>
-      <description>When configuring executors in multithreaded application, do not forget to assign names to your threads. It simplifies later profiling a lot, when you see a meaningful thread names in your profiler.
-For example, you may use CustomizableThreadFactory from SpringFramework for that.</description>
+      <description>&lt;p&gt;When configuring executors in multithreaded application, do not forget to assign names to your threads. It simplifies later profiling a lot, when you see a meaningful thread names in your profiler.&lt;/p&gt;
+
+&lt;p&gt;For example, you may use &lt;a href=&#34;https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/concurrent/CustomizableThreadFactory.html&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;CustomizableThreadFactory&lt;/code&gt;&lt;/a&gt; from SpringFramework for that.&lt;/p&gt;
+</description>
     </item>
     
   </channel>
