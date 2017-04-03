@@ -1,5 +1,5 @@
 ---
-title: Deploying Private Docker Registry Behind Cloudflaire
+title: Deploying Private Docker Registry Behind Cloudflare
 date: 2016-09-14T10:15:51
 updated: 2016-09-14T10:26:13
 categories:
@@ -7,17 +7,17 @@ categories:
 tags:
   - docker
   - nginx
-  - cloudflaire
+  - cloudflare
 ---
 
-This is a short instruction how to deploy private docker registry on private cloud virtual servers behind [Cloudflaire][cloudflare] proxy.
+This is a short instruction how to deploy private docker registry on private cloud virtual servers behind [Cloudflare][cloudflare] proxy.
 <!--more-->
 Suppose, we have two virtual servers on private cloud:
 
  * WAF (web application firewall) with Nginx installed
  * Internal server which will host a Docker private registry.
 
-Cloudflaire will serve as HTTPS proxy and forward unencrypted traffic to private WAF which will provide authentication and authorization and dispatch user requests to docker registry server.
+Cloudflare will serve as HTTPS proxy and forward unencrypted traffic to private WAF which will provide authentication and authorization and dispatch user requests to docker registry server.
 
 ## 1. Start docker registry server on internal docker host
 
@@ -79,9 +79,9 @@ and reload nginx configuration:
 
     sudo nginx -s reload
 
-## 3. Configure Cloudflaire
+## 3. Configure Cloudflare
 
-Now we need to login to [cloudflaire][cloudflare] console, create DNS A-record pointing to your WAF server-ip
+Now we need to login to [cloudflare][cloudflare] console, create DNS A-record pointing to your WAF server-ip
 
     registry.mydomain.com => WAF public IP
 
