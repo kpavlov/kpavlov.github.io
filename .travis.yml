@@ -1,6 +1,6 @@
 language: go
 go:
-  - 1.8
+  - 1.7
 
 branches:
   only:
@@ -8,7 +8,6 @@ branches:
 
 before_install:
   - wget https://github.com/spf13/hugo/releases/download/v0.19/hugo_0.19_i386.deb
-  - sudo apt-get update -q
   - sudo dpkg -i hugo_0.19_i386.deb
 
 before_script:
