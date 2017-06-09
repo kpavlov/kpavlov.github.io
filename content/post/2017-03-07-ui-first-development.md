@@ -1,9 +1,13 @@
 ---
-date: "2017-03-07T08:48:34+02:00"
-updated: 2017-03-26
-slug: app-development-top-down
-title: "Application Development Top-Down"
-description: "Application Development Top-Down - from UI to API, services and data. How to start testing early. How to start with back-end later."
+date: "2017-03-07T08:48:34"
+updated: 2017-06-09
+slug: ui-first-development
+image: /assets/2017/03/app-development-schedule-v1.png
+aliases:
+  - /blog/2017/03/07/app-development-top-down/
+title: "UI-First Development"
+description: "UI-first development - from UI to API, services and data. 
+              Starting with prototype helps to begin testing early and developing of the back-end later."
 featured: true
 categories:
   - project-management
@@ -12,53 +16,65 @@ tags:
   - quality-assurance
   - web
 ---
-Delivering a product prototype to the client early is often very important to project success.
-A client may have only general idea of a product he wants to get at the end and prototyping may save a lot of time and efforts of the team by reducing amount of unnecessary work.
 
-Accordingly, building web applications ground-up, starting from data model, may be a bad idea.
+One of the callenge for start-up or any new project is to reduce amount of work yet to deliver full-featured product.
+Agile methodologies address this challenge on project management level.
+Let's discuss one more approach to address it on architecture level: ***UI-first development.***
+<!-- more -->
 
-The development usually starts from data modeling, persistence and service layers and, finally, the UI.
+Delivering prototype to the client early is often very important to project success.
+Client may have only general idea of a product he wants, and prototyping may save a lot of time
+and efforts of the team by reducing amount of unnecessary work.
+Thus building web applications ground-up, starting from data model, may be a bad idea.
 
-The problem with ground-up approach is that client can't see and play with the product on early development stages.
-When a client gets first working prototype a lot of work has already done both on front-end and back-end side.
-And if the prototype does not meet the client's expectations, this work may be thrown away.
+The problem with ground-up approach (from data model to UI) is that client can't see and play with the product.
+Many user scenarios remains hidden since user never interacted with a product yet. 
+Accordingly, some _not-the-cases_ will most likely be implemented since developers usually 
+don't understand user requirements completely due to miscommunication which is hard to avoid. 
+When client gets first working prototype a lot of work has already done both on front-end and back-end side.
+And if the prototype does not meet the client's expectations, this work is to be thrown away.
+The indicator of such situation is when significant changes are done to data model after first version was presented to client.
 
-When a significant changes are done to data model or when data model does not match well to domain model -- these are the signs that it was a gap in the analysis and prototyping phases of the project.
-
-Hopefully, agile methodologies can mitigate the problem:
+Agile methodologies can mitigate the problem:
 [![](/assets/2017/03/what-isagile-henrik-kniberg.jpg)][henrik-presentation]
 
-It's iterative development process with short iterations when each iteration adds some value. Client-side, server-side and DB are changed together in order to add new functionality. And the Client is always happy, even having a part of MVP.
+In iterative development with short iterations, each iteration adds some value.
+Client-side, server-side and persistence level are changed together in order to add new functionality.
+And the Client should be always happy, even having with a fraction of MVP.
 
-The question is: *"Should Client be happy with a skateboard?"* In a real world Client may need to try a "bicycle" before he can say that it looks similar to product he would like to get at the end.
+The question is: *"Should Client be happy with a skateboard?"*
+In a real world Client may need to try a "bicycle" before he can say that it looks similar to what she expects to have at the end.
 
-In such conditions of uncertainty the top-down approach, ***Development from Web Prototype,*** may be better solution.
-I&nbsp;think it's even more "agile" way since client's feedback is collected earlier, reducing unnecessary work of the team.
+In such conditions of uncertainty the top-down approach i.e. ***UI-first Development*** may be a better solution.
+I&nbsp;think it's even more "agile" way since Client's feedback is collected earlier, reducing unnecessary work of the team.
 
 ## Development Plan
 
-On following diagram you can see common development phases of the project on a timeline (Vision and Analysis phases were left behind the scene).
-
+On following diagram you can see how development phases can be scheduled on a timeline
+(Vision and Analysis phases were left behind the scene):
 ![Application Development Schedule](/assets/2017/03/app-development-schedule-v1.svg)
 
-Let's assume, we're going to develop a web application consuming REST API from back-end server.
+Let's assume, we're going to develop a web application consuming REST/Websockets API from back-end server.
 
 ### 1. UI Prototype
 
-The actual development starts with web application prototyping.
+Actual development starts with web application prototyping.
 First UI mockups are created and presented to Client.
-This is typically an single page application (SPA) written using some component framework: Angular, React, whatever developers are confident with. If there is some visual prototype or screen mockups then initial version can be created quickly.
+This is typically an single page application (SPA) written using some component framework: Angular, React, whatever developers are confident with. 
+If there is some visual prototype or screen mockups then initial version can be created quickly.
 
 ### 2. Add Some Static Data
 
-When initial application structure is clear, it's the time to add some data. This should not be a real data as there is no real backend to provide it. It's enough to create some json files and deploy them under `/assets` or `/data` folder along with application.
+When initial application structure is clear, it's the time to add some data.
+This should not be a real data as there is no real backend to provide it.
+It's enough to create some static JSON files and serve them under `/assets` or `/data` along with JS application.
 
 
 ### 3. Start Defining API Contract
 
 This static data is a foundation of future API specification (contract). The most popular format for writing API specifications is [OpenAPI/Swagger](https://swagger.io). It suites well for most common cases. Some aspects, like inheritance, are not clear enough in specification but the format is widely accepted in the industry so it's a default choice.
 
-Alternative formats for describing API are:
+Alternative formats for describing REST API are:
 
 - [API Blueprint](http://apiblueprint.org/)
 - [Mashape](http://www.mashape.com)
@@ -130,12 +146,12 @@ Now let's continue with short interactions affecting all system layers.
 ## Final Notes
 
 This not a methodology. It's just the idea of how to minimize unnecessary work in conditions of business uncertainty.
-
-You should not use this instruction blindly. Some steps may be omitted or combined for your project.
+Don't use this instruction blindly.
 
 ## Links
 
 - ["What is Agile" by Henrik Kniberg][henrik-presentation]
+- [Writing Software by David Heinemeier Hansson (video, RailsConf 2014)](https://youtu.be/9LfmrkyP81M)
 
 [markdown]: https://daringfireball.net/projects/markdown/
 [henrik-presentation]: https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21

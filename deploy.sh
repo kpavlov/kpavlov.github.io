@@ -20,7 +20,7 @@ fi
     cd public &&
     git config user.name "Konstantin Pavlov" &&
     git config user.email git@konstantunpavlov.net &&
-    git add . &&
+    git add . &&h
     git commit -m "$commit_message" &&
     git gc &&
     git status &&
