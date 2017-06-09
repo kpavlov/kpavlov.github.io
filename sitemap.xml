@@ -7,8 +7,8 @@
   </url>
   
   <url>
-    <loc>https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/</loc>
-    <lastmod>2017-03-07T08:48:34+02:00</lastmod>
+    <loc>https://konstantinpavlov.net/blog/2017/03/07/ui-first-development/</loc>
+    <lastmod>2017-03-07T08:48:34+00:00</lastmod>
   </url>
   
   <url>
@@ -647,26 +647,26 @@
   </url>
   
   <url>
-    <loc>https://konstantinpavlov.net/tags/programming/</loc>
-    <lastmod>2017-03-07T08:48:34+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://konstantinpavlov.net/categories/programming/</loc>
     <lastmod>2017-03-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://konstantinpavlov.net/tags/programming/</loc>
+    <lastmod>2017-03-07T08:48:34+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://konstantinpavlov.net/categories/project-management/</loc>
-    <lastmod>2017-03-07T08:48:34+02:00</lastmod>
+    <lastmod>2017-03-07T08:48:34+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://konstantinpavlov.net/tags/quality-assurance/</loc>
-    <lastmod>2017-03-07T08:48:34+02:00</lastmod>
+    <lastmod>2017-03-07T08:48:34+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -731,7 +731,7 @@
   
   <url>
     <loc>https://konstantinpavlov.net/tags/web/</loc>
-    <lastmod>2017-03-07T08:48:34+02:00</lastmod>
+    <lastmod>2017-03-07T08:48:34+00:00</lastmod>
     <priority>0</priority>
   </url>
   

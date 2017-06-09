@@ -9,59 +9,70 @@
     <atom:link href="https://konstantinpavlov.net/tags/quality-assurance/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Application Development Top-Down</title>
-      <link>https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/</link>
-      <pubDate>Tue, 07 Mar 2017 08:48:34 +0200</pubDate>
+      <title>UI-First Development</title>
+      <link>https://konstantinpavlov.net/blog/2017/03/07/ui-first-development/</link>
+      <pubDate>Tue, 07 Mar 2017 08:48:34 +0000</pubDate>
       
-      <guid>https://konstantinpavlov.net/blog/2017/03/07/app-development-top-down/</guid>
+      <guid>https://konstantinpavlov.net/blog/2017/03/07/ui-first-development/</guid>
       <description>
 
-&lt;p&gt;Delivering a product prototype to the client early is often very important to project success.
-A client may have only general idea of a product he wants to get at the end and prototyping may save a lot of time and efforts of the team by reducing amount of unnecessary work.&lt;/p&gt;
+&lt;p&gt;One of the callenge for start-up or any new project is to reduce amount of work yet to deliver full-featured product.
+Agile methodologies address this challenge on project management level.
+Let&amp;rsquo;s discuss one more approach to address it on architecture level: &lt;strong&gt;&lt;em&gt;UI-first development.&lt;/em&gt;&lt;/strong&gt;
+&lt;!-- more --&gt;&lt;/p&gt;
 
-&lt;p&gt;Accordingly, building web applications ground-up, starting from data model, may be a bad idea.&lt;/p&gt;
+&lt;p&gt;Delivering prototype to the client early is often very important to project success.
+Client may have only general idea of a product he wants, and prototyping may save a lot of time
+and efforts of the team by reducing amount of unnecessary work.
+Thus building web applications ground-up, starting from data model, may be a bad idea.&lt;/p&gt;
 
-&lt;p&gt;The development usually starts from data modeling, persistence and service layers and, finally, the UI.&lt;/p&gt;
+&lt;p&gt;The problem with ground-up approach (from data model to UI) is that client can&amp;rsquo;t see and play with the product.
+Many user scenarios remains hidden since user never interacted with a product yet.
+Accordingly, some &lt;em&gt;not-the-cases&lt;/em&gt; will most likely be implemented since developers usually
+don&amp;rsquo;t understand user requirements completely due to miscommunication which is hard to avoid.
+When client gets first working prototype a lot of work has already done both on front-end and back-end side.
+And if the prototype does not meet the client&amp;rsquo;s expectations, this work is to be thrown away.
+The indicator of such situation is when significant changes are done to data model after first version was presented to client.&lt;/p&gt;
 
-&lt;p&gt;The problem with ground-up approach is that client can&amp;rsquo;t see and play with the product on early development stages.
-When a client gets first working prototype a lot of work has already done both on front-end and back-end side.
-And if the prototype does not meet the client&amp;rsquo;s expectations, this work may be thrown away.&lt;/p&gt;
-
-&lt;p&gt;When a significant changes are done to data model or when data model does not match well to domain model &amp;ndash; these are the signs that it was a gap in the analysis and prototyping phases of the project.&lt;/p&gt;
-
-&lt;p&gt;Hopefully, agile methodologies can mitigate the problem:
+&lt;p&gt;Agile methodologies can mitigate the problem:
 &lt;a href=&#34;https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;../../assets/2017/03/what-isagile-henrik-kniberg.jpg&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;It&amp;rsquo;s iterative development process with short iterations when each iteration adds some value. Client-side, server-side and DB are changed together in order to add new functionality. And the Client is always happy, even having a part of MVP.&lt;/p&gt;
+&lt;p&gt;In iterative development with short iterations, each iteration adds some value.
+Client-side, server-side and persistence level are changed together in order to add new functionality.
+And the Client should be always happy, even having with a fraction of MVP.&lt;/p&gt;
 
-&lt;p&gt;The question is: &lt;em&gt;&amp;laquo;Should Client be happy with a skateboard?&amp;raquo;&lt;/em&gt; In a real world Client may need to try a &amp;laquo;bicycle&amp;raquo; before he can say that it looks similar to product he would like to get at the end.&lt;/p&gt;
+&lt;p&gt;The question is: &lt;em&gt;&amp;laquo;Should Client be happy with a skateboard?&amp;raquo;&lt;/em&gt;
+In a real world Client may need to try a &amp;laquo;bicycle&amp;raquo; before he can say that it looks similar to what she expects to have at the end.&lt;/p&gt;
 
-&lt;p&gt;In such conditions of uncertainty the top-down approach, &lt;strong&gt;&lt;em&gt;Development from Web Prototype,&lt;/em&gt;&lt;/strong&gt; may be better solution.
-I&amp;nbsp;think it&amp;rsquo;s even more &amp;laquo;agile&amp;raquo; way since client&amp;rsquo;s feedback is collected earlier, reducing unnecessary work of the team.&lt;/p&gt;
+&lt;p&gt;In such conditions of uncertainty the top-down approach i.e. &lt;strong&gt;&lt;em&gt;UI-first Development&lt;/em&gt;&lt;/strong&gt; may be a better solution.
+I&amp;nbsp;think it&amp;rsquo;s even more &amp;laquo;agile&amp;raquo; way since Client&amp;rsquo;s feedback is collected earlier, reducing unnecessary work of the team.&lt;/p&gt;
 
 &lt;h2 id=&#34;development-plan&#34;&gt;Development Plan&lt;/h2&gt;
 
-&lt;p&gt;On following diagram you can see common development phases of the project on a timeline (Vision and Analysis phases were left behind the scene).&lt;/p&gt;
+&lt;p&gt;On following diagram you can see how development phases can be scheduled on a timeline
+(Vision and Analysis phases were left behind the scene):
+&lt;img src=&#34;../../assets/2017/03/app-development-schedule-v1.svg&#34; alt=&#34;Application Development Schedule&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;../../assets/2017/03/app-development-schedule-v1.svg&#34; alt=&#34;Application Development Schedule&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s assume, we&amp;rsquo;re going to develop a web application consuming REST API from back-end server.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s assume, we&amp;rsquo;re going to develop a web application consuming REST/Websockets API from back-end server.&lt;/p&gt;
 
 &lt;h3 id=&#34;1-ui-prototype&#34;&gt;1. UI Prototype&lt;/h3&gt;
 
-&lt;p&gt;The actual development starts with web application prototyping.
+&lt;p&gt;Actual development starts with web application prototyping.
 First UI mockups are created and presented to Client.
-This is typically an single page application (SPA) written using some component framework: Angular, React, whatever developers are confident with. If there is some visual prototype or screen mockups then initial version can be created quickly.&lt;/p&gt;
+This is typically an single page application (SPA) written using some component framework: Angular, React, whatever developers are confident with.
+If there is some visual prototype or screen mockups then initial version can be created quickly.&lt;/p&gt;
 
 &lt;h3 id=&#34;2-add-some-static-data&#34;&gt;2. Add Some Static Data&lt;/h3&gt;
 
-&lt;p&gt;When initial application structure is clear, it&amp;rsquo;s the time to add some data. This should not be a real data as there is no real backend to provide it. It&amp;rsquo;s enough to create some json files and deploy them under &lt;code&gt;/assets&lt;/code&gt; or &lt;code&gt;/data&lt;/code&gt; folder along with application.&lt;/p&gt;
+&lt;p&gt;When initial application structure is clear, it&amp;rsquo;s the time to add some data.
+This should not be a real data as there is no real backend to provide it.
+It&amp;rsquo;s enough to create some static JSON files and serve them under &lt;code&gt;/assets&lt;/code&gt; or &lt;code&gt;/data&lt;/code&gt; along with JS application.&lt;/p&gt;
 
 &lt;h3 id=&#34;3-start-defining-api-contract&#34;&gt;3. Start Defining API Contract&lt;/h3&gt;
 
 &lt;p&gt;This static data is a foundation of future API specification (contract). The most popular format for writing API specifications is &lt;a href=&#34;https://swagger.io&#34; target=&#34;_blank&#34;&gt;OpenAPI/Swagger&lt;/a&gt;. It suites well for most common cases. Some aspects, like inheritance, are not clear enough in specification but the format is widely accepted in the industry so it&amp;rsquo;s a default choice.&lt;/p&gt;
 
-&lt;p&gt;Alternative formats for describing API are:&lt;/p&gt;
+&lt;p&gt;Alternative formats for describing REST API are:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://apiblueprint.org/&#34; target=&#34;_blank&#34;&gt;API Blueprint&lt;/a&gt;&lt;/li&gt;
@@ -133,14 +144,14 @@ After that we&amp;rsquo;ll have all components in our system:&lt;/p&gt;
 
 &lt;h2 id=&#34;final-notes&#34;&gt;Final Notes&lt;/h2&gt;
 
-&lt;p&gt;This not a methodology. It&amp;rsquo;s just the idea of how to minimize unnecessary work in conditions of business uncertainty.&lt;/p&gt;
-
-&lt;p&gt;You should not use this instruction blindly. Some steps may be omitted or combined for your project.&lt;/p&gt;
+&lt;p&gt;This not a methodology. It&amp;rsquo;s just the idea of how to minimize unnecessary work in conditions of business uncertainty.
+Don&amp;rsquo;t use this instruction blindly.&lt;/p&gt;
 
 &lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21&#34; target=&#34;_blank&#34;&gt;&amp;laquo;What is Agile&amp;raquo; by Henrik Kniberg&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://youtu.be/9LfmrkyP81M&#34; target=&#34;_blank&#34;&gt;Writing Software by David Heinemeier Hansson (video, RailsConf 2014)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
