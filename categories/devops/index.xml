@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Devops on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/categories/devops/index.xml</link>
+    <link>https://konstantinpavlov.net/categories/devops/</link>
     <description>Recent content in Devops on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://konstantinpavlov.net/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Mar 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://konstantinpavlov.net/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Logging Policy</title>
@@ -14,32 +17,11 @@
       <pubDate>Tue, 28 Mar 2017 00:00:00 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2017/03/28/logging-policy/</guid>
-      <description>&lt;p&gt;There are different points of view on how logging levels should be used in code. I will share mine.&lt;/p&gt;
-
-&lt;p&gt;My assumption is: &lt;strong&gt;&amp;laquo;There should be no errors in logs when everything is fine.&amp;raquo;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The idea is that &lt;em&gt;the strongest log level should trigger alarm causing immediate notification (push or SMS) to operations team.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Accordingly, that&amp;rsquo;s how logging levels should be used:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;error&lt;/code&gt; &amp;ndash; Some action should be taken &lt;strong&gt;immediately!&lt;/strong&gt; Ops team should enable email or sms notifications when a message of that king appears in logs.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;warn&lt;/code&gt; &amp;ndash; Some action should be taken, but &lt;strong&gt;later.&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;info&lt;/code&gt; (enabled by default) &amp;ndash; Use this to print information you want to see in logs when your application works normally.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;debug&lt;/code&gt; (disabled by default) &amp;ndash; Use it to trace application business logic. Normally this should be disabled on production.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;trace&lt;/code&gt; (disabled by default) &amp;ndash; Use it to print raw messages (requests and responses). This is dangerous when you deal with confidential information since you may print it to logs causing security leak.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I saw other approaches to logging:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Using separate logger for alerts.&lt;/em&gt; &amp;ndash; In this case only explicitly specified alerts will be sent. You will never receive an alert from third party component since it does not know about your alert logger.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Abusing exceptions, throwing them even in expected cases.&lt;/em&gt; &amp;ndash; It will cause a lot of information noise in logs making difficult to find really important messages.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Not using &lt;code&gt;warn&lt;/code&gt; level at all. Just &amp;laquo;Black or White&amp;raquo; approach.&lt;/em&gt; &amp;ndash; Why not make use of this logging level making logs more fine-grained?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;How the logging is used depends much on type of the business and SLAs required and also on agreements and collaboration between developers and operations team. The mentioned policy may not fit your project and it&amp;rsquo;s OK :-)&lt;/p&gt;
-</description>
+      <description>There are different points of view on how logging levels should be used in code. I will share mine.
+My assumption is: &amp;laquo;There should be no errors in logs when everything is fine.&amp;raquo;
+The idea is that the strongest log level should trigger alarm causing immediate notification (push or SMS) to operations team.
+Accordingly, that&amp;rsquo;s how logging levels should be used:
+ error &amp;ndash; Some action should be taken immediately! Ops team should enable email or sms notifications when a message of that king appears in logs.</description>
     </item>
     
     <item>
@@ -50,115 +32,7 @@
       <guid>https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflare/</guid>
       <description>&lt;p&gt;This is a short instruction how to deploy private docker registry on private cloud virtual servers behind &lt;a href=&#34;https://www.cloudflare.com&#34; target=&#34;_blank&#34;&gt;Cloudflare&lt;/a&gt; proxy.
 
-Suppose, we have two virtual servers on private cloud:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;WAF (web application firewall) with Nginx installed&lt;/li&gt;
-&lt;li&gt;Internal server which will host a Docker private registry.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Cloudflare will serve as HTTPS proxy and forward unencrypted traffic to private WAF which will provide authentication and authorization and dispatch user requests to docker registry server.&lt;/p&gt;
-
-&lt;h2 id=&#34;1-start-docker-registry-server-on-internal-docker-host&#34;&gt;1. Start docker registry server on internal docker host&lt;/h2&gt;
-
-&lt;p&gt;Login to your virtual server and start docker registry:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker run -d -p 5000:5000 --restart=always --name registry registry:2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Setup firewall to allow access to docker registry server from WAF&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;iptables -A INPUT -p tcp -s &amp;lt;waf-ip&amp;gt; -i eth1 --dport 5000 -m state --state NEW,ESTABLISHED -j ACCEPT
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;2-configure-nginx-on-waf&#34;&gt;2. Configure Nginx on WAF&lt;/h2&gt;
-
-&lt;p&gt;We need to setup BASIC authorization and request forwarding:&lt;/p&gt;
-
-&lt;p&gt;Create password for your docker user (&lt;code&gt;dockeruser&lt;/code&gt;) basic authentication on nginx.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo htpasswd -c /etc/nginx/.htpasswd dockeruser
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;htpasswd&lt;/code&gt; you may find in the package apache2-utils (&lt;code&gt;sudo yum -y install apache2-utils&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;Now configure nginx (&lt;code&gt;/etc/nginx.conf&lt;/code&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-nginx&#34;&gt;
-server {
-    listen          80;       # Listen on port 80 for IPv4 requests
-
-    server_name r.newage.io;
-
-    ignore_invalid_headers off;
-
-    location / {
-
-        # disable any limits to avoid HTTP 413 for large image uploads
-        client_max_body_size 0;
-
-        # required to avoid HTTP 411: see Issue #1486 (https://github.com/docker/docker/issues/1486)
-        chunked_transfer_encoding on;
-
-        add_header                  Docker-Distribution-Api-Version registry/2.0 always;
-        auth_basic                  &amp;quot;Restricted&amp;quot;;
-        auth_basic_user_file        /etc/nginx/.htpasswd;
-        proxy_pass                  http://&amp;lt;upstream-host&amp;gt;:5000/;
-
-        proxy_set_header            X-Original-URI       $request_uri;
-        proxy_set_header            Proxy                &amp;quot;&amp;quot;;
-        proxy_set_header            Host                 $host;
-        proxy_set_header            X-Real-IP            $remote_addr;
-        proxy_set_header            X-Forwarded-For      $proxy_add_x_forwarded_for;
-        proxy_set_header            X-Forwarded-Proto    &amp;quot;https&amp;quot;;
-        proxy_read_timeout          900;
-        proxy_max_temp_file_size    0;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and reload nginx configuration:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo nginx -s reload
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;3-configure-cloudflare&#34;&gt;3. Configure Cloudflare&lt;/h2&gt;
-
-&lt;p&gt;Now we need to login to &lt;a href=&#34;https://www.cloudflare.com&#34; target=&#34;_blank&#34;&gt;cloudflare&lt;/a&gt; console, create DNS A-record pointing to your WAF server-ip&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;registry.mydomain.com =&amp;gt; WAF public IP
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Also we need to setup &amp;laquo;Always Use HTTPS&amp;raquo; &lt;a href=&#34;https://support.cloudflare.com/hc/en-us/articles/224509547-Recommended-Page-Rules-to-Consider&#34; target=&#34;_blank&#34;&gt;page rule&lt;/a&gt; for the domain.&lt;/p&gt;
-
-&lt;h2 id=&#34;4-testing-repository&#34;&gt;4. Testing repository&lt;/h2&gt;
-
-&lt;p&gt;Execute from your local machine:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ docker login -u=dockeruser -p=secret https://registry.mydomain.com
-Password:
-Login Succeeded
-$ docker pull hello-world
-Using default tag: latest
-latest: Pulling from library/hello-world
-
-c04b14da8d14: Pull complete
-Digest: sha256:0256e8a36e2070f7bf2d0b0763dbabdd67798512411de4cdcf9431a1feb60fd9
-Status: Downloaded newer image for hello-world:latest
-$ docker tag hello-world:latest registry.mydomain.com/hello-world:latest
-$ docker push registry.mydomain.com/hello-world:latest
-The push refers to a repository [registry.mydomain.com/hello-world]
-a02596fdd012: Pushed
-latest: digest: sha256:a18ed77532f6d6781500db650194e0f9396ba5f05f8b50d4046b294ae5f83aa4 size: 524
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/registry/recipes/nginx/&#34; target=&#34;_blank&#34;&gt;Authenticating proxy with nginx&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://container-solutions.com/running-secured-docker-registry-2-0/&#34; target=&#34;_blank&#34;&gt;Running Secured Docker Registry 2.0&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/a/39483840/3315474&#34; target=&#34;_blank&#34;&gt;StackOverflow: docker authentication issue&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+Suppose, we have two virtual servers on private cloud:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -170,42 +44,7 @@ latest: digest: sha256:a18ed77532f6d6781500db650194e0f9396ba5f05f8b50d4046b294ae
       <description>&lt;p&gt;Recently I faced some dependency issues trying to install &lt;a href=&#34;https://ansible.com&#34; target=&#34;_blank&#34;&gt;Ansible 2&lt;/a&gt; on Debian 8 (Jessie).
 Googling a bit I found a solution which was a basically to upgrade or install missing dependencies.
 Following script automates the installation procedure:
-&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo apt-get update
-sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-pip python-dev git -y
-sudo pip install PyYAML jinja2 paramiko
-sudo pip install pyasn1 --upgrade
-sudo pip install c
-
-git clone https://github.com/ansible/ansible.git
-cd ansible
-
-## This is important since core and extra modules are in separate repositories!
-git submodule update --init --recursive
-
-## I want to get a stable release, so I checkout a specific tag
-git tag -l
-git checkout tags/v2.1.1.0-1
-
-## Build Ansible from sources
-sudo make install
-
-## If Build fails, then cleanup before retry
-sudo make clean
-
-sudo mkdir /etc/ansible
-sudo cp ~/ansible/examples/hosts /etc/ansible/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://blog.programster.org/debian-8-install-ansible&#34; target=&#34;_blank&#34;&gt;Debian 8 - Install Ansible&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/a/19102614/3315474&#34; target=&#34;_blank&#34;&gt;Upgrading setuptools version&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.ansible.com/ansible/intro_installation.html&#34; target=&#34;_blank&#34;&gt;Ansible Documentation - Installation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/a/19102614/3315474&#34; target=&#34;_blank&#34;&gt;Installing missing &amp;lsquo;cryptography&amp;rsquo; dependencies&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -214,32 +53,10 @@ sudo cp ~/ansible/examples/hosts /etc/ansible/
       <pubDate>Sun, 17 Jul 2016 17:00:00 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2016/07/17/ci-setup-tips/</guid>
-      <description>
-
-&lt;p&gt;You may find following tips useful when setting up continuous integration infrastructure.&lt;/p&gt;
-
-&lt;h2 id=&#34;security&#34;&gt;Security&lt;/h2&gt;
-
-&lt;p&gt;Use VPN or reverse proxy provider like &lt;a href=&#34;https://www.cloudflare.com/&#34; target=&#34;_blank&#34;&gt;cloudflare.com&lt;/a&gt; to secure your CI infrastructure.
-Never make your real IPs publicly available, otherwise you increase a risk of being hacked.&lt;/p&gt;
-
-&lt;h2 id=&#34;jenkins&#34;&gt;Jenkins&lt;/h2&gt;
-
-&lt;p&gt;Use master node and build agents. Master node acts only as web console. Nodes are for compiling and testing.&lt;/p&gt;
-
-&lt;h2 id=&#34;notifications&#34;&gt;Notifications&lt;/h2&gt;
-
-&lt;p&gt;If you&amp;rsquo;re using google apps for domain, you may use Google&amp;rsquo;s restricted SMTP server to send notifications. You will be restricted to sending messages to Gmail or Google Apps users only, but it&amp;rsquo;s ok in most cases. See this &lt;a href=&#34;https://support.google.com/a/answer/176600?hl=en&#34; target=&#34;_blank&#34;&gt;reference page&lt;/a&gt; from Google.&lt;/p&gt;
-
-&lt;h2 id=&#34;versioning&#34;&gt;Versioning&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Disable redeploy of the artifacts with same versions to the artifact repository (e.g. Nexus)&lt;/li&gt;
-&lt;li&gt;Use &lt;a href=&#34;http://semver.org/&#34; target=&#34;_blank&#34;&gt;semver&lt;/a&gt; specification for versioning your software: _major.minor.build&lt;em&gt;number&lt;/em&gt;.&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;Never reuse build numbers. New build =&amp;gt; new software version.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://maven.apache.org/maven-release/maven-release-plugin&#34; target=&#34;_blank&#34;&gt;Maven-release-plugin&lt;/a&gt; will help you to increment versions of your project.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>You may find following tips useful when setting up continuous integration infrastructure.
+Security Use VPN or reverse proxy provider like cloudflare.com to secure your CI infrastructure. Never make your real IPs publicly available, otherwise you increase a risk of being hacked.
+Jenkins Use master node and build agents. Master node acts only as web console. Nodes are for compiling and testing.
+Notifications If you&amp;rsquo;re using google apps for domain, you may use Google&amp;rsquo;s restricted SMTP server to send notifications.</description>
     </item>
     
     <item>
@@ -252,57 +69,7 @@ Never make your real IPs publicly available, otherwise you increase a risk of be
 
 &lt;p&gt;Let&amp;rsquo;s start today with branching strategy called &lt;em&gt;&amp;laquo;dirty trunk&amp;raquo;&lt;/em&gt;. Actually, this is an attempt to avoid branching at all.
 
-The idea is that:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;all developers commit their changes directly to &lt;em&gt;master&lt;/em&gt; branch or (&lt;em&gt;trunk&lt;/em&gt;).&lt;/li&gt;
-&lt;li&gt;CI server is triggered a build on every commit and resulting artifact is accepted or rejected based on test results.&lt;/li&gt;
-&lt;li&gt;once all the tests are passed the artifacts are promoted thus making &lt;em&gt;Continuous Delivery (CD)&lt;/em&gt; possible.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;This is a simple strategy to implement from the Ops point of view. But it requires significant effort from the developers to maintain stability of the build. When tests are failing the disrupting change should be immediately fixed or reverted. We used to practice this strategy for two years, but as the team and number of tests grow it was more and more difficult to keep build stability. Finally we switched to feature branching and it helped with a build stability a lot.HUGOMORE42&lt;/p&gt;
-
-&lt;h2 id=&#34;pros&#34;&gt;Pros&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Easy to understand&lt;/li&gt;
-&lt;li&gt;Simple CI/CD-friendly automation flow&lt;/li&gt;
-&lt;li&gt;Sequential build number from subversion commit number&lt;/li&gt;
-&lt;li&gt;This strategy fits well for both git and subversion&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;cons&#34;&gt;Cons&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Requires discipline among developers to &lt;em&gt;not push the changes&lt;/em&gt; unless sanity (smoke) tests are passed on local machine.&lt;/li&gt;
-&lt;li&gt;So, there should be &lt;em&gt;sanity (smoke) tests&lt;/em&gt; &amp;ndash; a subset of tests covering most important functionality.
-We&amp;rsquo;ve called them &amp;laquo;cookies&amp;raquo;: The one who breaks that tests should bring a cookies to the team.&lt;/li&gt;
-&lt;li&gt;Even if your tests passed, maybe somebody has pushed his/her changes while you were running your tests.&lt;/li&gt;
-&lt;li&gt;Keep an eye on the build status after your push, be ready to revert.&lt;/li&gt;
-&lt;li&gt;It may be painful to revert the changes when somebody has pushed a change over a destructing one.&lt;/li&gt;
-&lt;li&gt;As a consequence, build is often broken. We had a dedicated developer who was &lt;em&gt;on duty&lt;/em&gt; fixing the build.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;good-practices&#34;&gt;Good Practices&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Reproducible builds (common practice).&lt;/em&gt; It should be always possible to make a build again (e.g. if you lost your artifact repository). If you&amp;rsquo;re using maven , use &lt;a href=&#34;https://maven.apache.org/maven-release/maven-release-plugin/&#34; target=&#34;_blank&#34;&gt;maven-release-plugin&lt;/a&gt; to increment version, commit, push and set a tag on this version. Later you&amp;rsquo;ll be able to find a version by tag or create a new branch from the tag.&lt;/li&gt;
-&lt;li&gt;Make a build in one step (remember p.2 from &lt;a href=&#34;http://www.joelonsoftware.com/articles/fog0000000043.html&#34; title=&#34;The Joel Test: 12 Steps to Better Code&#34; target=&#34;_blank&#34;&gt;Joel Test&lt;/a&gt;).&lt;/li&gt;
-&lt;li&gt;Don&amp;rsquo;t rebuild artifacts. It saves time and ensures that you&amp;rsquo;re deploying and testing the same artifact.&lt;/li&gt;
-&lt;li&gt;Tag good commits: make a tag once tests passed (&lt;a href=&#34;https://maven.apache.org/maven-release/maven-release-plugin/&#34; target=&#34;_blank&#34;&gt;maven-release-plugin&lt;/a&gt; can do it for you).&lt;/li&gt;
-&lt;li&gt;Automatically promote good build (Continuous Delivery)&lt;/li&gt;
-&lt;li&gt;Implement auto-revert changes on test failure. At least if there are no newer commits.&lt;/li&gt;
-&lt;li&gt;Make build and run tests in parallel on multiple build agents. This saves time a lot.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;em&gt;I can recommend this strategy only when your team is small and disciplined and you can run all tests locally before commit, so you&amp;rsquo;ll unlikely break a build. With a poor random tests it leads to fragile codebase and takes a lot of time to support.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Recommended reading: &lt;a href=&#34;http://paulhammant.com/categories.html#Trunk_Based_Development&#34; target=&#34;_blank&#34;&gt;Paul Hammant&amp;rsquo;s blog&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;Ideas, suggestions, comments are welcome.
-Thank you.&lt;/p&gt;</description>
+The idea is that:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -315,28 +82,7 @@ Thank you.&lt;/p&gt;</description>
 I have no intention to edit configs by hand all the time, nor write deployment scripts myself.&lt;/p&gt;
 
 &lt;p&gt;Instead, I&amp;rsquo;ll give a chance to &lt;a href=&#34;https://docs.getchef.com/chef_solo.html&#34; target=&#34;_blank&#34;&gt;Chef-Solo&lt;/a&gt; &amp;ndash; a smaller sibling of well-known configuration management tool Chef.
-&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m considering using a chef-client with &lt;a href=&#34;https://docs.getchef.com/ctl_chef_client.html#run-in-local-mode&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;--local-mode&lt;/code&gt;&lt;/a&gt;, which requires &lt;em&gt;chef-zero&lt;/em&gt; which acts as local chef-server.&lt;/p&gt;
-
-&lt;p&gt;Chef-Solo uses a local repository to get receipts or can download receipt archive (tar.gz) from remote URL.&lt;/p&gt;
-
-&lt;p&gt;To manage configurations Chef uses &lt;em&gt;Cookbooks&lt;/em&gt; and &lt;em&gt;Receipts&lt;/em&gt;.
-A cookbook is the fundamental unit of configuration and policy distribution. A cookbook defines a scenario, such as install and configure MySql.
-A receipt is a fundamental configuration element, which defines how to configure each part of the system.
-Receipts are stored within a cookbooks and can be included into another receipts, allowing reuse.&lt;/p&gt;
-
-&lt;p&gt;OpsCode (the guys who supports Chef) supports a &lt;a href=&#34;https://community.opscode.com/cookbooks&#34; target=&#34;_blank&#34;&gt;repository of cookbooks&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;some-usefull-links&#34;&gt;Some Usefull Links&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://serverfault.com/questions/514104/chef-server-vs-chef-solo&#34; target=&#34;_blank&#34;&gt;Chef Server vs Chef-Solo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://serverfault.com/questions/283470/what-are-the-benefits-of-running-chef-server-instead-of-chef-solo/403612#403612&#34; target=&#34;_blank&#34;&gt;What are the benefits of running Chef-Server instead of Chef-Solo?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.opinionatedprogrammer.com/2011/06/chef-solo-tutorial-managing-a-single-server-with-chef/&#34; target=&#34;_blank&#34;&gt;Chef Solo tutorial: Managing a single server with Chef&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://adamcod.es/2013/06/04/deploy-a-basic-lamp-stack-digital-ocean-chef-solo.html&#34; target=&#34;_blank&#34;&gt;Deploy a basic lamp stack to Digital Ocean with Chef Solo&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://community.opscode.com/cookbooks&#34; target=&#34;_blank&#34;&gt;OpsCode Cookbook Repository&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -355,50 +101,7 @@ For example, external monitoring tool, like Nagious/Zenoss/Zabbix needs to get s
 &lt;p&gt;But, sometimes, it is not possible to leave some other port opened for JMX and the only port available is HTTP(80 or 8080) or HTTPS(443 or 8443).&lt;/p&gt;
 
 &lt;p&gt;Here the &lt;a href=&#34;http://www.jolokia.org&#34; title=&#34;Jolokia Project&#34; target=&#34;_blank&#34;&gt;Jolokia&lt;/a&gt; comes to rescue!
-&lt;/p&gt;
-
-&lt;p&gt;Jolokia is a HTTP/JSON bridge for JMX server. It can be deployed as web archive (.war) to servlet container and expose MBeans via HTTP.&lt;/p&gt;
-
-&lt;p&gt;Also, it is quite lightweight - only 285K for webarchive.&lt;/p&gt;
-
-&lt;h2 id=&#34;configuration&#34;&gt;Configuration&lt;/h2&gt;
-
-&lt;p&gt;Here is a small instruction how to get an access to JMX beans in &lt;a href=&#34;../../tags/tomcat&#34;&gt;Tomcat&lt;/a&gt; via &lt;a href=&#34;http://www.jolokia.org&#34; title=&#34;Jolokia Project&#34; target=&#34;_blank&#34;&gt;Jolokia&lt;/a&gt;.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.jolokia.org/download.html&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; &lt;code&gt;jolockia.war&lt;/code&gt; and deploy it to servlet container.&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Run in command line:
-
-$ curl localhost:8080/jolokia/read/java.lang:type=Memory/HeapMemoryUsage
-{&#34;request&#34;:{&#34;mbean&#34;:&#34;java.lang:type=Memory&#34;,&#34;attribute&#34;:&#34;HeapMemoryUsage&#34;,&#34;type&#34;:&#34;read&#34;},&#34;value&#34;:{&#34;init&#34;:536870912,&#34;committed&#34;:514850816,&#34;max&#34;:514850816,&#34;used&#34;:132049768},&#34;timestamp&#34;:1402310991,&#34;status&#34;:200}
-$ curl localhost:8080/jolokia/read/java.lang:type=Memory/HeapMemoryUsage/used
-{&#34;request&#34;:{&#34;path&#34;:&#34;used&#34;,&#34;mbean&#34;:&#34;java.lang:type=Memory&#34;,&#34;attribute&#34;:&#34;HeapMemoryUsage&#34;,&#34;type&#34;:&#34;read&#34;},&#34;value&#34;:132049736,&#34;timestamp&#34;:1402310735,&#34;status&#34;:200}
-
-You may also use your browser to see JSON response. I suggest installing &lt;a href=&#34;https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa&#34; title=&#34;JSON Formatter Chrome Extension&#34; target=&#34;_blank&#34;&gt;JSON Fromamter&lt;/a&gt; for better view. &lt;img src=&#34;../../assets/2014/06/jolokia-heap.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Now you can configure your monitoring software to ping server periodically and parse &amp;laquo;value&amp;raquo; attribute from JSON response.&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Released version of Jolokia are available in &lt;a href=&#34;https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.jolokia%22&#34; target=&#34;_blank&#34;&gt;central maven repository&lt;/a&gt;:
-
-&lt;dependency&gt;
-	&lt;groupId&gt;org.jolokia&lt;/groupId&gt;
-	&lt;artifactId&gt;jolokia-war&lt;/artifactId&gt;
-	&lt;version&gt;1.2.1&lt;/version&gt;
-&lt;/dependency&gt;
-&lt;/p&gt;
-
-&lt;p&gt;Also, Jolokia provides OSGi, Mule and JVM &lt;a href=&#34;http://www.jolokia.org/reference/html/agents.html&#34; target=&#34;_blank&#34;&gt;agents&lt;/a&gt; as well as Webarchive (War) agent.&lt;/p&gt;
-
-&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.jolokia.org&#34; title=&#34;Jolokia Project&#34; target=&#34;_blank&#34;&gt;Jolokia Project Home&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/rhuss/jolokia&#34; title=&#34;Jolokia on GitHub&#34; target=&#34;_blank&#34;&gt;Jolokia Project on GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -413,19 +116,7 @@ You may also use your browser to see JSON response. I suggest installing &lt;a h
 
 &lt;h2 id=&#34;gitflow&#34;&gt;GitFlow&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;../../assets/2014/03/git-model@2x.png&#34; alt=&#34;GitFlow Workflow&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://nvie.com/posts/a-successful-git-branching-model/&#34; target=&#34;_blank&#34;&gt;A successful Git branching model&lt;/a&gt; by Vincent Driessen at nvie.com
-
-GitFlow model is supported by &lt;a href=&#34;http://www.sourcetreeapp.com/&#34; target=&#34;_blank&#34;&gt;SourceTree&lt;/a&gt; - a nice free Git client for Mac OS X, Windows.
-&lt;img src=&#34;http://www.sourcetreeapp.com/images/sourcetree-hero-mac-log@2x.png&#34; alt=&#34;SourceTree Screenshot&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;other-resources&#34;&gt;Other resources:&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.atlassian.com/git/tutorials/comparing-workflows/&#34; target=&#34;_blank&#34;&gt;Git Workflows&lt;/a&gt; by Atlassian&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/nvie/gitflow&#34; target=&#34;_blank&#34;&gt;GitFlow project on GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;p&gt;&lt;img src=&#34;../../assets/2014/03/git-model@2x.png&#34; alt=&#34;GitFlow Workflow&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -439,122 +130,7 @@ These changes are often environment specific.
 Also, when upgrading a Tomcat to new version you need to be sure that all your custom changes have not been lost and were applied to new configuration.
 To deal with all that stuff Tomcat via separation of the configuration.
 This post contains step-by-step instruction will help you to establish custom tomcat configuration.
-&lt;/p&gt;
-
-&lt;h2 id=&#34;1-installing-tomcat&#34;&gt;1. Installing tomcat&lt;/h2&gt;
-
-&lt;p&gt;You download Tomcat distribution binary and extract it to some folder.
-I put it to &lt;code&gt;~/java/apache-tomcat-7.0.52&lt;/code&gt;.
-It is desirable to create a symlink to it. It would allow to switch to another version of tomcat without changing your scripts&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ln -s ~/java/apache-tomcat-7.0.52 ~/java/tomcat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;As alternative, you may install a tomcat from packages.&lt;/p&gt;
-
-&lt;h2 id=&#34;2-create-a-folder-to-keep-your-custom-configuration&#34;&gt;2. Create a folder to keep your custom configuration&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Create a folder where you custom configuration will be located.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir -p ~/java/custom-tomcat/{bin,conf,logs,work,webapps,temp}
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Copy default &lt;code&gt;server.xml&lt;/code&gt;, &lt;code&gt;tomcat-users.xml&lt;/code&gt; configuration file to custom location. If you already have a customized &lt;code&gt;server.xml&lt;/code&gt; then put it there&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cp -v ~/java/tomcat/conf/server.xml ~/java/tomcat/conf/tomcat-users.xml ~/java/custom-tomcat/conf/[](null)
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Set system property &lt;code&gt;$CATALINA_BASE&lt;/code&gt; referring to base directory for resolving dynamic portions of a Catalina installation.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;export CATALINA_BASE=~/java/custom-tomcat
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you can start the Tomcat and see that it uses your custom configuration folder:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ ./catalina.sh run
-Using CATALINA_BASE:   /Users/maestro/java/custom-tomcat
-Using CATALINA_HOME:   /Users/maestro/java/tomcat
-Using CATALINA_TMPDIR: /Users/maestro/java/custom-tomcat/temp
-...
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;3-tomcat-runtime-parameters-customization&#34;&gt;3. Tomcat runtime parameters customization&lt;/h2&gt;
-
-&lt;p&gt;To specify JVM options to be used when tomcat server is run, create a bash script &lt;code&gt;$CATALINA_BASE/bin/setenv.sh&lt;/code&gt;. It will keep environment variables referred in &lt;code&gt;catalina.sh&lt;/code&gt; script to keep your customizations separate.&lt;/p&gt;
-
-&lt;p&gt;Define &lt;code&gt;$CATALINA_OPTS&lt;/code&gt; inside &lt;code&gt;setenv.sh&lt;/code&gt;.  Include here and not in JAVA_OPTS all options, that should only be used by Tomcat itself, not by the stop process, the version command etc. Examples are heap size, GC logging, JMX ports etc.&lt;/p&gt;
-
-&lt;p&gt;Example &lt;code&gt;setenv.sh&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;echo &amp;quot;Setting parameters from $CATALINA_BASE/bin/setenv.sh&amp;quot;
-echo &amp;quot;_______________________________________________&amp;quot;
-
-# discourage address map swapping by setting Xms and Xmx to the same value
-# http://confluence.atlassian.com/display/DOC/Garbage+Collector+Performance+Issues
-export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -Xms1024m&amp;quot;
-export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -Xmx1025m&amp;quot;
-
-# Increase maximum perm size for web base applications to 4x the default amount
-# http://wiki.apache.org/tomcat/FAQ/Memoryhttp://wiki.apache.org/tomcat/FAQ/Memory
-export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -XX:MaxPermSize=256m&amp;quot;
-
-# Oracle Java as default, uses the serial garbage collector on the
-# Full Tenured heap. The Young space is collected in parallel, but the
-# Tenured is not. This means that at a time of load if a full collection
-# event occurs, since the event is a &#39;stop-the-world&#39; serial event then
-# all application threads other than the garbage collector thread are
-# taken off the CPU. This can have severe consequences if requests continue
-# to accrue during these &#39;outage&#39; periods. (specifically webservices, webapps)
-# [Also enables adaptive sizing automatically]
-export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -XX:+UseParallelGC&amp;quot;
-
-# The hotspot server JVM has specific code-path optimizations
-# which yield an approximate 10% gain over the client version.
-export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -server&amp;quot;
-
-# Disable remote (distributed) garbage collection by Java clients
-# and remove ability for applications to call explicit GC collection
-export CATALINA_OPTS=&amp;quot;$CATALINA_OPTS -XX:+DisableExplicitGC&amp;quot;
-
-# Check for application specific parameters at startup
-if [ -r &amp;quot;$CATALINA_BASE/bin/appenv.sh&amp;quot; ]; then
-  . &amp;quot;$CATALINA_BASE/bin/appenv.sh&amp;quot;
-fi
-
-echo &amp;quot;Using CATALINA_OPTS:&amp;quot;
-for arg in $CATALINA_OPTS
-do
-    echo &amp;quot;&amp;gt;&amp;gt; &amp;quot; $arg
-done
-echo &amp;quot;&amp;quot;
-
-echo &amp;quot;Using JAVA_OPTS:&amp;quot;
-for arg in $JAVA_OPTS
-do
-    echo &amp;quot;&amp;gt;&amp;gt; &amp;quot; $arg
-done
-
-echo &amp;quot;_______________________________________________&amp;quot;
-echo &amp;quot;&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;4-migrate-logging-to-logback&#34;&gt;4. Migrate logging to Logback&lt;/h2&gt;
-
-&lt;p&gt;Tomcat is configured to use Apache Commons Logging API by default.
-If you are using &lt;a href=&#34;http://slf4j.org&#34; target=&#34;_blank&#34;&gt;slf4j&lt;/a&gt; in your application and familiar with &lt;a href=&#34;http://logback.qos.ch&#34; target=&#34;_blank&#34;&gt;Logback&lt;/a&gt;, then it is reasonable to migrate your tomcat configuration to logback too. You may find details &lt;a href=&#34;http://hwellmann.blogspot.com/2012/11/logging-with-slf4j-and-logback-in.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/kpavlov/tomcat-custom-env&#34; target=&#34;_blank&#34;&gt;https://github.com/kpavlov/tomcat-custom-env&lt;/a&gt; - Custom tomcat installation example on GitHub&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/terrancesnyder/tomcat&#34; target=&#34;_blank&#34;&gt;https://github.com/terrancesnyder/tomcat&lt;/a&gt; - Tomcat Best Practices Shell&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://hwellmann.blogspot.com/2012/11/logging-with-slf4j-and-logback-in.html&#34; target=&#34;_blank&#34;&gt;http://hwellmann.blogspot.com/2012/11/logging-with-slf4j-and-logback-in.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://gist.github.com/terrancesnyder/986029&#34; target=&#34;_blank&#34;&gt;https://gist.github.com/terrancesnyder/986029&lt;/a&gt; - example setenv.sh with defaults set for minimal time spent in garbage collection&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://wiki.apache.org/tomcat/FAQ/Memoryhttp://wiki.apache.org/tomcat/FAQ/Memory&#34; target=&#34;_blank&#34;&gt;http://wiki.apache.org/tomcat/FAQ/Memoryhttp://wiki.apache.org/tomcat/FAQ/Memory&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://confluence.atlassian.com/display/DOC/Garbage+Collector+Performance+Issues&#34; target=&#34;_blank&#34;&gt;http://confluence.atlassian.com/display/DOC/Garbage+Collector+Performance+Issues&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -566,40 +142,7 @@ If you are using &lt;a href=&#34;http://slf4j.org&#34; target=&#34;_blank&#34;&g
       <description>&lt;p&gt;&lt;img src=&#34;https://31.media.tumblr.com/4166367386765fe2b5f9845906898214/tumblr_inline_n2r2coHbTe1rx1usu.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Setting entropy pool for Java server on linux is fair simple. Just add a system property to specify a device to read from.
-&lt;/p&gt;
-
-&lt;h3 id=&#34;blocking-but-more-secure&#34;&gt;Blocking, but more Secure&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;-Djava.security.egd=file:///dev/random
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is secure but may block your application until enough entropy is available.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;When read, the /dev/random device will only return random bytes within the estimated number of bits of noise in the entropy pool. /dev/random should be suitable for uses that need very high quality randomness such as one-time pad or key generation. When the entropy pool is empty, reads from /dev/random will block until additional environmental noise is gathered.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;non-blocking-but-less-secure&#34;&gt;Non-Blocking But Less Secure&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;-Djava.security.egd=file:///dev/urandom
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;A read from the /dev/urandom device will not block waiting for more entropy. As a result, if there is not sufficient entropy in the entropy pool, the returned values are theoretically vulnerable to a cryptographic attack on the algorithms used by the driver. Knowledge of how to do this is not available in the current non-classified literature, but it is theoretically possible that such an attack may exist. If this is a concern in your application, use /dev/random instead.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;If solution not working then take a look at workaround: &lt;a href=&#34;http://bugs.java.com/view_bug.do?bug_id=6202721&#34; target=&#34;_blank&#34;&gt;http://bugs.java.com/view_bug.do?bug_id=6202721&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;how-to-get-more-entropy&#34;&gt;How to get more entropy&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Involve an audio entropy daemon like &lt;a href=&#34;http://www.vanheusden.com/aed/&#34; target=&#34;_blank&#34;&gt;AED&lt;/a&gt; to gather noise from your datacenter with an open microphone, maybe combine it with a webcam noise collector like VED. Other sources are talking about &lt;a href=&#34;http://world.std.com/~dtd/random/forward.ps&#34; target=&#34;_blank&#34;&gt;“Cryptographic Randomness from Air Turbulence in Disk devices“&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Use the &lt;a href=&#34;http://egd.sourceforge.net/&#34; target=&#34;_blank&#34;&gt;Entropy Gathering Daemon&lt;/a&gt; to collect weaker entropy from randomness of userspace programs.&lt;/li&gt;
-&lt;li&gt;Have a look at &lt;a href=&#34;http://www.issihosts.com/haveged/&#34; target=&#34;_blank&#34;&gt;haveged&lt;/a&gt; (collecting good entropy on basis of CPU clock flutter)&lt;/li&gt;
-&lt;li&gt;Consider &lt;a href=&#34;http://www.usn-it.de/index.php/2009/02/20/oracle-11g-jdbc-driver-hangs-blocked-by-devrandom-entropy-pool-empty/#comment-40107&#34; target=&#34;_blank&#34;&gt;installing a couple of parrots or canary next to your server.&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Source: &lt;a href=&#34;http://www.usn-it.de/index.php/2009/02/20/oracle-11g-jdbc-driver-hangs-blocked-by-devrandom-entropy-pool-empty/&#34; target=&#34;_blank&#34;&gt;http://www.usn-it.de/index.php/2009/02/20/oracle-11g-jdbc-driver-hangs-blocked-by-devrandom-entropy-pool-empty/&lt;/a&gt;&lt;/p&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -608,13 +151,8 @@ If you are using &lt;a href=&#34;http://slf4j.org&#34; target=&#34;_blank&#34;&g
       <pubDate>Sat, 21 Dec 2013 22:07:59 +0200</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2013/12/21/javascript-solari-board/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/carlmw/SolariBoard&#34; target=&#34;_blank&#34;&gt;Solari Board&lt;/a&gt; is a javascript app for displaying some status information.
-For example, it can be used to scheduling support team activity or displaying project build status from CI server (e.g. Jenkins)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://camo.githubusercontent.com/e21c97bc5d751f018962818a6b9ff249140a8a53/68747470733a2f2f7472656c6c6f2d6174746163686d656e74732e73332e616d617a6f6e6177732e636f6d2f3531626632613133383038323138393136633030363932382f3531663032633838356565653462313730383030316636372f32633038316664386435666366346362353035333932373834363637333732652f67656e65726963426f6172642e504e47&#34; alt=&#34;SolariBoard Schedule&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This &lt;a href=&#34;http://blog.fogcreek.com/big-board-having-fun-with-data/&#34; target=&#34;_blank&#34;&gt;article with a video&lt;/a&gt; about how the guys from FogCreek software has integrated SolariBoard into BigBoard to monitor their support team activity.&lt;/p&gt;
-</description>
+      <description>Solari Board is a javascript app for displaying some status information. For example, it can be used to scheduling support team activity or displaying project build status from CI server (e.g. Jenkins)
+This article with a video about how the guys from FogCreek software has integrated SolariBoard into BigBoard to monitor their support team activity.</description>
     </item>
     
     <item>
@@ -623,15 +161,10 @@ For example, it can be used to scheduling support team activity or displaying pr
       <pubDate>Thu, 21 Nov 2013 15:44:14 +0300</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2013/11/21/migrating-logback-configuration-from-xml-to-groovy/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve recently switched &lt;a href=&#34;http://logback.qos.ch/&#34; target=&#34;_blank&#34;&gt;logback&lt;/a&gt; configuration of our application &lt;a href=&#34;http://logback.qos.ch/manual/groovy.html&#34; target=&#34;_blank&#34;&gt;from XML to Groovy&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Configuration file is not about 5 times smaller and can be displayed on one screen!&lt;/p&gt;
-
-&lt;p&gt;Groovy helped to remove duplicating parts of configurations by using for loop.&lt;/p&gt;
-
-&lt;p&gt;The moving was easy thanks to &lt;a href=&#34;http://logback.qos.ch/translator/asGroovy.html&#34; target=&#34;_blank&#34;&gt;online conversion tool&lt;/a&gt;.
-And don&amp;rsquo;t forget to add a groovy-all runtime dependency to your project config.&lt;/p&gt;
-</description>
+      <description>I&amp;rsquo;ve recently switched logback configuration of our application from XML to Groovy.
+Configuration file is not about 5 times smaller and can be displayed on one screen!
+Groovy helped to remove duplicating parts of configurations by using for loop.
+The moving was easy thanks to online conversion tool. And don&amp;rsquo;t forget to add a groovy-all runtime dependency to your project config.</description>
     </item>
     
     <item>
@@ -640,11 +173,8 @@ And don&amp;rsquo;t forget to add a groovy-all runtime dependency to your projec
       <pubDate>Sat, 19 Jan 2013 19:20:00 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2013/01/19/semantic-versioning-specification-semver/</guid>
-      <description>&lt;p&gt;&lt;em&gt;For every new project, one of the first questions to answer when planning release system is &amp;laquo;How to define a product versions?&amp;raquo;. Now I know the default answer for this question: &amp;laquo;Just look at the Semantic Versioning Specification!.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;It looks very natural: X.Y.Z where X is major version, Y is minor version and Z is the patch (hotfix) version of the product. X,Y,Z are non-negative numbers.
-See &lt;a href=&#34;http://semver.org/&#34; target=&#34;_blank&#34;&gt;full specification&lt;/a&gt; for details, it is not big, just 12 points.&lt;/p&gt;
-</description>
+      <description>For every new project, one of the first questions to answer when planning release system is &amp;laquo;How to define a product versions?&amp;raquo;. Now I know the default answer for this question: &amp;laquo;Just look at the Semantic Versioning Specification!.
+It looks very natural: X.Y.Z where X is major version, Y is minor version and Z is the patch (hotfix) version of the product. X,Y,Z are non-negative numbers. See full specification for details, it is not big, just 12 points.</description>
     </item>
     
     <item>
@@ -653,10 +183,7 @@ See &lt;a href=&#34;http://semver.org/&#34; target=&#34;_blank&#34;&gt;full spec
       <pubDate>Fri, 25 May 2012 09:29:00 +0400</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2012/05/25/book-continuous-delivery...-by-jez-humble-and-david-farley/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://amzn.com/0321601912&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/51UYBHnvjFL._SL500_SS225_.jpg&#34; alt=&#34;Continuous Delivery&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This book may help to make a product releasing and delivery to be more frequent and less painful.&lt;/p&gt;
-</description>
+      <description>This book may help to make a product releasing and delivery to be more frequent and less painful.</description>
     </item>
     
   </channel>

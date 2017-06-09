@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogging on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/categories/blogging/index.xml</link>
+    <link>https://konstantinpavlov.net/categories/blogging/</link>
     <description>Recent content in Blogging on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://konstantinpavlov.net/categories/blogging/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 17 Jan 2015 09:48:02 +0000</lastBuildDate>
+    
+	<atom:link href="https://konstantinpavlov.net/categories/blogging/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Hexo Useful Tips</title>
@@ -14,61 +17,7 @@
       <pubDate>Sat, 17 Jan 2015 09:48:02 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/01/17/hexo-useful-tips/</guid>
-      <description>
-
-&lt;p&gt;&lt;a href=&#34;http://hexo.io/&#34; target=&#34;_blank&#34;&gt;Hexo&lt;/a&gt; is static site generator framework suitable for blogging. It it written javascript and uses Node.js and it is pretty fast. After playing with Octopress and Jekyll, I finally switched to Hexo.
-The documentation is not bad, bot some aspects are bot covered, so it needs to google to figure-out some aspects. The good thing that there is a large developer and user community (many of them are from China) and there are a lot of sources and examples.&lt;/p&gt;
-
-&lt;p&gt;Anyway, I think some tips will be useful for Hexo newcomers.&lt;/p&gt;
-
-&lt;h2 id=&#34;tags-and-categories-localization-customization&#34;&gt;Tags and Categories Localization/Customization&lt;/h2&gt;
-
-&lt;p&gt;In WordPress you can customize tags and categories. Particularly, you can specify a localized name and a SEO-friendly slug for each one. In Hexo it is not so straightforward, but still possible.&lt;/p&gt;
-
-&lt;p&gt;By default, when you tag and categorize your post, you should use english names for your tags (and categories) to produce nice SEO-friendly URLs. e.g. &lt;em&gt;2015-01-17-my-awesome-post.md&lt;/em&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;title: &amp;quot;My Awesome Post&amp;quot;
-date: 2015-01-17 09:04:02
-tags:
-  - tag1
-  - по-русски
-categories:
-  - my category
----
-Hello world!
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If you want your tags and categories on your language and the URLs still look nice in ASCII, you may use &lt;a href=&#34;http://hexo.io/docs/configuration.html#Category_&amp;amp;_Tag&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;tag_map&lt;/code&gt; and &lt;code&gt;category_map&lt;/code&gt;&lt;/a&gt; parameters in &lt;em&gt;config.yml&lt;/em&gt; file of your blog:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;tag_map:
-  tag1: supertag
-  по-русски: in-russian
-  fun: fun and jokes
-  jokes: fun and jokes
-
-category_map:
-  my category: the other category
-  разное: other
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now tags and categories paths will be more obvious. Spaces and underscores in urls are replaced with dashes (-), but I prefer setting it explicitly.&lt;/p&gt;
-
-&lt;p&gt;You can even set one URL prefix for two different tags (&lt;em&gt;config.yml&lt;/em&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;tag_map:
-  fun: fun and jokes
-  jokes: fun and jokes
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;What I am missing:&lt;/strong&gt; Extracting &lt;code&gt;tag_map&lt;/code&gt; and &lt;code&gt;category_map&lt;/code&gt; to separate files.&lt;/p&gt;
-
-&lt;h2 id=&#34;other-notes&#34;&gt;Other Notes&lt;/h2&gt;
-
-&lt;p&gt;&lt;code&gt;relative_link: true&lt;/code&gt; in config breaks the pagination in Hexo 3.1.1, use &lt;code&gt;false&lt;/code&gt; instead:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yml&#34;&gt;relative_link: false
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>Hexo is static site generator framework suitable for blogging. It it written javascript and uses Node.js and it is pretty fast. After playing with Octopress and Jekyll, I finally switched to Hexo. The documentation is not bad, bot some aspects are bot covered, so it needs to google to figure-out some aspects. The good thing that there is a large developer and user community (many of them are from China) and there are a lot of sources and examples.</description>
     </item>
     
     <item>
@@ -79,43 +28,7 @@ category_map:
       <guid>https://konstantinpavlov.net/blog/2014/05/11/blog-migration-to-octopress/</guid>
       <description>&lt;p&gt;I have recently migrated my blog from Blogger and Tumblr to Octopress.
 Process was fairy simple. I found two scripts to convert my old posts to Markdown files for Octopress.
-&lt;/p&gt;
-
-&lt;h2 id=&#34;importing-blogger-blog-posts-to-octopress&#34;&gt;Importing Blogger Blog Posts to Octopress&lt;/h2&gt;
-
-&lt;p&gt;Firstly, I exported blog archive from Blogger to XML archive (&lt;em&gt;Blogger-&amp;gt;Settings-&amp;gt;Other-&amp;gt;Export Blog&lt;/em&gt;)&lt;/p&gt;
-
-&lt;p&gt;Then I found a &lt;a href=&#34;https://gist.github.com/juniorz/1564581&#34; title=&#34;Import a blogger archive to jekyll (octopress version)&#34; target=&#34;_blank&#34;&gt;script&lt;/a&gt; to convert blogger XML file to Octopress posts fileset. I had to install &lt;em&gt;nokogiri&lt;/em&gt; gem first.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;gem install nokogiri
-ruby import.rb my-blog.xml
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Script created &lt;em&gt;_posts&lt;/em&gt; and &lt;em&gt;_drafts&lt;/em&gt; folders with HTML post files. Anyway, it worth reviewing posts and correcting a markup, if necessary.&lt;/p&gt;
-
-&lt;h2 id=&#34;importing-tumblr-blog-posts-to-octopress&#34;&gt;Importing Tumblr Blog Posts to Octopress&lt;/h2&gt;
-
-&lt;p&gt;There is a &lt;a href=&#34;http://import.jekyllrb.com/docs/tumblr/&#34; title=&#34;Jekyll importer for Tumblr&#34; target=&#34;_blank&#34;&gt;ruby script for Jekyll&lt;/a&gt; for importing Tumblr blogs.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ gem install jekyll-import
-$ ruby -rubygems -e &#39;require &amp;quot;jekyll-import&amp;quot;;
-    JekyllImport::Importers::Tumblr.run({
-      &amp;quot;url&amp;quot;            =&amp;gt; &amp;quot;http://myblog.tumblr.com&amp;quot;,
-      &amp;quot;format&amp;quot;         =&amp;gt; &amp;quot;md&amp;quot;, # &amp;quot;html&amp;quot; or &amp;quot;md&amp;quot;
-      &amp;quot;grab_images&amp;quot;    =&amp;gt; false,  # whether to download images as well.
-      &amp;quot;add_highlights&amp;quot; =&amp;gt; false,  # whether to wrap code blocks (indented 4 spaces) in a Liquid &amp;quot;highlight&amp;quot; tag
-      &amp;quot;rewrite_urls&amp;quot;   =&amp;gt; false   # whether to write pages that redirect from the old Tumblr paths to the new Jekyll paths
-    })&#39;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Script created &lt;em&gt;_posts/tumblr&lt;/em&gt; with folders with Markdown files.&lt;/p&gt;
-
-&lt;p&gt;The only thing left is to review imported posts and include them to new blog.
-That&amp;rsquo;s it.&lt;/p&gt;
-
-&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://www.tomordonez.com/blog/2012/06/04/creating-a-github-blog-using-octopress/&#34; target=&#34;_blank&#34;&gt;Creating a Github Blog Using Octopress by Tom Ordonez&lt;/a&gt;&lt;/p&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
   </channel>

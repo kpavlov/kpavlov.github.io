@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nginx on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/nginx/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/nginx/</link>
     <description>Recent content in Nginx on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://konstantinpavlov.net/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 14 Sep 2016 10:15:51 +0000</lastBuildDate>
+    
+	<atom:link href="https://konstantinpavlov.net/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Deploying Private Docker Registry Behind Cloudflare</title>
@@ -16,115 +19,7 @@
       <guid>https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflare/</guid>
       <description>&lt;p&gt;This is a short instruction how to deploy private docker registry on private cloud virtual servers behind &lt;a href=&#34;https://www.cloudflare.com&#34; target=&#34;_blank&#34;&gt;Cloudflare&lt;/a&gt; proxy.
 
-Suppose, we have two virtual servers on private cloud:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;WAF (web application firewall) with Nginx installed&lt;/li&gt;
-&lt;li&gt;Internal server which will host a Docker private registry.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Cloudflare will serve as HTTPS proxy and forward unencrypted traffic to private WAF which will provide authentication and authorization and dispatch user requests to docker registry server.&lt;/p&gt;
-
-&lt;h2 id=&#34;1-start-docker-registry-server-on-internal-docker-host&#34;&gt;1. Start docker registry server on internal docker host&lt;/h2&gt;
-
-&lt;p&gt;Login to your virtual server and start docker registry:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;docker run -d -p 5000:5000 --restart=always --name registry registry:2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Setup firewall to allow access to docker registry server from WAF&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;iptables -A INPUT -p tcp -s &amp;lt;waf-ip&amp;gt; -i eth1 --dport 5000 -m state --state NEW,ESTABLISHED -j ACCEPT
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;2-configure-nginx-on-waf&#34;&gt;2. Configure Nginx on WAF&lt;/h2&gt;
-
-&lt;p&gt;We need to setup BASIC authorization and request forwarding:&lt;/p&gt;
-
-&lt;p&gt;Create password for your docker user (&lt;code&gt;dockeruser&lt;/code&gt;) basic authentication on nginx.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo htpasswd -c /etc/nginx/.htpasswd dockeruser
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;code&gt;htpasswd&lt;/code&gt; you may find in the package apache2-utils (&lt;code&gt;sudo yum -y install apache2-utils&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;Now configure nginx (&lt;code&gt;/etc/nginx.conf&lt;/code&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-nginx&#34;&gt;
-server {
-    listen          80;       # Listen on port 80 for IPv4 requests
-
-    server_name r.newage.io;
-
-    ignore_invalid_headers off;
-
-    location / {
-
-        # disable any limits to avoid HTTP 413 for large image uploads
-        client_max_body_size 0;
-
-        # required to avoid HTTP 411: see Issue #1486 (https://github.com/docker/docker/issues/1486)
-        chunked_transfer_encoding on;
-
-        add_header                  Docker-Distribution-Api-Version registry/2.0 always;
-        auth_basic                  &amp;quot;Restricted&amp;quot;;
-        auth_basic_user_file        /etc/nginx/.htpasswd;
-        proxy_pass                  http://&amp;lt;upstream-host&amp;gt;:5000/;
-
-        proxy_set_header            X-Original-URI       $request_uri;
-        proxy_set_header            Proxy                &amp;quot;&amp;quot;;
-        proxy_set_header            Host                 $host;
-        proxy_set_header            X-Real-IP            $remote_addr;
-        proxy_set_header            X-Forwarded-For      $proxy_add_x_forwarded_for;
-        proxy_set_header            X-Forwarded-Proto    &amp;quot;https&amp;quot;;
-        proxy_read_timeout          900;
-        proxy_max_temp_file_size    0;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;and reload nginx configuration:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo nginx -s reload
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;3-configure-cloudflare&#34;&gt;3. Configure Cloudflare&lt;/h2&gt;
-
-&lt;p&gt;Now we need to login to &lt;a href=&#34;https://www.cloudflare.com&#34; target=&#34;_blank&#34;&gt;cloudflare&lt;/a&gt; console, create DNS A-record pointing to your WAF server-ip&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;registry.mydomain.com =&amp;gt; WAF public IP
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Also we need to setup &amp;laquo;Always Use HTTPS&amp;raquo; &lt;a href=&#34;https://support.cloudflare.com/hc/en-us/articles/224509547-Recommended-Page-Rules-to-Consider&#34; target=&#34;_blank&#34;&gt;page rule&lt;/a&gt; for the domain.&lt;/p&gt;
-
-&lt;h2 id=&#34;4-testing-repository&#34;&gt;4. Testing repository&lt;/h2&gt;
-
-&lt;p&gt;Execute from your local machine:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ docker login -u=dockeruser -p=secret https://registry.mydomain.com
-Password:
-Login Succeeded
-$ docker pull hello-world
-Using default tag: latest
-latest: Pulling from library/hello-world
-
-c04b14da8d14: Pull complete
-Digest: sha256:0256e8a36e2070f7bf2d0b0763dbabdd67798512411de4cdcf9431a1feb60fd9
-Status: Downloaded newer image for hello-world:latest
-$ docker tag hello-world:latest registry.mydomain.com/hello-world:latest
-$ docker push registry.mydomain.com/hello-world:latest
-The push refers to a repository [registry.mydomain.com/hello-world]
-a02596fdd012: Pushed
-latest: digest: sha256:a18ed77532f6d6781500db650194e0f9396ba5f05f8b50d4046b294ae5f83aa4 size: 524
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.docker.com/registry/recipes/nginx/&#34; target=&#34;_blank&#34;&gt;Authenticating proxy with nginx&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://container-solutions.com/running-secured-docker-registry-2-0/&#34; target=&#34;_blank&#34;&gt;Running Secured Docker Registry 2.0&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/a/39483840/3315474&#34; target=&#34;_blank&#34;&gt;StackOverflow: docker authentication issue&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+Suppose, we have two virtual servers on private cloud:&lt;/p&gt;</description>
     </item>
     
   </channel>

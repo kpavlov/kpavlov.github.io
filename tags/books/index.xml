@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Books on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/books/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/books/</link>
     <description>Recent content in Books on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://konstantinpavlov.net/tags/books/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 Jan 2015 23:04:54 +0000</lastBuildDate>
+    
+	<atom:link href="https://konstantinpavlov.net/tags/books/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Recalling Testing Principles</title>
@@ -14,23 +17,8 @@
       <pubDate>Wed, 28 Jan 2015 23:04:54 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/</guid>
-      <description>&lt;p&gt;If you are involved in software development then recalling a basic testing principles once again is not a waste of time. So here are the principles:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;A necessary part of a test case is a definition of the expected output or result.&lt;/li&gt;
-&lt;li&gt;A programmer should avoid attempting to test his or her own program.&lt;/li&gt;
-&lt;li&gt;A programming organization should not test its own programs.&lt;/li&gt;
-&lt;li&gt;Any testing process should include a thorough inspection of the results of each test.&lt;/li&gt;
-&lt;li&gt;Test cases must be written for input conditions that are invalid and unexpected, as well as for those that are valid and expected.&lt;/li&gt;
-&lt;li&gt;Examining a program to see if it does not do what it is supposed to do is only half the battle; the other half is seeing whether the program does what it is not supposed to do.&lt;/li&gt;
-&lt;li&gt;Avoid throwaway test cases unless the program is truly a throwaway program.&lt;/li&gt;
-&lt;li&gt;Do not plan a testing effort under the tacit assumption that no errors will be found.&lt;/li&gt;
-&lt;li&gt;The probability of the existence of more errors in a section of a program is proportional to the number of errors already found in that section.&lt;/li&gt;
-&lt;li&gt;Testing is an extremely creative and intellectually challenging task.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;I recommend reading a book &lt;a href=&#34;http://eu.wiley.com/WileyCDA/WileyTitle/productCd-1118031962.html&#34; title=&#34;The Art of Software Testing, 3rd Edition&#34; target=&#34;_blank&#34;&gt;&amp;laquo;The Art of Software Testing&amp;raquo;&lt;/a&gt; by Glenford j. Myers, Tom Badgett and Corey Sandler (ISBN: 978-1-118-03196-4).&lt;/p&gt;
-</description>
+      <description>If you are involved in software development then recalling a basic testing principles once again is not a waste of time. So here are the principles:
+ A necessary part of a test case is a definition of the expected output or result. A programmer should avoid attempting to test his or her own program. A programming organization should not test its own programs. Any testing process should include a thorough inspection of the results of each test.</description>
     </item>
     
     <item>
@@ -39,9 +27,7 @@
       <pubDate>Thu, 22 May 2014 22:57:48 +0300</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2014/05/22/book-applied-oracle-security--developing-secure-database-and-middleware-environments-by-david-knox/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://amzn.com/B002TGNIWK&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/712iBQfmaHL._SL1500_.jpg&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;
-ISBN: 978-0-07-161371-2&lt;/p&gt;
-</description>
+      <description>ISBN: 978-0-07-161371-2</description>
     </item>
     
     <item>
@@ -50,13 +36,8 @@ ISBN: 978-0-07-161371-2&lt;/p&gt;
       <pubDate>Thu, 22 May 2014 22:54:51 +0300</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2014/05/22/book-expert-oracle-database-architecture-oracle-database-9i-10g-and-11g-programming-techniques-and-solutions-by-thomas-kyte/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://amzn.com/B004VJ46ME&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/51ATPBi5z9L.jpg&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;ISBN-13 (pbk): 978-1-4302-2946-9&lt;/li&gt;
-&lt;li&gt;ISBN-13 (electronic): 978-1-4302-2947-6&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>
+ ISBN-13 (pbk): 978-1-4302-2946-9 ISBN-13 (electronic): 978-1-4302-2947-6  </description>
     </item>
     
     <item>
@@ -65,11 +46,7 @@ ISBN: 978-0-07-161371-2&lt;/p&gt;
       <pubDate>Fri, 25 May 2012 09:40:00 +0400</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2012/05/25/book-good-old-peopleware/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://amzn.com/0932633439&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/51MlUgcSICL._SL500_SS225_.jpg&#34; alt=&#34;Peopleware: Productive Projects and Teams&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;One more book worth reading - &amp;laquo;Peopleware: Productive Projects and Teams&amp;raquo; by Tom DeMarco and Timothy Lister.
-It&amp;rsquo;s essentially a Holy Bible for every manager!&lt;/p&gt;
-</description>
+      <description>One more book worth reading - &amp;laquo;Peopleware: Productive Projects and Teams&amp;raquo; by Tom DeMarco and Timothy Lister. It&amp;rsquo;s essentially a Holy Bible for every manager!</description>
     </item>
     
     <item>
@@ -78,10 +55,7 @@ It&amp;rsquo;s essentially a Holy Bible for every manager!&lt;/p&gt;
       <pubDate>Fri, 25 May 2012 09:29:00 +0400</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2012/05/25/book-continuous-delivery...-by-jez-humble-and-david-farley/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;http://amzn.com/0321601912&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;http://ecx.images-amazon.com/images/I/51UYBHnvjFL._SL500_SS225_.jpg&#34; alt=&#34;Continuous Delivery&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This book may help to make a product releasing and delivery to be more frequent and less painful.&lt;/p&gt;
-</description>
+      <description>This book may help to make a product releasing and delivery to be more frequent and less painful.</description>
     </item>
     
   </channel>

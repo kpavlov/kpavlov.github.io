@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/web/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/web/</link>
     <description>Recent content in Web on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://konstantinpavlov.net/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Mar 2017 08:48:34 +0000</lastBuildDate>
+    
+	<atom:link href="https://konstantinpavlov.net/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>UI-First Development</title>
@@ -14,146 +17,7 @@
       <pubDate>Tue, 07 Mar 2017 08:48:34 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2017/03/07/ui-first-development/</guid>
-      <description>
-
-&lt;p&gt;One of the callenge for start-up or any new project is to reduce amount of work yet to deliver full-featured product.
-Agile methodologies address this challenge on project management level.
-Let&amp;rsquo;s discuss one more approach to address it on architecture level: &lt;strong&gt;&lt;em&gt;UI-first development.&lt;/em&gt;&lt;/strong&gt;
-&lt;!-- more --&gt;&lt;/p&gt;
-
-&lt;p&gt;Delivering prototype to the client early is often very important to project success.
-Client may have only general idea of a product he wants, and prototyping may save a lot of time
-and efforts of the team by reducing amount of unnecessary work.
-Thus building web applications ground-up, starting from data model, may be a bad idea.&lt;/p&gt;
-
-&lt;p&gt;The problem with ground-up approach (from data model to UI) is that client can&amp;rsquo;t see and play with the product.
-Many user scenarios remains hidden since user never interacted with a product yet.
-Accordingly, some &lt;em&gt;not-the-cases&lt;/em&gt; will most likely be implemented since developers usually
-don&amp;rsquo;t understand user requirements completely due to miscommunication which is hard to avoid.
-When client gets first working prototype a lot of work has already done both on front-end and back-end side.
-And if the prototype does not meet the client&amp;rsquo;s expectations, this work is to be thrown away.
-The indicator of such situation is when significant changes are done to data model after first version was presented to client.&lt;/p&gt;
-
-&lt;p&gt;Agile methodologies can mitigate the problem:
-&lt;a href=&#34;https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;../../assets/2017/03/what-isagile-henrik-kniberg.jpg&#34; alt=&#34;&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;In iterative development with short iterations, each iteration adds some value.
-Client-side, server-side and persistence level are changed together in order to add new functionality.
-And the Client should be always happy, even having with a fraction of MVP.&lt;/p&gt;
-
-&lt;p&gt;The question is: &lt;em&gt;&amp;laquo;Should Client be happy with a skateboard?&amp;raquo;&lt;/em&gt;
-In a real world Client may need to try a &amp;laquo;bicycle&amp;raquo; before he can say that it looks similar to what she expects to have at the end.&lt;/p&gt;
-
-&lt;p&gt;In such conditions of uncertainty the top-down approach i.e. &lt;strong&gt;&lt;em&gt;UI-first Development&lt;/em&gt;&lt;/strong&gt; may be a better solution.
-I&amp;nbsp;think it&amp;rsquo;s even more &amp;laquo;agile&amp;raquo; way since Client&amp;rsquo;s feedback is collected earlier, reducing unnecessary work of the team.&lt;/p&gt;
-
-&lt;h2 id=&#34;development-plan&#34;&gt;Development Plan&lt;/h2&gt;
-
-&lt;p&gt;On following diagram you can see how development phases can be scheduled on a timeline
-(Vision and Analysis phases were left behind the scene):
-&lt;img src=&#34;../../assets/2017/03/app-development-schedule-v1.svg&#34; alt=&#34;Application Development Schedule&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s assume, we&amp;rsquo;re going to develop a web application consuming REST/Websockets API from back-end server.&lt;/p&gt;
-
-&lt;h3 id=&#34;1-ui-prototype&#34;&gt;1. UI Prototype&lt;/h3&gt;
-
-&lt;p&gt;Actual development starts with web application prototyping.
-First UI mockups are created and presented to Client.
-This is typically an single page application (SPA) written using some component framework: Angular, React, whatever developers are confident with.
-If there is some visual prototype or screen mockups then initial version can be created quickly.&lt;/p&gt;
-
-&lt;h3 id=&#34;2-add-some-static-data&#34;&gt;2. Add Some Static Data&lt;/h3&gt;
-
-&lt;p&gt;When initial application structure is clear, it&amp;rsquo;s the time to add some data.
-This should not be a real data as there is no real backend to provide it.
-It&amp;rsquo;s enough to create some static JSON files and serve them under &lt;code&gt;/assets&lt;/code&gt; or &lt;code&gt;/data&lt;/code&gt; along with JS application.&lt;/p&gt;
-
-&lt;h3 id=&#34;3-start-defining-api-contract&#34;&gt;3. Start Defining API Contract&lt;/h3&gt;
-
-&lt;p&gt;This static data is a foundation of future API specification (contract). The most popular format for writing API specifications is &lt;a href=&#34;https://swagger.io&#34; target=&#34;_blank&#34;&gt;OpenAPI/Swagger&lt;/a&gt;. It suites well for most common cases. Some aspects, like inheritance, are not clear enough in specification but the format is widely accepted in the industry so it&amp;rsquo;s a default choice.&lt;/p&gt;
-
-&lt;p&gt;Alternative formats for describing REST API are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://apiblueprint.org/&#34; target=&#34;_blank&#34;&gt;API Blueprint&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.mashape.com&#34; target=&#34;_blank&#34;&gt;Mashape&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/mashery/iodocs&#34; target=&#34;_blank&#34;&gt;Mashery I/O Docs&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;When you have Specification, you can automatically generate and publish API reference documentation.
-This will used often by your team internally and you will publish it later if you decide to make your API public.&lt;/p&gt;
-
-&lt;p&gt;There are tools on the market you can use to generate HTML documentation from API Specification.&lt;/p&gt;
-
-&lt;h3 id=&#34;4-a-time-for-testing&#34;&gt;4. A Time for Testing&lt;/h3&gt;
-
-&lt;p&gt;Now you have web application fed with static data. It&amp;rsquo;s time to write some tests.
-You may start testing some base functionality you&amp;rsquo;re confident with.
-Web Developers may start testing web components using JS-stuff like mocha, jasmine or similar framework.&lt;/p&gt;
-
-&lt;p&gt;It is impossible to cover all the cases without real application server. Also, it is very difficult to test requests sent by UI application. But you can test simple scenarios like: &lt;em&gt;&amp;laquo;WHEN user requests some url THEN expected data is shown on page&amp;raquo;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;5-even-for-system-integration-testing&#34;&gt;5. …Even for System Integration Testing&lt;/h3&gt;
-
-&lt;p&gt;Webapp functional end-to-end testing with test data can be done by web developers.&lt;/p&gt;
-
-&lt;p&gt;System integration testing is usually done by QA team and employs both web and back-end developers.
-It usually covers complex interaction scenarios between front-end and back-end.&lt;/p&gt;
-
-&lt;p&gt;Common tool used for system integration testing is &lt;a href=&#34;http://www.seleniumhq.org&#34; target=&#34;_blank&#34;&gt;Selenium&lt;/a&gt;.
-Sometimes it is also necessary to develop some extra tools for direct access to underlaying data and external system emulators (test doubles).
-And often the team will end up designing a custom test DSL to simplify writing this kind of tests&lt;/p&gt;
-
-&lt;p&gt;There is a long way to go but even now it&amp;rsquo;s possible to star writing some simple tests&lt;/p&gt;
-
-&lt;p&gt;And it is now possible to start creating System Integration tests.
-Even you have no back-end yet, you defined an expected data in static files so there is nothing preventing from using a heavy stuff like Selenium.&lt;/p&gt;
-
-&lt;h3 id=&#34;6-starting-back-end-mock-controllers&#34;&gt;6. Starting Back-End: Mock Controllers&lt;/h3&gt;
-
-&lt;p&gt;We have a contract (API specification) and test data in static files (data should match the contract).
-We have also some system integration tests.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s concentrate on deployment and testing. We don&amp;rsquo;t need to implement services and data layer so far.&lt;/p&gt;
-
-&lt;p&gt;Now we need a back-end and full deployment cycle to test both front-end and back-end together.
-From a API specification we may generate data transfer objects and interfaces of front controllers.
-Then we should implement controllers so they return the same test data.
-Mock controllers are enough. They may serve the same static data as for webapp.&lt;/p&gt;
-
-&lt;p&gt;The most important that after completing this step our system integration tests should run against real UI working win real server. And tests should be green.&lt;/p&gt;
-
-&lt;h3 id=&#34;7-continuing-back-end-controllers-and-mock-dao&#34;&gt;7. Continuing Back-End: Controllers and Mock DAO&lt;/h3&gt;
-
-&lt;p&gt;Now it&amp;rsquo;s time to implement services, one by one. Database is still not necessary - we may mock persistence (DAO) layer.
-The tests still should be green and we may add more tests now since we have Services now.&lt;/p&gt;
-
-&lt;h3 id=&#34;8-continuing-back-end-real-database-and-dao&#34;&gt;8. Continuing Back-End: Real Database and DAO&lt;/h3&gt;
-
-&lt;p&gt;Now we should design our persistence layer, create DAO add test data so the tests are still green.
-After that we&amp;rsquo;ll have all components in our system:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Web Application&lt;/li&gt;
-&lt;li&gt;REST API Specification&lt;/li&gt;
-&lt;li&gt;Backend: Controllers, Services, DAO&lt;/li&gt;
-&lt;li&gt;Database&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Now let&amp;rsquo;s continue with short interactions affecting all system layers.&lt;/p&gt;
-
-&lt;h2 id=&#34;final-notes&#34;&gt;Final Notes&lt;/h2&gt;
-
-&lt;p&gt;This not a methodology. It&amp;rsquo;s just the idea of how to minimize unnecessary work in conditions of business uncertainty.
-Don&amp;rsquo;t use this instruction blindly.&lt;/p&gt;
-
-&lt;h2 id=&#34;links&#34;&gt;Links&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21&#34; target=&#34;_blank&#34;&gt;&amp;laquo;What is Agile&amp;raquo; by Henrik Kniberg&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://youtu.be/9LfmrkyP81M&#34; target=&#34;_blank&#34;&gt;Writing Software by David Heinemeier Hansson (video, RailsConf 2014)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>One of the callenge for start-up or any new project is to reduce amount of work yet to deliver full-featured product. Agile methodologies address this challenge on project management level. Let&amp;rsquo;s discuss one more approach to address it on architecture level: UI-first development. Delivering prototype to the client early is often very important to project success. Client may have only general idea of a product he wants, and prototyping may save a lot of time and efforts of the team by reducing amount of unnecessary work.</description>
     </item>
     
     <item>
@@ -163,46 +27,7 @@ Don&amp;rsquo;t use this instruction blindly.&lt;/p&gt;
       
       <guid>https://konstantinpavlov.net/blog/2016/02/21/spring-freemarker-tips/</guid>
       <description>&lt;p&gt;I hope you will find following tips useful when developing &lt;a href=&#34;https://projects.spring.io/spring-boot&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; application with &lt;a href=&#34;http://freemarker.org&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
-&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Enable auto-reload of freemarker templates&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Create spring boot development profile (e.g. &amp;laquo;local&amp;raquo;)&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Disable template caching and enable file access rather than classpath resource access to templates (&lt;em&gt;application-local.properties&lt;/em&gt;).&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.cache=false
-spring.freemarker.prefer-file-system-access=true
-spring.freemarker.template-loader-path=file:${user.home}/projects/example/src/main/resources/templates
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Add &lt;code&gt;src/main/resources/freemarker_implicit.ftl&lt;/code&gt; to declare your oftenly used types (_freemarker&lt;em&gt;implicit.ftl&lt;/em&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-freemarker&#34;&gt;[#ftl]
-[#-- @implicitly included --]
-[#-- @ftlvariable name=&amp;quot;items&amp;quot; type=&amp;quot;java.util.List&amp;lt;com.example.domain.Item&amp;gt;&amp;quot; --]
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Set setting &lt;code&gt;url_escaping_charset&lt;/code&gt; to avoid specifying it in templates (&lt;em&gt;application-local.properties&lt;/em&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.settings.url_escaping_charset=UTF-8
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;You may want to import your default layout to all your pages automatically (&lt;em&gt;application.properties&lt;/em&gt;)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-properties&#34;&gt;spring.freemarker.settings.auto_import=layout/defaultLayout.ftl as layout
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This is equivalent to adding explicitly to your page:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-freemarker&#34;&gt;&amp;lt;#import &amp;quot;../layout/defaultLayout.ftl&amp;quot; as layouts&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Why Freemarker and not a &lt;a href=&#34;http://www.thymeleaf.org/&#34; target=&#34;_blank&#34;&gt;Thymeleaf&lt;/a&gt;? Because Thymeleaf is one of the &lt;a href=&#34;https://github.com/jreijn/spring-comparing-template-engines#benchmarks-2015&#34; target=&#34;_blank&#34;&gt;slowest&lt;/a&gt; template engines for Java. Freemarker is in the middle of the list, 1.5 times faster than Thymeleaf. &lt;a href=&#34;http://velocity.apache.org/&#34; target=&#34;_blank&#34;&gt;Velocity&lt;/a&gt; or &lt;a href=&#34;https://github.com/samskivert/jmustache&#34; target=&#34;_blank&#34;&gt;JMustache&lt;/a&gt; are even faster, but the difference is not as big and Freemarker has quite a lot of useful features.&lt;/p&gt;</description>
+&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -211,15 +36,8 @@ spring.freemarker.template-loader-path=file:${user.home}/projects/example/src/ma
       <pubDate>Thu, 11 Feb 2016 23:09:16 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</guid>
-      <description>&lt;p&gt;StackOverflow-driven JS development:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;try {
-    something
-} catch (e) {
-     window.open(&#39;https://stackoverflow.com/search?q=[js]+&amp;quot;&#39; + e.message + &#39;&amp;quot;&#39;);
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>StackOverflow-driven JS development:
+try { something } catch (e) { window.open(&#39;https://stackoverflow.com/search?q=[js]+&amp;quot;&#39; + e.message + &#39;&amp;quot;&#39;); }  </description>
     </item>
     
     <item>
@@ -246,391 +64,7 @@ In this article I will briefly describe common practical development techniques 
 &lt;li&gt;A10 - Unvalidated Redirects and Forwards&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;In this article I will highlight most important java coding techniques for building secure web applications.&lt;/p&gt;
-
-&lt;h2 id=&#34;use-sql-prepared-statements-a1-a1&#34;&gt;Use SQL Prepared Statements (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;)&lt;/h2&gt;
-
-&lt;p&gt;Bind user data to request parameters of the &lt;code&gt;PreparedStatement&lt;/code&gt;. Never construct dynamic sql queries directly, without escaping parameter escaping.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT * FROM Users WHERE username = &#39;&amp;quot; +  userName + &amp;quot;&#39;&amp;quot;;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The query with input &lt;code&gt;foo OR 1=1&lt;/code&gt; will select all data from table.&lt;/p&gt;
-
-&lt;p&gt;For plain JDBC use:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;String query = &amp;quot;SELECT * FROM Users WHERE name = ?&amp;quot;;
-PreparedStatement statement = connection.prepareStatement(query);
-statement.setString(1, userName);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;For Hibernate use:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;String query = &amp;quot;SELECT * FROM USERS WHERE name = :userName&amp;quot;;
-TypedQuery&amp;lt;User&amp;gt; query = em.createQuery(query, User.class);
-query.setParameter(“userName”, userName);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;encode-user-data-a3-a3-a10-a10&#34;&gt;Encode User Data (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_%28XSS%29&#34; target=&#34;_blank&#34;&gt;A3&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A10-Unvalidated_Redirects_and_Forwards&#34; target=&#34;_blank&#34;&gt;A10&lt;/a&gt;)&lt;/h2&gt;
-
-&lt;p&gt;When rendering user-generated content, always encode it properly. This prevents Cross-Site Scripting (XSS).&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;In JSP use &lt;a href=&#34;https://jstl.java.net/&#34; title=&#34;JSP Standard Tag Library&#34; target=&#34;_blank&#34;&gt;JSTL tags&lt;/a&gt;
-Use &lt;code&gt;c:out&lt;/code&gt; tag. Attribute &lt;code&gt;escapeXml&lt;/code&gt; is &lt;strong&gt;&amp;laquo;true&amp;raquo;&lt;/strong&gt; by default, so you may omit it:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-jsp&#34;&gt;&amp;lt;c:out value=&amp;quot;${variable}&amp;quot;/&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;When using Spring Framework with JSP view, use &lt;a href=&#34;http://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html#view-jsp&#34; target=&#34;_blank&#34;&gt;Spring&amp;rsquo;s &lt;code&gt;form&lt;/code&gt; tags&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-jsp&#34;&gt;&amp;lt;%@ taglib prefix=&amp;quot;form&amp;quot; uri=&amp;quot;http://www.springframework.org/tags/form&amp;quot; %&amp;gt;
-&amp;lt;form:form&amp;gt;
-&amp;lt;table&amp;gt;
-    &amp;lt;tr&amp;gt;
-        &amp;lt;td&amp;gt;First Name:&amp;lt;/td&amp;gt;
-        &amp;lt;td&amp;gt;&amp;lt;form:input path=&amp;quot;firstName&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
-    &amp;lt;/tr&amp;gt;
-    &amp;lt;tr&amp;gt;
-        &amp;lt;td&amp;gt;Last Name:&amp;lt;/td&amp;gt;
-        &amp;lt;td&amp;gt;&amp;lt;form:input path=&amp;quot;lastName&amp;quot; /&amp;gt;&amp;lt;/td&amp;gt;
-    &amp;lt;/tr&amp;gt;
-    &amp;lt;tr&amp;gt;
-        &amp;lt;td colspan=&amp;quot;2&amp;quot;&amp;gt;
-            &amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Save Changes&amp;quot; /&amp;gt;
-        &amp;lt;/td&amp;gt;
-    &amp;lt;/tr&amp;gt;
-&amp;lt;/table&amp;gt;
-&amp;lt;/form:form&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;When using Spring Framework with &lt;a href=&#34;http://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html#view-velocity&#34; target=&#34;_blank&#34;&gt;Freemarker and Velocity&lt;/a&gt;, use &lt;code&gt;bindEscaped&lt;/code&gt; and &lt;code&gt;form&lt;/code&gt; macros.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;check-access-a4-a4-a7-a7&#34;&gt;Check Access (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A4-Insecure_Direct_Object_References&#34; target=&#34;_blank&#34;&gt;A4&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A7-Missing_Function_Level_Access_Control&#34; target=&#34;_blank&#34;&gt;A7&lt;/a&gt;)&lt;/h2&gt;
-
-&lt;p&gt;Always check data and functional access. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object.
-Spring Security provides the comprehensive methods to implement functional access.
-Data access (SQL) usually requires correctly constructing of the SQL query.&lt;/p&gt;
-
-&lt;h2 id=&#34;use-http-headers-a1-a1-a3-a3&#34;&gt;Use HTTP Headers (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A3-Cross-Site_Scripting_%28XSS%29&#34; target=&#34;_blank&#34;&gt;A3&lt;/a&gt;)&lt;/h2&gt;
-
-&lt;p&gt;Use browser headers to prevent XSS and data-injection attacks:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-http&#34;&gt;X-Frame-Options: DENY
-X-XSS-Protection: 1; mode=block
-X-Content-Type-Options: nosniff
-Content-Security-Policy: default-src https://myhost.com
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Spring-Security provides a set of &lt;a href=&#34;http://docs.spring.io/autorepo/docs/spring-security/current/apidocs/org/springframework/security/config/annotation/web/builders/HttpSecurity.html&#34; target=&#34;_blank&#34;&gt;header filters&lt;/a&gt; out of the box ():&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
-@EnableWebMvcSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .headers()
-                .contentTypeOptions();
-                .xssProtection()
-                .cacheControl()
-                .httpStrictTransportSecurity()
-                .frameOptions()
-                .and()
-            ...;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;use-content-security-policy-header&#34;&gt;Use Content-Security-Policy Header&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Content_Security_Policy&#34; target=&#34;_blank&#34;&gt;Content-Security-Policy&lt;/a&gt; is an &lt;a href=&#34;https://w3c.github.io/webappsec/specs/content-security-policy/&#34; target=&#34;_blank&#34;&gt;W3C specification&lt;/a&gt; offering the possibility to instruct the client browser from which location and/or which type of resources are allowed to be loaded. To define a loading behavior, the CSP specification use &amp;laquo;directive&amp;raquo; where a directive defines a loading behavior for a target resource type.&lt;/p&gt;
-
-&lt;p&gt;Directives can be specified using HTTP response header (a server may send more than one CSP HTTP header field with a given resource representation and a server may send different CSP header field values with different representations of the same resource or with different resources) or HTML Meta tag, the HTTP headers below are defined by the specs:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Content-Security-Policy&lt;/code&gt; : Defined by W3C Specs as standard header, used by Chrome version 25 and later, Firefox version 23 and later, Opera version 19 and later.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;X-Content-Security-Policy&lt;/code&gt; : Used by Firefox until version 23, and Internet Explorer version 10 (which partially implements Content Security Policy).&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;X-WebKit-CSP&lt;/code&gt; : Used by Chrome until version 25&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The supported directives you may find at &lt;a href=&#34;https://w3c.github.io/webappsec/specs/content-security-policy/#directives&#34; target=&#34;_blank&#34;&gt;W3C specification&lt;/a&gt; page.&lt;/p&gt;
-
-&lt;p&gt;As fallback default you may use &lt;strong&gt;&lt;code&gt;default-src&lt;/code&gt;&lt;/strong&gt; directive. It defines loading policy for all resources type in case of a resource type dedicated directive is not defined.&lt;/p&gt;
-
-&lt;h2 id=&#34;use-spring-security-csrf-protection-a8-a8&#34;&gt;Use Spring-Security CSRF Protection (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A8-Cross-Site_Request_Forgery_%28CSRF%29&#34; target=&#34;_blank&#34;&gt;A8&lt;/a&gt;)&lt;/h2&gt;
-
-&lt;p&gt;Spring-Security provides a [CSRF] protection out of the box using &lt;a href=&#34;https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#General_Recommendation:_Synchronizer_Token_Pattern&#34; target=&#34;_blank&#34;&gt;Synchronizer Token Pattern&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;Configure CSRF token support:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
-@EnableWebMvcSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .csrf()
-                .and()
-            ...;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Include &lt;code&gt;_csrf.token&lt;/code&gt; hidden field to your forms:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;form action=&amp;quot;...&amp;quot; method=&amp;quot;post&amp;quot;&amp;gt;
-&amp;lt;input type=&amp;quot;hidden&amp;quot;
-    name=&amp;quot;${_csrf.parameterName}&amp;quot;
-    value=&amp;quot;${_csrf.token}&amp;quot;/&amp;gt;
-...
-&amp;lt;/form&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;disable-xml-external-entity-xxe-processing-a1-a1-a6-a6&#34;&gt;Disable XML External Entity (XXE) Processing (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;, &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&#34; target=&#34;_blank&#34;&gt;A6&lt;/a&gt;)&lt;/h2&gt;
-
-&lt;p&gt;Processing of&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;ISO-8859-1&amp;quot;?&amp;gt;
-&amp;lt;!DOCTYPE request [
-&amp;lt;!ENTITY
-include SYSTEM “file=/etc/passwd&amp;quot;
- &amp;gt;
-]&amp;gt;
-&amp;lt;request&amp;gt;
-&amp;lt;description&amp;gt;
-&amp;amp;include;
- &amp;lt;/description&amp;gt;
-...
-&amp;lt;/request&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;&amp;amp;include;&lt;/code&gt; will be replaced with a real data, like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/bin/sh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To prevent data exposure (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&#34; target=&#34;_blank&#34;&gt;A6&lt;/a&gt;) and injection (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A1-Injection&#34; target=&#34;_blank&#34;&gt;A1&lt;/a&gt;) disable some &lt;a href=&#34;http://docs.oracle.com/javase/8/docs/api/javax/xml/parsers/DocumentBuilderFactory.html#setFeature-java.lang.String-boolean-&#34; target=&#34;_blank&#34;&gt;DocumentBuilderFactory&lt;/a&gt; features:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;DocumentBuilderFactory dbf = new DocumentBuilderFactory();
-
-dbf.setFeature(javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING);
-
-// Do not include external entities
-dbf.setFeature(&amp;quot;http://xml.org/sax/features/external-general-entities&amp;quot;, false);
-
-// Disallow DTD inlining by setting this feature to true
-dbf.setFeature(&amp;quot;http://apache.org/xml/features/disallow-doctype-decl&amp;quot;, true);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;data-protection-coding-practices-a6-a6&#34;&gt;Data Protection Coding Practices (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A6-Sensitive_Data_Exposure&#34; target=&#34;_blank&#34;&gt;A6&lt;/a&gt;)&lt;/h2&gt;
-
-&lt;p&gt;Without proper server access protection, it is possible to take a whole dump of the process memory with &lt;code&gt;gdb&lt;/code&gt; (&lt;code&gt;gdb --pid [pid]&lt;/code&gt;).
-So the developer should make an extra steps for securing data stored in memory.&lt;/p&gt;
-
-&lt;p&gt;The main idea is to keep sensitive data in memory as less time as possible.&lt;/p&gt;
-
-&lt;h3 id=&#34;1-never-hardcode-passwords&#34;&gt;1. Never hardcode passwords&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Don&amp;rsquo;t store the passwords/keys in your code.&lt;/strong&gt;
-Your code should be immediately available to be open-sourced without disclosing any sensitive data.&lt;/p&gt;
-
-&lt;h3 id=&#34;2-avoid-storing-sensitive-date-in-a-heap&#34;&gt;2. Avoid storing sensitive date in a heap&lt;/h3&gt;
-
-&lt;p&gt;Objects allocated in a Heap memory whereas primitives can be allocated in stack are&lt;/p&gt;
-
-&lt;p&gt;Java uses Stack memory is used for execution of a thread. Stack contain method specific values that are short-lived and references to other objects in the heap that are getting referred from the method. Whenever a method is invoked, a new block is created in the stack memory for the method to hold local primitive values and reference to other objects in the method. As soon as method ends, the block becomes unused and become available for next method.
-Stack memory size is very less compared to Heap memory. Stack memory is short-lived whereas heap memory lives from the start till the end of application execution.&lt;/p&gt;
-
-&lt;p&gt;You can have only values of primitive types (&lt;code&gt;int&lt;/code&gt;, not an &lt;code&gt;Integer&lt;/code&gt;) in a stack. So, you&amp;rsquo;ll may need to specially convert the data.&lt;/p&gt;
-
-&lt;h3 id=&#34;3-use-char-arrays-instead-of-strings-where-possible-and-wipe-zero-data-after-use&#34;&gt;3. Use char arrays instead of Strings where possible and wipe (zero) data after use&lt;/h3&gt;
-
-&lt;p&gt;Consider following class:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;   class CreditCard {
-      String cardNumber;
-      String cvv2;
-   }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can&amp;rsquo;t control how java handles the Strings containing card number and cvv2. If the particular string value is used frequently, JVM may decide to do a &lt;em&gt;string deduplication&lt;/em&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;String de-duplication reduces the memory footprint of String objects on the Java heap by taking advantage of the fact that many String objects are identical.
-Instead of each String object pointing to its own character array, identical String objects can point to and share the same character array.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Consider using following code to control the values explicitly:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class CreditCard {
-    private char[] cardNumber;
-    private char[] cvv2;
-    ...
-
-    public void wipe() {
-        if (cardNumber != null) {
-            Arrays.fill(cardNumber, &#39;x&#39;);
-        };
-        cardNumber = null;
-        if (cvv2 != null) {
-            Arrays.fill(cvv2, &#39;x&#39;);
-        }
-        cvv2 = null;            
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        wipe();
-        super.finalize();
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now you can wipe the data when you no longer need it.
-Please note that even if you&amp;rsquo;ll call a method &lt;code&gt;finalize()&lt;/code&gt; explicitly, JVM &lt;a href=&#34;http://stackoverflow.com/a/28906/3315474&#34; target=&#34;_blank&#34;&gt;will call it again&lt;/a&gt;. There is no guarantee when finalize will be called by java GC or will it be called at all.&lt;br /&gt;
-So, it&amp;rsquo;s better to call &lt;code&gt;wipe()&lt;/code&gt; explicitly somewhere in the &lt;code&gt;finally&lt;/code&gt; block.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;UPD: You may wipe a data in a String using Java Reflection (Peter Verhas&amp;rsquo;s solution)&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public static void wipeString(String password) {
-    try {
-        Field stringValue = String.class.getDeclaredField(&amp;quot;value&amp;quot;);
-        stringValue.setAccessible(true);
-        Arrays.fill((char[]) stringValue.get(password), &#39;*&#39;);
-    } catch (NoSuchFieldException | IllegalAccessException e) {
-        throw new Error(&amp;quot;Can&#39;t wipe string data&amp;quot;);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Following method replaces the content of internal &lt;code&gt;java.lang.String&#39;s&lt;/code&gt; char array field &lt;code&gt;value&lt;/code&gt; with &amp;lsquo;*&amp;rsquo; symbol.
-You should call this method explicitly.&lt;/p&gt;
-
-&lt;h3 id=&#34;4-encrypt-data-in-the-heap&#34;&gt;4. Encrypt data in the heap&lt;/h3&gt;
-
-&lt;p&gt;Even if you keep sensitive data in a Heap, you can make reading and analyzing more difficult by using any encription. The encryption should be fast enough and not necessary be very strong since the risk is low.&lt;/p&gt;
-
-&lt;p&gt;One possible solution is to encrypt sensitive data with a key, generated once per JVM run (e.g. function of system time). When you&amp;rsquo;ll need a decrypted data, use special function to decrypt it. It should be fast enough.
-For example, you may use &lt;a href=&#34;https://en.wikipedia.org/wiki/Blowfish_%28cipher%29&#34; target=&#34;_blank&#34;&gt;Blowfish&lt;/a&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:algorithm-performance-comparison-encryption-perf&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:algorithm-performance-comparison-encryption-perf&#34;&gt;0&lt;/a&gt;&lt;/sup&gt; or even simple &lt;a href=&#34;https://en.wikipedia.org/wiki/XOR_cipher&#34; target=&#34;_blank&#34;&gt;XOR&lt;/a&gt; cipher:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;static final int key = (int)(System.currentTimeMillis() + System.nanoTime());
-....
-int b = a ^ key;
-int c = b ^ key;
-assert (c == a);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Blowfish is fast symmetric cipher but &lt;a href=&#34;https://en.wikipedia.org/wiki/Blowfish_(cipher)#Weakness_and_successors&#34; target=&#34;_blank&#34;&gt;not perfect&lt;/a&gt;. In particular, it is vulnerable to &lt;a href=&#34;https://en.wikipedia.org/wiki/Birthday_attack&#34; target=&#34;_blank&#34;&gt;birthday attack&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&#34;5-prevent-data-duplication&#34;&gt;5. Prevent data duplication&lt;/h3&gt;
-
-&lt;p&gt;Make your class not-cloneable, non-serializable and non-deserializable. Thus you will protect your data from unexpected / unauthorized duplication.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;class CreditCard {
-	...
-
-    public final void clone() throws java.lang.CloneNotSupportedException {
-		throw new java.lang.CloneNotSupportedException();
-    }
-
-    private final void readObject(ObjectInputStream in) throws java.io.IOException {
-        throw new java.io.IOException(&amp;quot;Class cannot be deserialized&amp;quot;);
-    }
-
-    private final void writeObject(ObjectOutputStream out) throws java.io.IOException {
-            throw new java.io.IOException(&amp;quot;Object cannot be serialized&amp;quot;);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;6-prevent-logging-of-sensitive-data&#34;&gt;6. Prevent Logging of Sensitive Data&lt;/h3&gt;
-
-&lt;p&gt;Secure data may leak to the logs if &lt;code&gt;toString()&lt;/code&gt; method is implemented incorrectly.
-E.g. using &lt;a href=&#34;https://commons.apache.org/proper/commons-lang/javadocs/api-3.1/org/apache/commons/lang3/builder/ToStringBuilder.html#reflectionToString(java.lang.Object)&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ToStringBuilder.reflectionToString(...)&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Log files should not contain any sensitive data. It may eventually become accessible to unauthorized persons. You may read about securing your logs with logback in &lt;a href=&#34;../../2015/07/26/secure-java-logging-with-logback/&#34; title=&#34;Secure Java Logging with Logback&#34;&gt;my previous post&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;heapdump-prevention-a5&#34;&gt;Heapdump Prevention (A5)&lt;/h2&gt;
-
-&lt;p&gt;It is possible to take a snapshot of the memory for further analysis and extracting confidential information.&lt;/p&gt;
-
-&lt;p&gt;First of all, &lt;strong&gt;don&amp;rsquo;t run your application on Windows&lt;/strong&gt;. Windows is far more vulnerable to the threats than Linux/Unix.&lt;/p&gt;
-
-&lt;p&gt;There are several ways to mitigate that risk by disabling some JVM heapdump features:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Make sure that java attach mechanism is disabled: &lt;code&gt;-XX:+DisableAttachMechanism&lt;/code&gt;. Enables the option that disables the mechanism that lets tools attach to the JVM. By default, this option is disabled, meaning that the attach mechanism is enabled and you can use tools such as &lt;code&gt;jcmd&lt;/code&gt;, &lt;code&gt;jstack&lt;/code&gt;, &lt;code&gt;jmap&lt;/code&gt;, and &lt;code&gt;jinfo&lt;/code&gt;. See &lt;a href=&#34;http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html&#34; target=&#34;_blank&#34;&gt;java command line options&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Disable heapdump on &lt;code&gt;OutOfMemoryError&lt;/code&gt;: &lt;code&gt;-XX:-HeapDumpOnOutOfMemoryError&lt;/code&gt;. Set heapdump file location to &lt;code&gt;/dev/null&lt;/code&gt; to avoid saving heapdump: &lt;code&gt;XX:HeapDumpPath=/dev/null&lt;/code&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Making a heapdump on OOM is not a good idea on production environment. If heap is big enough (a Gigabites) it could take long time to save heap contents to disk. So I suggest using it for load testing only&lt;/p&gt;
-&lt;/blockquote&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;check-your-dependencies-for-known-vulnerabilities-a9-a9&#34;&gt;Check Your dependencies for known Vulnerabilities (&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-A9-Using_Components_with_Known_Vulnerabilities&#34; target=&#34;_blank&#34;&gt;A9&lt;/a&gt;)&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Check &lt;a href=&#34;http://cve.mitre.org/&#34; target=&#34;_blank&#34;&gt; MITRE Common Vulnerabilities and Exposures Database&lt;/a&gt; regularly.&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Integrate &lt;a href=&#34;https://www.owasp.org/index.php/OWASP_Dependency_Check&#34; target=&#34;_blank&#34;&gt;OWASP Dependency Check tool&lt;/a&gt; into your CI pipeline. Run it daily.
-There is a &lt;a href=&#34;http://jeremylong.github.io/DependencyCheck/dependency-check-maven/&#34; target=&#34;_blank&#34;&gt;maven plugin&lt;/a&gt; which can analyze your project dependencies for known vulnerabilities.
-You may consider adding following profile to your &lt;em&gt;pom.xml&lt;/em&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;...
-&amp;lt;profiles&amp;gt;
-    ...
-    &amp;lt;profile&amp;gt;
-        &amp;lt;id&amp;gt;security-check&amp;lt;/id&amp;gt;
-        &amp;lt;build&amp;gt;
-            &amp;lt;plugins&amp;gt;
-                &amp;lt;plugin&amp;gt;
-                    &amp;lt;groupId&amp;gt;org.owasp&amp;lt;/groupId&amp;gt;
-                    &amp;lt;artifactId&amp;gt;dependency-check-maven&amp;lt;/artifactId&amp;gt;
-                    &amp;lt;version&amp;gt;1.4.3&amp;lt;/version&amp;gt;
-                    &amp;lt;executions&amp;gt;
-                        &amp;lt;execution&amp;gt;
-                            &amp;lt;goals&amp;gt;
-                                &amp;lt;goal&amp;gt;check&amp;lt;/goal&amp;gt;
-                            &amp;lt;/goals&amp;gt;
-                            &amp;lt;phase&amp;gt;validate&amp;lt;/phase&amp;gt;
-                        &amp;lt;/execution&amp;gt;
-                    &amp;lt;/executions&amp;gt;
-                &amp;lt;/plugin&amp;gt;
-            &amp;lt;/plugins&amp;gt;
-        &amp;lt;/build&amp;gt;
-    &amp;lt;/profile&amp;gt;
-    ...
-&amp;lt;/profiles&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;The list is not comprehensive, comments and suggestions are always welcome.&lt;/p&gt;
-
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-Table_of_Contents&#34; title=&#34;OWASP Top 10&#34; target=&#34;_blank&#34;&gt;OWASP Top 10&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;(http://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html).&#34; target=&#34;_blank&#34;&gt;Java JM Command Line Options&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.journaldev.com/4098/java-heap-memory-vs-stack-memory-difference&#34; target=&#34;_blank&#34;&gt;Java Heap Memory vs Stack Memory Difference&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.javaworld.com/article/2076837/mobile-java/twelve-rules-for-developing-more-secure-java-code.html&#34; title=&#34;Twelve rules for developing more secure Java code&#34; target=&#34;_blank&#34;&gt;Twelve rules for developing more secure Java code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.cs.wustl.edu/~jain/cse567-06/ftp/encryption_perf/&#34; title=&#34;Performance Analysis of Data Encryption Algorithms&#34; target=&#34;_blank&#34;&gt;Performance Analysis of Data Encryption Algorithms&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API&#34; target=&#34;_blank&#34;&gt;OWASP Enterprise Security API&lt;/a&gt; / &lt;a href=&#34;https://github.com/ESAPI/esapi-java-legacy&#34; target=&#34;_blank&#34;&gt;ESAPI 2.x on GitHub&lt;/a&gt; &amp;ndash; ESAPI (The OWASP Enterprise Security API) is a free, open source, web application security control library that makes it easier for programmers to write lower-risk applications. The ESAPI libraries are designed to make it easier for programmers to retrofit security into existing applications. The ESAPI libraries also serve as a solid foundation for new development.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/jeremylong/DependencyCheck&#34; target=&#34;_blank&#34;&gt;Dependency-Check: checking project dependencies&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://speakerdeck.com/drissamri/web-app-security-owasp-top-10-2013&#34; target=&#34;_blank&#34;&gt;Web App Security - OWASP Top 10 2013&lt;/a&gt; by Driss Amri&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://mishadoff.com/blog/java-magic-part-4-sun-dot-misc-dot-unsafe/&#34; target=&#34;_blank&#34;&gt;Java Magic. Part 4: sun.misc.Unsafe&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;p&gt;In this article I will highlight most important java coding techniques for building secure web applications.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -642,163 +76,7 @@ You may consider adding following profile to your &lt;em&gt;pom.xml&lt;/em&gt;:&
       <description>&lt;p&gt;I&amp;rsquo;ve been meaning to write a small tutorial for building web applications. Now it&amp;rsquo;s time!
 Let&amp;rsquo;s define the steps and choose some solutions for developing back-end java web application.&lt;/p&gt;
 
-&lt;p&gt;I will give my design recommendations and list a technologies I would use. You may have your own opinion and you may share it in comment. Over time, this post may change since my favourites are also changing over time.&lt;/p&gt;
-
-&lt;h2 id=&#34;technologies-stack&#34;&gt;Technologies Stack&lt;/h2&gt;
-
-&lt;h3 id=&#34;server-side-stack&#34;&gt;Server-Side Stack&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Use latest stable JDK. Now it is Java 8.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Use lightweight web container, e.g. Jetty or Tomcat.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Use Spring stack instead of J2EE. It is more customizable and extensible. &lt;a href=&#34;http://projects.spring.io/spring-boot/&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; is a default choice.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Use embedded web server if possible. &lt;a href=&#34;https://spring.io/guides/gs/spring-boot/&#34; target=&#34;_blank&#34;&gt;Spring Boot Maven Plugin&lt;/a&gt; allows you easily repackage all your jars into single jar or war file.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Package your application as self-executing JARs instead of WARs and run them with &lt;code&gt;./app.jar&lt;/code&gt;. Thus you will never depend on application server infrastructure managed by IT team. Manage your infrastructure yourself!&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Use Spring Boot - it offers convention over configuration and many predefined &lt;code&gt;@Configuration&lt;/code&gt;s.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Prefer Java-based Spring Configurations over XML-based. Java offers more restrictive type checking and visibility control.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Use Spring Transaction Management (spring-tx) with &lt;code&gt;@Transactional&lt;/code&gt;. Don&amp;rsquo;t set &lt;code&gt;autoCommit=&amp;quot;true&amp;quot;&lt;/code&gt;. It is more flexible.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Prefer &lt;a href=&#34;http://wiki.fasterxml.com/JacksonHome&#34; target=&#34;_blank&#34;&gt;Jackson&lt;/a&gt; with &lt;a href=&#34;https://github.com/FasterXML/jackson-dataformat-xml&#34; title=&#34;Extension for Jackson JSON processor that adds support for serializing POJOs as XML&#34; target=&#34;_blank&#34;&gt;Jackson XML&lt;/a&gt; + &lt;a href=&#34;http://wiki.fasterxml.com/WoodstoxHome&#34; target=&#34;_blank&#34;&gt;Woodstox&lt;/a&gt; over JAXB, it&amp;rsquo;s faster and more convenient. jackson-dataformat-xml offers support for JAXB annotations but you are not forced to use JAXB for marshalling.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Use mocks (Mockito) and spring-test for unit testing. Prefer singletons over statics and you&amp;rsquo;ll not need a PowerMockito.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Use maven. I don&amp;rsquo;t see any significant advantage of using Gradle in terms of performance. Project should be simple in structure and fast to build, so maven is still performs well.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;front-end-stack&#34;&gt;Front-End Stack&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Use &lt;strong&gt;professional&lt;/strong&gt; front-end frameworks and tools like React, AngularJS, SASS, Npm and Gulp. You&amp;rsquo;re developing a high quality product and you should use proven solutions for front-end. Professional front-end developers do use this tools so you should not &lt;a href=&#34;https://en.wikipedia.org/wiki/Don%27t_repeat_yourself&#34; title=&#34;Don&#39;t repeat yourself&#34; target=&#34;_blank&#34;&gt;re-invent the wheel&lt;/a&gt;.
-&lt;a href=&#34;//www.webjars.org&#34; target=&#34;_blank&#34;&gt;WebJars&lt;/a&gt; is also a good solution if your application is simple enough.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Design your JS application to consume REST API&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Design your server to be expose REST API.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;design-order&#34;&gt;Design Order&lt;/h2&gt;
-
-&lt;p&gt;Start from presentation layer and go down on the controllers and services layers.&lt;/p&gt;
-
-&lt;p&gt;Avoid starting with database schema design unless you know your business domain in depth.
-Your interface (web or api) will dictate required data structure, so persistence layer interfaces will evolve in the future. You may minimize changes by introducing API level in the database, i.e. use views and stored procedures to fix the contract between DBMS and application.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;It&amp;rsquo;s IMPORTANT: Delay making of important architectural solutions as much as possible!&lt;/strong&gt;
-Making decision earlier may catch you in a trap of technologies and tools not suited well for solving your problem. But that knowledge came to yo too late. Typical example: you may have chosen RDBMS but now, when a project is nearly completed, NoSql storage seems to be better fit for your problem.&lt;/p&gt;
-
-&lt;h2 id=&#34;building-front-end&#34;&gt;Building Front-End&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Start with UI without real data. Then create a test data (JSON files) and use simple nodejs http server to serve it together with other assets. When your data requirements are defined, start implementing service API. This approach saves a lot of time: You don&amp;rsquo;t have to change both server and client when design has eventually changed.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Create separate controllers for creating and amending your entities. Data models and validation rules are often different. Most likely you will have significantly different models. Also, edit controllers will be simpler if you&amp;rsquo;ll have less mutable fields in the model.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;building-server-side&#34;&gt;Building Server-Side&lt;/h2&gt;
-
-&lt;h3 id=&#34;presentation-layer&#34;&gt;Presentation Layer&lt;/h3&gt;
-
-&lt;h4 id=&#34;web-views-templates&#34;&gt;Web Views (Templates)&lt;/h4&gt;
-
-&lt;p&gt;This sub-layer includes web templates. Responsible for rendering of View Models.&lt;/p&gt;
-
-&lt;p&gt;There are a number of java template engines. Most notable of them are &lt;a href=&#34;http://www.thymeleaf.org/&#34; target=&#34;_blank&#34;&gt;Thymeleaf&lt;/a&gt; and &lt;a href=&#34;http://freemarker.org/&#34; target=&#34;_blank&#34;&gt;Freemarker&lt;/a&gt;.
-Thymeleaf offers designing the templates as pure html and then make them work as a template when deployed to web server. Use it if you want your designers to own the templates.
-Freemarker is about three times faster than Thymeleaf but it may not be possible to open the template in a browser.&lt;/p&gt;
-
-&lt;p&gt;You may like to see the &lt;a href=&#34;http://www.slideshare.net/jreijn/comparing-templateenginesjvm&#34; target=&#34;_blank&#34;&gt;presentation&lt;/a&gt; by Jeroen Reijn on JVM template engines with performance comparison.&lt;/p&gt;
-
-&lt;p&gt;I don&amp;rsquo;t recommend using the JSPs because they don&amp;rsquo;t enforce clear logic and view separation. Low-skilled developers tend to write a presentation or even a business logic in a JSP which will inevitably lead into trouble. De-facto, JSP is deprecated technology.&lt;/p&gt;
-
-&lt;p&gt;There are a doubts about unit testing this layer. It often changes and usually is tested manually (visually) by (system) integration tests.&lt;/p&gt;
-
-&lt;h4 id=&#34;presentation-logic&#34;&gt;Presentation Logic&lt;/h4&gt;
-
-&lt;p&gt;This sub-layer includes web Controllers and View Helpers. Responsible for data syntax validation, preparing view model. Can be easily Unit-Tested.&lt;/p&gt;
-
-&lt;p&gt;Typical technology stack for presentation layer contains:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html&#34; target=&#34;_blank&#34;&gt;Spring Web MVC&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://projects.spring.io/spring-security/&#34; title=&#34;Spring Security is a powerful and highly customizable authentication and access-control framework.&#34; target=&#34;_blank&#34;&gt;Spring Security Web&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://wiki.fasterxml.com/JacksonHome&#34; target=&#34;_blank&#34;&gt;Jackson&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Please consider following ideas when designing a components for this layer:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Use separate model for presentation layer.&lt;/li&gt;
-&lt;li&gt;Use the front-end test data files to test data conversion in server-side controller level. Your tests should fail when you change JSON format of your objects.&lt;/li&gt;
-&lt;li&gt;Do only validation and presentation-related business login in this layer. You&amp;rsquo;ll have a Business Logic (Service) Layer for business logic.&lt;/li&gt;
-&lt;li&gt;Don&amp;rsquo;t perform security (access control) checks in this layer. Leave it to Service Layer.&lt;/li&gt;
-&lt;li&gt;Don&amp;rsquo;t manage the transactions in this layer. Leave it to Service Layer.&lt;/li&gt;
-&lt;li&gt;Use javax.validation API and hibernate-validator to annotate DTO beans.&lt;/li&gt;
-&lt;li&gt;Don&amp;rsquo;t include any logic into DTO. It&amp;rsquo;s just a POJOs with annotations.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Someone may argue: why not to manage transactions in controllers (presentation layer)? Now imagine you&amp;rsquo;ll need to call the same operation from web UI, rest API and Message Driven Bean. You&amp;rsquo;ll have to add transaction management to each controller and MDB and use Spring &lt;code&gt;TransactionTemplate&lt;/code&gt; instead. Thus you&amp;rsquo;ll end up with copy-pasting business logic to multiple classes and which is not acceptable from the application maintenance point of view. Same is true for security/access control. It should be handled on service layer.&lt;/p&gt;
-
-&lt;h3 id=&#34;business-logic-service-layer&#34;&gt;Business Logic (Service) Layer&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Perform access-control validation in this layer. Same services may be invoked from different controllers (e.g. html and REST ones) so you&amp;rsquo;ll use the same logic.&lt;/li&gt;
-&lt;li&gt;Use &lt;code&gt;@Transactional&lt;/code&gt; to annotate service classes and methods. Transactions are aged here. If you need a complex transaction management then use a &lt;code&gt;TransactionTemplate&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Don&amp;rsquo;t access &lt;code&gt;DataSource&lt;/code&gt; or &lt;code&gt;JdbcTemplate&lt;/code&gt; in this layer. Use DAOs instead.&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;When you call a &lt;code&gt;@Transactional&lt;/code&gt; method from non-transactional one in the same spring bean use &lt;code&gt;self&lt;/code&gt;-reference:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Service
-public MyServiceImpl implements MyService {
-
-    @Autowired
-    private MyDao dao;
-
-    @Autowired
-    private MyServiceImpl self;
-
-    @Override
-    public void nonTxMethod() {
-        self.txMethod(); // &amp;quot;self&amp;quot; is a proxy with transactional aspect support
-    }
-
-    @Override
-    @Transactional
-    public void txMethod() {
-         dao.load(...);
-         ...
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;data-access-layer&#34;&gt;Data Access Layer&lt;/h3&gt;
-
-&lt;p&gt;Access data storage such as relational and not relational databases. Usually supports transactions.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Don&amp;rsquo;t manage transactions on this layers. Transactions are managed on Service layer.&lt;/li&gt;
-&lt;li&gt;Write integration tests that hit database on this layer. You&amp;rsquo;re usually don&amp;rsquo;t need a lot of unit tests here (hello, &amp;laquo;Test Pyramid&amp;raquo;).&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;AbstractTransactionalJUnit4SpringContextTests&lt;/code&gt; is your friend. Extend your integration tests from this class and you&amp;rsquo;ll have a transaction rollback for free.&lt;/li&gt;
-&lt;li&gt;Since integration tests may take time, make them run on &lt;code&gt;integration test&lt;/code&gt; maven phase and exclude them from fast unit tests.&lt;/li&gt;
-&lt;li&gt;Prepare a test data before executing a test. It will be rolled-back automatically. If you need DB transaction to commit, put &lt;code&gt;@Rollback(false)&lt;/code&gt; annotation.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;integration-layer&#34;&gt;Integration Layer&lt;/h3&gt;
-
-&lt;p&gt;Contains connectors to external systems. Usually non-transactional.&lt;/p&gt;
-
-&lt;p&gt;You may write some unit tests here.&lt;/p&gt;
-
-&lt;h3 id=&#34;messaging-layer&#34;&gt;Messaging Layer&lt;/h3&gt;
-
-&lt;p&gt;In modern event-driven architecture message processing is important for integration point of view. Messaging layer typically includes JavaEE Message Driven Beans or various event listeners. This layer is actually a presentation layer but it operates with message payloads as input/output model objects in contrast of View Models and templates used in web presentation layer. For web presentation layer the payload is html page content, whereas for messaging layer the payload is xml, json, protobuf or any other message format.&lt;/p&gt;</description>
+&lt;p&gt;I will give my design recommendations and list a technologies I would use. You may have your own opinion and you may share it in comment. Over time, this post may change since my favourites are also changing over time.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -807,18 +85,8 @@ public MyServiceImpl implements MyService {
       <pubDate>Wed, 03 Jun 2015 19:05:12 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/06/03/self-hosted-web-analytics-solution-for-angularjs/</guid>
-      <description>&lt;p&gt;There are situations when you need to analyze user&amp;rsquo;s experience but can&amp;rsquo;t use a third-party web analytics solutions like Google Analytics or Yandex Metrika.
-For example, if your production environment is &lt;a href=&#34;https://www.pcisecuritystandards.org/security_standards/&#34; title=&#34;PCI SSC Data Security Standards&#34; target=&#34;_blank&#34;&gt;PCI DSS&lt;/a&gt; compliant.
-In this case you have to deploy self-hosted analytics engine and inside your environment and configure user actions tracking in your application.&lt;/p&gt;
-
-&lt;p&gt;One of the possible solutions is the &lt;a href=&#34;http://piwik.org&#34; target=&#34;_blank&#34;&gt;piwik&lt;/a&gt; as analytics engine + &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt; or &lt;a href=&#34;https://github.com/mike-spainhower/angular-piwik&#34; target=&#34;_blank&#34;&gt;angular-piwik&lt;/a&gt; for tracking events inside AngularJS application.
-In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piwik.org/log-analytics/&#34; target=&#34;_blank&#34;&gt;log analytics&lt;/a&gt;.
-&lt;img src=&#34;../../assets/2015/06/piwik.png&#34; alt=&#34;piwik screenshot&#34; /&gt;
-&lt;a href=&#34;http://demo.piwik.org/&#34; target=&#34;_blank&#34;&gt;Piwik Demo&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Another option is to use &lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;Open Web Analytics (OWA)&lt;/a&gt; and write a plugin for &lt;a href=&#34;http://luisfarzati.github.io/angulartics/&#34; target=&#34;_blank&#34;&gt;Angulartics&lt;/a&gt;.
-&lt;a href=&#34;http://demo.openwebanalytics.com/&#34; target=&#34;_blank&#34;&gt;OWA Demo&lt;/a&gt;&lt;/p&gt;
-</description>
+      <description>There are situations when you need to analyze user&amp;rsquo;s experience but can&amp;rsquo;t use a third-party web analytics solutions like Google Analytics or Yandex Metrika. For example, if your production environment is PCI DSS compliant. In this case you have to deploy self-hosted analytics engine and inside your environment and configure user actions tracking in your application.
+One of the possible solutions is the piwik as analytics engine + Angulartics or angular-piwik for tracking events inside AngularJS application.</description>
     </item>
     
     <item>
@@ -827,10 +95,8 @@ In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piw
       <pubDate>Sun, 10 May 2015 11:52:33 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/</guid>
-      <description>&lt;p&gt;After playing with &lt;a href=&#34;http://ui-grid.info/&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;ui.grid&lt;/code&gt;&lt;/a&gt; I found &lt;a href=&#34;http://www.angulargrid.com&#34; target=&#34;_blank&#34;&gt;one more&lt;/a&gt; library to impmenent grids in AngularJS - &lt;a href=&#34;http://www.angulargrid.com&#34; target=&#34;_blank&#34;&gt;angularGrid&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;It&amp;rsquo;s quite easy to integrate and faster than &lt;a href=&#34;http://ui-grid.info/&#34; target=&#34;_blank&#34;&gt;ui.grid&lt;/a&gt;. You may find other reasons of using this grid on the &lt;a href=&#34;http://www.angulargrid.com/why-the-world-needed-another-angularjs-grid/&#34; target=&#34;_blank&#34;&gt;author&amp;rsquo;s post&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <description>After playing with ui.grid I found one more library to impmenent grids in AngularJS - angularGrid.
+It&amp;rsquo;s quite easy to integrate and faster than ui.grid. You may find other reasons of using this grid on the author&amp;rsquo;s post.</description>
     </item>
     
     <item>
@@ -839,21 +105,8 @@ In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piw
       <pubDate>Sun, 03 May 2015 18:23:06 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2015/05/03/web-security-resources/</guid>
-      <description>&lt;p&gt;Here are some useful links to security resources:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project&#34; target=&#34;_blank&#34;&gt;OWASP to 10&lt;/a&gt; &lt;a href=&#34;https://www.owasp.org/index.php/Top_10_2013-Table_of_Contents&#34; target=&#34;_blank&#34;&gt;v.2013&lt;/a&gt;&amp;ndash; A list of the 10 Most Critical Web Application Security Risks.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:Attack&#34; target=&#34;_blank&#34;&gt;OWASP: list of website security attacks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:Vulnerability&#34; target=&#34;_blank&#34;&gt;OWASP: list of website vulnerabilities&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Guide_Project&#34; target=&#34;_blank&#34;&gt;OWASP Development Guide&lt;/a&gt; &amp;ndash; The OWASP Developer Guide 2014 is a dramatic re-write of one of OWASP&amp;rsquo;s first and most downloaded projects. The focus moves from countermeasures and weaknesses to secure software engineering. The Developer Guide 2014 is a &amp;laquo;first principles&amp;raquo; book - it&amp;rsquo;s not specific to any one language or framework, as they all borrow ideas and syntax from each other. There are highly specific issues in different languages, such as PHP configuration settings or Spring MVC issues, but we need to look past these differences and apply the basic tenets of secure system engineering to application security.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Testing_Project&#34; target=&#34;_blank&#34;&gt;OWASP Testing Guide&lt;/a&gt; (&lt;a href=&#34;https://www.owasp.org/images/5/52/OWASP_Testing_Guide_v4.pdf&#34; target=&#34;_blank&#34;&gt;version 4 PDF&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.owasp.org/index.php/Category:OWASP_Enterprise_Security_API&#34; target=&#34;_blank&#34;&gt;OWASP Enterprise Security API&lt;/a&gt; / &lt;a href=&#34;https://github.com/ESAPI/esapi-java-legacy&#34; target=&#34;_blank&#34;&gt;ESAPI 2.x on GitHub&lt;/a&gt; &amp;ndash; ESAPI (The OWASP Enterprise Security API) is a free, open source, web application security control library that makes it easier for programmers to write lower-risk applications. The ESAPI libraries are designed to make it easier for programmers to retrofit security into existing applications. The ESAPI libraries also serve as a solid foundation for new development.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/OWASP&#34; target=&#34;_blank&#34;&gt;OWASP Resources on GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.exploit-db.com/&#34; target=&#34;_blank&#34;&gt;Offensive Security Exploit Database Archive&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://cve.mitre.org/&#34; target=&#34;_blank&#34;&gt;CVE&lt;/a&gt; &amp;ndash; CVE is a dictionary of publicly known information security vulnerabilities and exposures.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://nvd.nist.gov/&#34; target=&#34;_blank&#34;&gt;National Vulnerability Database&lt;/a&gt;  &amp;ndash;  NVD includes databases of security checklists, security related software flaws, misconfigurations, product names, and impact metrics.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>Here are some useful links to security resources:
+ OWASP to 10 v.2013&amp;ndash; A list of the 10 Most Critical Web Application Security Risks. OWASP: list of website security attacks OWASP: list of website vulnerabilities OWASP Development Guide &amp;ndash; The OWASP Developer Guide 2014 is a dramatic re-write of one of OWASP&amp;rsquo;s first and most downloaded projects. The focus moves from countermeasures and weaknesses to secure software engineering. The Developer Guide 2014 is a &amp;laquo;first principles&amp;raquo; book - it&amp;rsquo;s not specific to any one language or framework, as they all borrow ideas and syntax from each other.</description>
     </item>
     
     <item>
@@ -865,125 +118,7 @@ In addition to web analytics features, piwik offers a &lt;a href=&#34;http://piw
       <description>&lt;p&gt;Spring Boot is an excellent tool to bootstrap java application.
 Most of the references mention how to create a standalone java application, optionally with embedded web server (tomcat or jetty). But &lt;a href=&#34;http://projects.spring.io/spring-boot/&#34; title=&#34;Spring Boot Project&#34; target=&#34;_blank&#34;&gt;Spring Boot&lt;/a&gt; supports also creating web applications intended to run within servlet container.
 
-Here is example of maven &lt;em&gt;pom.xml&lt;/em&gt; file for Spring-Boot-enabled web application:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;    ...
-    &amp;lt;packaging&amp;gt;war&amp;lt;/packaging&amp;gt;
-    &amp;lt;properties&amp;gt;
-        &amp;lt;!-- If web.xml is not used --&amp;gt;
-        &amp;lt;failOnMissingWebXml&amp;gt;false&amp;lt;/failOnMissingWebXml&amp;gt;
-        &amp;lt;!-- Set Spring-Boot Version --&amp;gt;
-        &amp;lt;spring-boot.version&amp;gt;1.2.1.RELEASE&amp;lt;/spring-boot.version&amp;gt;
-    &amp;lt;/properties&amp;gt;
-    &amp;lt;dependencyManagement&amp;gt;
-        &amp;lt;dependencies&amp;gt;
-            &amp;lt;dependency&amp;gt;
-                &amp;lt;!-- Import dependency management from Spring Boot --&amp;gt;
-                &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-                &amp;lt;artifactId&amp;gt;spring-boot-dependencies&amp;lt;/artifactId&amp;gt;
-                &amp;lt;version&amp;gt;${spring-boot.version}&amp;lt;/version&amp;gt;
-                &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;
-                &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;
-            &amp;lt;/dependency&amp;gt;
-        &amp;lt;/dependencies&amp;gt;
-    &amp;lt;/dependencyManagement&amp;gt;
-    &amp;lt;dependencies&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;spring-boot-starter-web&amp;lt;/artifactId&amp;gt;
-            &amp;lt;exclusions&amp;gt;
-                &amp;lt;exclusion&amp;gt;
-                    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-                    &amp;lt;artifactId&amp;gt;spring-boot-starter-tomcat&amp;lt;/artifactId&amp;gt;
-                &amp;lt;/exclusion&amp;gt;
-            &amp;lt;/exclusions&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;!-- Provided in Tomcat --&amp;gt;
-            &amp;lt;groupId&amp;gt;javax.servlet&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;javax.servlet-api&amp;lt;/artifactId&amp;gt;
-            &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;!-- Provided in Tomcat --&amp;gt;
-            &amp;lt;groupId&amp;gt;javax.el&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;javax.el-api&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;2.2.4&amp;lt;/version&amp;gt;
-            &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-        &amp;lt;!-- Test dependencies --&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;spring-boot-starter-test&amp;lt;/artifactId&amp;gt;
-            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-        &amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.glassfish.web&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;javax.el&amp;lt;/artifactId&amp;gt;
-            &amp;lt;version&amp;gt;2.2.4&amp;lt;/version&amp;gt;
-            &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
-        &amp;lt;/dependency&amp;gt;        
-    &amp;lt;/dependencies&amp;gt;
-    ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You&amp;rsquo;ll need a &lt;code&gt;SpringBootServletInitializer&lt;/code&gt; to configure web application:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;@Configuration
-@ComponentScan
-@EnableAutoConfiguration
-public class Application extends SpringBootServletInitializer {
-
-    private static Class&amp;lt;Application&amp;gt; applicationClass = Application.class;
-
-    public static void main(String... args) {
-        SpringApplication.run(applicationClass, args);
-    }
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(applicationClass);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;HUGOMORE42&lt;/p&gt;
-
-&lt;h2 id=&#34;tuning-configuration&#34;&gt;Tuning Configuration&lt;/h2&gt;
-
-&lt;p&gt;If you want to have a configuration file hierarchy, e.g.:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Default properties (from classpath)&lt;/li&gt;
-&lt;li&gt;Environment-specific server properties (from &lt;code&gt;$CATALINA_BASE/conf&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Environment-specific application properties (from &lt;code&gt;$CATALINA_BASE/conf&lt;/code&gt;)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;You may specify &lt;code&gt;spring.config.location&lt;/code&gt; env-entries in &lt;code&gt;web.xml&lt;/code&gt;. Spring Boot will read properties from JNDI.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
-&amp;lt;web-app xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xmlns=&amp;quot;http://java.sun.com/xml/ns/javaee&amp;quot;
-         xsi:schemaLocation=&amp;quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&amp;quot;
-         version=&amp;quot;3.0&amp;quot;&amp;gt;
-    &amp;lt;display-na&amp;gt;
-    &amp;lt;env-entry&amp;gt;
-        &amp;lt;env-entry-name&amp;gt;spring.config.location&amp;lt;/env-entry-name&amp;gt;
-        &amp;lt;env-entry-type&amp;gt;java.lang.String&amp;lt;/env-entry-type&amp;gt;
-        &amp;lt;env-entry-value&amp;gt;
-            classpath:/default.properties,
-            file:${catalina.base}/conf/common.properties,
-            file:${catalina.base}/conf/my-application.properties
-        &amp;lt;/env-entry-value&amp;gt;
-    &amp;lt;/env-entry&amp;gt;
-&amp;lt;/web-app&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://spring.io/blog/2014/03/07/deploying-spring-boot-applications#what-about-the-java-ee-application-server&#34; title=&#34;Deploying Spring Boot Applications: What about the Java EE Application Server?&#34; target=&#34;_blank&#34;&gt;Deploying Spring Boot Applications: What about the Java EE Application Server?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html&#34; title=&#34;Spring Boot: Common application properties&#34; target=&#34;_blank&#34;&gt;Spring Boot application properties&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+Here is example of maven &lt;em&gt;pom.xml&lt;/em&gt; file for Spring-Boot-enabled web application:&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -992,13 +127,9 @@ public class Application extends SpringBootServletInitializer {
       <pubDate>Sun, 20 Jul 2014 22:00:48 +0300</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2014/07/20/webjars-easy-packaging-client-libraries/</guid>
-      <description>&lt;p&gt;When developing java web application it is often annoying to manage third-party javascript libraries. Especially, when it is necessary to upgrade some of them.&lt;/p&gt;
-
-&lt;p&gt;The project &lt;a href=&#34;http://www.webjars.org/&#34; target=&#34;_blank&#34;&gt;&amp;laquo;WebJars&amp;raquo;&lt;/a&gt; makes a life easier for such &lt;del&gt;lazy&lt;/del&gt;efficient developers, like me :-)&lt;/p&gt;
-
-&lt;p&gt;There is a wide range of popular javascript libraries packaged int Jar archives and ready to be included as a dependencies into your project.
-It is described in the &lt;a href=&#34;http://www.webjars.org/documentation&#34; target=&#34;_blank&#34;&gt;documentation&lt;/a&gt; how to configure resource mapping in a web framework of your choice.&lt;/p&gt;
-</description>
+      <description>When developing java web application it is often annoying to manage third-party javascript libraries. Especially, when it is necessary to upgrade some of them.
+The project &amp;laquo;WebJars&amp;raquo; makes a life easier for such lazyefficient developers, like me :-)
+There is a wide range of popular javascript libraries packaged int Jar archives and ready to be included as a dependencies into your project. It is described in the documentation how to configure resource mapping in a web framework of your choice.</description>
     </item>
     
     <item>
@@ -1012,10 +143,7 @@ It is described in the &lt;a href=&#34;http://www.webjars.org/documentation&#34;
 &lt;blockquote&gt;
 &lt;p&gt;Is your Vaadin application becoming sluggish? Yes, this can happen - it is no secret. This can happen for every application, with every programming language, with every UI library and with all hardware platforms. Make it a web application and it is not even hard. For end users this is not acceptable, especially when building applications for frequent use.
 
-&lt;a href=&#34;https://vaadin.com/wiki/-/wiki/Main/Optimizing+Sluggish+UI&#34; target=&#34;_blank&#34;&gt;Vaadin: Optimizing Sluggish UI&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I find especially useful advice by Stephen Borgelt to use &lt;a href=&#34;https://vaadin.com/book/-/page/layout.csslayout.html&#34; target=&#34;_blank&#34;&gt;CssLayout&lt;/a&gt; wherever possible.&lt;/p&gt;</description>
+&lt;a href=&#34;https://vaadin.com/wiki/-/wiki/Main/Optimizing+Sluggish+UI&#34; target=&#34;_blank&#34;&gt;Vaadin: Optimizing Sluggish UI&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

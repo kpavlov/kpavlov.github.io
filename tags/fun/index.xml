@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fun on The Culture of Code</title>
-    <link>https://konstantinpavlov.net/tags/fun/index.xml</link>
+    <link>https://konstantinpavlov.net/tags/fun/</link>
     <description>Recent content in Fun on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="https://konstantinpavlov.net/tags/fun/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Feb 2016 23:09:16 +0000</lastBuildDate>
+    
+	<atom:link href="https://konstantinpavlov.net/tags/fun/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>DevMode Javascript Exception Handler</title>
@@ -14,15 +17,8 @@
       <pubDate>Thu, 11 Feb 2016 23:09:16 +0000</pubDate>
       
       <guid>https://konstantinpavlov.net/blog/2016/02/11/devmode-javascript-exception-handler/</guid>
-      <description>&lt;p&gt;StackOverflow-driven JS development:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;try {
-    something
-} catch (e) {
-     window.open(&#39;https://stackoverflow.com/search?q=[js]+&amp;quot;&#39; + e.message + &#39;&amp;quot;&#39;);
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+      <description>StackOverflow-driven JS development:
+try { something } catch (e) { window.open(&#39;https://stackoverflow.com/search?q=[js]+&amp;quot;&#39; + e.message + &#39;&amp;quot;&#39;); }  </description>
     </item>
     
   </channel>
