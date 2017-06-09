@@ -5,7 +5,6 @@ branches:
 before_script:
   - wget https://github.com/spf13/hugo/releases/download/v0.21/hugo_0.21_Linux-32bit.tar.gz
   - tar -zxvf hugo_0.21_Linux-32bit.tar.gz
-  - mv hugo_0.21_linux_386/hugo_0.21_linux_386 ./hugo
   - export PATH=$PATH:$PWD/
   - git config --global user.name 'Travis CI on behalf of Konstantin Pavlov'
   - git config --global user.email 'git@konstantinpavlov.net'
