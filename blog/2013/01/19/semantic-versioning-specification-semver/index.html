@@ -87,8 +87,8 @@ It looks very natural: X.Y.Z where X is major version, Y is minor version and Z 
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497092686">
-    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497092686"/>
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497100230">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497100230"/>
 
     <script type="text/javascript">
         
@@ -110,15 +110,169 @@ It looks very natural: X.Y.Z where X is major version, Y is minor version and Z 
         }
     </script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"
+            integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8="
+            crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"
+            integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous" defer></script>
     <script type='text/javascript'>
-        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
-        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js" defer>\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js" defer>\x3C/script>');
     </script>
 </head>
 
 <body class="">
+
+
+
+<main id="container" role="main" class="container">
+    <div class="surface">
+        <div class="surface-container">
+            <div data-pjax-container class="content">
+
+                <section class="wrapper wrapper-post">
+                    <div class="wrapper-container">
+                        <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+                            <section class="post-container">
+                                <header class="post-header">
+                                    <ul class="post-meta-list">
+                                        <li class="post-item-meta-item">
+                                            <time datetime='2013-01-19'
+                                                  itemprop="datePublished">
+                                                2013-01-19
+                                            </time>
+                                        </li>
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/devops/" data-pjax rel="category" >devops</a>
+    
+
+</li>
+
+
+                                        
+
+
+                                        
+                                        <li class="post-item-meta-item">
+                                            <a href="https://konstantinpavlov.net/blog/2013/01/19/semantic-versioning-specification-semver/#disqus_thread"
+                                               data-disqus-identifier='20130119192000'>Comments</a>
+                                        </li>
+                                        
+                                        <li class="post-item-meta-item" title="Estimated reading time"
+                                            itemprop="timeRequired">
+                                            <meta itemprop="duration" content="T1M"/>
+                                            ~1 min
+                                        </li>
+                                    </ul>
+                                    <h1 itemprop="name headline" class="post-title">
+                                        <a href="https://konstantinpavlov.net/blog/2013/01/19/semantic-versioning-specification-semver/" itemprop="url" data-pjax
+                                           title="Semantic Versioning Specification (SemVer)">Semantic Versioning Specification (SemVer)</a></h1>
+                                    
+                                    
+                                </header>
+                                <aside class="post-side">
+                                    <div class="post-author">
+                                        <a href="https://konstantinpavlov.net/"
+                                           class="post-author-avatar">
+                                            <img src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <a href="https://konstantinpavlov.net/"
+                                               class="post-author-name">
+                                                Konstantin Pavlov
+                                            </a>
+                                            <p class="post-author-bio"></p>
+                                        </div>
+                                    </div>
+                                </aside>
+                                <div itemprop="articleBody" class="post-body">
+                                    <p><em>For every new project, one of the first questions to answer when planning release system is &laquo;How to define a product versions?&raquo;. Now I know the default answer for this question: &laquo;Just look at the Semantic Versioning Specification!.</em></p>
+
+<p>It looks very natural: X.Y.Z where X is major version, Y is minor version and Z is the patch (hotfix) version of the product. X,Y,Z are non-negative numbers.
+See <a href="http://semver.org/" target="_blank">full specification</a> for details, it is not big, just 12 points.</p>
+
+                                </div>
+                                <footer class="post-footer">
+                                    
+                                    <div itemprop="author" itemscope itemtype="http://schema.org/Person"
+                                         class="post-author">
+                                        <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                                            <img itemprop="image"
+                                                 src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <h4 class="post-footer-heading">Written By</h4>
+                                            <a href="https://konstantinpavlov.net/" itemprop="url"
+                                               class="post-author-name">
+                                                <span itemprop="name">Konstantin Pavlov</span>
+                                            </a>
+                                            <p itemprop="description" class="post-author-bio"></p>
+                                            
+                                            <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                                            
+                                            
+                                            <p class="post-info">
+                                                <b class="post-info-title">Published on</b>
+                                                <time class="post-date">Jan 19, 2013</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="post-social">
+                                        <h4 class="post-footer-heading">Spread the word</h4>
+                                        <a href="#" data-action="share-twitter"><i
+                                                class="fa fa-fw fa-lg fa-twitter"></i></a>
+                                        <a href="#" data-action="share-facebook"><i
+                                                class="fa fa-fw fa-lg fa-facebook"></i></a>
+                                        <a href="#" data-action="share-gplus"><i
+                                                class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                                    </div>
+                                </footer>
+
+                                <nav role="pagination" class="post-list-pagination">
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2013/01/27/crearing-an-array-in-javascript/"
+                                       class="post-list-pagination-item post-list-pagination-item-prev"
+                                       title="Crearing an array in JavaScript" data-pjax rel="prev">
+                                        <i class="fa fa-angle-double-left"></i>&nbsp;Crearing an array in JavaScript
+                                    </a>
+                                    
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2012/05/25/book-good-old-peopleware/"
+                                       class="post-list-pagination-item post-list-pagination-item-next"
+                                       title="Book: Good Old &#34;Peopleware&#34;" data-pjax rel="next">
+                                        Book: Good Old &#34;Peopleware&#34;&nbsp;<i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                    
+                                </nav>
+
+                            </section>
+                            
+                            <section itemprop="comment" class="post-comments">
+                                <div id="disqus_thread"></div>
+                            </section>
+                            
+                        </article>
+
+                        <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
 <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
 <nav tabindex="-1" class="drawer">
   <div class="drawer-container">
@@ -185,153 +339,18 @@ It looks very natural: X.Y.Z where X is major version, Y is minor version and Z 
   </div>
 </nav>
 
-
-
-
-
-
 <div class="drawer-overlay"></div>
-<main id="container" role="main" class="container">
-  <div class="surface">
-    <div class="surface-container">
-      <div data-pjax-container class="content">
-
-        <section class="wrapper wrapper-post">
-          <div class="wrapper-container">
-            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
-              <section class="post-container">
-                <header class="post-header">
-                  <ul class="post-meta-list">
-                    <li class="post-item-meta-item">
-                      <time datetime='2013-01-19' itemprop="datePublished">
-                        2013-01-19
-                      </time>
-                    </li>
-                    
-<li class="post-item-meta-item">
 
 
-    
-    <a itemprop="articleSection" href="../../../../../categories/devops/" data-pjax rel="category" >devops</a>
-    
-
-</li>
-
-
-                    
-
-
-                    
-                    <li class="post-item-meta-item">
-                      <a href="https://konstantinpavlov.net/blog/2013/01/19/semantic-versioning-specification-semver/#disqus_thread" data-disqus-identifier='20130119192000'>Comments</a>
-                    </li>
-                    
-                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
-                      <meta itemprop="duration" content="T1M" />
-                      ~1 min
-                    </li>
-                  </ul>
-                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2013/01/19/semantic-versioning-specification-semver/" itemprop="url" data-pjax title="Semantic Versioning Specification (SemVer)">Semantic Versioning Specification (SemVer)</a></h1>
-                  
-                  
-                </header>
-                <aside class="post-side">
-                  <div class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <a href="https://konstantinpavlov.net/" class="post-author-name">
-                        Konstantin Pavlov
-                      </a>
-                      <p class="post-author-bio"></p>
-                    </div>
-                  </div>
-                </aside>
-                <div itemprop="articleBody" class="post-body">
-                  <p><em>For every new project, one of the first questions to answer when planning release system is &laquo;How to define a product versions?&raquo;. Now I know the default answer for this question: &laquo;Just look at the Semantic Versioning Specification!.</em></p>
-
-<p>It looks very natural: X.Y.Z where X is major version, Y is minor version and Z is the patch (hotfix) version of the product. X,Y,Z are non-negative numbers.
-See <a href="http://semver.org/" target="_blank">full specification</a> for details, it is not big, just 12 points.</p>
-
-                </div>
-                <footer class="post-footer">
-                  
-                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <h4 class="post-footer-heading">Written By</h4>
-                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
-                        <span itemprop="name">Konstantin Pavlov</span>
-                      </a>
-                      <p itemprop="description" class="post-author-bio"></p>
-                      
-                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
-                      
-                      
-                      <p class="post-info">
-                        <b class="post-info-title">Published on</b>
-                        <time class="post-date">Jan 19, 2013</time>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div class="post-social">
-                    <h4 class="post-footer-heading">Spread the word</h4>
-                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
-                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
-                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
-                  </div>
-                </footer>
-
-                <nav role="pagination" class="post-list-pagination">
-                  
-                  <a href="https://konstantinpavlov.net/blog/2013/01/27/crearing-an-array-in-javascript/" class="post-list-pagination-item post-list-pagination-item-prev"
-                     title="Crearing an array in JavaScript" data-pjax rel="prev">
-                    <i class="fa fa-angle-double-left"></i>&nbsp;Crearing an array in JavaScript
-                  </a>
-                  
-                  
-                  <a href="https://konstantinpavlov.net/blog/2012/05/25/book-good-old-peopleware/" class="post-list-pagination-item post-list-pagination-item-next"
-                     title="Book: Good Old &#34;Peopleware&#34;" data-pjax rel="next">
-                    Book: Good Old &#34;Peopleware&#34;&nbsp;<i class="fa fa-angle-double-right"></i>
-                  </a>
-                  
-                </nav>
-
-              </section>
-              
-              <section itemprop="comment" class="post-comments">
-                <div id="disqus_thread"></div>
-              </section>
-              
-            </article>
-
-            <footer role="contentinfo" class="footer">
-  <p><small>© 2017. All Rights Reserved.</small></p>
-  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
-  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
-</footer>
-
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-</main>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" defer></script>
     <script>
-        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js">\x3C/script>');
+        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js" defer>\x3C/script>');
     </script>
 
     
 
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"
+           integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous" defer></script>
 
     <dialog id="cookiePolicyPopup" open="false" style="display: none">
 
@@ -341,8 +360,8 @@ See <a href="http://semver.org/" target="_blank">full specification</a> for deta
          <a href="../../../../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../../../../assets/js/prism.min.js?v=1497092686"></script>
-    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497092686"></script>
+    <script src="../../../../../assets/js/prism.min.js?v=1497100230" defer></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497100230" defer></script>
 
     <script type="text/javascript">
 

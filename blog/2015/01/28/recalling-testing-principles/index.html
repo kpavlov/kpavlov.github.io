@@ -87,8 +87,8 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497092686">
-    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497092686"/>
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497100230">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497100230"/>
 
     <script type="text/javascript">
         
@@ -110,15 +110,194 @@
         }
     </script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"
+            integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8="
+            crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"
+            integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous" defer></script>
     <script type='text/javascript'>
-        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
-        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js" defer>\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js" defer>\x3C/script>');
     </script>
 </head>
 
 <body class="">
+
+
+
+<main id="container" role="main" class="container">
+    <div class="surface">
+        <div class="surface-container">
+            <div data-pjax-container class="content">
+
+                <section class="wrapper wrapper-post">
+                    <div class="wrapper-container">
+                        <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+                            <section class="post-container">
+                                <header class="post-header">
+                                    <ul class="post-meta-list">
+                                        <li class="post-item-meta-item">
+                                            <time datetime='2015-01-28'
+                                                  itemprop="datePublished">
+                                                2015-01-28
+                                            </time>
+                                        </li>
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/quality-assurance/" data-pjax rel="tag">#quality assurance</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/books/" data-pjax rel="tag">#books</a>
+    
+
+</li>
+
+
+
+                                        
+                                        <li class="post-item-meta-item">
+                                            <a href="https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/#disqus_thread"
+                                               data-disqus-identifier='20150128230454'>Comments</a>
+                                        </li>
+                                        
+                                        <li class="post-item-meta-item" title="Estimated reading time"
+                                            itemprop="timeRequired">
+                                            <meta itemprop="duration" content="T2M"/>
+                                            ~2 min
+                                        </li>
+                                    </ul>
+                                    <h1 itemprop="name headline" class="post-title">
+                                        <a href="https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/" itemprop="url" data-pjax
+                                           title="Recalling Testing Principles">Recalling Testing Principles</a></h1>
+                                    
+                                    
+                                </header>
+                                <aside class="post-side">
+                                    <div class="post-author">
+                                        <a href="https://konstantinpavlov.net/"
+                                           class="post-author-avatar">
+                                            <img src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <a href="https://konstantinpavlov.net/"
+                                               class="post-author-name">
+                                                Konstantin Pavlov
+                                            </a>
+                                            <p class="post-author-bio"></p>
+                                        </div>
+                                    </div>
+                                </aside>
+                                <div itemprop="articleBody" class="post-body">
+                                    <p>If you are involved in software development then recalling a basic testing principles once again is not a waste of time. So here are the principles:</p>
+
+<ol>
+<li>A necessary part of a test case is a definition of the expected output or result.</li>
+<li>A programmer should avoid attempting to test his or her own program.</li>
+<li>A programming organization should not test its own programs.</li>
+<li>Any testing process should include a thorough inspection of the results of each test.</li>
+<li>Test cases must be written for input conditions that are invalid and unexpected, as well as for those that are valid and expected.</li>
+<li>Examining a program to see if it does not do what it is supposed to do is only half the battle; the other half is seeing whether the program does what it is not supposed to do.</li>
+<li>Avoid throwaway test cases unless the program is truly a throwaway program.</li>
+<li>Do not plan a testing effort under the tacit assumption that no errors will be found.</li>
+<li>The probability of the existence of more errors in a section of a program is proportional to the number of errors already found in that section.</li>
+<li>Testing is an extremely creative and intellectually challenging task.</li>
+</ol>
+
+<p>I recommend reading a book <a href="http://eu.wiley.com/WileyCDA/WileyTitle/productCd-1118031962.html" title="The Art of Software Testing, 3rd Edition" target="_blank">&laquo;The Art of Software Testing&raquo;</a> by Glenford j. Myers, Tom Badgett and Corey Sandler (ISBN: 978-1-118-03196-4).</p>
+
+                                </div>
+                                <footer class="post-footer">
+                                    
+                                    <div itemprop="author" itemscope itemtype="http://schema.org/Person"
+                                         class="post-author">
+                                        <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                                            <img itemprop="image"
+                                                 src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <h4 class="post-footer-heading">Written By</h4>
+                                            <a href="https://konstantinpavlov.net/" itemprop="url"
+                                               class="post-author-name">
+                                                <span itemprop="name">Konstantin Pavlov</span>
+                                            </a>
+                                            <p itemprop="description" class="post-author-bio"></p>
+                                            
+                                            <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                                            
+                                            
+                                            <p class="post-info">
+                                                <b class="post-info-title">Published on</b>
+                                                <time class="post-date">Jan 28, 2015</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="post-social">
+                                        <h4 class="post-footer-heading">Spread the word</h4>
+                                        <a href="#" data-action="share-twitter"><i
+                                                class="fa fa-fw fa-lg fa-twitter"></i></a>
+                                        <a href="#" data-action="share-facebook"><i
+                                                class="fa fa-fw fa-lg fa-facebook"></i></a>
+                                        <a href="#" data-action="share-gplus"><i
+                                                class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                                    </div>
+                                </footer>
+
+                                <nav role="pagination" class="post-list-pagination">
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/"
+                                       class="post-list-pagination-item post-list-pagination-item-prev"
+                                       title="Syncing iTunes Library Between two Computers" data-pjax rel="prev">
+                                        <i class="fa fa-angle-double-left"></i>&nbsp;Syncing iTunes Library Between two Computers
+                                    </a>
+                                    
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/"
+                                       class="post-list-pagination-item post-list-pagination-item-next"
+                                       title="Base64 Variants in Java 8" data-pjax rel="next">
+                                        Base64 Variants in Java 8&nbsp;<i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                    
+                                </nav>
+
+                            </section>
+                            
+                            <section itemprop="comment" class="post-comments">
+                                <div id="disqus_thread"></div>
+                            </section>
+                            
+                        </article>
+
+                        <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
 <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
 <nav tabindex="-1" class="drawer">
   <div class="drawer-container">
@@ -185,178 +364,18 @@
   </div>
 </nav>
 
-
-
-
-
-
 <div class="drawer-overlay"></div>
-<main id="container" role="main" class="container">
-  <div class="surface">
-    <div class="surface-container">
-      <div data-pjax-container class="content">
-
-        <section class="wrapper wrapper-post">
-          <div class="wrapper-container">
-            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
-              <section class="post-container">
-                <header class="post-header">
-                  <ul class="post-meta-list">
-                    <li class="post-item-meta-item">
-                      <time datetime='2015-01-28' itemprop="datePublished">
-                        2015-01-28
-                      </time>
-                    </li>
-                    
-<li class="post-item-meta-item">
 
 
-    
-    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
-    
-
-</li>
-
-
-                    
-<li class="post-item-meta-item">
-
-
-    
-    <a itemprop="articleSection" href="../../../../../tags/quality-assurance/" data-pjax rel="tag">#quality assurance</a>
-    ,
-
-    
-    <a itemprop="keywords" href="../../../../../tags/books/" data-pjax rel="tag">#books</a>
-    
-
-</li>
-
-
-
-                    
-                    <li class="post-item-meta-item">
-                      <a href="https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/#disqus_thread" data-disqus-identifier='20150128230454'>Comments</a>
-                    </li>
-                    
-                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
-                      <meta itemprop="duration" content="T2M" />
-                      ~2 min
-                    </li>
-                  </ul>
-                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/" itemprop="url" data-pjax title="Recalling Testing Principles">Recalling Testing Principles</a></h1>
-                  
-                  
-                </header>
-                <aside class="post-side">
-                  <div class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <a href="https://konstantinpavlov.net/" class="post-author-name">
-                        Konstantin Pavlov
-                      </a>
-                      <p class="post-author-bio"></p>
-                    </div>
-                  </div>
-                </aside>
-                <div itemprop="articleBody" class="post-body">
-                  <p>If you are involved in software development then recalling a basic testing principles once again is not a waste of time. So here are the principles:</p>
-
-<ol>
-<li>A necessary part of a test case is a definition of the expected output or result.</li>
-<li>A programmer should avoid attempting to test his or her own program.</li>
-<li>A programming organization should not test its own programs.</li>
-<li>Any testing process should include a thorough inspection of the results of each test.</li>
-<li>Test cases must be written for input conditions that are invalid and unexpected, as well as for those that are valid and expected.</li>
-<li>Examining a program to see if it does not do what it is supposed to do is only half the battle; the other half is seeing whether the program does what it is not supposed to do.</li>
-<li>Avoid throwaway test cases unless the program is truly a throwaway program.</li>
-<li>Do not plan a testing effort under the tacit assumption that no errors will be found.</li>
-<li>The probability of the existence of more errors in a section of a program is proportional to the number of errors already found in that section.</li>
-<li>Testing is an extremely creative and intellectually challenging task.</li>
-</ol>
-
-<p>I recommend reading a book <a href="http://eu.wiley.com/WileyCDA/WileyTitle/productCd-1118031962.html" title="The Art of Software Testing, 3rd Edition" target="_blank">&laquo;The Art of Software Testing&raquo;</a> by Glenford j. Myers, Tom Badgett and Corey Sandler (ISBN: 978-1-118-03196-4).</p>
-
-                </div>
-                <footer class="post-footer">
-                  
-                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <h4 class="post-footer-heading">Written By</h4>
-                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
-                        <span itemprop="name">Konstantin Pavlov</span>
-                      </a>
-                      <p itemprop="description" class="post-author-bio"></p>
-                      
-                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
-                      
-                      
-                      <p class="post-info">
-                        <b class="post-info-title">Published on</b>
-                        <time class="post-date">Jan 28, 2015</time>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div class="post-social">
-                    <h4 class="post-footer-heading">Spread the word</h4>
-                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
-                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
-                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
-                  </div>
-                </footer>
-
-                <nav role="pagination" class="post-list-pagination">
-                  
-                  <a href="https://konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/" class="post-list-pagination-item post-list-pagination-item-prev"
-                     title="Syncing iTunes Library Between two Computers" data-pjax rel="prev">
-                    <i class="fa fa-angle-double-left"></i>&nbsp;Syncing iTunes Library Between two Computers
-                  </a>
-                  
-                  
-                  <a href="https://konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/" class="post-list-pagination-item post-list-pagination-item-next"
-                     title="Base64 Variants in Java 8" data-pjax rel="next">
-                    Base64 Variants in Java 8&nbsp;<i class="fa fa-angle-double-right"></i>
-                  </a>
-                  
-                </nav>
-
-              </section>
-              
-              <section itemprop="comment" class="post-comments">
-                <div id="disqus_thread"></div>
-              </section>
-              
-            </article>
-
-            <footer role="contentinfo" class="footer">
-  <p><small>© 2017. All Rights Reserved.</small></p>
-  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
-  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
-</footer>
-
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-</main>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" defer></script>
     <script>
-        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js">\x3C/script>');
+        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js" defer>\x3C/script>');
     </script>
 
     
 
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"
+           integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous" defer></script>
 
     <dialog id="cookiePolicyPopup" open="false" style="display: none">
 
@@ -366,8 +385,8 @@
          <a href="../../../../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../../../../assets/js/prism.min.js?v=1497092686"></script>
-    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497092686"></script>
+    <script src="../../../../../assets/js/prism.min.js?v=1497100230" defer></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497100230" defer></script>
 
     <script type="text/javascript">
 

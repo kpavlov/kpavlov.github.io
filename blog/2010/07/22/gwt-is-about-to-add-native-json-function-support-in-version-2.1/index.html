@@ -93,8 +93,8 @@ Now there are three methods JSONParser which may be used to parse JSON string:"/
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497092686">
-    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497092686"/>
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497100230">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497100230"/>
 
     <script type="text/javascript">
         
@@ -116,15 +116,215 @@ Now there are three methods JSONParser which may be used to parse JSON string:"/
         }
     </script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"
+            integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8="
+            crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"
+            integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous" defer></script>
     <script type='text/javascript'>
-        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
-        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js" defer>\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js" defer>\x3C/script>');
     </script>
 </head>
 
 <body class="">
+
+
+
+<main id="container" role="main" class="container">
+    <div class="surface">
+        <div class="surface-container">
+            <div data-pjax-container class="content">
+
+                <section class="wrapper wrapper-post">
+                    <div class="wrapper-container">
+                        <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+                            <section class="post-container">
+                                <header class="post-header">
+                                    <ul class="post-meta-list">
+                                        <li class="post-item-meta-item">
+                                            <time datetime='2010-07-22'
+                                                  itemprop="datePublished">
+                                                2010-07-22
+                                            </time>
+                                        </li>
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/gwt/" data-pjax rel="tag">#gwt</a>
+    
+
+</li>
+
+
+
+                                        
+                                        <li class="post-item-meta-item">
+                                            <a href="https://konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/#disqus_thread"
+                                               data-disqus-identifier='20100722172000'>Comments</a>
+                                        </li>
+                                        
+                                        <li class="post-item-meta-item" title="Estimated reading time"
+                                            itemprop="timeRequired">
+                                            <meta itemprop="duration" content="T1M"/>
+                                            ~1 min
+                                        </li>
+                                    </ul>
+                                    <h1 itemprop="name headline" class="post-title">
+                                        <a href="https://konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/" itemprop="url" data-pjax
+                                           title="GWT is about to add Native JSON function support in version 2.1">GWT is about to add Native JSON function support in version 2.1</a></h1>
+                                    
+                                    
+                                </header>
+                                <aside class="post-side">
+                                    <div class="post-author">
+                                        <a href="https://konstantinpavlov.net/"
+                                           class="post-author-avatar">
+                                            <img src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <a href="https://konstantinpavlov.net/"
+                                               class="post-author-name">
+                                                Konstantin Pavlov
+                                            </a>
+                                            <p class="post-author-bio"></p>
+                                        </div>
+                                    </div>
+                                </aside>
+                                <div itemprop="articleBody" class="post-body">
+                                    <p>GWT 2.1 has reached Milestone 2.
+One of the new features in version 2.1 is support for browser&rsquo;s native JSON function in <code>JSONParser</code> class.
+
+Now there are three methods JSONParser which may be used to parse JSON string:</p>
+
+<ol>
+<li><code>JSONParser.parseNative(String)</code> - Uses native JSON browser&rsquo;s function, if browser supports it</li>
+<li><code>JSONParser.parseLanient(String)</code> - Uses browser&rsquo;s eval() function</li>
+<li><code>JSONParser.parse(String)</code> - Old method that is still supported and actually calls <code>JSONParser.parseLanient()</code></li>
+</ol>
+
+<p>Under Google Chrome <code>parseNative()</code> works usually 30-50% faster than <code>parseLanient()</code>: 450 vs 800 ms for parsing json string 10000 times.</p>
+
+<pre><code>Chrome Native JSON Test:
+------------------------
+JSON src length=3467 chars; 10000 iterations.
+Native JSON time: 1692ms
+Parser Native JSON time: 1728ms
+Parser Lanient JSON time: 853ms
+</code></pre>
+
+<p>Under Firefox, results are different from time to time (from 80 to 200ms).
+Native function may be 2 times faster or 2 times slower.
+So it seems there will be no significant speedup using native under Firefox.</p>
+
+<p>But anyway, Firefox has faster evaluate json than Chrome.</p>
+
+<pre><code>Firefox Native JSON Test:
+-------------------------
+JSON src length=3467 chars; 10000 iterations.
+Native JSON time: 1224ms
+Parser Native JSON time: 1208ms
+Parser Lanient JSON time: 974ms
+</code></pre>
+
+<p>Using new function has sense for browser like Chrome where performance can be improved.</p>
+
+<p>P.S. All measurements are valid on June 2010</p>
+                                </div>
+                                <footer class="post-footer">
+                                    
+                                    <div itemprop="author" itemscope itemtype="http://schema.org/Person"
+                                         class="post-author">
+                                        <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                                            <img itemprop="image"
+                                                 src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <h4 class="post-footer-heading">Written By</h4>
+                                            <a href="https://konstantinpavlov.net/" itemprop="url"
+                                               class="post-author-name">
+                                                <span itemprop="name">Konstantin Pavlov</span>
+                                            </a>
+                                            <p itemprop="description" class="post-author-bio"></p>
+                                            
+                                            <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                                            
+                                            
+                                            <p class="post-info">
+                                                <b class="post-info-title">Published on</b>
+                                                <time class="post-date">Jul 22, 2010</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="post-social">
+                                        <h4 class="post-footer-heading">Spread the word</h4>
+                                        <a href="#" data-action="share-twitter"><i
+                                                class="fa fa-fw fa-lg fa-twitter"></i></a>
+                                        <a href="#" data-action="share-facebook"><i
+                                                class="fa fa-fw fa-lg fa-facebook"></i></a>
+                                        <a href="#" data-action="share-gplus"><i
+                                                class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                                    </div>
+                                </footer>
+
+                                <nav role="pagination" class="post-list-pagination">
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/"
+                                       class="post-list-pagination-item post-list-pagination-item-prev"
+                                       title="Builder Pattern Usage: Rule of Thumb" data-pjax rel="prev">
+                                        <i class="fa fa-angle-double-left"></i>&nbsp;Builder Pattern Usage: Rule of Thumb
+                                    </a>
+                                    
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/"
+                                       class="post-list-pagination-item post-list-pagination-item-next"
+                                       title="How to Use Spring from EJB3" data-pjax rel="next">
+                                        How to Use Spring from EJB3&nbsp;<i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                    
+                                </nav>
+
+                            </section>
+                            
+                            <section itemprop="comment" class="post-comments">
+                                <div id="disqus_thread"></div>
+                            </section>
+                            
+                        </article>
+
+                        <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
 <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
 <nav tabindex="-1" class="drawer">
   <div class="drawer-container">
@@ -191,199 +391,18 @@ Now there are three methods JSONParser which may be used to parse JSON string:"/
   </div>
 </nav>
 
-
-
-
-
-
 <div class="drawer-overlay"></div>
-<main id="container" role="main" class="container">
-  <div class="surface">
-    <div class="surface-container">
-      <div data-pjax-container class="content">
-
-        <section class="wrapper wrapper-post">
-          <div class="wrapper-container">
-            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
-              <section class="post-container">
-                <header class="post-header">
-                  <ul class="post-meta-list">
-                    <li class="post-item-meta-item">
-                      <time datetime='2010-07-22' itemprop="datePublished">
-                        2010-07-22
-                      </time>
-                    </li>
-                    
-<li class="post-item-meta-item">
 
 
-    
-    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
-    
-
-</li>
-
-
-                    
-<li class="post-item-meta-item">
-
-
-    
-    <a itemprop="articleSection" href="../../../../../tags/java/" data-pjax rel="tag">#java</a>
-    ,
-
-    
-    <a itemprop="keywords" href="../../../../../tags/gwt/" data-pjax rel="tag">#gwt</a>
-    
-
-</li>
-
-
-
-                    
-                    <li class="post-item-meta-item">
-                      <a href="https://konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/#disqus_thread" data-disqus-identifier='20100722172000'>Comments</a>
-                    </li>
-                    
-                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
-                      <meta itemprop="duration" content="T1M" />
-                      ~1 min
-                    </li>
-                  </ul>
-                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2010/07/22/gwt-is-about-to-add-native-json-function-support-in-version-2.1/" itemprop="url" data-pjax title="GWT is about to add Native JSON function support in version 2.1">GWT is about to add Native JSON function support in version 2.1</a></h1>
-                  
-                  
-                </header>
-                <aside class="post-side">
-                  <div class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <a href="https://konstantinpavlov.net/" class="post-author-name">
-                        Konstantin Pavlov
-                      </a>
-                      <p class="post-author-bio"></p>
-                    </div>
-                  </div>
-                </aside>
-                <div itemprop="articleBody" class="post-body">
-                  <p>GWT 2.1 has reached Milestone 2.
-One of the new features in version 2.1 is support for browser&rsquo;s native JSON function in <code>JSONParser</code> class.
-
-Now there are three methods JSONParser which may be used to parse JSON string:</p>
-
-<ol>
-<li><code>JSONParser.parseNative(String)</code> - Uses native JSON browser&rsquo;s function, if browser supports it</li>
-<li><code>JSONParser.parseLanient(String)</code> - Uses browser&rsquo;s eval() function</li>
-<li><code>JSONParser.parse(String)</code> - Old method that is still supported and actually calls <code>JSONParser.parseLanient()</code></li>
-</ol>
-
-<p>Under Google Chrome <code>parseNative()</code> works usually 30-50% faster than <code>parseLanient()</code>: 450 vs 800 ms for parsing json string 10000 times.</p>
-
-<pre><code>Chrome Native JSON Test:
-------------------------
-JSON src length=3467 chars; 10000 iterations.
-Native JSON time: 1692ms
-Parser Native JSON time: 1728ms
-Parser Lanient JSON time: 853ms
-</code></pre>
-
-<p>Under Firefox, results are different from time to time (from 80 to 200ms).
-Native function may be 2 times faster or 2 times slower.
-So it seems there will be no significant speedup using native under Firefox.</p>
-
-<p>But anyway, Firefox has faster evaluate json than Chrome.</p>
-
-<pre><code>Firefox Native JSON Test:
--------------------------
-JSON src length=3467 chars; 10000 iterations.
-Native JSON time: 1224ms
-Parser Native JSON time: 1208ms
-Parser Lanient JSON time: 974ms
-</code></pre>
-
-<p>Using new function has sense for browser like Chrome where performance can be improved.</p>
-
-<p>P.S. All measurements are valid on June 2010</p>
-                </div>
-                <footer class="post-footer">
-                  
-                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <h4 class="post-footer-heading">Written By</h4>
-                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
-                        <span itemprop="name">Konstantin Pavlov</span>
-                      </a>
-                      <p itemprop="description" class="post-author-bio"></p>
-                      
-                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
-                      
-                      
-                      <p class="post-info">
-                        <b class="post-info-title">Published on</b>
-                        <time class="post-date">Jul 22, 2010</time>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div class="post-social">
-                    <h4 class="post-footer-heading">Spread the word</h4>
-                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
-                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
-                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
-                  </div>
-                </footer>
-
-                <nav role="pagination" class="post-list-pagination">
-                  
-                  <a href="https://konstantinpavlov.net/blog/2011/10/05/builder-pattern-usage-rule-of-thumb/" class="post-list-pagination-item post-list-pagination-item-prev"
-                     title="Builder Pattern Usage: Rule of Thumb" data-pjax rel="prev">
-                    <i class="fa fa-angle-double-left"></i>&nbsp;Builder Pattern Usage: Rule of Thumb
-                  </a>
-                  
-                  
-                  <a href="https://konstantinpavlov.net/blog/2009/01/09/how-to-use-spring-from-ejb3/" class="post-list-pagination-item post-list-pagination-item-next"
-                     title="How to Use Spring from EJB3" data-pjax rel="next">
-                    How to Use Spring from EJB3&nbsp;<i class="fa fa-angle-double-right"></i>
-                  </a>
-                  
-                </nav>
-
-              </section>
-              
-              <section itemprop="comment" class="post-comments">
-                <div id="disqus_thread"></div>
-              </section>
-              
-            </article>
-
-            <footer role="contentinfo" class="footer">
-  <p><small>© 2017. All Rights Reserved.</small></p>
-  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
-  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
-</footer>
-
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-</main>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" defer></script>
     <script>
-        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js">\x3C/script>');
+        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js" defer>\x3C/script>');
     </script>
 
     
 
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"
+           integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous" defer></script>
 
     <dialog id="cookiePolicyPopup" open="false" style="display: none">
 
@@ -393,8 +412,8 @@ Parser Lanient JSON time: 974ms
          <a href="../../../../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../../../../assets/js/prism.min.js?v=1497092686"></script>
-    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497092686"></script>
+    <script src="../../../../../assets/js/prism.min.js?v=1497100230" defer></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497100230" defer></script>
 
     <script type="text/javascript">
 

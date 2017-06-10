@@ -84,8 +84,8 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497092686">
-    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497092686"/>
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497100230">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497100230"/>
 
     <script type="text/javascript">
         
@@ -107,15 +107,228 @@
         }
     </script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"
+            integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8="
+            crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"
+            integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous" defer></script>
     <script type='text/javascript'>
-        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
-        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js" defer>\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js" defer>\x3C/script>');
     </script>
 </head>
 
 <body class="">
+
+
+
+<main id="container" role="main" class="container">
+    <div class="surface">
+        <div class="surface-container">
+            <div data-pjax-container class="content">
+
+                <section class="wrapper wrapper-post">
+                    <div class="wrapper-container">
+                        <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+                            <section class="post-container">
+                                <header class="post-header">
+                                    <ul class="post-meta-list">
+                                        <li class="post-item-meta-item">
+                                            <time datetime='2015-01-17'
+                                                  itemprop="datePublished">
+                                                2015-01-17
+                                            </time>
+                                        </li>
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/blogging/" data-pjax rel="category" >blogging</a>
+    
+
+</li>
+
+
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/hexo/" data-pjax rel="tag">#hexo</a>
+    
+
+</li>
+
+
+
+                                        
+                                        <li class="post-item-meta-item">
+                                            <a href="https://konstantinpavlov.net/blog/2015/01/17/hexo-useful-tips/#disqus_thread"
+                                               data-disqus-identifier='20150117094802'>Comments</a>
+                                        </li>
+                                        
+                                        <li class="post-item-meta-item" title="Estimated reading time"
+                                            itemprop="timeRequired">
+                                            <meta itemprop="duration" content="T2M"/>
+                                            ~2 min
+                                        </li>
+                                    </ul>
+                                    <h1 itemprop="name headline" class="post-title">
+                                        <a href="https://konstantinpavlov.net/blog/2015/01/17/hexo-useful-tips/" itemprop="url" data-pjax
+                                           title="Hexo Useful Tips">Hexo Useful Tips</a></h1>
+                                    
+                                    
+                                </header>
+                                <aside class="post-side">
+                                    <div class="post-author">
+                                        <a href="https://konstantinpavlov.net/"
+                                           class="post-author-avatar">
+                                            <img src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <a href="https://konstantinpavlov.net/"
+                                               class="post-author-name">
+                                                Konstantin Pavlov
+                                            </a>
+                                            <p class="post-author-bio"></p>
+                                        </div>
+                                    </div>
+                                </aside>
+                                <div itemprop="articleBody" class="post-body">
+                                    
+
+<p><a href="http://hexo.io/" target="_blank">Hexo</a> is static site generator framework suitable for blogging. It it written javascript and uses Node.js and it is pretty fast. After playing with Octopress and Jekyll, I finally switched to Hexo.
+The documentation is not bad, bot some aspects are bot covered, so it needs to google to figure-out some aspects. The good thing that there is a large developer and user community (many of them are from China) and there are a lot of sources and examples.</p>
+
+<p>Anyway, I think some tips will be useful for Hexo newcomers.</p>
+
+<h2 id="tags-and-categories-localization-customization">Tags and Categories Localization/Customization</h2>
+
+<p>In WordPress you can customize tags and categories. Particularly, you can specify a localized name and a SEO-friendly slug for each one. In Hexo it is not so straightforward, but still possible.</p>
+
+<p>By default, when you tag and categorize your post, you should use english names for your tags (and categories) to produce nice SEO-friendly URLs. e.g. <em>2015-01-17-my-awesome-post.md</em>:</p>
+
+<pre><code class="language-markdown">title: &quot;My Awesome Post&quot;
+date: 2015-01-17 09:04:02
+tags:
+  - tag1
+  - по-русски
+categories:
+  - my category
+---
+Hello world!
+</code></pre>
+
+<p>If you want your tags and categories on your language and the URLs still look nice in ASCII, you may use <a href="http://hexo.io/docs/configuration.html#Category_&amp;_Tag" target="_blank"><code>tag_map</code> and <code>category_map</code></a> parameters in <em>config.yml</em> file of your blog:</p>
+
+<pre><code class="language-yml">tag_map:
+  tag1: supertag
+  по-русски: in-russian
+  fun: fun and jokes
+  jokes: fun and jokes
+
+category_map:
+  my category: the other category
+  разное: other
+</code></pre>
+
+<p>Now tags and categories paths will be more obvious. Spaces and underscores in urls are replaced with dashes (-), but I prefer setting it explicitly.</p>
+
+<p>You can even set one URL prefix for two different tags (<em>config.yml</em>):</p>
+
+<pre><code class="language-yml">tag_map:
+  fun: fun and jokes
+  jokes: fun and jokes
+</code></pre>
+
+<p><strong>What I am missing:</strong> Extracting <code>tag_map</code> and <code>category_map</code> to separate files.</p>
+
+<h2 id="other-notes">Other Notes</h2>
+
+<p><code>relative_link: true</code> in config breaks the pagination in Hexo 3.1.1, use <code>false</code> instead:</p>
+
+<pre><code class="language-yml">relative_link: false
+</code></pre>
+
+                                </div>
+                                <footer class="post-footer">
+                                    
+                                    <div itemprop="author" itemscope itemtype="http://schema.org/Person"
+                                         class="post-author">
+                                        <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                                            <img itemprop="image"
+                                                 src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <h4 class="post-footer-heading">Written By</h4>
+                                            <a href="https://konstantinpavlov.net/" itemprop="url"
+                                               class="post-author-name">
+                                                <span itemprop="name">Konstantin Pavlov</span>
+                                            </a>
+                                            <p itemprop="description" class="post-author-bio"></p>
+                                            
+                                            <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                                            
+                                            
+                                            <p class="post-info">
+                                                <b class="post-info-title">Published on</b>
+                                                <time class="post-date">Jan 17, 2015</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="post-social">
+                                        <h4 class="post-footer-heading">Spread the word</h4>
+                                        <a href="#" data-action="share-twitter"><i
+                                                class="fa fa-fw fa-lg fa-twitter"></i></a>
+                                        <a href="#" data-action="share-facebook"><i
+                                                class="fa fa-fw fa-lg fa-facebook"></i></a>
+                                        <a href="#" data-action="share-gplus"><i
+                                                class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                                    </div>
+                                </footer>
+
+                                <nav role="pagination" class="post-list-pagination">
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/"
+                                       class="post-list-pagination-item post-list-pagination-item-prev"
+                                       title="Base64 Variants in Java 8" data-pjax rel="prev">
+                                        <i class="fa fa-angle-double-left"></i>&nbsp;Base64 Variants in Java 8
+                                    </a>
+                                    
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2015/01/10/how-to-run-jetbrains-idea-on-mac-with-jdk-1.8/"
+                                       class="post-list-pagination-item post-list-pagination-item-next"
+                                       title="How to Run JetBrains Idea on Mac with JDK 1.8" data-pjax rel="next">
+                                        How to Run JetBrains Idea on Mac with JDK 1.8&nbsp;<i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                    
+                                </nav>
+
+                            </section>
+                            
+                            <section itemprop="comment" class="post-comments">
+                                <div id="disqus_thread"></div>
+                            </section>
+                            
+                        </article>
+
+                        <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
 <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
 <nav tabindex="-1" class="drawer">
   <div class="drawer-container">
@@ -182,212 +395,18 @@
   </div>
 </nav>
 
-
-
-
-
-
 <div class="drawer-overlay"></div>
-<main id="container" role="main" class="container">
-  <div class="surface">
-    <div class="surface-container">
-      <div data-pjax-container class="content">
-
-        <section class="wrapper wrapper-post">
-          <div class="wrapper-container">
-            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
-              <section class="post-container">
-                <header class="post-header">
-                  <ul class="post-meta-list">
-                    <li class="post-item-meta-item">
-                      <time datetime='2015-01-17' itemprop="datePublished">
-                        2015-01-17
-                      </time>
-                    </li>
-                    
-<li class="post-item-meta-item">
 
 
-    
-    <a itemprop="articleSection" href="../../../../../categories/blogging/" data-pjax rel="category" >blogging</a>
-    
-
-</li>
-
-
-                    
-<li class="post-item-meta-item">
-
-
-    
-    <a itemprop="articleSection" href="../../../../../tags/hexo/" data-pjax rel="tag">#hexo</a>
-    
-
-</li>
-
-
-
-                    
-                    <li class="post-item-meta-item">
-                      <a href="https://konstantinpavlov.net/blog/2015/01/17/hexo-useful-tips/#disqus_thread" data-disqus-identifier='20150117094802'>Comments</a>
-                    </li>
-                    
-                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
-                      <meta itemprop="duration" content="T2M" />
-                      ~2 min
-                    </li>
-                  </ul>
-                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2015/01/17/hexo-useful-tips/" itemprop="url" data-pjax title="Hexo Useful Tips">Hexo Useful Tips</a></h1>
-                  
-                  
-                </header>
-                <aside class="post-side">
-                  <div class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <a href="https://konstantinpavlov.net/" class="post-author-name">
-                        Konstantin Pavlov
-                      </a>
-                      <p class="post-author-bio"></p>
-                    </div>
-                  </div>
-                </aside>
-                <div itemprop="articleBody" class="post-body">
-                  
-
-<p><a href="http://hexo.io/" target="_blank">Hexo</a> is static site generator framework suitable for blogging. It it written javascript and uses Node.js and it is pretty fast. After playing with Octopress and Jekyll, I finally switched to Hexo.
-The documentation is not bad, bot some aspects are bot covered, so it needs to google to figure-out some aspects. The good thing that there is a large developer and user community (many of them are from China) and there are a lot of sources and examples.</p>
-
-<p>Anyway, I think some tips will be useful for Hexo newcomers.</p>
-
-<h2 id="tags-and-categories-localization-customization">Tags and Categories Localization/Customization</h2>
-
-<p>In WordPress you can customize tags and categories. Particularly, you can specify a localized name and a SEO-friendly slug for each one. In Hexo it is not so straightforward, but still possible.</p>
-
-<p>By default, when you tag and categorize your post, you should use english names for your tags (and categories) to produce nice SEO-friendly URLs. e.g. <em>2015-01-17-my-awesome-post.md</em>:</p>
-
-<pre><code class="language-markdown">title: &quot;My Awesome Post&quot;
-date: 2015-01-17 09:04:02
-tags:
-  - tag1
-  - по-русски
-categories:
-  - my category
----
-Hello world!
-</code></pre>
-
-<p>If you want your tags and categories on your language and the URLs still look nice in ASCII, you may use <a href="http://hexo.io/docs/configuration.html#Category_&amp;_Tag" target="_blank"><code>tag_map</code> and <code>category_map</code></a> parameters in <em>config.yml</em> file of your blog:</p>
-
-<pre><code class="language-yml">tag_map:
-  tag1: supertag
-  по-русски: in-russian
-  fun: fun and jokes
-  jokes: fun and jokes
-
-category_map:
-  my category: the other category
-  разное: other
-</code></pre>
-
-<p>Now tags and categories paths will be more obvious. Spaces and underscores in urls are replaced with dashes (-), but I prefer setting it explicitly.</p>
-
-<p>You can even set one URL prefix for two different tags (<em>config.yml</em>):</p>
-
-<pre><code class="language-yml">tag_map:
-  fun: fun and jokes
-  jokes: fun and jokes
-</code></pre>
-
-<p><strong>What I am missing:</strong> Extracting <code>tag_map</code> and <code>category_map</code> to separate files.</p>
-
-<h2 id="other-notes">Other Notes</h2>
-
-<p><code>relative_link: true</code> in config breaks the pagination in Hexo 3.1.1, use <code>false</code> instead:</p>
-
-<pre><code class="language-yml">relative_link: false
-</code></pre>
-
-                </div>
-                <footer class="post-footer">
-                  
-                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <h4 class="post-footer-heading">Written By</h4>
-                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
-                        <span itemprop="name">Konstantin Pavlov</span>
-                      </a>
-                      <p itemprop="description" class="post-author-bio"></p>
-                      
-                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
-                      
-                      
-                      <p class="post-info">
-                        <b class="post-info-title">Published on</b>
-                        <time class="post-date">Jan 17, 2015</time>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div class="post-social">
-                    <h4 class="post-footer-heading">Spread the word</h4>
-                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
-                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
-                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
-                  </div>
-                </footer>
-
-                <nav role="pagination" class="post-list-pagination">
-                  
-                  <a href="https://konstantinpavlov.net/blog/2015/01/24/base64-variants-in-java-8/" class="post-list-pagination-item post-list-pagination-item-prev"
-                     title="Base64 Variants in Java 8" data-pjax rel="prev">
-                    <i class="fa fa-angle-double-left"></i>&nbsp;Base64 Variants in Java 8
-                  </a>
-                  
-                  
-                  <a href="https://konstantinpavlov.net/blog/2015/01/10/how-to-run-jetbrains-idea-on-mac-with-jdk-1.8/" class="post-list-pagination-item post-list-pagination-item-next"
-                     title="How to Run JetBrains Idea on Mac with JDK 1.8" data-pjax rel="next">
-                    How to Run JetBrains Idea on Mac with JDK 1.8&nbsp;<i class="fa fa-angle-double-right"></i>
-                  </a>
-                  
-                </nav>
-
-              </section>
-              
-              <section itemprop="comment" class="post-comments">
-                <div id="disqus_thread"></div>
-              </section>
-              
-            </article>
-
-            <footer role="contentinfo" class="footer">
-  <p><small>© 2017. All Rights Reserved.</small></p>
-  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
-  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
-</footer>
-
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-</main>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" defer></script>
     <script>
-        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js">\x3C/script>');
+        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js" defer>\x3C/script>');
     </script>
 
     
 
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"
+           integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous" defer></script>
 
     <dialog id="cookiePolicyPopup" open="false" style="display: none">
 
@@ -397,8 +416,8 @@ category_map:
          <a href="../../../../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../../../../assets/js/prism.min.js?v=1497092686"></script>
-    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497092686"></script>
+    <script src="../../../../../assets/js/prism.min.js?v=1497100230" defer></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497100230" defer></script>
 
     <script type="text/javascript">
 

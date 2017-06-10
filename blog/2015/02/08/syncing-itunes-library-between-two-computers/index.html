@@ -87,8 +87,8 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497092686">
-    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497092686"/>
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497100230">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497100230"/>
 
     <script type="text/javascript">
         
@@ -110,15 +110,213 @@
         }
     </script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"
+            integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8="
+            crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"
+            integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous" defer></script>
     <script type='text/javascript'>
-        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
-        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js" defer>\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js" defer>\x3C/script>');
     </script>
 </head>
 
 <body class="">
+
+
+
+<main id="container" role="main" class="container">
+    <div class="surface">
+        <div class="surface-container">
+            <div data-pjax-container class="content">
+
+                <section class="wrapper wrapper-post">
+                    <div class="wrapper-container">
+                        <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+                            <section class="post-container">
+                                <header class="post-header">
+                                    <ul class="post-meta-list">
+                                        <li class="post-item-meta-item">
+                                            <time datetime='2015-02-08'
+                                                  itemprop="datePublished">
+                                                2015-02-08
+                                            </time>
+                                        </li>
+                                        
+
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/itunes/" data-pjax rel="tag">#iTunes</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/mac/" data-pjax rel="tag">#Mac</a>
+    
+
+</li>
+
+
+
+                                        
+                                        <li class="post-item-meta-item">
+                                            <a href="https://konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/#disqus_thread"
+                                               data-disqus-identifier='20150208080251'>Comments</a>
+                                        </li>
+                                        
+                                        <li class="post-item-meta-item" title="Estimated reading time"
+                                            itemprop="timeRequired">
+                                            <meta itemprop="duration" content="T2M"/>
+                                            ~2 min
+                                        </li>
+                                    </ul>
+                                    <h1 itemprop="name headline" class="post-title">
+                                        <a href="https://konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/" itemprop="url" data-pjax
+                                           title="Syncing iTunes Library Between two Computers">Syncing iTunes Library Between two Computers</a></h1>
+                                    
+                                    
+                                </header>
+                                <aside class="post-side">
+                                    <div class="post-author">
+                                        <a href="https://konstantinpavlov.net/"
+                                           class="post-author-avatar">
+                                            <img src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <a href="https://konstantinpavlov.net/"
+                                               class="post-author-name">
+                                                Konstantin Pavlov
+                                            </a>
+                                            <p class="post-author-bio"></p>
+                                        </div>
+                                    </div>
+                                </aside>
+                                <div itemprop="articleBody" class="post-body">
+                                    
+
+<p>Given:</p>
+
+<ol>
+<li>Two family Macs with iTunes 12 installed</li>
+<li>More than 10GB of audio files</li>
+</ol>
+
+<p>I want to share my media library between these two computers and keep them synchronized. When I add new file on one computer, it should apear on another. When I delete a file on second computer - it should be deleted pn first. When I change iTunes playlists on one computer it should be changed on another.
+I don&rsquo;t want to keep my media on Network storage (NAS) or External drive (USB), because it will be impossible to listen to the music on the go, when NAS or external drive is disconnected (e.g. in cafe).</p>
+
+<p>To be able to use the same iTunes media library database on two computers I need to make my media files available by at the same path on disk.<!-- more--> Normally, media files are under the user account folder. But it is possible to <a href="http://support.apple.com/en-us/HT201562" title="iTunes for Mac: Moving your iTunes Media folder" target="_blank">move</a> them to the location <a href="http://support.apple.com/en-us/HT1203" title="iTunes: How to share music between different user accounts on a single computer" target="_blank">common for all user accounts</a>.</p>
+
+<p>Next, I need to keep iTunes media file in sync.</p>
+
+<p>After some research in the Internet I come to following solution.</p>
+
+<ol>
+<li>Backup tour iTunes media folder <code>/Users/user/Music/iTunes</code></li>
+<li>Move iTunes media files to the <code>/Users/Shared/iTunes Media</code> folder.
+Set new media files location: <img src="../../../../../assets/2015/02/itunes-media-settings.png" alt="iTunes Media Settings" />
+Then run <strong>File &gt; Library &gt; Organize Library</strong> and select <strong>&laquo;Consolidate Files&raquo;</strong> to copy your files to new location. <img src="../../../../../assets/2015/02/itunes-consoludate.png" alt="Consoludate Files" /></li>
+<li>Remove your old Original files were copied, not moved. You need to remove them (if you have made a backup on step 1):
+<code>bash  
+rm -rf /Users/user/Music/iTunes/iTunes\ Media
+</code></li>
+<li>Close iTunes and copy your <code>/Users/user1/Music/iTunes</code> to <code>/Users/user2/Music/iTunes</code> on second compuler</li>
+<li>Copy <code>/Users/Shared/iTunes Media</code> from first to second computer to the same location.</li>
+<li>Setup media folder synchronization between two computers using <a href="http://www.getsync.com" title="Sync" target="_blank">BitTorrent Sync</a>. If you have smaller media library that fits into DropBox &ndash; then go for it. It is possible to use any cloud solution, e.g. at the moment (February 2015) <a href="http://help.yandex.com/disk/uploading.xml" title="Yandex Disk Limits" target="_blank">Yandex Disk</a> offers 10GB for free.</li>
+<li>Wait for synchronization complete.</li>
+</ol>
+
+<p>You may start using iTunes on both computers. Keep in mind, that if you modify your media library from both computers simultaneously, you will have only recent changes. You may want to setup one-way synchronization: one computer will be <strong>the Master</strong> where you will manage your library and the second one is for listening only.</p>
+
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="http://support.apple.com/en-us/HT201979" title="iTunes: Understanding iTunes Media Organization" target="_blank">iTunes: Understanding iTunes Media Organization</a></li>
+<li><a href="http://oyvteig.blogspot.com/2009/01/003-shared-itunes-library-on-network.html" target="_blank">Shared iTunes Library on Network</a></li>
+<li><a href="http://support.apple.com/en-us/HT201979" title="iTunes: Understanding iTunes Media Organization" target="_blank">iTunes: Understanding iTunes Media Organization</a></li>
+<li><a href="http://support.apple.com/en-us/HT201562" title="iTunes for Mac: Moving your iTunes Media folder" target="_blank">iTunes for Mac: Moving your iTunes Media folder</a></li>
+<li><a href="http://support.apple.com/en-us/HT1203" title="iTunes: How to share music between different user accounts on a single computer" target="_blank">iTunes: How to share music between different user accounts on a single computer</a></li>
+</ul>
+
+                                </div>
+                                <footer class="post-footer">
+                                    
+                                    <div itemprop="author" itemscope itemtype="http://schema.org/Person"
+                                         class="post-author">
+                                        <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                                            <img itemprop="image"
+                                                 src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <h4 class="post-footer-heading">Written By</h4>
+                                            <a href="https://konstantinpavlov.net/" itemprop="url"
+                                               class="post-author-name">
+                                                <span itemprop="name">Konstantin Pavlov</span>
+                                            </a>
+                                            <p itemprop="description" class="post-author-bio"></p>
+                                            
+                                            <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                                            
+                                            
+                                            <p class="post-info">
+                                                <b class="post-info-title">Published on</b>
+                                                <time class="post-date">Feb 8, 2015</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="post-social">
+                                        <h4 class="post-footer-heading">Spread the word</h4>
+                                        <a href="#" data-action="share-twitter"><i
+                                                class="fa fa-fw fa-lg fa-twitter"></i></a>
+                                        <a href="#" data-action="share-facebook"><i
+                                                class="fa fa-fw fa-lg fa-facebook"></i></a>
+                                        <a href="#" data-action="share-gplus"><i
+                                                class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                                    </div>
+                                </footer>
+
+                                <nav role="pagination" class="post-list-pagination">
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/"
+                                       class="post-list-pagination-item post-list-pagination-item-prev"
+                                       title="Booting Spring Webapp" data-pjax rel="prev">
+                                        <i class="fa fa-angle-double-left"></i>&nbsp;Booting Spring Webapp
+                                    </a>
+                                    
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/"
+                                       class="post-list-pagination-item post-list-pagination-item-next"
+                                       title="Recalling Testing Principles" data-pjax rel="next">
+                                        Recalling Testing Principles&nbsp;<i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                    
+                                </nav>
+
+                            </section>
+                            
+                            <section itemprop="comment" class="post-comments">
+                                <div id="disqus_thread"></div>
+                            </section>
+                            
+                        </article>
+
+                        <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
 <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
 <nav tabindex="-1" class="drawer">
   <div class="drawer-container">
@@ -185,197 +383,18 @@
   </div>
 </nav>
 
-
-
-
-
-
 <div class="drawer-overlay"></div>
-<main id="container" role="main" class="container">
-  <div class="surface">
-    <div class="surface-container">
-      <div data-pjax-container class="content">
-
-        <section class="wrapper wrapper-post">
-          <div class="wrapper-container">
-            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
-              <section class="post-container">
-                <header class="post-header">
-                  <ul class="post-meta-list">
-                    <li class="post-item-meta-item">
-                      <time datetime='2015-02-08' itemprop="datePublished">
-                        2015-02-08
-                      </time>
-                    </li>
-                    
-
-                    
-<li class="post-item-meta-item">
 
 
-    
-    <a itemprop="articleSection" href="../../../../../tags/itunes/" data-pjax rel="tag">#iTunes</a>
-    ,
-
-    
-    <a itemprop="keywords" href="../../../../../tags/mac/" data-pjax rel="tag">#Mac</a>
-    
-
-</li>
-
-
-
-                    
-                    <li class="post-item-meta-item">
-                      <a href="https://konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/#disqus_thread" data-disqus-identifier='20150208080251'>Comments</a>
-                    </li>
-                    
-                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
-                      <meta itemprop="duration" content="T2M" />
-                      ~2 min
-                    </li>
-                  </ul>
-                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2015/02/08/syncing-itunes-library-between-two-computers/" itemprop="url" data-pjax title="Syncing iTunes Library Between two Computers">Syncing iTunes Library Between two Computers</a></h1>
-                  
-                  
-                </header>
-                <aside class="post-side">
-                  <div class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <a href="https://konstantinpavlov.net/" class="post-author-name">
-                        Konstantin Pavlov
-                      </a>
-                      <p class="post-author-bio"></p>
-                    </div>
-                  </div>
-                </aside>
-                <div itemprop="articleBody" class="post-body">
-                  
-
-<p>Given:</p>
-
-<ol>
-<li>Two family Macs with iTunes 12 installed</li>
-<li>More than 10GB of audio files</li>
-</ol>
-
-<p>I want to share my media library between these two computers and keep them synchronized. When I add new file on one computer, it should apear on another. When I delete a file on second computer - it should be deleted pn first. When I change iTunes playlists on one computer it should be changed on another.
-I don&rsquo;t want to keep my media on Network storage (NAS) or External drive (USB), because it will be impossible to listen to the music on the go, when NAS or external drive is disconnected (e.g. in cafe).</p>
-
-<p>To be able to use the same iTunes media library database on two computers I need to make my media files available by at the same path on disk.<!-- more--> Normally, media files are under the user account folder. But it is possible to <a href="http://support.apple.com/en-us/HT201562" title="iTunes for Mac: Moving your iTunes Media folder" target="_blank">move</a> them to the location <a href="http://support.apple.com/en-us/HT1203" title="iTunes: How to share music between different user accounts on a single computer" target="_blank">common for all user accounts</a>.</p>
-
-<p>Next, I need to keep iTunes media file in sync.</p>
-
-<p>After some research in the Internet I come to following solution.</p>
-
-<ol>
-<li>Backup tour iTunes media folder <code>/Users/user/Music/iTunes</code></li>
-<li>Move iTunes media files to the <code>/Users/Shared/iTunes Media</code> folder.
-Set new media files location: <img src="../../../../../assets/2015/02/itunes-media-settings.png" alt="iTunes Media Settings" />
-Then run <strong>File &gt; Library &gt; Organize Library</strong> and select <strong>&laquo;Consolidate Files&raquo;</strong> to copy your files to new location. <img src="../../../../../assets/2015/02/itunes-consoludate.png" alt="Consoludate Files" /></li>
-<li>Remove your old Original files were copied, not moved. You need to remove them (if you have made a backup on step 1):
-<code>bash  
-rm -rf /Users/user/Music/iTunes/iTunes\ Media
-</code></li>
-<li>Close iTunes and copy your <code>/Users/user1/Music/iTunes</code> to <code>/Users/user2/Music/iTunes</code> on second compuler</li>
-<li>Copy <code>/Users/Shared/iTunes Media</code> from first to second computer to the same location.</li>
-<li>Setup media folder synchronization between two computers using <a href="http://www.getsync.com" title="Sync" target="_blank">BitTorrent Sync</a>. If you have smaller media library that fits into DropBox &ndash; then go for it. It is possible to use any cloud solution, e.g. at the moment (February 2015) <a href="http://help.yandex.com/disk/uploading.xml" title="Yandex Disk Limits" target="_blank">Yandex Disk</a> offers 10GB for free.</li>
-<li>Wait for synchronization complete.</li>
-</ol>
-
-<p>You may start using iTunes on both computers. Keep in mind, that if you modify your media library from both computers simultaneously, you will have only recent changes. You may want to setup one-way synchronization: one computer will be <strong>the Master</strong> where you will manage your library and the second one is for listening only.</p>
-
-<h3 id="references">References</h3>
-
-<ul>
-<li><a href="http://support.apple.com/en-us/HT201979" title="iTunes: Understanding iTunes Media Organization" target="_blank">iTunes: Understanding iTunes Media Organization</a></li>
-<li><a href="http://oyvteig.blogspot.com/2009/01/003-shared-itunes-library-on-network.html" target="_blank">Shared iTunes Library on Network</a></li>
-<li><a href="http://support.apple.com/en-us/HT201979" title="iTunes: Understanding iTunes Media Organization" target="_blank">iTunes: Understanding iTunes Media Organization</a></li>
-<li><a href="http://support.apple.com/en-us/HT201562" title="iTunes for Mac: Moving your iTunes Media folder" target="_blank">iTunes for Mac: Moving your iTunes Media folder</a></li>
-<li><a href="http://support.apple.com/en-us/HT1203" title="iTunes: How to share music between different user accounts on a single computer" target="_blank">iTunes: How to share music between different user accounts on a single computer</a></li>
-</ul>
-
-                </div>
-                <footer class="post-footer">
-                  
-                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <h4 class="post-footer-heading">Written By</h4>
-                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
-                        <span itemprop="name">Konstantin Pavlov</span>
-                      </a>
-                      <p itemprop="description" class="post-author-bio"></p>
-                      
-                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
-                      
-                      
-                      <p class="post-info">
-                        <b class="post-info-title">Published on</b>
-                        <time class="post-date">Feb 8, 2015</time>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div class="post-social">
-                    <h4 class="post-footer-heading">Spread the word</h4>
-                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
-                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
-                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
-                  </div>
-                </footer>
-
-                <nav role="pagination" class="post-list-pagination">
-                  
-                  <a href="https://konstantinpavlov.net/blog/2015/02/19/booting-spring-webapp/" class="post-list-pagination-item post-list-pagination-item-prev"
-                     title="Booting Spring Webapp" data-pjax rel="prev">
-                    <i class="fa fa-angle-double-left"></i>&nbsp;Booting Spring Webapp
-                  </a>
-                  
-                  
-                  <a href="https://konstantinpavlov.net/blog/2015/01/28/recalling-testing-principles/" class="post-list-pagination-item post-list-pagination-item-next"
-                     title="Recalling Testing Principles" data-pjax rel="next">
-                    Recalling Testing Principles&nbsp;<i class="fa fa-angle-double-right"></i>
-                  </a>
-                  
-                </nav>
-
-              </section>
-              
-              <section itemprop="comment" class="post-comments">
-                <div id="disqus_thread"></div>
-              </section>
-              
-            </article>
-
-            <footer role="contentinfo" class="footer">
-  <p><small>© 2017. All Rights Reserved.</small></p>
-  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
-  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
-</footer>
-
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-</main>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" defer></script>
     <script>
-        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js">\x3C/script>');
+        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js" defer>\x3C/script>');
     </script>
 
     
 
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"
+           integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous" defer></script>
 
     <dialog id="cookiePolicyPopup" open="false" style="display: none">
 
@@ -385,8 +404,8 @@ rm -rf /Users/user/Music/iTunes/iTunes\ Media
          <a href="../../../../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../../../../assets/js/prism.min.js?v=1497092686"></script>
-    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497092686"></script>
+    <script src="../../../../../assets/js/prism.min.js?v=1497100230" defer></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497100230" defer></script>
 
     <script type="text/javascript">
 

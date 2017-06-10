@@ -84,8 +84,8 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497092686">
-    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497092686"/>
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497100230">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497100230"/>
 
     <script type="text/javascript">
         
@@ -107,15 +107,206 @@
         }
     </script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"
+            integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8="
+            crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"
+            integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous" defer></script>
     <script type='text/javascript'>
-        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
-        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js" defer>\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js" defer>\x3C/script>');
     </script>
 </head>
 
 <body class="">
+
+
+
+<main id="container" role="main" class="container">
+    <div class="surface">
+        <div class="surface-container">
+            <div data-pjax-container class="content">
+
+                <section class="wrapper wrapper-post">
+                    <div class="wrapper-container">
+                        <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+                            <section class="post-container">
+                                <header class="post-header">
+                                    <ul class="post-meta-list">
+                                        <li class="post-item-meta-item">
+                                            <time datetime='2017-02-23'
+                                                  itemprop="datePublished">
+                                                2017-02-23
+                                            </time>
+                                        </li>
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/quality-assurance/" data-pjax rel="tag">#quality assurance</a>
+    
+
+</li>
+
+
+
+                                        
+                                        <li class="post-item-meta-item">
+                                            <a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/#disqus_thread"
+                                               data-disqus-identifier='20170223000000'>Comments</a>
+                                        </li>
+                                        
+                                        <li class="post-item-meta-item" title="Estimated reading time"
+                                            itemprop="timeRequired">
+                                            <meta itemprop="duration" content="T3M"/>
+                                            ~3 min
+                                        </li>
+                                    </ul>
+                                    <h1 itemprop="name headline" class="post-title">
+                                        <a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/" itemprop="url" data-pjax
+                                           title="How to Start Testing UI Before Backend is Ready">How to Start Testing UI Before Backend is Ready</a></h1>
+                                    
+                                    
+                                </header>
+                                <aside class="post-side">
+                                    <div class="post-author">
+                                        <a href="https://konstantinpavlov.net/"
+                                           class="post-author-avatar">
+                                            <img src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <a href="https://konstantinpavlov.net/"
+                                               class="post-author-name">
+                                                Konstantin Pavlov
+                                            </a>
+                                            <p class="post-author-bio"></p>
+                                        </div>
+                                    </div>
+                                </aside>
+                                <div itemprop="articleBody" class="post-body">
+                                    <p>Recently I was <a href="http://disq.us/p/1gfbdpc" target="_blank">asked</a> how to start with testing UI before backend is completed.</p>
+
+<p>It depends on the product a lot. But when we&rsquo;re talking about web, it is often not clear how the final solution should look like and behave.
+If so, it is not reasonable to spend much time writing UI tests using tools like <a href="www.seleniumhq.org" target="_blank">Selenium</a> before the first prototype is ready. It is not reasonable to write a presentation layer and, in some cases, a business logic on server side before it is clear what kind of data is required for UI.
+To deal with it I suggest starting with UI mockups and use fake data to start prototyping. It is very easy if you&rsquo;re writing single page application (SPA): just put some JSON files as static resources and read this files in applications. For more complex cases like handling <code>POST</code> requests you may use simple mock server like <a href="https://www.npmjs.com/package/gulp-connect" target="_blank">gulp-connect</a>. This is required for development so your UI developers don&rsquo;t even need any server running.</p>
+
+<p>Once you&rsquo;re a bit confident how your UI will look like and behave, it comes the time to cover it with some tests.
+When using Selenium you will normally ends up with developing some DSL framework for your tests which will include some custom assertions and methods to execute common tasks like user login and filing some forms. Now you should prepare more test data and put it in the same JSON files. Most likely, you will need fake server like gulp-connect in this stage.
+Use <a href="http://selenide.org/documentation/page-objects.html" target="_blank">PageObjects</a> to abstract your tests from minor (or even major) future changes in the UI.</p>
+
+<p>It is impossible to cover all the cases without real application server. Also, it is very difficult to test requests sent by UI application. But you can test a lot of cases like <em>&laquo;WHEN user requests some url THEN expected data is shown on page&raquo;.</em></p>
+
+<p>You may start developing your server in parallel with UI when your contract is defined.
+That&rsquo;s why I favor Contract-First approach over &laquo;Contract-Last&raquo;. Over time, the contract will mutate for sure. But this should be not a dramatical changes.</p>
+
+<p>The reason to start with UI is to define a contract from real UI requirements.
+Initial prototype may be turned down by the clients so writing server-side logic is pointless.</p>
+
+<p>When server is ready to serve some data to the client, you may start the integration. Create a test data in your database which produces the same data as your JSON files served by mock server. And you should parametric your UI application to get data either from mock server or from real server.
+I&rsquo;m sure there will be issues. But I hope, you&rsquo;ll get less issues since your UI is much more stable now. Happy integration! ;-)</p>
+
+<p>There is another case: you develop not a SPA but a site with many server-generated pages. The idea is the same:</p>
+
+<ol>
+<li>Separate presentation from business logic</li>
+<li>Provide mock data for your pages</li>
+<li>Create a prototype using mock data</li>
+<li>Test your prototype with mock data</li>
+<li>When you&rsquo;re confident and happy with the UI design and behavior &ndash; then replace your fake DAO with real one and put test data to database. The same tests should still pass.</li>
+</ol>
+
+<p>I hope this could help.</p>
+
+                                </div>
+                                <footer class="post-footer">
+                                    
+                                    <div itemprop="author" itemscope itemtype="http://schema.org/Person"
+                                         class="post-author">
+                                        <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                                            <img itemprop="image"
+                                                 src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <h4 class="post-footer-heading">Written By</h4>
+                                            <a href="https://konstantinpavlov.net/" itemprop="url"
+                                               class="post-author-name">
+                                                <span itemprop="name">Konstantin Pavlov</span>
+                                            </a>
+                                            <p itemprop="description" class="post-author-bio"></p>
+                                            
+                                            <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                                            
+                                            
+                                            <p class="post-info">
+                                                <b class="post-info-title">Published on</b>
+                                                <time class="post-date">Feb 23, 2017</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="post-social">
+                                        <h4 class="post-footer-heading">Spread the word</h4>
+                                        <a href="#" data-action="share-twitter"><i
+                                                class="fa fa-fw fa-lg fa-twitter"></i></a>
+                                        <a href="#" data-action="share-facebook"><i
+                                                class="fa fa-fw fa-lg fa-facebook"></i></a>
+                                        <a href="#" data-action="share-gplus"><i
+                                                class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                                    </div>
+                                </footer>
+
+                                <nav role="pagination" class="post-list-pagination">
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2017/03/07/ui-first-development/"
+                                       class="post-list-pagination-item post-list-pagination-item-prev"
+                                       title="UI-First Development" data-pjax rel="prev">
+                                        <i class="fa fa-angle-double-left"></i>&nbsp;UI-First Development
+                                    </a>
+                                    
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflare/"
+                                       class="post-list-pagination-item post-list-pagination-item-next"
+                                       title="Deploying Private Docker Registry Behind Cloudflare" data-pjax rel="next">
+                                        Deploying Private Docker Registry Behind Cloudflare&nbsp;<i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                    
+                                </nav>
+
+                            </section>
+                            
+                            <section itemprop="comment" class="post-comments">
+                                <div id="disqus_thread"></div>
+                            </section>
+                            
+                        </article>
+
+                        <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
 <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
 <nav tabindex="-1" class="drawer">
   <div class="drawer-container">
@@ -182,190 +373,18 @@
   </div>
 </nav>
 
-
-
-
-
-
 <div class="drawer-overlay"></div>
-<main id="container" role="main" class="container">
-  <div class="surface">
-    <div class="surface-container">
-      <div data-pjax-container class="content">
-
-        <section class="wrapper wrapper-post">
-          <div class="wrapper-container">
-            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
-              <section class="post-container">
-                <header class="post-header">
-                  <ul class="post-meta-list">
-                    <li class="post-item-meta-item">
-                      <time datetime='2017-02-23' itemprop="datePublished">
-                        2017-02-23
-                      </time>
-                    </li>
-                    
-<li class="post-item-meta-item">
 
 
-    
-    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
-    
-
-</li>
-
-
-                    
-<li class="post-item-meta-item">
-
-
-    
-    <a itemprop="articleSection" href="../../../../../tags/quality-assurance/" data-pjax rel="tag">#quality assurance</a>
-    
-
-</li>
-
-
-
-                    
-                    <li class="post-item-meta-item">
-                      <a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/#disqus_thread" data-disqus-identifier='20170223000000'>Comments</a>
-                    </li>
-                    
-                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
-                      <meta itemprop="duration" content="T3M" />
-                      ~3 min
-                    </li>
-                  </ul>
-                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2017/02/23/how-to-start-testing-ui-before-backend-is-ready/" itemprop="url" data-pjax title="How to Start Testing UI Before Backend is Ready">How to Start Testing UI Before Backend is Ready</a></h1>
-                  
-                  
-                </header>
-                <aside class="post-side">
-                  <div class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <a href="https://konstantinpavlov.net/" class="post-author-name">
-                        Konstantin Pavlov
-                      </a>
-                      <p class="post-author-bio"></p>
-                    </div>
-                  </div>
-                </aside>
-                <div itemprop="articleBody" class="post-body">
-                  <p>Recently I was <a href="http://disq.us/p/1gfbdpc" target="_blank">asked</a> how to start with testing UI before backend is completed.</p>
-
-<p>It depends on the product a lot. But when we&rsquo;re talking about web, it is often not clear how the final solution should look like and behave.
-If so, it is not reasonable to spend much time writing UI tests using tools like <a href="www.seleniumhq.org" target="_blank">Selenium</a> before the first prototype is ready. It is not reasonable to write a presentation layer and, in some cases, a business logic on server side before it is clear what kind of data is required for UI.
-To deal with it I suggest starting with UI mockups and use fake data to start prototyping. It is very easy if you&rsquo;re writing single page application (SPA): just put some JSON files as static resources and read this files in applications. For more complex cases like handling <code>POST</code> requests you may use simple mock server like <a href="https://www.npmjs.com/package/gulp-connect" target="_blank">gulp-connect</a>. This is required for development so your UI developers don&rsquo;t even need any server running.</p>
-
-<p>Once you&rsquo;re a bit confident how your UI will look like and behave, it comes the time to cover it with some tests.
-When using Selenium you will normally ends up with developing some DSL framework for your tests which will include some custom assertions and methods to execute common tasks like user login and filing some forms. Now you should prepare more test data and put it in the same JSON files. Most likely, you will need fake server like gulp-connect in this stage.
-Use <a href="http://selenide.org/documentation/page-objects.html" target="_blank">PageObjects</a> to abstract your tests from minor (or even major) future changes in the UI.</p>
-
-<p>It is impossible to cover all the cases without real application server. Also, it is very difficult to test requests sent by UI application. But you can test a lot of cases like <em>&laquo;WHEN user requests some url THEN expected data is shown on page&raquo;.</em></p>
-
-<p>You may start developing your server in parallel with UI when your contract is defined.
-That&rsquo;s why I favor Contract-First approach over &laquo;Contract-Last&raquo;. Over time, the contract will mutate for sure. But this should be not a dramatical changes.</p>
-
-<p>The reason to start with UI is to define a contract from real UI requirements.
-Initial prototype may be turned down by the clients so writing server-side logic is pointless.</p>
-
-<p>When server is ready to serve some data to the client, you may start the integration. Create a test data in your database which produces the same data as your JSON files served by mock server. And you should parametric your UI application to get data either from mock server or from real server.
-I&rsquo;m sure there will be issues. But I hope, you&rsquo;ll get less issues since your UI is much more stable now. Happy integration! ;-)</p>
-
-<p>There is another case: you develop not a SPA but a site with many server-generated pages. The idea is the same:</p>
-
-<ol>
-<li>Separate presentation from business logic</li>
-<li>Provide mock data for your pages</li>
-<li>Create a prototype using mock data</li>
-<li>Test your prototype with mock data</li>
-<li>When you&rsquo;re confident and happy with the UI design and behavior &ndash; then replace your fake DAO with real one and put test data to database. The same tests should still pass.</li>
-</ol>
-
-<p>I hope this could help.</p>
-
-                </div>
-                <footer class="post-footer">
-                  
-                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <h4 class="post-footer-heading">Written By</h4>
-                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
-                        <span itemprop="name">Konstantin Pavlov</span>
-                      </a>
-                      <p itemprop="description" class="post-author-bio"></p>
-                      
-                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
-                      
-                      
-                      <p class="post-info">
-                        <b class="post-info-title">Published on</b>
-                        <time class="post-date">Feb 23, 2017</time>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div class="post-social">
-                    <h4 class="post-footer-heading">Spread the word</h4>
-                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
-                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
-                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
-                  </div>
-                </footer>
-
-                <nav role="pagination" class="post-list-pagination">
-                  
-                  <a href="https://konstantinpavlov.net/blog/2017/03/07/ui-first-development/" class="post-list-pagination-item post-list-pagination-item-prev"
-                     title="UI-First Development" data-pjax rel="prev">
-                    <i class="fa fa-angle-double-left"></i>&nbsp;UI-First Development
-                  </a>
-                  
-                  
-                  <a href="https://konstantinpavlov.net/blog/2016/09/14/deploying-private-docker-registry-behind-cloudflare/" class="post-list-pagination-item post-list-pagination-item-next"
-                     title="Deploying Private Docker Registry Behind Cloudflare" data-pjax rel="next">
-                    Deploying Private Docker Registry Behind Cloudflare&nbsp;<i class="fa fa-angle-double-right"></i>
-                  </a>
-                  
-                </nav>
-
-              </section>
-              
-              <section itemprop="comment" class="post-comments">
-                <div id="disqus_thread"></div>
-              </section>
-              
-            </article>
-
-            <footer role="contentinfo" class="footer">
-  <p><small>© 2017. All Rights Reserved.</small></p>
-  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
-  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
-</footer>
-
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-</main>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" defer></script>
     <script>
-        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js">\x3C/script>');
+        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js" defer>\x3C/script>');
     </script>
 
     
 
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"
+           integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous" defer></script>
 
     <dialog id="cookiePolicyPopup" open="false" style="display: none">
 
@@ -375,8 +394,8 @@ I&rsquo;m sure there will be issues. But I hope, you&rsquo;ll get less issues si
          <a href="../../../../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../../../../assets/js/prism.min.js?v=1497092686"></script>
-    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497092686"></script>
+    <script src="../../../../../assets/js/prism.min.js?v=1497100230" defer></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497100230" defer></script>
 
     <script type="text/javascript">
 

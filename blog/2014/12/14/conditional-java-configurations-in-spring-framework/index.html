@@ -114,8 +114,8 @@ So, I created the annotation @Enabled which allows me to control bean instantiat
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497092686">
-    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497092686"/>
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1497100230">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1497100230"/>
 
     <script type="text/javascript">
         
@@ -137,15 +137,218 @@ So, I created the annotation @Enabled which allows me to control bean instantiat
         }
     </script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js" integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js" integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"
+            integrity="sha256-ffw+9zwShMev88XNrDgS0hLIuJkDfXhgyLogod77mn8="
+            crossorigin="anonymous" defer></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"
+            integrity="sha256-EPrkNjGEmCWyazb3A/Epj+W7Qm2pB9vnfXw+X6LImPM=" crossorigin="anonymous" defer></script>
     <script type='text/javascript'>
-        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js">\x3C/script>');
-        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js">\x3C/script>');
+        window.Modernizr || document.write('<script src="../../../../../assets/js/modernizr-2.8.3.min.js" defer>\x3C/script>');
+        window.Pace || document.write('<script src="../../../../../assets/js/pace-1.0.2.min.js" defer>\x3C/script>');
     </script>
 </head>
 
 <body class="">
+
+
+
+<main id="container" role="main" class="container">
+    <div class="surface">
+        <div class="surface-container">
+            <div data-pjax-container class="content">
+
+                <section class="wrapper wrapper-post">
+                    <div class="wrapper-container">
+                        <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
+                            <section class="post-container">
+                                <header class="post-header">
+                                    <ul class="post-meta-list">
+                                        <li class="post-item-meta-item">
+                                            <time datetime='2014-12-14'
+                                                  itemprop="datePublished">
+                                                2014-12-14
+                                            </time>
+                                        </li>
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+                                        
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../../../../tags/java/" data-pjax rel="tag">#java</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../../../../tags/spring/" data-pjax rel="tag">#spring</a>
+    
+
+</li>
+
+
+
+                                        
+                                        <li class="post-item-meta-item">
+                                            <a href="https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/#disqus_thread"
+                                               data-disqus-identifier='20141214112229'>Comments</a>
+                                        </li>
+                                        
+                                        <li class="post-item-meta-item" title="Estimated reading time"
+                                            itemprop="timeRequired">
+                                            <meta itemprop="duration" content="T1M"/>
+                                            ~1 min
+                                        </li>
+                                    </ul>
+                                    <h1 itemprop="name headline" class="post-title">
+                                        <a href="https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/" itemprop="url" data-pjax
+                                           title="Conditional Java Configurations in Spring Framework">Conditional Java Configurations in Spring Framework</a></h1>
+                                    
+                                    
+                                </header>
+                                <aside class="post-side">
+                                    <div class="post-author">
+                                        <a href="https://konstantinpavlov.net/"
+                                           class="post-author-avatar">
+                                            <img src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <a href="https://konstantinpavlov.net/"
+                                               class="post-author-name">
+                                                Konstantin Pavlov
+                                            </a>
+                                            <p class="post-author-bio"></p>
+                                        </div>
+                                    </div>
+                                </aside>
+                                <div itemprop="articleBody" class="post-body">
+                                    <p>Spring Framework offers very flexible means for binding application components.
+Externalizable properties, composite configuration, nested application contexts and profiles.</p>
+
+<!-- 
+profile
+:    A profile is a named logical grouping that may be activated programmatically via [`ConfigurableEnvironment.setActiveProfiles(java.lang.String...)`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/core/env/ConfigurableEnvironment.html#setActiveProfiles-java.lang.String...-) or declaratively through setting the `spring.profiles.active` property, usually through JVM system properties, as an environment variable, or for web applications as a Servlet context parameter in `web.xml` file.
+ -->
+
+<p>Sometimes, it is necessary to control whether particular beans or <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html" target="_blank"><code>@Configuration</code></a> will be loaded or not. Spring Framework v.4.1.x does not provide that feature out of the box. But, hopefully, Spring allows conditional bean initialization (see <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Profile.html" target="_blank"><code>@Profile</code></a> implementation and <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Configurable.html" target="_blank"><code>@Configurable</code></a>).
+So, I created the annotation <a href="https://github.com/kpavlov/commons-spring/blob/master/src/main/java/com/github/kpavlov/commons/spring/annotations/Enabled.java" target="_blank"><code>@Enabled</code></a> which allows me to control bean instantiation via properties.</p>
+
+<p><code>@Enabled</code> indicates that a component is eligible for registration when evaluated expression is true. This annotation should be used in conjunction with Configuration and Bean annotations.</p>
+
+<p></p>
+
+<h2 id="usage-example">Usage Example</h2>
+
+<p>Given property file <code>application.properties</code> with property values <code>my.service.enabled</code> and <code>my.config.enabled</code>. Following code will only instantiate and configure <code>MyService</code> and <code>MyConfig</code> if values of appropriate properties are evaluated as true.</p>
+
+<pre><code class="language-java">@Configuration
+@PropertySource}(&quot;classpath:/application.properties&quot;)
+@Import(MyConfig.class)
+class AppConfig {
+
+    @Bean
+    @Enabled(&quot;${my.service.enabled}&quot;)
+    MyService myService {
+        return new MyService()
+    }
+}
+
+@Configuration
+@Enabled(&quot;${my.config.enabled}&quot;)
+class MyConfig {
+    ...
+}
+</code></pre>
+
+<p>Link: <a href="https://github.com/kpavlov/commons-spring" title="Project on GitHub" target="_blank">project on GitHub</a></p>
+
+<p>Update: <a href="http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html" target="_blank">spring-boot-conditionals</a></p>
+                                </div>
+                                <footer class="post-footer">
+                                    
+                                    <div itemprop="author" itemscope itemtype="http://schema.org/Person"
+                                         class="post-author">
+                                        <a href="https://konstantinpavlov.net/" class="post-author-avatar">
+                                            <img itemprop="image"
+                                                 src="../../../../../img/avatar-128.png"
+                                                 alt="Konstantin Pavlov">
+                                        </a>
+                                        <div class="post-author-info">
+                                            <h4 class="post-footer-heading">Written By</h4>
+                                            <a href="https://konstantinpavlov.net/" itemprop="url"
+                                               class="post-author-name">
+                                                <span itemprop="name">Konstantin Pavlov</span>
+                                            </a>
+                                            <p itemprop="description" class="post-author-bio"></p>
+                                            
+                                            <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
+                                            
+                                            
+                                            <p class="post-info">
+                                                <b class="post-info-title">Published on</b>
+                                                <time class="post-date">Dec 14, 2014</time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="post-social">
+                                        <h4 class="post-footer-heading">Spread the word</h4>
+                                        <a href="#" data-action="share-twitter"><i
+                                                class="fa fa-fw fa-lg fa-twitter"></i></a>
+                                        <a href="#" data-action="share-facebook"><i
+                                                class="fa fa-fw fa-lg fa-facebook"></i></a>
+                                        <a href="#" data-action="share-gplus"><i
+                                                class="fa fa-fw fa-lg fa-google-plus"></i></a>
+                                    </div>
+                                </footer>
+
+                                <nav role="pagination" class="post-list-pagination">
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2015/01/05/top-n-must-have-plugins-for-jetbrains-idea/"
+                                       class="post-list-pagination-item post-list-pagination-item-prev"
+                                       title="Top N Must-Have Plugins for JetBrains Idea" data-pjax rel="prev">
+                                        <i class="fa fa-angle-double-left"></i>&nbsp;Top N Must-Have Plugins for JetBrains Idea
+                                    </a>
+                                    
+                                    
+                                    <a href="https://konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/"
+                                       class="post-list-pagination-item post-list-pagination-item-next"
+                                       title="JDBC Driver Settings for Oracle RAC" data-pjax rel="next">
+                                        JDBC Driver Settings for Oracle RAC&nbsp;<i class="fa fa-angle-double-right"></i>
+                                    </a>
+                                    
+                                </nav>
+
+                            </section>
+                            
+                            <section itemprop="comment" class="post-comments">
+                                <div id="disqus_thread"></div>
+                            </section>
+                            
+                        </article>
+
+                        <footer role="contentinfo" class="footer">
+  <p><small>© 2017. All Rights Reserved.</small></p>
+  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
+  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
+</footer>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+
 <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
 <nav tabindex="-1" class="drawer">
   <div class="drawer-container">
@@ -212,202 +415,18 @@ So, I created the annotation @Enabled which allows me to control bean instantiat
   </div>
 </nav>
 
-
-
-
-
-
 <div class="drawer-overlay"></div>
-<main id="container" role="main" class="container">
-  <div class="surface">
-    <div class="surface-container">
-      <div data-pjax-container class="content">
-
-        <section class="wrapper wrapper-post">
-          <div class="wrapper-container">
-            <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post">
-              <section class="post-container">
-                <header class="post-header">
-                  <ul class="post-meta-list">
-                    <li class="post-item-meta-item">
-                      <time datetime='2014-12-14' itemprop="datePublished">
-                        2014-12-14
-                      </time>
-                    </li>
-                    
-<li class="post-item-meta-item">
 
 
-    
-    <a itemprop="articleSection" href="../../../../../categories/programming/" data-pjax rel="category" >programming</a>
-    
-
-</li>
-
-
-                    
-<li class="post-item-meta-item">
-
-
-    
-    <a itemprop="articleSection" href="../../../../../tags/java/" data-pjax rel="tag">#java</a>
-    ,
-
-    
-    <a itemprop="keywords" href="../../../../../tags/spring/" data-pjax rel="tag">#spring</a>
-    
-
-</li>
-
-
-
-                    
-                    <li class="post-item-meta-item">
-                      <a href="https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/#disqus_thread" data-disqus-identifier='20141214112229'>Comments</a>
-                    </li>
-                    
-                    <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
-                      <meta itemprop="duration" content="T1M" />
-                      ~1 min
-                    </li>
-                  </ul>
-                  <h1 itemprop="name headline" class="post-title"><a href="https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/" itemprop="url" data-pjax title="Conditional Java Configurations in Spring Framework">Conditional Java Configurations in Spring Framework</a></h1>
-                  
-                  
-                </header>
-                <aside class="post-side">
-                  <div class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <a href="https://konstantinpavlov.net/" class="post-author-name">
-                        Konstantin Pavlov
-                      </a>
-                      <p class="post-author-bio"></p>
-                    </div>
-                  </div>
-                </aside>
-                <div itemprop="articleBody" class="post-body">
-                  <p>Spring Framework offers very flexible means for binding application components.
-Externalizable properties, composite configuration, nested application contexts and profiles.</p>
-
-<!-- 
-profile
-:    A profile is a named logical grouping that may be activated programmatically via [`ConfigurableEnvironment.setActiveProfiles(java.lang.String...)`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/core/env/ConfigurableEnvironment.html#setActiveProfiles-java.lang.String...-) or declaratively through setting the `spring.profiles.active` property, usually through JVM system properties, as an environment variable, or for web applications as a Servlet context parameter in `web.xml` file.
- -->
-
-<p>Sometimes, it is necessary to control whether particular beans or <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html" target="_blank"><code>@Configuration</code></a> will be loaded or not. Spring Framework v.4.1.x does not provide that feature out of the box. But, hopefully, Spring allows conditional bean initialization (see <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Profile.html" target="_blank"><code>@Profile</code></a> implementation and <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Configurable.html" target="_blank"><code>@Configurable</code></a>).
-So, I created the annotation <a href="https://github.com/kpavlov/commons-spring/blob/master/src/main/java/com/github/kpavlov/commons/spring/annotations/Enabled.java" target="_blank"><code>@Enabled</code></a> which allows me to control bean instantiation via properties.</p>
-
-<p><code>@Enabled</code> indicates that a component is eligible for registration when evaluated expression is true. This annotation should be used in conjunction with Configuration and Bean annotations.</p>
-
-<p></p>
-
-<h2 id="usage-example">Usage Example</h2>
-
-<p>Given property file <code>application.properties</code> with property values <code>my.service.enabled</code> and <code>my.config.enabled</code>. Following code will only instantiate and configure <code>MyService</code> and <code>MyConfig</code> if values of appropriate properties are evaluated as true.</p>
-
-<pre><code class="language-java">@Configuration
-@PropertySource}(&quot;classpath:/application.properties&quot;)
-@Import(MyConfig.class)
-class AppConfig {
-
-    @Bean
-    @Enabled(&quot;${my.service.enabled}&quot;)
-    MyService myService {
-        return new MyService()
-    }
-}
-
-@Configuration
-@Enabled(&quot;${my.config.enabled}&quot;)
-class MyConfig {
-    ...
-}
-</code></pre>
-
-<p>Link: <a href="https://github.com/kpavlov/commons-spring" title="Project on GitHub" target="_blank">project on GitHub</a></p>
-
-<p>Update: <a href="http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-auto-configuration.html" target="_blank">spring-boot-conditionals</a></p>
-                </div>
-                <footer class="post-footer">
-                  
-                  <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
-                    <a href="https://konstantinpavlov.net/" class="post-author-avatar">
-                      <img itemprop="image" src="../../../../../img/avatar-128.png" alt="Konstantin Pavlov">
-                    </a>
-                    <div class="post-author-info">
-                      <h4 class="post-footer-heading">Written By</h4>
-                      <a href="https://konstantinpavlov.net/" itemprop="url" class="post-author-name">
-                        <span itemprop="name">Konstantin Pavlov</span>
-                      </a>
-                      <p itemprop="description" class="post-author-bio"></p>
-                      
-                      <p class="post-author-location" itemprop="homeLocation">Limassol, Cyprus</p>
-                      
-                      
-                      <p class="post-info">
-                        <b class="post-info-title">Published on</b>
-                        <time class="post-date">Dec 14, 2014</time>
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div class="post-social">
-                    <h4 class="post-footer-heading">Spread the word</h4>
-                    <a href="#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
-                    <a href="#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
-                    <a href="#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
-                  </div>
-                </footer>
-
-                <nav role="pagination" class="post-list-pagination">
-                  
-                  <a href="https://konstantinpavlov.net/blog/2015/01/05/top-n-must-have-plugins-for-jetbrains-idea/" class="post-list-pagination-item post-list-pagination-item-prev"
-                     title="Top N Must-Have Plugins for JetBrains Idea" data-pjax rel="prev">
-                    <i class="fa fa-angle-double-left"></i>&nbsp;Top N Must-Have Plugins for JetBrains Idea
-                  </a>
-                  
-                  
-                  <a href="https://konstantinpavlov.net/blog/2014/12/07/jdbc-driver-settings-for-oracle-rac/" class="post-list-pagination-item post-list-pagination-item-next"
-                     title="JDBC Driver Settings for Oracle RAC" data-pjax rel="next">
-                    JDBC Driver Settings for Oracle RAC&nbsp;<i class="fa fa-angle-double-right"></i>
-                  </a>
-                  
-                </nav>
-
-              </section>
-              
-              <section itemprop="comment" class="post-comments">
-                <div id="disqus_thread"></div>
-              </section>
-              
-            </article>
-
-            <footer role="contentinfo" class="footer">
-  <p><small>© 2017. All Rights Reserved.</small></p>
-  <p><small>Hugo <a href="https://github.com/kpavlov/hugo-theme-ghostiumx" target="_blank">GhostiumX Theme</a> by <a href="https://twitter.com/k_pavlov" target="_blank">@k_pavlov</a> based on original <a href="http://ghostium.oswaldoacauan.com/" target="_blank">Ghostium Theme</a> by <a href="https://twitter.com/oswaldoacauan" target="_blank">@oswaldoacauan</a></small></p>
-  <p><small>Proudly published with <a href="http://gohugo.io/" target="_blank">Hugo</a></small></p>
-</footer>
-
-          </div>
-        </section>
-      </div>
-    </div>
-  </div>
-</main>
-
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" defer></script>
     <script>
-        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js">\x3C/script>');
+        window.jQuery || document.write('<script src="assets/js/jquery-3.2.1.min.js" defer>\x3C/script>');
     </script>
 
     
 
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js" integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"
+           integrity="sha256-Xuf/Wtp4J0pHH1OolTHfRbWP2FkR6WaB69ut7w4FxpY=" crossorigin="anonymous" defer></script>
 
     <dialog id="cookiePolicyPopup" open="false" style="display: none">
 
@@ -417,8 +436,8 @@ class MyConfig {
          <a href="../../../../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../../../../assets/js/prism.min.js?v=1497092686"></script>
-    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497092686"></script>
+    <script src="../../../../../assets/js/prism.min.js?v=1497100230" defer></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1497100230" defer></script>
 
     <script type="text/javascript">
 
