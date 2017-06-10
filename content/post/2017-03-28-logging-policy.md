@@ -1,6 +1,6 @@
 ---
-date: 2017-03-28
-updated: 2017-03-30T09:02:00+03:00
+date: "2017-03-28"
+lastmod: "2017-03-30T09:02:00+03:00"
 title: "Logging Policy"
 description: "One point of view on how logging levels should be used in code."
 categories:

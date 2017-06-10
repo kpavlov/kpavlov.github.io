@@ -1,8 +1,10 @@
 ---
 date: "2017-03-07T08:48:34"
-updated: 2017-06-09
+lastmod: "2017-06-09"
 slug: ui-first-development
-image: /assets/2017/03/app-development-schedule-v1.png
+images: 
+  - /assets/2017/03/app-development-schedule-v1.png
+  - /assets/2017/03/what-isagile-henrik-kniberg.jpg
 aliases:
   - /blog/2017/03/07/app-development-top-down/
 title: "UI-First Development"
