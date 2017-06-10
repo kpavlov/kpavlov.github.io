@@ -1,7 +1,7 @@
 ---
 title: Secure Java Coding Best Practices
 date: 2015-08-01T22:22:34
-updated: 2015-09-09T07:50:10
+lastmod: "2015-09-09T07:50:10"
 featured: true
 categories:
   - programming

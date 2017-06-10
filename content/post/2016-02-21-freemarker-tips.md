@@ -2,7 +2,7 @@
 title: Spring+Freemarker Tips
 slug: spring-freemarker-tips
 date: 2016-02-21T18:15:00
-updated: 2016-05-10T19:32:00
+lastmod: "2016-05-10T19:32:00"
 categories:
   - programming
 tags:

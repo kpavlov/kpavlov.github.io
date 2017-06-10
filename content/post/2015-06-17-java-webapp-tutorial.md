@@ -1,7 +1,7 @@
 ---
 title: "Java Application Development Tutorial"
 date: 2015-06-17T09:55:16
-updated: 2016-10-27T18:13:32
+lastmod: 2016-10-27T18:13:32
 featured: true
 categories:
   - programming

@@ -2,7 +2,7 @@
 title: Implementing Automatic Reconnection for Netty Client
 keywords: netty,client,reconnect
 date: 2015-07-08T07:48:05
-updated: 2015-07-11T09:31:22
+lastmod: "2015-07-11T09:31:22"
 categories:
   - programming  
 tags:

@@ -2,7 +2,7 @@
 title: 'Secure Java Logging with Logback'
 keywords: java,logging,logback,security
 date: 2015-07-26T14:01:33
-updated: 2015-09-08T07:51:00
+lastmod: 2015-09-08T07:51:00
 featured: true
 categories:
   - programming

@@ -1,7 +1,7 @@
 ---
 title: Web Security Resources
 date: 2015-05-03T18:23:06
-updated: 2015-08-01T10:15:10
+lastmod: 2015-08-01T10:15:10
 categories:
   - programming
 tags:
