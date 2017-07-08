@@ -7,13 +7,13 @@ categories:
  - programming
  - project-management
 keywords: "coders' code, programmers oath, Uncle Bob Martin"
-summary: "Robert &laquo;Uncle Bob&raquo; Martin talks about our responsibilities in our digital world and emphasize 9 principles every programmer should follow"
+summary: "Robert &laquo;Uncle Bob&raquo; Martin talks about our responsibilities in our digital world and emphasize 9 principles every programmer should follow (&laquo;The Coders' Code&raquo;)"
 date: "2017-07-08"
 ---
-I must-see speech by [Robert "Uncle Bob" Martin](https://twitter.com/unclebobmartin).
-He talks about our responsibilities in our digital world and emphasize 9 principles every programmer should follow.<!--more-->
+A must-see speech by [Robert "Uncle Bob" Martin](https://twitter.com/unclebobmartin) on programmers responsibilities in digital world and 9 principles every programmer should follow ("The Coders' Code").
 
 {{< youtube Tng6Fox8EfI >}}
+<!--more-->
 
 >**"In order to defend and preserve the honor of the profession of computer programmers,<br/>
 >I Promise that, to the best of my ability and judgment:**
