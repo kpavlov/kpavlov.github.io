@@ -51,7 +51,7 @@
 
 
 <meta itemprop="dateModified" content="2017-03-07T08:48:34&#43;00:00" />
-<meta itemprop="wordCount" content="1153">
+<meta itemprop="wordCount" content="1266">
 
   <meta itemprop="image" content="https://konstantinpavlov.net/assets/2017/03/app-development-schedule-v1.png">
 
@@ -94,8 +94,8 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1499526198">
-    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1499526198"/>
+    <link rel="stylesheet" href="../../../../../assets/css/style.css?v=1499531926">
+    <link rel="stylesheet" href="../../../../../assets/css/prism.min.css?v=1499531926"/>
 
     <script type="text/javascript">
         
@@ -217,7 +217,8 @@
                                 <div itemprop="articleBody" class="post-body">
                                     
 
-<p>One of the challenge for start-up or any new project is to reduce amount of work yet to deliver full-featured product.
+<p><img src="../../../../../assets/2017/03/carnival-1.jpg" alt="Appearance is important" />
+One of the challenge for start-up or any new project is to reduce amount of work yet to deliver full-featured product.
 Agile methodologies address this challenge on project management level.
 Let&rsquo;s discuss one more approach to address it on architecture level: <strong><em>UI-first development.</em></strong>
 <!-- more --></p>
@@ -253,7 +254,7 @@ I&nbsp;think it&rsquo;s even more &laquo;agile&raquo; way since Client&rsquo;s f
 
 <p>Let’s assume, we’re going to develop a web application consuming REST/WebSockets API from back-end server.
 Following diagram shows how development phases can be scheduled on a timeline:
-<img src="../../../../../assets/2017/03/app-development-schedule-v1.svg" alt="Application Development Schedule" /></p>
+<a href="../../../../../assets/2017/03/app-development-schedule-v1.svg"><img src="../../../../../assets/2017/03/app-development-schedule-v1.png" alt="Application Development Schedule" /></a></p>
 
 <h3 id="1-ui-prototype">1. UI Prototype</h3>
 
@@ -261,6 +262,15 @@ Following diagram shows how development phases can be scheduled on a timeline:
 First UI mockups are created and presented to Client.
 This is typically an single page application (SPA) written using some component framework like Angular or React.
 Some visual prototype or screen mockups may help to initial version quickly.</p>
+
+<p>And it&rsquo;s really funnp phaseof the development: you make something which looks like real and make it quickly!
+<img src="../../../../../assets/2017/03/carnival-2.jpg" alt="That's a funny time" /></p>
+
+<p>In their book <a href="http://www.amazon.com/exec/obidos/ASIN/020161622X/billvennersA/" title="&amp;laquo;The Pragmatic Programmer&amp;raquo; by Andrew Hunt and Dave Thomas" target="_blank">&laquo;The Pragmatic Programmer&raquo;</a> Andrew Hunt and David Thomas separate concepts
+of <em>&laquo;prototype&raquo;</em> and <em>&laquo;tracer code&raquo; or &laquo;tracer bullets&raquo;</em>.
+The difference is that prototype <strong>must&nbsp;be&nbsp;replaced</strong> with real production code, but <em>tracer code</em> is&nbsp;not:
+you write it for keeps.
+Pragmatic approach is to mix prototype and tracing code and refactor and re-write prototype over time.</p>
 
 <h3 id="2-add-some-static-data">2. Add Some Static Data</h3>
 
@@ -345,6 +355,8 @@ After that we&rsquo;ll have all components in our system:</p>
 
 <p>Now, when initial setup is completed (<em>&laquo;iteration zero&raquo;</em>) we can let&rsquo;s continue with Sprints short interactions affecting all system layers.</p>
 
+<p><img src="../../../../../assets/2017/03/puzzle-complete.jpg" alt="That's a funny time" /></p>
+
 <h2 id="final-notes">Final Notes</h2>
 
 <p><em>It&rsquo;s just an idea of how to minimize unnecessary work in conditions of business uncertainty. Don&rsquo;t use this instruction blindly, it may not applicable to your case.</em></p>
@@ -352,9 +364,12 @@ After that we&rsquo;ll have all components in our system:</p>
 <h2 id="links">Links</h2>
 
 <ul>
+<li><a href="https://blog.codinghorror.com/ui-first-software-development/" target="_blank">&laquo;UI-First Software Development&raquo;</a> and <a href="https://blog.codinghorror.com/the-prototype-pitfall/" target="_blank">&laquo;The Prototype Pitfall&raquo;</a> by Jeff Atwood</li>
+<li><a href="http://www.artima.com/intv/tracerP.html" target="_blank">&laquo;Tracer Bullets and Prototypes&raquo; A Conversation with Andy Hunt and Dave Thomas, Part VIII by Bill Venners, April 21, 2003</a></li>
+<li><a href="http://www.amazon.com/exec/obidos/ASIN/020161622X/billvennersA/" title="&amp;laquo;The Pragmatic Programmer&amp;raquo; by Andrew Hunt and Dave Thomas" target="_blank">&laquo;The Pragmatic Programmer&raquo; by Andrew Hunt and Dave Thomas</a></li>
+<li><a href="https://www.nngroup.com/articles/paper-prototyping/" target="_blank">&laquo;Paper Prototyping: Getting User Data Before You Code&raquo; by Jakob Nielsen</a></li>
 <li><a href="https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21" target="_blank">&laquo;What is Agile&raquo; by Henrik Kniberg</a></li>
-<li><a href="https://youtu.be/9LfmrkyP81M" target="_blank">Writing Software by David Heinemeier Hansson (video, RailsConf 2014)</a></li>
-<li><a href="http://appium.io" target="_blank">Appium</a> is an open source test automation framework that uses the WebDriver JSON wire protocol to test iOS and Android applications.</li>
+<li><a href="https://youtu.be/9LfmrkyP81M" target="_blank">&laquo;Writing Software&raquo; by David Heinemeier Hansson (video, RailsConf 2014)</a> - good idea to test on higher level of abstraction.</li>
 </ul>
 
                                 </div>
@@ -521,8 +536,8 @@ After that we&rsquo;ll have all components in our system:</p>
          <a href="../../../../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../../../../assets/js/prism.min.js?v=1499526198" defer></script>
-    <script src="../../../../../assets/js/foot-scripts.min.js?v=1499526198" defer></script>
+    <script src="../../../../../assets/js/prism.min.js?v=1499531926" defer></script>
+    <script src="../../../../../assets/js/foot-scripts.min.js?v=1499531926" defer></script>
 
     <script type="text/javascript">
 
