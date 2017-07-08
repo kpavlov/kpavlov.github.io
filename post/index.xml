@@ -6,10 +6,20 @@
     <description>Recent content in Posts on The Culture of Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 08 Jul 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://konstantinpavlov.net/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Programmers Oath</title>
+      <link>https://konstantinpavlov.net/blog/2017/07/08/the-programmers-oath/</link>
+      <pubDate>Sat, 08 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://konstantinpavlov.net/blog/2017/07/08/the-programmers-oath/</guid>
+      <description>&lt;p&gt;I must-see speech by &lt;a href=&#34;https://twitter.com/unclebobmartin&#34; target=&#34;_blank&#34;&gt;Robert &amp;laquo;Uncle Bob&amp;raquo; Martin&lt;/a&gt;.
+He talks about our responsibilities in our digital world and emphasize 9 principles every programmer should follow.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Logging Policy</title>

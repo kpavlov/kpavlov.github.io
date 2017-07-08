@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://konstantinpavlov.net/blog/2017/07/08/the-programmers-oath/</loc>
+    <lastmod>2017-07-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://konstantinpavlov.net/blog/2017/03/28/logging-policy/</loc>
     <lastmod>2017-03-30T09:02:00+03:00</lastmod>
   </url>
@@ -640,7 +645,7 @@
   
   <url>
     <loc>https://konstantinpavlov.net/post/</loc>
-    <lastmod>2017-03-30T09:02:00+03:00</lastmod>
+    <lastmod>2017-07-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -650,19 +655,19 @@
   
   <url>
     <loc>https://konstantinpavlov.net/categories/programming/</loc>
-    <lastmod>2017-03-30T09:02:00+03:00</lastmod>
+    <lastmod>2017-07-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://konstantinpavlov.net/tags/programming/</loc>
-    <lastmod>2017-06-09T00:00:00+00:00</lastmod>
+    <lastmod>2017-07-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://konstantinpavlov.net/categories/project-management/</loc>
-    <lastmod>2017-06-09T00:00:00+00:00</lastmod>
+    <lastmod>2017-07-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -716,7 +721,7 @@
   
   <url>
     <loc>https://konstantinpavlov.net/</loc>
-    <lastmod>2017-03-30T09:02:00+03:00</lastmod>
+    <lastmod>2017-07-08T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -14,7 +14,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="generator" content="Hugo 0.21" />
+    <meta name="generator" content="Hugo 0.25" />
 
     
     
@@ -27,7 +27,7 @@
 
 
 
-<meta property="og:updated_time" content="2015-05-03T18:23:06&#43;00:00"/>
+<meta property="og:updated_time" content="2015-05-10T11:52:33&#43;00:00"/>
 
 
 
@@ -65,8 +65,8 @@
     <link href="//fonts.googleapis.com/" rel="dns-prefetch">
     <link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../assets/css/style.css?v=1499015734">
-    <link rel="stylesheet" href="../../assets/css/prism.min.css?v=1499015734"/>
+    <link rel="stylesheet" href="../../assets/css/style.css?v=1499526199">
+    <link rel="stylesheet" href="../../assets/css/prism.min.css?v=1499526199"/>
 
     <script type="text/javascript">
         
@@ -193,6 +193,67 @@
 
                 
                 <section class="post-list">
+                  
+                    <article itemscope itemtype="http://schema.org/BlogPosting"
+         role="article" class="post-item">
+  <header class="post-item-header">
+    <h2 itemprop="name" class="post-item-title">
+      <a href="https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/" itemprop="url" data-pjax title="One More Grid for AngularJS">
+        One More Grid for AngularJS
+      </a>
+    </h2>
+  </header>
+  <section itemprop="description" class="post-item-excerpt">
+    <p>After playing with ui.grid I found one more library to impmenent grids in AngularJS - angularGrid.
+It&rsquo;s quite easy to integrate and faster than ui.grid. You may find other reasons of using this grid on the author&rsquo;s post.<a href="https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/" itemprop="url" data-pjax title="One More Grid for AngularJS">&hellip;</a></p>
+  </section>
+  <footer class="post-item-footer">
+    <ul class="post-item-meta-list">
+
+      <li class="post-item-meta-item">
+        <time datetime='2015-05-10' itemprop="datePublished">
+          2015-05-10
+        </time>
+      </li>
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../categories/programming/" data-pjax rel="category" >programming</a>
+    
+
+</li>
+
+
+      
+<li class="post-item-meta-item">
+
+
+    
+    <a itemprop="articleSection" href="../../tags/web/" data-pjax rel="tag">#web</a>
+    ,
+
+    
+    <a itemprop="keywords" href="../../tags/angularjs/" data-pjax rel="tag">#angularjs</a>
+    
+
+</li>
+
+
+
+      
+      <li class="post-item-meta-item">
+        <a href="https://konstantinpavlov.net/blog/2015/05/10/one-more-grid-for-angularjs/#disqus_thread" data-disqus-identifier='20150510115233'>Comments</a>
+      </li>
+      
+      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
+        <meta itemprop="duration" content="T1M" />
+        ~1 min
+      </li>
+    </ul>
+  </footer>
+</article>
                   
                     <article itemscope itemtype="http://schema.org/BlogPosting"
          role="article" class="post-item">
@@ -726,79 +787,6 @@ Find:
   </footer>
 </article>
                   
-                    <article itemscope itemtype="http://schema.org/BlogPosting"
-         role="article" class="post-item">
-  <header class="post-item-header">
-    <h2 itemprop="name" class="post-item-title">
-      <a href="https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/" itemprop="url" data-pjax title="Conditional Java Configurations in Spring Framework">
-        Conditional Java Configurations in Spring Framework
-      </a>
-    </h2>
-  </header>
-  <section itemprop="description" class="post-item-excerpt">
-    <p><p>Spring Framework offers very flexible means for binding application components.
-Externalizable properties, composite configuration, nested application contexts and profiles.</p>
-
-<!-- 
-profile
-:    A profile is a named logical grouping that may be activated programmatically via [`ConfigurableEnvironment.setActiveProfiles(java.lang.String...)`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/core/env/ConfigurableEnvironment.html#setActiveProfiles-java.lang.String...-) or declaratively through setting the `spring.profiles.active` property, usually through JVM system properties, as an environment variable, or for web applications as a Servlet context parameter in `web.xml` file.
- -->
-
-<p>Sometimes, it is necessary to control whether particular beans or <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Configuration.html" target="_blank"><code>@Configuration</code></a> will be loaded or not. Spring Framework v.4.1.x does not provide that feature out of the box. But, hopefully, Spring allows conditional bean initialization (see <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/Profile.html" target="_blank"><code>@Profile</code></a> implementation and <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/beans/factory/annotation/Configurable.html" target="_blank"><code>@Configurable</code></a>).
-So, I created the annotation <a href="https://github.com/kpavlov/commons-spring/blob/master/src/main/java/com/github/kpavlov/commons/spring/annotations/Enabled.java" target="_blank"><code>@Enabled</code></a> which allows me to control bean instantiation via properties.</p>
-
-<p><code>@Enabled</code> indicates that a component is eligible for registration when evaluated expression is true. This annotation should be used in conjunction with Configuration and Bean annotations.</p>
-
-<p></p><a href="https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/" itemprop="url" data-pjax title="Conditional Java Configurations in Spring Framework">&hellip;</a></p>
-  </section>
-  <footer class="post-item-footer">
-    <ul class="post-item-meta-list">
-
-      <li class="post-item-meta-item">
-        <time datetime='2014-12-14' itemprop="datePublished">
-          2014-12-14
-        </time>
-      </li>
-      
-<li class="post-item-meta-item">
-
-
-    
-    <a itemprop="articleSection" href="../../categories/programming/" data-pjax rel="category" >programming</a>
-    
-
-</li>
-
-
-      
-<li class="post-item-meta-item">
-
-
-    
-    <a itemprop="articleSection" href="../../tags/java/" data-pjax rel="tag">#java</a>
-    ,
-
-    
-    <a itemprop="keywords" href="../../tags/spring/" data-pjax rel="tag">#spring</a>
-    
-
-</li>
-
-
-
-      
-      <li class="post-item-meta-item">
-        <a href="https://konstantinpavlov.net/blog/2014/12/14/conditional-java-configurations-in-spring-framework/#disqus_thread" data-disqus-identifier='20141214112229'>Comments</a>
-      </li>
-      
-      <li class="post-item-meta-item" title="Estimated reading time" itemprop="timeRequired">
-        <meta itemprop="duration" content="T1M" />
-        ~1 min
-      </li>
-    </ul>
-  </footer>
-</article>
-                  
                 </section>
 
                 <nav role="pagination" class="post-list-pagination">
@@ -848,8 +836,8 @@ So, I created the annotation <a href="https://github.com/kpavlov/commons-spring/
          <a href="../../legal/cookie-policy">Read More</a>
      </div>
 </dialog>
-    <script src="../../assets/js/prism.min.js?v=1499015734" defer></script>
-    <script src="../../assets/js/foot-scripts.min.js?v=1499015734" defer></script>
+    <script src="../../assets/js/prism.min.js?v=1499526199" defer></script>
+    <script src="../../assets/js/foot-scripts.min.js?v=1499526199" defer></script>
 
     <script type="text/javascript">
 
