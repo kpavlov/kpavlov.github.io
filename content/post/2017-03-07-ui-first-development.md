@@ -19,7 +19,7 @@ tags:
   - quality-assurance
   - web
 ---
-
+![Appearance is important](/assets/2017/03/carnival-1.jpg)
 One of the challenge for start-up or any new project is to reduce amount of work yet to deliver full-featured product.
 Agile methodologies address this challenge on project management level.
 Let's discuss one more approach to address it on architecture level: ***UI-first development.***
@@ -56,7 +56,7 @@ I&nbsp;think it's even more "agile" way since Client's feedback is collected ear
 
 Let’s assume, we’re going to develop a web application consuming REST/WebSockets API from back-end server.
 Following diagram shows how development phases can be scheduled on a timeline:
-![Application Development Schedule](/assets/2017/03/app-development-schedule-v1.svg)
+[![Application Development Schedule](/assets/2017/03/app-development-schedule-v1.png)](/assets/2017/03/app-development-schedule-v1.svg)
 
 
 ### 1. UI Prototype
@@ -65,6 +65,16 @@ Actual development starts with web application prototyping.
 First UI mockups are created and presented to Client.
 This is typically an single page application (SPA) written using some component framework like Angular or React. 
 Some visual prototype or screen mockups may help to initial version quickly.
+
+And it's really funnp phaseof the development: you make something which looks like real and make it quickly!
+![That's a funny time](/assets/2017/03/carnival-2.jpg)  
+
+In their book ["The Pragmatic Programmer"][the-pragmatic-programmer] Andrew Hunt and David Thomas separate concepts 
+of _"prototype"_ and _"tracer code" or "tracer bullets"_.
+The difference is that prototype **must&nbsp;be&nbsp;replaced** with real production code, but _tracer code_ is&nbsp;not: 
+you write it for keeps.
+Pragmatic approach is to mix prototype and tracing code and refactor and re-write prototype over time. 
+
 
 ### 2. Add Some Static Data
 
@@ -150,6 +160,7 @@ After that we'll have all components in our system:
 
 Now, when initial setup is completed (_"iteration zero"_) we can let's continue with Sprints short interactions affecting all system layers.
 
+![That's a funny time](/assets/2017/03/puzzle-complete.jpg)
 
 ## Final Notes
 
@@ -157,9 +168,13 @@ _It's just an idea of how to minimize unnecessary work in conditions of business
 
 ## Links
 
+- ["UI-First Software Development"](https://blog.codinghorror.com/ui-first-software-development/) and ["The Prototype Pitfall"](https://blog.codinghorror.com/the-prototype-pitfall/) by Jeff Atwood
+- ["Tracer Bullets and Prototypes" A Conversation with Andy Hunt and Dave Thomas, Part VIII by Bill Venners, April 21, 2003](http://www.artima.com/intv/tracerP.html)
+- ["The Pragmatic Programmer" by Andrew Hunt and Dave Thomas][the-pragmatic-programmer]
+- ["Paper Prototyping: Getting User Data Before You Code" by Jakob Nielsen](https://www.nngroup.com/articles/paper-prototyping/)
 - ["What is Agile" by Henrik Kniberg][henrik-presentation]
-- [Writing Software by David Heinemeier Hansson (video, RailsConf 2014)](https://youtu.be/9LfmrkyP81M)
-- [Appium](http://appium.io) is an open source test automation framework that uses the WebDriver JSON wire protocol to test iOS and Android applications.
+- ["Writing Software" by David Heinemeier Hansson (video, RailsConf 2014)](https://youtu.be/9LfmrkyP81M) - good idea to test on higher level of abstraction.
 
+[the-pragmatic-programmer]: http://www.amazon.com/exec/obidos/ASIN/020161622X/billvennersA/ "&laquo;The Pragmatic Programmer&raquo; by Andrew Hunt and Dave Thomas"
 [markdown]: https://daringfireball.net/projects/markdown/
 [henrik-presentation]: https://www.slideshare.net/RichardPDoerer/what-isagile-henrik-kniberg-august-20-2013/21
