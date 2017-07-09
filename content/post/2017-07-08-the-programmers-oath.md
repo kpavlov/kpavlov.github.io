@@ -15,7 +15,7 @@ A must-see speech by [Robert "Uncle Bob" Martin](https://twitter.com/unclebobmar
 {{< youtube Tng6Fox8EfI >}}
 <!--more-->
 
->**"In order to defend and preserve the honor of the profession of computer programmers,<br/>
+>**&laquo;In order to defend and preserve the honor of the profession of computer programmers,<br/>
 >I Promise that, to the best of my ability and judgment:**
 >
 >1. [I will not produce harmful code.](https://youtu.be/Tng6Fox8EfI?t=38m6s)
@@ -26,7 +26,7 @@ A must-see speech by [Robert "Uncle Bob" Martin](https://twitter.com/unclebobmar
 >6. [I will do all that I can to keep the productivity of myself, and others, as high as possible. I will do nothing that decreases that productivity.](https://youtu.be/Tng6Fox8EfI?t=48m08s)
 >7. [I will continuously ensure that others can cover for me, and that I can cover for them.](https://youtu.be/Tng6Fox8EfI?t=48m50s)
 >8. [I will produce estimates that are honest both in magnitude and precision. I will not make promises without certainty.](https://youtu.be/Tng6Fox8EfI?t=51m09s)
->9. [I will never stop learning and improving my craft.](https://youtu.be/Tng6Fox8EfI?t=56m08s)"
+>9. [I will never stop learning and improving my craft.](https://youtu.be/Tng6Fox8EfI?t=56m08s)&raquo;
 
 Can't agree more.
 
